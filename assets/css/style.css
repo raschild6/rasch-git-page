@@ -567,6 +567,14 @@ main { flex: 1; }
   max-width: 620px;
 }
 
+.vt-links {
+  margin: -24px 0 34px;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+.vt-links a { color: var(--text-muted); text-decoration: underline; text-underline-offset: 2px; }
+.vt-links a:hover { color: var(--accent); }
+
 /* ---------- Footer ---------- */
 
 .footer {

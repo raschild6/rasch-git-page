@@ -1,40 +1,25 @@
 /* ==========================================================================
-   Rasch-Git — release notes
+   Rasch-Git — releases page
 
-   To publish a new version, add an entry at the TOP of the RELEASES array.
-   Only `version` is required; `date`, `windows`, `macos` and every changelog
-   group are optional.
+   Release data is loaded from /releases.json, which the release pipeline of
+   the private repo updates automatically. Each entry looks like:
 
-   Download links: unless `windows` / `macos` are given, the buttons open the
-   GitHub release page for the tag (https://github.com/<repo>/releases/tag/<version>)
-   and, when the release exists on GitHub, are switched automatically to the
-   matching .exe/.msi and .dmg/.pkg assets.
+   {
+     "version": "0.0.2",
+     "tag": "v0.0.2",
+     "date": "2026-09-25",
+     "downloads": { "windows": "<url>", "macos": "<url>" },
+     "changelog": { "New Features": [], "Bug Fixes": [], "Improvements": [] },
+     "virustotal": { "windows": "<url>", "macos": "<url>" },
+     "release_url": "https://github.com/<repo>/releases/tag/v0.0.2"
+   }
+
+   Only `version` or `tag` is required. Entries are sorted newest first, so
+   the order in the file does not matter. Missing download links fall back to
+   the GitHub release page and are resolved to assets via the GitHub API.
    ========================================================================== */
 
-var RELEASES = [
-  {
-    version: "v0.0.1",
-    date: "2025-01-01",
-    changelog: {
-      "New Features": [
-        "First public release of Rasch-Git",
-        "Fully async GUI: every Git operation runs in the background",
-        "Smart diff views (Hunk, Inline, Split) with syntax highlighting",
-        "Built-in terminal per repository tab"
-      ],
-      "Bug Fixes": [
-        "Placeholder: fixed an issue where the commit graph could flicker on resize",
-        "Placeholder: fixed a crash when opening a repository with no commits"
-      ],
-      "Improvements": [
-        "Placeholder: faster startup when restoring many repository tabs",
-        "Placeholder: smoother scrolling in very large commit histories"
-      ]
-    }
-  }
-];
-
-/* -------------------------------------------------------------------------- */
+var RELEASES_JSON_URL = "releases.json";
 
 (function () {
   "use strict";
@@ -68,8 +53,31 @@ var RELEASES = [
     return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
   }
 
-  function tagUrl(release) {
-    return window.RaschGit.RELEASES_URL + "/tag/" + encodeURIComponent(release.version);
+  function normalize(raw) {
+    var version = String(raw.version || raw.tag || "").trim();
+    var tag = String(raw.tag || (/^v/i.test(version) ? version : "v" + version)).trim();
+    var downloads = raw.downloads || {};
+    return {
+      tag: tag,
+      date: raw.date || "",
+      windows: downloads.windows || raw.windows || "",
+      macos: downloads.macos || raw.macos || "",
+      changelog: raw.changelog || {},
+      virustotal: raw.virustotal || {},
+      releaseUrl: raw.release_url || window.RaschGit.RELEASES_URL + "/tag/" + encodeURIComponent(tag)
+    };
+  }
+
+  // Newest first: by numeric version parts, then by date.
+  function compareReleases(a, b) {
+    var pa = a.tag.replace(/^v/i, "").split(/[.-]/);
+    var pb = b.tag.replace(/^v/i, "").split(/[.-]/);
+    for (var i = 0; i < Math.max(pa.length, pb.length); i++) {
+      var na = parseInt(pa[i], 10) || 0;
+      var nb = parseInt(pb[i], 10) || 0;
+      if (na !== nb) return nb - na;
+    }
+    return String(b.date).localeCompare(String(a.date));
   }
 
   // Buttons without an explicit URL get data-platform so main.js can swap in
@@ -89,7 +97,7 @@ var RELEASES = [
     container.innerHTML = "";
 
     var titleRow = el("div", { class: "title-row" }, [
-      el("h2", { id: "release-title", text: release.version }),
+      el("h2", { id: "release-title", text: release.tag }),
       isLatest ? el("span", { class: "badge", text: "Latest" }) : null
     ]);
 
@@ -98,7 +106,7 @@ var RELEASES = [
       text: release.date ? "Released " + formatDate(release.date) : " "
     });
 
-    var fallback = tagUrl(release);
+    var fallback = release.releaseUrl;
     var buttons = el("div", { class: "btn-group" }, [
       downloadButton("windows", "Download for Windows", release.windows, fallback, true),
       downloadButton("macos", "Download for macOS", release.macos, fallback, false)
@@ -109,6 +117,17 @@ var RELEASES = [
       text: "* This app is not code-signed yet. Windows SmartScreen or macOS Gatekeeper may show a warning \u2014 this is normal. " +
         "On Windows, click \u201cMore info\u201d \u2192 \u201cRun anyway\u201d. On macOS, right-click the app and select \u201cOpen\u201d."
     });
+
+    var vt = release.virustotal;
+    var vtLinks = null;
+    if (vt.windows || vt.macos) {
+      vtLinks = el("p", { class: "vt-links" }, [el("span", { text: "VirusTotal scan: " })]);
+      [["windows", "Windows"], ["macos", "macOS"]].forEach(function (p) {
+        if (!vt[p[0]]) return;
+        if (vtLinks.children.length > 1) vtLinks.appendChild(document.createTextNode(" \u00b7 "));
+        vtLinks.appendChild(el("a", { href: vt[p[0]], target: "_blank", rel: "noopener", text: p[1] }));
+      });
+    }
 
     var changelog = el("div", { class: "changelog" }, [el("h3", { text: "Changelog" })]);
     var groups = release.changelog || {};
@@ -131,16 +150,20 @@ var RELEASES = [
     container.appendChild(meta);
     container.appendChild(buttons);
     container.appendChild(unsignedNotice);
+    if (vtLinks) container.appendChild(vtLinks);
     container.appendChild(changelog);
 
-    window.RaschGit.resolveDownloads(buttons, release.version);
+    window.RaschGit.resolveDownloads(buttons, release.tag);
   }
 
-  function init() {
-    var list = document.getElementById("release-list");
-    var detail = document.getElementById("release-detail");
-    if (!list || !detail || !RELEASES.length) return;
+  function showMessage(container, text) {
+    container.innerHTML = "";
+    var p = el("p", { class: "meta", text: text + " " });
+    p.appendChild(el("a", { href: window.RaschGit.RELEASES_URL, rel: "noopener", text: "View all releases on GitHub \u2192" }));
+    container.appendChild(p);
+  }
 
+  function render(list, detail, releases) {
     var items = [];
 
     function select(index, updateHash) {
@@ -149,16 +172,17 @@ var RELEASES = [
         btn.classList.toggle("active", active);
         btn.setAttribute("aria-current", active ? "true" : "false");
       });
-      renderDetail(detail, RELEASES[index], index === 0);
+      renderDetail(detail, releases[index], index === 0);
       if (updateHash && history.replaceState) {
-        history.replaceState(null, "", "#" + RELEASES[index].version);
+        history.replaceState(null, "", "#" + releases[index].tag);
       }
     }
 
-    RELEASES.forEach(function (release, i) {
+    list.innerHTML = "";
+    releases.forEach(function (release, i) {
       var btn = el("button", { type: "button", class: "release-item" }, [
-        el("span", { class: "ver", text: release.version }),
-        el("span", { class: "date", text: release.date || "" })
+        el("span", { class: "ver", text: release.tag }),
+        el("span", { class: "date", text: release.date })
       ]);
       btn.addEventListener("click", function () {
         select(i, true);
@@ -171,15 +195,45 @@ var RELEASES = [
     });
 
     function indexFromHash() {
-      var tag = decodeURIComponent(location.hash.replace(/^#/, ""));
-      for (var i = 0; i < RELEASES.length; i++) {
-        if (RELEASES[i].version === tag) return i;
+      var tag = decodeURIComponent(location.hash.replace(/^#/, "")).replace(/^v/i, "");
+      for (var i = 0; i < releases.length; i++) {
+        if (releases[i].tag.replace(/^v/i, "") === tag) return i;
       }
       return 0;
     }
 
     window.addEventListener("hashchange", function () { select(indexFromHash(), false); });
     select(indexFromHash(), false);
+  }
+
+  function init() {
+    var list = document.getElementById("release-list");
+    var detail = document.getElementById("release-detail");
+    if (!list || !detail) return;
+
+    detail.innerHTML = "";
+    detail.appendChild(el("p", { class: "meta", text: "Loading releases\u2026" }));
+
+    // no-cache: revalidate so a freshly published release shows up immediately.
+    fetch(RELEASES_JSON_URL, { cache: "no-cache" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        var releases = (Array.isArray(data) ? data : data.releases || [])
+          .filter(function (r) { return r && (r.version || r.tag); })
+          .map(normalize)
+          .sort(compareReleases);
+        if (!releases.length) {
+          showMessage(detail, "No releases published yet.");
+          return;
+        }
+        render(list, detail, releases);
+      })
+      .catch(function () {
+        showMessage(detail, "Could not load the release list.");
+      });
   }
 
   document.addEventListener("DOMContentLoaded", init);
