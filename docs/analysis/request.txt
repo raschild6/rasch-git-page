@@ -1,38 +1,40 @@
 You are working on the public repository raschild6/rasch-git-page. This repo serves as the public download and landing page for Rasch-Git, a powerful cross-platform Git client (the source code is in a separate private repo).
 
-The file rash-git-logo-1024-v2.png is already in the repo root — use it as the app logo throughout all pages. Resize/optimize it as needed for different placements (navbar, hero, favicon).
+The file `rash-git-logo-1024-v2.png` is already in the repo root — use it as the app logo throughout all pages. Resize/optimize it as needed for different placements (navbar, hero, favicon).
 
 Create a professional, modern, dark-themed website with 3 pages: Home, Releases, About. Use a shared navbar at the top with the logo + "Rasch-Git" on the left, and Home / Releases / About navigation links on the right. Pure HTML/CSS/JS, no frameworks, fully responsive.
 
-Home Page (index.html):
+**Home Page (index.html):**
+- Hero section: logo, "Rasch-Git" title, tagline "Everything you need from a Git client — and more"
+- Two prominent download buttons centered: "Download for Windows" and "Download for macOS", linking to the latest GitHub Release assets of this repo (https://github.com/raschild6/rasch-git-page/releases/latest)
+- Below the buttons, a small "View all releases →" link pointing to the Releases page
+- Features section: 2 columns per row. Each feature has an icon on the left and a title + 1-2 lines description on the right. Features to include:
+  - Fully Async GUI — Every operation runs in the background, the interface never locks up
+  - Smart Diff Views — Hunk, Inline, and Split views with syntax highlighting and horizontal scroll
+  - Built-in Terminal — Integrated shell per repo tab, right where you need it
+  - Auto Fetch & Real Progress — Background fetch with live progress tracking and cancel support
+  - Bulk Branch & Repo Management — Perform actions on multiple branches or repos at once with summary reports
+  - Conflict Resolution — Visual conflict editor with guided merge workflow and auto-stash on checkout
+  - Commit Graph Virtualization — Smooth scrolling through massive commit histories
+  - Tab Grouping — Organize open repos into collapsible groups for easy navigation
+  - Commit Search — Search through commit titles and descriptions instantly
+  - Customizable Commit Templates — Preconfigured commit messages with placeholders, managed from Settings
+- Footer: "© 2025 Raschild. All rights reserved. Redistribution is not permitted."
 
-Hero section: logo, "Rasch-Git" title, tagline "A powerful, fast Git client built for speed"
-Two prominent download buttons centered: "Download for Windows" and "Download for macOS", linking to the latest GitHub Release assets of this repo (https://github.com/raschild6/rasch-git-page/releases/latest)
-Below the buttons, a small "View all releases →" link pointing to the Releases page
-Features section: 2 columns per row. Each feature has an icon on the left and a title + 1-2 lines description on the right. Features to include:
-Fully Async GUI — Never blocks, every operation runs in the background
-Smart Diff Views — Hunk, Inline, and Split views with syntax highlighting
-Built-in Terminal — Integrated shell per repo tab, right where you need it
-Auto Fetch — Automatic background fetch with real progress tracking
-Bulk Branch & Repo Management — Perform actions on multiple branches or repos at once
-Conflict Resolution — Visual conflict editor with guided merge workflow
-Commit Graph Virtualization — Smooth scrolling even on massive histories
-Tab Grouping — Organize open repos into collapsible groups
-Footer: "© 2025 Raschild. All rights reserved. Redistribution is not permitted."
-Releases Page (releases.html):
+**Releases Page (releases.html):**
+- Left sidebar (1/3 width): scrollable list of versions, latest on top, selected version highlighted in accent color. For now put v0.0.1 as only entry.
+- Right content area (2/3 width): shows selected version name, download buttons for Windows and macOS, then a Changelog section with bullet points grouped by "New Features", "Bug Fixes", "Improvements". For v0.0.1 put placeholder changelog entries.
+- Designed so adding a new version is trivial — just add a new entry in a JS array or HTML block.
 
-Left sidebar (1/3 width): scrollable list of versions, latest on top, selected version highlighted in accent color. For now put v0.0.1 as only entry.
-Right content area (2/3 width): shows selected version name, download buttons for Windows and macOS, then a Changelog section with bullet points grouped by "New Features", "Bug Fixes", "Improvements". For v0.0.1 put placeholder changelog entries.
-Designed so adding a new version is trivial — just add a new entry in a JS array or HTML block.
-About Page (about.html):
+**About Page (about.html):**
+- About section: brief description of Rasch-Git (a cross-platform Git client packed with features that simplify complex workflows — from bulk operations and smart diff views to built-in terminals and visual conflict resolution, designed to give developers full control over their repositories)
+- Contact section with email icon + support@rasch-git.com and GitHub icon + github.com/raschild6
 
-About section: brief description of Rasch-Git (cross-platform Git client designed for speed and efficiency, provides intuitive interface and powerful tools for developers to manage repositories with ease)
-Contact section with email icon + support@rasch-git.com and GitHub icon + github.com/raschild6
-Style:
+**Style:**
+- Dark background (#1a1b2e or similar deep dark blue/charcoal), accent color teal/cyan (#2dd4a8 or similar), clean modern typography
+- Subtle glow effects on buttons, smooth hover transitions
+- Cards for features with slight border or glass effect
 
-Dark background (#1a1b2e or similar deep dark blue/charcoal), accent color teal/cyan (#2dd4a8 or similar), clean modern typography
-Subtle glow effects on buttons, smooth hover transitions
-Cards for features with slight border or glass effect
 Set up GitHub Pages deployment from the main branch root.
 
 Also update README.md to:
@@ -41,9 +43,9 @@ Also update README.md to:
 
 A powerful cross-platform Git client.
 
-© 2025 Raschild. All rights reserved.
+**© 2025 Raschild. All rights reserved.**
 
-Download the latest version from the releases page or visit the website.
+Download the latest version from the [releases page](https://github.com/raschild6/rasch-git-page/releases) or visit the [website](https://raschild6.github.io/rasch-git-page).
 
 Redistribution of these binaries is not permitted without explicit authorization."
 
