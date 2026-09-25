@@ -104,6 +104,12 @@ var RELEASES = [
       downloadButton("macos", "Download for macOS", release.macos, fallback, false)
     ]);
 
+    var unsignedNotice = el("p", {
+      class: "unsigned-notice",
+      text: "* This app is not code-signed yet. Windows SmartScreen or macOS Gatekeeper may show a warning \u2014 this is normal. " +
+        "On Windows, click \u201cMore info\u201d \u2192 \u201cRun anyway\u201d. On macOS, right-click the app and select \u201cOpen\u201d."
+    });
+
     var changelog = el("div", { class: "changelog" }, [el("h3", { text: "Changelog" })]);
     var groups = release.changelog || {};
     var names = GROUP_ORDER.concat(
@@ -124,6 +130,7 @@ var RELEASES = [
     container.appendChild(titleRow);
     container.appendChild(meta);
     container.appendChild(buttons);
+    container.appendChild(unsignedNotice);
     container.appendChild(changelog);
 
     window.RaschGit.resolveDownloads(buttons, release.version);
