@@ -1,0 +1,25 @@
+[
+  {
+    "version": "0.0.2",
+    "tag": "v0.0.2",
+    "date": "2026-09-25",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.2/RaschildGitManager-0.0.2-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.2/RaschildGitManager-0.0.2-macos-arm64.dmg"
+    },
+    "changelog": {
+      "New Features": [
+        "Release: VirusTotal scan + publish installers to rasch-git-page"
+      ],
+      "Bug Fixes": [],
+      "Improvements": [
+        "version 0.0.2"
+      ]
+    },
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/5d0f159bd58710fdf2f61ab4c611d64de35b14b97f31d02494f21c64366f1751",
+      "macos": "https://www.virustotal.com/gui/file/1221c4b097d8b99611e7c7d34acd930beea57d1ee0e4527171ffeb6b39411d7e"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v0.0.2"
+  }
+]
