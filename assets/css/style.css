@@ -509,8 +509,8 @@ main { flex: 1; }
   gap: 28px;
 }
 .about-intro img {
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: auto;
   border-radius: 26px;
   flex-shrink: 0;
   box-shadow: 0 0 0 1px var(--border-strong), 0 0 50px -12px rgba(45, 212, 168, 0.4);
@@ -551,6 +551,15 @@ main { flex: 1; }
   .about-intro { flex-direction: column; align-items: flex-start; gap: 20px; }
   .about-card { padding: 24px 20px; }
   .contact-list { grid-template-columns: 1fr; }
+}
+
+.unsigned-notice {
+ margin-top: 14px;
+ font-size: 0.78rem;
+ color: var(--text-dim);
+ max-width: 560px;
+ margin-left: auto;
+ margin-right: auto;
 }
 
 /* ---------- Footer ---------- */
