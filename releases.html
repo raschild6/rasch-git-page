@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Releases — Rasch-Git</title>
+  <meta name="description" content="All Rasch-Git versions, downloads for Windows and macOS, and changelogs.">
+  <meta name="theme-color" content="#1a1b2e">
+  <meta property="og:title" content="Releases — Rasch-Git">
+  <meta property="og:description" content="All Rasch-Git versions, downloads for Windows and macOS, and changelogs.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://raschild6.github.io/rasch-git-page/assets/img/logo-512.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <nav class="container" aria-label="Main">
+      <a class="brand" href="index.html">
+        <picture>
+          <source srcset="assets/img/logo-96.webp" type="image/webp">
+          <img src="assets/img/logo-96.png" alt="" width="38" height="38">
+        </picture>
+        <span>Rasch-Git</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="releases.html" aria-current="page">Releases</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-head">
+        <h1>Releases</h1>
+        <p>Download any version of Rasch-Git and see what changed.</p>
+      </div>
+      <div class="releases">
+        <aside class="card release-list" aria-label="Versions">
+          <h2>Versions</h2>
+          <ul id="release-list"></ul>
+        </aside>
+        <section class="card release-detail" id="release-detail" aria-labelledby="release-title" aria-live="polite">
+          <noscript>
+            <p>JavaScript is required to browse release notes here. You can also view all releases on
+              <a href="https://github.com/raschild6/rasch-git-page/releases">GitHub</a>.</p>
+          </noscript>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Raschild. All rights reserved. Redistribution is not permitted.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/releases.js"></script>
+</body>
+</html>
