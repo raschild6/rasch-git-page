@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "version": "0.0.1",
+    "tag": "v0.0.1",
+    "date": "2026-09-29",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.1/RaschildGitManager-0.0.1-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.1/RaschildGitManager-0.0.1-macos-arm64.dmg"
+    },
+    "changelog": {
+      "New Features": [
+        "GITHUB_CLIENT_ID added",
+        "Open files in external programs, with configurable editor associations",
+        "Feature tour: \"Drag & drop to open\" step",
+        "First-launch feature tour",
+        "Automatic update checker (startup + Help → Check for Updates)",
+        "Undo / Redo of local operations; Edit menu reorganised",
+        "Theme Manager with custom themes",
+        "UI/layout refactor: consistent, professional look on Windows and macOS",
+        "Detached HEAD label, custom toolbar buttons, per-repo \"Show tags\"",
+        "Release: VirusTotal scan + publish installers to rasch-git-page",
+        "push tags: Push tag / Push all tags, create-and-push, delete on remote",
+        "logo app v1",
+        "build & distribution: Nuitka-compiled Windows installer and macOS DMG, release CI",
+        "real progress bar, File → Export Full Logs…, untracked files in stash views"
+      ],
+      "Bug Fixes": [
+        "Drag & drop of folders works on the whole window",
+        "hard reset crash, toolbar Pop",
+        "default commit title is the first template",
+        "pull non-current branch, empty merge",
+        "Windows build: UnicodeEncodeError printing '→' to a cp1252 console",
+        "version 0.0.1",
+        "last tab never loads on Windows: serialise process creation, never wait on a leaked pipe",
+        "repo tab stuck in false conflict mode during a clean merge; slow-load diagnostics",
+        "crash after a hanging fetch: never terminate() worker threads; idle timeout + slim fallback for network git"
+      ],
+      "Improvements": [
+        "version 0.0.1: restart under the new license, full changelog",
+        "Tour: mention the graph's right-click menus; features overview updated",
+        "CLAUDE.md: add Security Guidelines section",
+        "Add Deep Search, graph arrow-key navigation, per-repo file view, Discard Hunk",
+        "Security audit: keep secrets out of logs, argv, build output and CI",
+        "Add GitHub sign-in, access tokens, SSH key management and auth recovery",
+        "version 0.0.4",
+        "features overview for the website",
+        "version 0.0.3",
+        "version 0.0.2",
+        "graph virtualization, progress, command log, stash -u, bulk dialogs"
+      ]
+    },
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/1fd4ebb031e4ea5d4d0028526c6f3005c1c2ebd772d1ddd390d4e4554e1ed97e",
+      "macos": "https://www.virustotal.com/gui/file/731d48d532dbaa971618848939e6ee9c4758372e88f843489ce3255ae69b094a"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v0.0.1"
+  }
+]
