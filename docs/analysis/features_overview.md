@@ -22,12 +22,12 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 
 1. [At a glance](#at-a-glance)
 2. [Speed & reliability](#speed--reliability) — async GUI, virtualized graph, auto fetch with progress and cancel
-3. [Reading history & changes](#reading-history--changes) — commit search, smart diff views, commit details
+3. [Reading history & changes](#reading-history--changes) — commit search, Deep Search, smart diff views, commit details
 4. [Committing](#committing) — staging, commit templates, review-before-commit
 5. [Safety net](#safety-net) — undo / redo, safe checkout, visual conflict resolution
-6. [Branches & repositories at scale](#branches--repositories-at-scale) — tab groups, bulk actions, the branch tree
+6. [Branches & repositories at scale](#branches--repositories-at-scale) — the branch tree, drag & drop to open, tab groups, bulk actions
 7. [Your workspace](#your-workspace) — built-in terminal, custom toolbar buttons, custom themes
-8. [Platform, updates & support](#platform-updates--support)
+8. [Platform, updates & support](#platform-updates--support) — accounts & SSH keys, updates, logs, cross-platform look, tour
 9. [Comparison summary](#comparison-summary)
 10. [Keyboard shortcuts](#keyboard-shortcuts)
 11. [Notes for the website](#notes-for-the-website)
@@ -59,6 +59,10 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 19 | Automatic updates | Get notified of new versions, then download, verify and install in one click. |
 | 20 | Consistent cross-platform look | Same layout and sizes on Windows and macOS, no overlapping controls. |
 | 21 | Guided feature tour | A skippable tour points at each feature in the real app. |
+| 22 | Drag & drop to open | Drop repository folders on the window to open them — several at once. |
+| 23 | Open in external programs | Open any file — or any committed version of it — in the app you choose. |
+| 24 | Accounts & SSH keys | Sign in to GitHub once — or add a token or an SSH key — and push just works. |
+| 25 | Deep Search | Find any file by name across the whole history — and jump to the commit that touched it. |
 
 ---
 
@@ -81,14 +85,20 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 
 **In one line:** Smooth scrolling through huge histories, with your stashes and uncommitted work right in the graph.
 
-**What it does:** The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. Right-clicking a branch label or a commit's coloured dot opens a context menu with the actions for that branch or commit (see [Commit details](#17-commit-details)).
+**What it does:** The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. With the graph focused, **↑ / ↓** step from commit to commit and the view follows.
+
+The graph is also where you act on history, with **right-click menus**:
+- **Branch and tag labels:** check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete).
+- **A commit's coloured dot:** cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag there, copy the SHA.
+- **A stash node:** apply, pop or drop it.
 
 **Why it's different:**
 - Typical Git GUIs build every row of the history up front, which gets slow on large repositories.
 - Stashes and work in progress usually live in a separate list; here they are part of the history view.
 - The graph can optionally show tags (a per-repository setting) and marks a detached HEAD explicitly.
+- Branch and commit actions are one right-click away on the graph itself, instead of in separate dialogs or menus.
 
-**Where to find it:** The center of each repository tab; right-click a branch label or a commit's coloured dot for its menu.
+**Where to find it:** The center of each repository tab; right-click a branch / tag label or a commit's dot.
 
 ### 7. Auto fetch with real progress tracking and cancel support
 
@@ -119,6 +129,20 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 
 **Where to find it:** **Ctrl+F** on the commit graph, or in the diff viewer.
 
+### 25. Deep Search
+
+**In one line:** Find any file by name across the whole history — and jump to the commit that touched it.
+
+**What it does:** Type a file name, part of it, or a glob (`*.sql`, `src/**/test_*.py`); optionally limit how many commits to search and a date range. Results list every commit that added, modified, renamed or deleted a matching file, with hash, date, author and message. Click one and the graph jumps to that commit — loading older history if needed — while the diff viewer shows that file's changes. The search runs in the background with a progress bar and can be cancelled.
+
+**Why it's different:**
+- Most Git GUIs only show the history of a file that still exists and that you've already found in the tree; deleted or renamed files need `git log --all -- '**/name'` in a terminal.
+- Here a name fragment is enough, across every branch, and each hit is one click from its diff.
+
+**Where to find it:** **Edit → Deep Search…** (`Ctrl+Shift+F`).
+
+---
+
 ### 3. Smart diff views
 
 **In one line:** Hunk, Inline or Split — one click to switch, with syntax highlighting and search.
@@ -143,13 +167,13 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 - the title and full body, scrollable when long;
 - the list of changed files, as a flat list or as a folder tree.
 
-Clicking a file opens its diff for that commit. A right-click on a commit's coloured dot in the graph offers cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag here, and copy the SHA; a right-click on a branch label in the graph offers checkout, merge, fast-forward, rebase, push, pull, rename and delete.
+Clicking a file opens its diff for that commit. A right-click on a commit offers cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag here, and copy the SHA; a right-click on a branch label offers checkout, merge, fast-forward, rebase, push, pull, rename and delete.
 
 **Why it's different:**
 - Everything about a commit is in one side panel next to the graph, instead of spread across several windows.
 - The folder-tree view makes large commits easy to scan.
 
-**Where to find it:** Click a commit in the graph; right-click its coloured dot for the commit menu.
+**Where to find it:** Click a commit in the graph.
 
 ---
 
@@ -161,9 +185,9 @@ Clicking a file opens its diff for that commit. A right-click on a commit's colo
 
 **What it does:**
 - **Files:** stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with *Stage All* / *Unstage All*.
-- **Hunks:** in the diff, stage a single hunk of an unstaged file, or unstage a single hunk of a staged one.
+- **Hunks:** in the diff, stage or **discard** a single hunk of an unstaged file (discard asks first, reverts only that hunk and can be undone), or unstage a single hunk of a staged one.
 - **Fallbacks:** when Git's standard patch application can't handle a hunk (for example, new files or unusual line endings), the app falls back to its own blob-level staging so the action still works.
-- **Views:** changed files can be shown as a flat list or as a folder tree.
+- **Views:** changed files can be shown as a flat list or as a folder tree, remembered per repository for the unstaged and staged lists.
 
 **Why it's different:**
 - Partial staging is often missing or fragile in simpler GUIs; here it is built to work on edge cases.
@@ -254,11 +278,23 @@ Clicking a file opens its diff for that commit. A right-click on a commit's colo
 
 **Where to find it:** The left panel of each repository tab.
 
+### 22. Drag & drop to open
+
+**In one line:** Drop repository folders on the window to open them — several at once.
+
+**What it does:** Drag one or more folders from Explorer, Finder or your file manager and drop them anywhere on the window. Each Git repository opens in its own tab and is added to *File → Recent*. A repository that's already open is brought to the front instead of being opened twice. A folder that isn't a Git repository is reported rather than silently ignored.
+
+**Why it's different:**
+- Many clients only open repositories through a file dialog or an "add repository" wizard, one at a time.
+- Here, getting ten repositories into the app is one drag.
+
+**Where to find it:** Anywhere on the main window; also **File → Open** (**Ctrl+O**). The feature tour shows it as its second step.
+
 ### 5. Tab grouping
 
 **In one line:** Organize many repositories into coloured, collapsible groups.
 
-**What it does:** Every repository opens in its own tab, and tabs are restored the next time you start the app. Right-click a tab to create a group or add the tab to one. Grouped tabs get the group's colour, and a header tab in front of them shows the group name and count. Clicking the header collapses or expands the whole group, and collapsed groups stay collapsed across restarts. Drag a folder onto the window to open it as a new tab.
+**What it does:** Every repository opens in its own tab, and tabs are restored the next time you start the app. Right-click a tab to create a group or add the tab to one. Grouped tabs get the group's colour, and a header tab in front of them shows the group name and count. Clicking the header collapses or expands the whole group, and collapsed groups stay collapsed across restarts. Folders can also be dragged onto the window (see [Drag & drop to open](#22-drag--drop-to-open)).
 
 **Why it's different:**
 - Many Git GUIs show one repository per window, or a flat bookmark list.
@@ -323,7 +359,31 @@ Clicking a file opens its diff for that commit. A right-click on a commit's colo
 
 ---
 
+### 23. Open files in external programs
+
+**In one line:** Open any file — or any committed version of it — in the app you choose.
+
+**What it does:** Every file in the changes panel and in a commit's file list has **Open with System Default** and **Open with…**; the diff viewer has **Open Externally**. Double-clicking an image, PDF, office document or other binary file opens it in its program instead of showing an empty diff. In **Edit → External Editors** you map extensions to programs (for example `.csv, .xlsx` → Excel, `.png, .jpg` → Preview or Photoshop, `.md` → your editor); anything unmapped opens with the operating system's default. Files from past commits or stashes are extracted to a temporary copy, cleaned up when the app closes.
+
+**Why it's different:**
+- Most Git GUIs show "binary file changed" and stop there, or only open the current working copy.
+- Here any version of a file — from any commit or stash — opens in the right program with one click, and you decide which program per file type.
+
+**Where to find it:** Right-click a file; double-click a binary file; *Open Externally* in the diff header; **Edit → External Editors…**.
+
 ## Platform, updates & support
+
+### 24. Accounts & SSH keys
+
+**In one line:** Sign in to GitHub once — or add a token or an SSH key — and push just works.
+
+**What it does:** **Sign in to GitHub** opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries.
+
+**Why it's different:**
+- Many Git GUIs leave a failed HTTPS push at "authentication failed" and send you to a terminal or a credential helper.
+- Here the fix is one click away, the token never touches the command line, logs or `.git/config`, and SSH keys are managed without leaving the app.
+
+**Where to find it:** **Edit → Accounts & SSH Keys…**; right-click a remote in the left panel; the dialog that appears when a push, pull or fetch is refused.
 
 ### 19. Automatic updates
 
@@ -400,6 +460,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit's colo
 | Themes | Light / dark | Built-in plus custom themes from 5 colours |
 | Commit messages | Empty box | Templates with `{version}` / `{branch}` |
 | Debugging | Short error text | Activity log plus exportable raw command logs |
+| Failed HTTPS / SSH authentication | "Authentication failed", fix it outside the app | Explains why, offers sign-in / token / SSH key / HTTPS↔SSH switch, then retries |
 
 ---
 
@@ -410,6 +471,8 @@ Clicking a file opens its diff for that commit. A right-click on a commit's colo
 | Ctrl+O | Open a repository |
 | Ctrl+Z / Ctrl+Shift+Z (Ctrl+Y) | Undo / redo the last operation |
 | Ctrl+F | Search commits (graph) or the diff (diff viewer) |
+| Ctrl+Shift+F | Deep Search: a file across the history |
+| ↑ / ↓ | Previous / next commit in the graph |
 | Enter / Shift+Enter | Next / previous search match |
 | F5 | Refresh the current repository |
 | Esc | Back to the graph / working changes; pause conflict mode |
@@ -419,7 +482,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit's colo
 
 ## Notes for the website
 
-**Naming.** The product is **Rasch-Git**; the installed app is called **Raschild Git Manager**. Downloads are a Windows installer (`.exe`) and a macOS disk image (`.dmg`). Running on Linux requires running from source. The project is licensed under Apache 2.0.
+**Naming.** The product is **Rasch-Git**; the installed app is called **Raschild Git Manager**. Downloads are a Windows installer (`.exe`) and a macOS disk image (`.dmg`). Running on Linux requires running from source. The app is free for personal, educational and non-commercial use; commercial use and redistribution require written authorization (see `LICENSE`).
 
 **Suggested hero line:** *"The Git client that never freezes — with undo for almost everything."*
 
@@ -446,4 +509,5 @@ Clicking a file opens its diff for that commit. A right-click on a commit's colo
 - **Undo for everything:** stage / unstage and pushes are not undone. Remote changes are never reverted, and the undo history lasts for the current session only.
 - **Search the whole history:** commit search covers the commits loaded so far (the graph loads more as you scroll).
 - **Comparisons with GitKraken:** don't name it on the page.
+- **"Sign in with GitLab / Bitbucket":** only GitHub has a browser sign-in; the others use access tokens. GitHub sign-in needs the app's OAuth App to be registered (maintainers: `docs/AUTHENTICATION.md`).
 - **Specific numbers** (for example "a million commits"): they haven't been benchmarked; say "huge histories" / "very long histories".
