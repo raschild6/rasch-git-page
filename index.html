@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260929">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260930">
 </head>
 <body>
   <header class="navbar">
@@ -38,6 +38,7 @@
         <li><a href="install.html">Install</a></li>
         <li><a href="releases.html">Releases</a></li>
         <li><a href="about.html">About</a></li>
+        <li><a href="license.html">License</a></li>
       </ul>
     </nav>
   </header>
@@ -178,6 +179,20 @@
                 <p>Find any loaded commit by message, author or hash, instantly.</p>
               </div>
             </a>
+            <a class="card feature" href="features.html#deep-search">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m20 20-5.5-5.5"/><path d="M8 8h4M8 10.5h4M8 13h2"/></svg></div>
+              <div>
+                <h4>Deep Search</h4>
+                <p>Find any file by name across the whole history — and jump to the commit that touched it.</p>
+              </div>
+            </a>
+            <a class="card feature" href="features.html#drag-drop-to-open">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v3"/><path d="M3 7v10a2 2 0 0 0 2 2h6"/><path d="m14 14 7 2.5-3 1-1 3z"/></svg></div>
+              <div>
+                <h4>Drag &amp; Drop to Open</h4>
+                <p>Drop repository folders on the window to open them — several at once.</p>
+              </div>
+            </a>
           </div>
         </div>
         <div class="feature-group" aria-labelledby="group-workspace">
@@ -225,6 +240,13 @@
                 <p>Author avatar, copyable SHA, full message and changed files at a glance.</p>
               </div>
             </a>
+            <a class="card feature" href="features.html#open-in-external-programs">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg></div>
+              <div>
+                <h4>External Editors</h4>
+                <p>Open any file — or any committed version of it — in the app you choose.</p>
+              </div>
+            </a>
             <a class="card feature" href="features.html#guided-feature-tour">
               <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></div>
               <div>
@@ -258,6 +280,13 @@
                 <p>See everything the app did; export every Git command's raw output.</p>
               </div>
             </a>
+            <a class="card feature" href="features.html#accounts-ssh-keys">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9"/><path d="m17 6 3 3"/><path d="m14 9 2 2"/></svg></div>
+              <div>
+                <h4>GitHub Authentication</h4>
+                <p>Sign in to GitHub once — or add a token or an SSH key — and push just works.</p>
+              </div>
+            </a>
           </div>
         </div>
         <div class="features-more">
@@ -270,9 +299,10 @@
   <footer class="footer">
     <div class="container">
       <p>&copy; 2025 Raschild. All rights reserved. Redistribution is not permitted.</p>
+      <p class="license-notice"><a href="license.html">Free for personal use. Commercial use requires a license.</a></p>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=20260929"></script>
+  <script src="assets/js/main.js?v=20260930"></script>
 </body>
 </html>

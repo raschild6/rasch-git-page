@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260929">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260930">
 </head>
 <body>
   <header class="navbar">
@@ -38,6 +38,7 @@
         <li><a href="install.html">Install</a></li>
         <li><a href="releases.html">Releases</a></li>
         <li><a href="about.html">About</a></li>
+        <li><a href="license.html">License</a></li>
       </ul>
     </nav>
   </header>
@@ -96,13 +97,15 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. Right-clicking a branch label or a commit's coloured dot opens a context menu with the actions for that branch or commit (see <a href="#commit-details">Commit details</a>).</p>
+                <p>The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. With the graph focused, <strong>↑ / ↓</strong> step from commit to commit and the view follows.</p>
+<p>The graph is also where you act on history, with <strong>right-click menus</strong>:</p>
+<ul><li><strong>Branch and tag labels:</strong> check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete).</li><li><strong>A commit's coloured dot:</strong> cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag there, copy the SHA.</li><li><strong>A stash node:</strong> apply, pop or drop it.</li></ul>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
-                <ul><li>Typical Git GUIs build every row of the history up front, which gets slow on large repositories.</li><li>Stashes and work in progress usually live in a separate list; here they are part of the history view.</li><li>The graph can optionally show tags (a per-repository setting) and marks a detached HEAD explicitly.</li></ul>
+                <ul><li>Typical Git GUIs build every row of the history up front, which gets slow on large repositories.</li><li>Stashes and work in progress usually live in a separate list; here they are part of the history view.</li><li>The graph can optionally show tags (a per-repository setting) and marks a detached HEAD explicitly.</li><li>Branch and commit actions are one right-click away on the graph itself, instead of in separate dialogs or menus.</li></ul>
               </div>
-              <p class="feature-where"><span>Where to find it</span> The center of each repository tab; right-click a branch label or a commit's coloured dot for its menu.</p>
+              <p class="feature-where"><span>Where to find it</span> The center of each repository tab; right-click a branch / tag label or a commit's dot.</p>
             </article>
             <article class="feature-detail" id="auto-fetch-with-real-progress-cancel">
               <div class="feature-detail-head">
@@ -222,7 +225,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <ul><li><strong>Files:</strong> stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with <em>Stage All</em> / <em>Unstage All</em>.</li><li><strong>Hunks:</strong> in the diff, stage a single hunk of an unstaged file, or unstage a single hunk of a staged one.</li><li><strong>Fallbacks:</strong> when Git's standard patch application can't handle a hunk (for example, new files or unusual line endings), the app falls back to its own blob-level staging so the action still works.</li><li><strong>Views:</strong> changed files can be shown as a flat list or as a folder tree.</li></ul>
+                <ul><li><strong>Files:</strong> stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with <em>Stage All</em> / <em>Unstage All</em>.</li><li><strong>Hunks:</strong> in the diff, stage or <strong>discard</strong> a single hunk of an unstaged file (discard asks first, reverts only that hunk and can be undone), or unstage a single hunk of a staged one.</li><li><strong>Fallbacks:</strong> when Git's standard patch application can't handle a hunk (for example, new files or unusual line endings), the app falls back to its own blob-level staging so the action still works.</li><li><strong>Views:</strong> changed files can be shown as a flat list or as a folder tree, remembered per repository for the unstaged and staged lists.</li></ul>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
@@ -246,7 +249,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>Every repository opens in its own tab, and tabs are restored the next time you start the app. Right-click a tab to create a group or add the tab to one. Grouped tabs get the group's colour, and a header tab in front of them shows the group name and count. Clicking the header collapses or expands the whole group, and collapsed groups stay collapsed across restarts. Drag a folder onto the window to open it as a new tab.</p>
+                <p>Every repository opens in its own tab, and tabs are restored the next time you start the app. Right-click a tab to create a group or add the tab to one. Grouped tabs get the group's colour, and a header tab in front of them shows the group name and count. Clicking the header collapses or expands the whole group, and collapsed groups stay collapsed across restarts. Folders can also be dragged onto the window (see <a href="#drag-drop-to-open">Drag &amp; drop to open</a>).</p>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
@@ -304,6 +307,40 @@
                 <ul><li>Search is built into the graph itself, rather than into a separate log window or a filter that hides the rest of the history.</li><li>One shortcut does the right thing depending on where you are.</li></ul>
               </div>
               <p class="feature-where"><span>Where to find it</span> <strong>Ctrl+F</strong> on the commit graph, or in the diff viewer.</p>
+            </article>
+            <article class="feature-detail" id="deep-search">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m20 20-5.5-5.5"/><path d="M8 8h4M8 10.5h4M8 13h2"/></svg></span>
+                <div>
+                  <h3>Deep Search</h3>
+                  <p class="feature-tagline">Find any file by name across the whole history — and jump to the commit that touched it.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Type a file name, part of it, or a glob (<code>*.sql</code>, <code>src/**/test_*.py</code>); optionally limit how many commits to search and a date range. Results list every commit that added, modified, renamed or deleted a matching file, with hash, date, author and message. Click one and the graph jumps to that commit — loading older history if needed — while the diff viewer shows that file's changes. The search runs in the background with a progress bar and can be cancelled.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most Git GUIs only show the history of a file that still exists and that you've already found in the tree; deleted or renamed files need <code>git log --all -- '**/name'</code> in a terminal.</li><li>Here a name fragment is enough, across every branch, and each hit is one click from its diff.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> <strong>Edit → Deep Search…</strong> (<code>Ctrl+Shift+F</code>).</p>
+            </article>
+            <article class="feature-detail" id="drag-drop-to-open">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v3"/><path d="M3 7v10a2 2 0 0 0 2 2h6"/><path d="m14 14 7 2.5-3 1-1 3z"/></svg></span>
+                <div>
+                  <h3>Drag &amp; Drop to Open</h3>
+                  <p class="feature-tagline">Drop repository folders on the window to open them — several at once.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Drag one or more folders from Explorer, Finder or your file manager and drop them anywhere on the window. Each Git repository opens in its own tab and is added to <em>File → Recent</em>. A repository that's already open is brought to the front instead of being opened twice. A folder that isn't a Git repository is reported rather than silently ignored.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Many clients only open repositories through a file dialog or an "add repository" wizard, one at a time.</li><li>Here, getting ten repositories into the app is one drag.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Anywhere on the main window; also <strong>File → Open</strong> (<strong>Ctrl+O</strong>). The feature tour shows it as its second step.</p>
             </article>
             <div class="chapter-footer"><a href="#safety">&larr; Safety</a><a href="#workspace">Your Workspace &rarr;</a></div>
           </section>
@@ -408,13 +445,32 @@
               <div class="feature-body">
                 <p>Selecting a commit shows its details in the right panel:</p>
 <ul><li>the author's avatar (initials), date and short SHA with a copy button;</li><li>the title and full body, scrollable when long;</li><li>the list of changed files, as a flat list or as a folder tree.</li></ul>
-<p>Clicking a file opens its diff for that commit. A right-click on a commit's coloured dot in the graph offers cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag here, and copy the SHA; a right-click on a branch label in the graph offers checkout, merge, fast-forward, rebase, push, pull, rename and delete.</p>
+<p>Clicking a file opens its diff for that commit. A right-click on a commit offers cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag here, and copy the SHA; a right-click on a branch label offers checkout, merge, fast-forward, rebase, push, pull, rename and delete.</p>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>Everything about a commit is in one side panel next to the graph, instead of spread across several windows.</li><li>The folder-tree view makes large commits easy to scan.</li></ul>
               </div>
-              <p class="feature-where"><span>Where to find it</span> Click a commit in the graph; right-click its coloured dot for the commit menu.</p>
+              <p class="feature-where"><span>Where to find it</span> Click a commit in the graph.</p>
+            </article>
+            <article class="feature-detail" id="open-in-external-programs">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg></span>
+                <div>
+                  <h3>External Editors</h3>
+                  <p class="feature-tagline">Open any file — or any committed version of it — in the app you choose.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Every file in the changes panel and in a commit's file list has <strong>Open with System Default</strong> and <strong>Open with…</strong>; the diff viewer has <strong>Open Externally</strong>. Double-clicking an image, PDF, office document or other binary file opens it in its program instead of showing an empty diff. In <strong>Edit → External Editors</strong> you map extensions to programs (for example <code>.csv, .xlsx</code> → Excel, <code>.png, .jpg</code> → Preview or Photoshop, <code>.md</code> → your editor); anything unmapped opens with the operating system's default. Files from past commits or stashes are extracted to a temporary copy, cleaned up when the app closes.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most Git GUIs show "binary file changed" and stop there, or only open the current working copy.</li><li>Here any version of a file — from any commit or stash — opens in the right program with one click, and you decide which program per file type.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Right-click a file; double-click a binary file; <em>Open Externally</em> in the diff header; <strong>Edit → External Editors…</strong>.
+
+## Platform, updates &amp; support</p>
             </article>
             <article class="feature-detail" id="guided-feature-tour">
               <div class="feature-detail-head">
@@ -439,7 +495,7 @@
             <div class="chapter-head">
               <h2 id="trust-title">Trust</h2>
             </div>
-            <p class="intro">Know what you install and what the app does.</p>
+            <p class="intro">Know what you install, what the app does, and where your credentials go.</p>
             <article class="feature-detail" id="virustotal">
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>
@@ -491,6 +547,23 @@
               </div>
               <p class="feature-where"><span>Where to find it</span> The <em>Activity Log</em> tab in the bottom panel; <strong>File → Export Full Logs…</strong>.</p>
             </article>
+            <article class="feature-detail" id="accounts-ssh-keys">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9"/><path d="m17 6 3 3"/><path d="m14 9 2 2"/></svg></span>
+                <div>
+                  <h3>GitHub Authentication</h3>
+                  <p class="feature-tagline">Sign in to GitHub once — or add a token or an SSH key — and push just works.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p><strong>Sign in to GitHub</strong> opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Many Git GUIs leave a failed HTTPS push at "authentication failed" and send you to a terminal or a credential helper.</li><li>Here the fix is one click away, the token never touches the command line, logs or <code>.git/config</code>, and SSH keys are managed without leaving the app.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> <strong>Edit → Accounts &amp; SSH Keys…</strong>; right-click a remote in the left panel; the dialog that appears when a push, pull or fetch is refused.</p>
+            </article>
             <div class="chapter-footer"><a href="#workspace">&larr; Your Workspace</a><span></span></div>
           </section>
         </div>
@@ -519,6 +592,7 @@
               <tr><th scope="row">Themes</th><td>Light / dark</td><td>Built-in plus custom themes from 5 colours</td></tr>
               <tr><th scope="row">Commit messages</th><td>Empty box</td><td>Templates with <code>{version}</code> / <code>{branch}</code></td></tr>
               <tr><th scope="row">Debugging</th><td>Short error text</td><td>Activity log plus exportable raw command logs</td></tr>
+              <tr><th scope="row">Failed HTTPS / SSH authentication</th><td>"Authentication failed", fix it outside the app</td><td>Explains why, offers sign-in / token / SSH key / HTTPS↔SSH switch, then retries</td></tr>
               </tbody>
             </table>
           </div>
@@ -533,6 +607,8 @@
               <tr><th scope="row"><span class="kbd">Ctrl+O</span></th><td>Open a repository</td></tr>
               <tr><th scope="row"><span class="kbd">Ctrl+Z</span> / <span class="kbd">Ctrl+Shift+Z</span> (<span class="kbd">Ctrl+Y</span>)</th><td>Undo / redo the last operation</td></tr>
               <tr><th scope="row"><span class="kbd">Ctrl+F</span></th><td>Search commits (graph) or the diff (diff viewer)</td></tr>
+              <tr><th scope="row"><span class="kbd">Ctrl+Shift+F</span></th><td>Deep Search: a file across the history</td></tr>
+              <tr><th scope="row"><span class="kbd">↑</span> / <span class="kbd">↓</span></th><td>Previous / next commit in the graph</td></tr>
               <tr><th scope="row"><span class="kbd">Enter</span> / <span class="kbd">Shift+Enter</span></th><td>Next / previous search match</td></tr>
               <tr><th scope="row"><span class="kbd">F5</span></th><td>Refresh the current repository</td></tr>
               <tr><th scope="row"><span class="kbd">Esc</span></th><td>Back to the graph / working changes; pause conflict mode</td></tr>
@@ -547,10 +623,11 @@
   <footer class="footer">
     <div class="container">
       <p>&copy; 2025 Raschild. All rights reserved. Redistribution is not permitted.</p>
+      <p class="license-notice"><a href="license.html">Free for personal use. Commercial use requires a license.</a></p>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=20260929"></script>
-  <script src="assets/js/chapters.js?v=20260929"></script>
+  <script src="assets/js/main.js?v=20260930"></script>
+  <script src="assets/js/chapters.js?v=20260930"></script>
 </body>
 </html>

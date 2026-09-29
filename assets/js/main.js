@@ -1,10 +1,11 @@
-/* Rasch-Git — shared site script (navbar + download link resolution) */
+/* Rasch-Git — shared site script (navbar, releases.json loading, download links) */
 (function () {
   "use strict";
 
   var REPO = "raschild6/rasch-git-page";
   var RELEASES_URL = "https://github.com/" + REPO + "/releases";
   var API_URL = "https://api.github.com/repos/" + REPO + "/releases";
+  var RELEASES_JSON_URL = "releases.json";
 
   // Asset matchers, most specific first.
   var PLATFORM_MATCHERS = {
@@ -56,6 +57,57 @@
     });
   }
 
+  function normalizeRelease(raw) {
+    var version = String(raw.version || raw.tag || "").trim();
+    var tag = String(raw.tag || (/^v/i.test(version) ? version : "v" + version)).trim();
+    var downloads = raw.downloads || {};
+    return {
+      tag: tag,
+      date: raw.date || "",
+      windows: downloads.windows || raw.windows || "",
+      macos: downloads.macos || raw.macos || "",
+      changelog: raw.changelog || {},
+      virustotal: raw.virustotal || {},
+      releaseUrl: raw.release_url || RELEASES_URL + "/tag/" + encodeURIComponent(tag)
+    };
+  }
+
+  // Newest first: by numeric version parts, then by date.
+  function compareReleases(a, b) {
+    var pa = a.tag.replace(/^v/i, "").split(/[.-]/);
+    var pb = b.tag.replace(/^v/i, "").split(/[.-]/);
+    for (var i = 0; i < Math.max(pa.length, pb.length); i++) {
+      var na = parseInt(pa[i], 10) || 0;
+      var nb = parseInt(pb[i], 10) || 0;
+      if (na !== nb) return nb - na;
+    }
+    return String(b.date).localeCompare(String(a.date));
+  }
+
+  var releasesPromise = null;
+
+  /**
+   * Loads releases.json (maintained by the release pipeline) and resolves to
+   * a normalized list, newest first. An empty file resolves to [].
+   */
+  function loadReleases() {
+    if (!releasesPromise) {
+      // no-cache: revalidate so a freshly published release shows up immediately.
+      releasesPromise = fetch(RELEASES_JSON_URL, { cache: "no-cache" })
+        .then(function (res) {
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          return (Array.isArray(data) ? data : (data && data.releases) || [])
+            .filter(function (r) { return r && (r.version || r.tag); })
+            .map(normalizeRelease)
+            .sort(compareReleases);
+        });
+    }
+    return releasesPromise;
+  }
+
   function initNav() {
     var toggle = document.querySelector(".nav-toggle");
     var links = document.getElementById("nav-links");
@@ -73,18 +125,32 @@
     });
   }
 
+  // Home hero: point the buttons at the latest release in releases.json.
+  // Falls back to the GitHub API, then to the static releases-page link.
   function initHeroDownloads() {
     var hero = document.querySelector("[data-latest-downloads]");
     if (!hero) return;
     var hint = hero.querySelector(".version-hint");
-    resolveDownloads(hero, "latest", function (release) {
-      if (hint && release.tag_name) hint.textContent = "Latest version: " + release.tag_name;
-    });
+    var setHint = function (tag) {
+      if (hint && tag) hint.textContent = "Latest version: " + tag;
+    };
+    var viaApi = function () {
+      resolveDownloads(hero, "latest", function (release) { setHint(release.tag_name); });
+    };
+    loadReleases().then(function (releases) {
+      var latest = releases[0];
+      if (!latest) return viaApi();
+      hero.querySelectorAll("[data-platform]").forEach(function (btn) {
+        btn.href = latest[btn.getAttribute("data-platform")] || latest.releaseUrl;
+      });
+      setHint(latest.tag);
+    }, viaApi);
   }
 
   window.RaschGit = {
     REPO: REPO,
     RELEASES_URL: RELEASES_URL,
+    loadReleases: loadReleases,
     resolveDownloads: resolveDownloads
   };
 

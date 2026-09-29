@@ -1,25 +1,24 @@
 /* ==========================================================================
    Rasch-Git — releases page
 
-   Release data is loaded from /releases.json, which the release pipeline of
+   Release data is loaded from /releases.json (see RaschGit.loadReleases in
+   main.js), which the release pipeline of
    the private repo updates automatically. Each entry looks like:
 
    {
-     "version": "0.0.2",
-     "tag": "v0.0.2",
-     "date": "2026-09-25",
+     "version": "0.0.1",
+     "tag": "v0.0.1",
+     "date": "YYYY-MM-DD",
      "downloads": { "windows": "<url>", "macos": "<url>" },
      "changelog": { "New Features": [], "Bug Fixes": [], "Improvements": [] },
      "virustotal": { "windows": "<url>", "macos": "<url>" },
-     "release_url": "https://github.com/<repo>/releases/tag/v0.0.2"
+     "release_url": "https://github.com/<repo>/releases/tag/v0.0.1"
    }
 
    Only `version` or `tag` is required. Entries are sorted newest first, so
    the order in the file does not matter. Missing download links fall back to
    the GitHub release page and are resolved to assets via the GitHub API.
    ========================================================================== */
-
-var RELEASES_JSON_URL = "releases.json";
 
 (function () {
   "use strict";
@@ -51,33 +50,6 @@ var RELEASES_JSON_URL = "releases.json";
     var d = new Date(iso + "T00:00:00");
     if (isNaN(d)) return iso;
     return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-  }
-
-  function normalize(raw) {
-    var version = String(raw.version || raw.tag || "").trim();
-    var tag = String(raw.tag || (/^v/i.test(version) ? version : "v" + version)).trim();
-    var downloads = raw.downloads || {};
-    return {
-      tag: tag,
-      date: raw.date || "",
-      windows: downloads.windows || raw.windows || "",
-      macos: downloads.macos || raw.macos || "",
-      changelog: raw.changelog || {},
-      virustotal: raw.virustotal || {},
-      releaseUrl: raw.release_url || window.RaschGit.RELEASES_URL + "/tag/" + encodeURIComponent(tag)
-    };
-  }
-
-  // Newest first: by numeric version parts, then by date.
-  function compareReleases(a, b) {
-    var pa = a.tag.replace(/^v/i, "").split(/[.-]/);
-    var pb = b.tag.replace(/^v/i, "").split(/[.-]/);
-    for (var i = 0; i < Math.max(pa.length, pb.length); i++) {
-      var na = parseInt(pa[i], 10) || 0;
-      var nb = parseInt(pb[i], 10) || 0;
-      if (na !== nb) return nb - na;
-    }
-    return String(b.date).localeCompare(String(a.date));
   }
 
   // Buttons without an explicit URL get data-platform so main.js can swap in
@@ -214,17 +186,8 @@ var RELEASES_JSON_URL = "releases.json";
     detail.innerHTML = "";
     detail.appendChild(el("p", { class: "meta", text: "Loading releases\u2026" }));
 
-    // no-cache: revalidate so a freshly published release shows up immediately.
-    fetch(RELEASES_JSON_URL, { cache: "no-cache" })
-      .then(function (res) {
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        return res.json();
-      })
-      .then(function (data) {
-        var releases = (Array.isArray(data) ? data : data.releases || [])
-          .filter(function (r) { return r && (r.version || r.tag); })
-          .map(normalize)
-          .sort(compareReleases);
+    window.RaschGit.loadReleases()
+      .then(function (releases) {
         if (!releases.length) {
           showMessage(detail, "No releases published yet.");
           return;
