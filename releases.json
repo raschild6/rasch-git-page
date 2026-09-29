@@ -1,5 +1,32 @@
 [
   {
+    "version": "0.0.4",
+    "tag": "v0.0.4",
+    "date": "2026-09-29",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.4/RaschildGitManager-0.0.4-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.4/RaschildGitManager-0.0.4-macos-arm64.dmg"
+    },
+    "changelog": {
+      "New Features": [
+        "Feature tour: \"Drag & drop to open\" step",
+        "First-launch feature tour"
+      ],
+      "Bug Fixes": [
+        "Drag & drop of folders works on the whole window"
+      ],
+      "Improvements": [
+        "version 0.0.4",
+        "features overview for the website"
+      ]
+    },
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/1e853fedaafb3336eb05e17d8e312afd71b15e1591036c7927b059593ce66d30",
+      "macos": "https://www.virustotal.com/gui/file/185578b506839cd2c30cc69b27c8756f93a1a174a24d0536f24fcbb164f8412a"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v0.0.4"
+  },
+  {
     "version": "0.0.3",
     "tag": "v0.0.3",
     "date": "2026-09-29",
