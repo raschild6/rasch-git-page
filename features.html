@@ -96,13 +96,13 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them.</p>
+                <p>The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. Right-clicking a branch label or a commit's coloured dot opens a context menu with the actions for that branch or commit (see <a href="#commit-details">Commit details</a>).</p>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>Typical Git GUIs build every row of the history up front, which gets slow on large repositories.</li><li>Stashes and work in progress usually live in a separate list; here they are part of the history view.</li><li>The graph can optionally show tags (a per-repository setting) and marks a detached HEAD explicitly.</li></ul>
               </div>
-              <p class="feature-where"><span>Where to find it</span> The center of each repository tab.</p>
+              <p class="feature-where"><span>Where to find it</span> The center of each repository tab; right-click a branch label or a commit's coloured dot for its menu.</p>
             </article>
             <article class="feature-detail" id="auto-fetch-with-real-progress-cancel">
               <div class="feature-detail-head">
@@ -408,13 +408,13 @@
               <div class="feature-body">
                 <p>Selecting a commit shows its details in the right panel:</p>
 <ul><li>the author's avatar (initials), date and short SHA with a copy button;</li><li>the title and full body, scrollable when long;</li><li>the list of changed files, as a flat list or as a folder tree.</li></ul>
-<p>Clicking a file opens its diff for that commit. A right-click on a commit offers cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag here, and copy the SHA; a right-click on a branch label offers checkout, merge, fast-forward, rebase, push, pull, rename and delete.</p>
+<p>Clicking a file opens its diff for that commit. A right-click on a commit's coloured dot in the graph offers cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag here, and copy the SHA; a right-click on a branch label in the graph offers checkout, merge, fast-forward, rebase, push, pull, rename and delete.</p>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>Everything about a commit is in one side panel next to the graph, instead of spread across several windows.</li><li>The folder-tree view makes large commits easy to scan.</li></ul>
               </div>
-              <p class="feature-where"><span>Where to find it</span> Click a commit in the graph.</p>
+              <p class="feature-where"><span>Where to find it</span> Click a commit in the graph; right-click its coloured dot for the commit menu.</p>
             </article>
             <article class="feature-detail" id="guided-feature-tour">
               <div class="feature-detail-head">

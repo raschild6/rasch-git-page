@@ -81,14 +81,14 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 
 **In one line:** Smooth scrolling through huge histories, with your stashes and uncommitted work right in the graph.
 
-**What it does:** The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them.
+**What it does:** The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. Right-clicking a branch label or a commit's coloured dot opens a context menu with the actions for that branch or commit (see [Commit details](#17-commit-details)).
 
 **Why it's different:**
 - Typical Git GUIs build every row of the history up front, which gets slow on large repositories.
 - Stashes and work in progress usually live in a separate list; here they are part of the history view.
 - The graph can optionally show tags (a per-repository setting) and marks a detached HEAD explicitly.
 
-**Where to find it:** The center of each repository tab.
+**Where to find it:** The center of each repository tab; right-click a branch label or a commit's coloured dot for its menu.
 
 ### 7. Auto fetch with real progress tracking and cancel support
 
@@ -143,13 +143,13 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 - the title and full body, scrollable when long;
 - the list of changed files, as a flat list or as a folder tree.
 
-Clicking a file opens its diff for that commit. A right-click on a commit offers cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag here, and copy the SHA; a right-click on a branch label offers checkout, merge, fast-forward, rebase, push, pull, rename and delete.
+Clicking a file opens its diff for that commit. A right-click on a commit's coloured dot in the graph offers cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag here, and copy the SHA; a right-click on a branch label in the graph offers checkout, merge, fast-forward, rebase, push, pull, rename and delete.
 
 **Why it's different:**
 - Everything about a commit is in one side panel next to the graph, instead of spread across several windows.
 - The folder-tree view makes large commits easy to scan.
 
-**Where to find it:** Click a commit in the graph.
+**Where to find it:** Click a commit in the graph; right-click its coloured dot for the commit menu.
 
 ---
 
