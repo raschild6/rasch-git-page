@@ -505,9 +505,9 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **Accuracy notes — please don't claim:**
 
-- **Blame, file history, git-flow, submodules, pull-request creation:** helper code exists, but these aren't available in the interface yet.
+- **Blame, file history, git-flow, submodules, pull-request creation:** these aren't available in the interface yet.
 - **Undo for everything:** stage / unstage and pushes are not undone. Remote changes are never reverted, and the undo history lasts for the current session only.
 - **Search the whole history:** commit search covers the commits loaded so far (the graph loads more as you scroll).
 - **Comparisons with GitKraken:** don't name it on the page.
-- **"Sign in with GitLab / Bitbucket":** only GitHub has a browser sign-in; the others use access tokens. GitHub sign-in needs the app's OAuth App to be registered (maintainers: `docs/AUTHENTICATION.md`).
+- **"Sign in with GitLab / Bitbucket":** only GitHub has a browser sign-in; the others use access tokens. GitHub sign-in needs the app's OAuth App to be registered.
 - **Specific numbers** (for example "a million commits"): they haven't been benchmarked; say "huge histories" / "very long histories".
