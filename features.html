@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Features — Rasch-Git</title>
+  <meta name="description" content="Every Rasch-Git feature in detail: async GUI, undo / redo, visual conflict resolution, bulk actions, built-in terminal and more.">
+  <meta name="theme-color" content="#1a1b2e">
+  <meta property="og:title" content="Features — Rasch-Git">
+  <meta property="og:description" content="Every Rasch-Git feature in detail: async GUI, undo / redo, visual conflict resolution, bulk actions, built-in terminal and more.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://raschild6.github.io/rasch-git-page/assets/img/logo-512.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <nav class="container" aria-label="Main">
+      <a class="brand" href="index.html">
+        <picture>
+          <source srcset="assets/img/logo-96.webp" type="image/webp">
+          <img src="assets/img/logo-96.png" alt="" width="38" height="38">
+        </picture>
+        <span>Rasch-Git</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="features.html" aria-current="page">Features</a></li>
+        <li><a href="install.html">Install</a></li>
+        <li><a href="releases.html">Releases</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-head">
+        <h1>Features</h1>
+        <p>The Git client that never freezes — with undo for almost everything. Here is everything it does.</p>
+      </div>
+      <div class="install">
+        <nav class="card chapter-nav" aria-label="Feature sections">
+          <h2>Sections</h2>
+          <ul>
+            <li><a class="chapter-item" href="#speed"><span class="num">1</span><span class="label">Speed &amp; Reliability</span></a></li>
+            <li><a class="chapter-item" href="#safety"><span class="num">2</span><span class="label">Safety</span></a></li>
+            <li><a class="chapter-item" href="#scale"><span class="num">3</span><span class="label">Scale</span></a></li>
+            <li><a class="chapter-item" href="#workspace"><span class="num">4</span><span class="label">Your Workspace</span></a></li>
+            <li><a class="chapter-item" href="#trust"><span class="num">5</span><span class="label">Trust</span></a></li>
+          </ul>
+          <h2 class="chapter-nav-sub">More</h2>
+          <ul>
+            <li><a class="chapter-item" href="#comparison"><span class="num">&#8801;</span><span class="label">Comparison</span></a></li>
+            <li><a class="chapter-item" href="#shortcuts"><span class="num">&#8984;</span><span class="label">Keyboard shortcuts</span></a></li>
+          </ul>
+        </nav>
+        <div class="card chapter-content" id="chapter-content">
+          <section class="chapter" id="speed" aria-labelledby="speed-title">
+            <div class="chapter-head">
+              <h2 id="speed-title">Speed &amp; Reliability</h2>
+            </div>
+            <p class="intro">A Git client that stays responsive, whatever the repository.</p>
+            <article class="feature-detail" id="fully-async-gui">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+                <div>
+                  <h3>Fully Async GUI</h3>
+                  <p class="feature-tagline">Every Git operation runs in the background — the window never freezes.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Fetch, pull, push, checkout, merge, rebase, stash, commit and even the routine <code>git status</code> all run on background threads. Operations that change a repository are queued per repository, so they never collide with each other or with a refresh. The window stays responsive the whole time: you can scroll the graph, read diffs or switch to another repository while Git works. Every operation reports its result in the toolbar, and errors are never silently swallowed.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Many Git GUIs block the window, or show a modal "please wait", during network operations and large checkouts. Some freeze on big repositories just to refresh status.</li><li>Here, each repository tab has its own operation queue, so a slow push in one repository never stalls another.</li><li>Built-in timeouts stop stalled network connections instead of hanging forever.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Everywhere; the toolbar's status area on the right shows what is running.</p>
+            </article>
+            <article class="feature-detail" id="virtualized-commit-graph">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="16" cy="12" r="2"/><path d="M6 8v8"/><path d="M8 7.2 14.3 11"/><path d="M20 4v16"/><path d="m18 7 2-3 2 3M18 17l2 3 2-3"/></svg></span>
+                <div>
+                  <h3>Virtualized Commit Graph</h3>
+                  <p class="feature-tagline">Smooth scrolling through huge histories, with your stashes and uncommitted work right in the graph.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. Right-clicking a branch label or a commit's coloured dot opens a context menu with the actions for that branch or commit (see <a href="#commit-details">Commit details</a>).</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Typical Git GUIs build every row of the history up front, which gets slow on large repositories.</li><li>Stashes and work in progress usually live in a separate list; here they are part of the history view.</li><li>The graph can optionally show tags (a per-repository setting) and marks a detached HEAD explicitly.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> The center of each repository tab; right-click a branch label or a commit's coloured dot for its menu.</p>
+            </article>
+            <article class="feature-detail" id="auto-fetch-with-real-progress-cancel">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/><path d="M12 8v4l2.5 2.5"/></svg></span>
+                <div>
+                  <h3>Auto Fetch with Progress &amp; Cancel</h3>
+                  <p class="feature-tagline">Always up to date, real progress bars, and a cancel button that actually stops Git.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>The repository you are looking at is fetched when you switch to its tab and periodically at an interval you choose; you can also fetch on demand. Long operations (clone, fetch, pull, push, slow checkouts, merges) show Git's own progress as a real percentage in the toolbar, not a fake spinner. The cancel button next to the spinner kills the running Git process tree, so an operation can be stopped in the middle, and the repository is refreshed afterwards.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Many clients either don't auto-fetch, or fetch every open repository at once in the background.</li><li>Here only the active repository is fetched, which saves bandwidth and avoids credential prompts piling up.</li><li>Cancel is real: it terminates Git instead of just hiding the dialog.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Toolbar → <strong>Fetch</strong> (also in the Pull menu); <strong>Edit → Auto Fetch…</strong> sets the interval and fetch-on-tab-switch; the cancel button appears next to the toolbar spinner.</p>
+            </article>
+            <article class="feature-detail" id="consistent-cross-platform-look">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="14" height="10" rx="1.5"/><path d="M6 18h6M9 14v4"/><rect x="17" y="8" width="5" height="12" rx="1"/><path d="M19.5 17h.01"/></svg></span>
+                <div>
+                  <h3>Consistent Cross-Platform Look</h3>
+                  <p class="feature-tagline">The same layout and sizes on Windows and macOS — no overlapping controls.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li>The app uses one rendering style and one pixel-based font size on every platform, with a scalable vector icon set.</li><li>The window title bar follows the theme (a dark title bar on Windows with dark themes).</li><li>Git runs without flashing console windows on Windows.</li><li>Your window size, open tabs, panel layout and group state are restored on the next launch.</li></ul>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Cross-platform GUIs often look native on one OS and cramped or misaligned on the other.</li><li>Here the interface is designed once and looks identical on both.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Everywhere.</p>
+            </article>
+            <div class="chapter-footer"><span></span><a href="#safety">Safety &rarr;</a></div>
+          </section>
+          <section class="chapter" id="safety" aria-labelledby="safety-title">
+            <div class="chapter-head">
+              <h2 id="safety-title">Safety</h2>
+            </div>
+            <p class="intro">Try things without fear of losing work.</p>
+            <article class="feature-detail" id="undo-redo">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></span>
+                <div>
+                  <h3>Undo / Redo</h3>
+                  <p class="feature-tagline">Undo commits, checkouts, resets, discards, stashes and more — safely.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>Scope:</strong> covers local operations — commit and amend, checkout, create / delete / rename branch, reset (soft, mixed or hard), discarding files (including untracked ones), staged merges and cherry-picks, revert, rebase, pull, fast-forward, tags, stash save / pop / apply / delete, and bulk branch actions.</li><li><strong>Commits:</strong> undoing a commit puts its changes back in the staging area and its message back in the commit box.</li><li><strong>Hard resets:</strong> undoing a hard reset brings back your uncommitted changes.</li><li><strong>Safety check:</strong> before applying, undo and redo verify that nothing they would touch has changed since. If something has, they refuse and say what changed.</li></ul>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most Git GUIs have no undo at all, or only "undo last commit".</li><li>Here almost every local action is reversible, including destructive ones like hard reset and discard.</li><li>Undo never overwrites work you did afterwards.</li><li>Undoing something that was already pushed asks first.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> The toolbar's <strong>Undo</strong> / <strong>Redo</strong> buttons, <strong>Edit → Undo / Redo</strong>, or <strong>Ctrl+Z</strong> / <strong>Ctrl+Shift+Z</strong> (<strong>Ctrl+Y</strong>).</p>
+            </article>
+            <article class="feature-detail" id="review-before-commit">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+                <div>
+                  <h3>Review Before Commit</h3>
+                  <p class="feature-tagline">Merges and cherry-picks are staged for review — never committed behind your back.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Merging a branch or cherry-picking a commit applies the changes to the staging area with the commit message pre-filled, and stops there. You review the result, adjust it if needed, and press <strong>Commit</strong> when you're happy; <strong>Abort Merge</strong> discards it. A merge that would change nothing ("already up to date") is detected and reported instead of producing an empty merge commit.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most GUIs merge and cherry-pick straight into a commit, and you notice problems afterwards.</li><li>Here nothing lands in history until you have looked at it.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Right-click a branch → <em>Merge</em>; right-click a commit → <em>Cherry-pick</em>.</p>
+            </article>
+            <article class="feature-detail" id="checkout">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="M9.5 9v6M9.5 12.5c0-2 5-1.5 5-4.5"/><circle cx="14.5" cy="8" r=".6"/></svg></span>
+                <div>
+                  <h3>Safe Checkout</h3>
+                  <p class="feature-tagline">Never lose local changes when switching branches.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Safe checkout means switching branches never requires a manual stash.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Automatic whenever you check out a branch with uncommitted changes.</p>
+            </article>
+            <article class="feature-detail" id="visual-conflict-resolution-auto-stash">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="18" cy="5" r="2"/><circle cx="12" cy="19" r="2"/><path d="M6 7c0 5 6 5 6 10"/><path d="M18 7c0 5-6 5-6 10"/></svg></span>
+                <div>
+                  <h3>Conflict Resolution</h3>
+                  <p class="feature-tagline">Resolve conflicts line by line, and never lose local changes when switching branches.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>Where it opens:</strong> when a merge, pull, rebase, cherry-pick or revert produces conflicts, the tab switches to conflict mode — a list of conflicted and resolved files, plus a three-pane editor (<em>ours</em>, <em>theirs</em> and the <em>result</em>).</li><li><strong>Resolving:</strong> take a whole hunk from either side with a checkbox, or single lines with +/−, and the result builds in the order you pick. <em>Use all ours / theirs</em> is one click, and <em>Save &amp; Mark Resolved</em> marks the file done.</li><li><strong>Finishing:</strong> <strong>Esc</strong> pauses conflict mode and you can resume it from the changes panel; <em>Continue</em> and <em>Abort</em> finish or cancel the operation.</li><li><strong>Auto-stash:</strong> checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically.</li></ul>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Many GUIs hand conflicts to an external merge tool, or only offer "use mine / use theirs" per file.</li><li>Here resolution is built in and works line by line, and it can be paused.</li><li>Safe checkout means switching branches never requires a manual stash.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Opens automatically in the repository tab when a conflict happens.</p>
+            </article>
+            <article class="feature-detail" id="hunk-level-staging">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h4M9 6v4"/><path d="M13 16h4"/><path d="M7 12h10" opacity=".5"/></svg></span>
+                <div>
+                  <h3>Hunk-Level Staging</h3>
+                  <p class="feature-tagline">Stage or unstage individual hunks right from the diff.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>Files:</strong> stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with <em>Stage All</em> / <em>Unstage All</em>.</li><li><strong>Hunks:</strong> in the diff, stage a single hunk of an unstaged file, or unstage a single hunk of a staged one.</li><li><strong>Fallbacks:</strong> when Git's standard patch application can't handle a hunk (for example, new files or unusual line endings), the app falls back to its own blob-level staging so the action still works.</li><li><strong>Views:</strong> changed files can be shown as a flat list or as a folder tree.</li></ul>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Partial staging is often missing or fragile in simpler GUIs; here it is built to work on edge cases.</li><li>Every discard can be undone (see <a href="#undo-redo">Undo / Redo</a>).</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> The right panel (<em>Unstaged</em> / <em>Staged</em> files) and the diff viewer.</p>
+            </article>
+            <div class="chapter-footer"><a href="#speed">&larr; Speed &amp; Reliability</a><a href="#scale">Scale &rarr;</a></div>
+          </section>
+          <section class="chapter" id="scale" aria-labelledby="scale-title">
+            <div class="chapter-head">
+              <h2 id="scale-title">Scale</h2>
+            </div>
+            <p class="intro">Built for many branches and many repositories.</p>
+            <article class="feature-detail" id="tab-groups">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 12h8M8 15h5"/></svg></span>
+                <div>
+                  <h3>Tab Groups</h3>
+                  <p class="feature-tagline">Organize many repositories into coloured, collapsible groups.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Every repository opens in its own tab, and tabs are restored the next time you start the app. Right-click a tab to create a group or add the tab to one. Grouped tabs get the group's colour, and a header tab in front of them shows the group name and count. Clicking the header collapses or expands the whole group, and collapsed groups stay collapsed across restarts. Drag a folder onto the window to open it as a new tab.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Many Git GUIs show one repository per window, or a flat bookmark list.</li><li>Grouping keeps projects with many repositories manageable in a single window: front-end + back-end, a set of microservices, or client work.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Right-click a repository tab.</p>
+            </article>
+            <article class="feature-detail" id="bulk-branch-repo-management">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10"/><path d="M18 10c0 4-6 3-10.6 7.3"/><path d="m14 17 2 2 4-4"/></svg></span>
+                <div>
+                  <h3>Bulk Branch &amp; Repo Actions</h3>
+                  <p class="feature-tagline">Delete, pull or merge many branches — or act on every open repository — in one go.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>Manage Branches:</strong> lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull them or merge them.</li><li><strong>Manage Repos:</strong> runs fetch, pull, checkout, create branch, push or delete branch across all open repositories at once.</li><li><strong>Reporting:</strong> the work continues past individual failures, and a summary report lists what succeeded, what was skipped and why each failure happened.</li></ul>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Standard GUIs act on one branch and one repository at a time.</li><li>Cleaning up dozens of merged branches, or updating ten repositories, is a single action here, with a clear per-item report instead of a stream of error dialogs.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> <strong>Edit → Manage Branches…</strong> and <strong>Edit → Manage Repos…</strong>.</p>
+            </article>
+            <article class="feature-detail" id="one-tree-for-every-ref">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="6" height="5" rx="1"/><rect x="13" y="10" width="8" height="4" rx="1"/><rect x="13" y="17" width="8" height="4" rx="1"/><path d="M6 8v11h7M6 12h7"/></svg></span>
+                <div>
+                  <h3>One Tree for Every Ref</h3>
+                  <p class="feature-tagline">Branches, remotes, tags, stashes and a detached HEAD — in one filterable tree.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>What's listed:</strong> local branches (the current one highlighted), remote branches by remote, tags with their hash, and stashes; a detached HEAD is shown explicitly with Git's own wording.</li><li><strong>Filter:</strong> a filter box narrows everything as you type.</li><li><strong>Actions:</strong> a right-click offers checkout, merge, rebase, fast-forward, pull (even a branch that isn't checked out, via a safe fast-forward), push, rename and delete. Tags can be checked out, pushed or deleted (locally and optionally on the remote).</li></ul>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most clients can only pull the branch you are on.</li><li>Here you can update any local branch without switching to it, and a detached HEAD is never a mystery.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> The left panel of each repository tab.</p>
+            </article>
+            <article class="feature-detail" id="commit-search">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+                <div>
+                  <h3>Commit Search</h3>
+                  <p class="feature-tagline">Find any loaded commit by message, author or hash, instantly.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Press <strong>Ctrl+F</strong> with the graph focused to open a search bar. Matching rows are highlighted as you type, the current match stands out, and <strong>Enter</strong> / <strong>Shift+Enter</strong> (or the arrow keys) jump between matches. A counter shows how many matches there are among the loaded commits. The same shortcut searches inside a diff when the diff viewer has focus.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Search is built into the graph itself, rather than into a separate log window or a filter that hides the rest of the history.</li><li>One shortcut does the right thing depending on where you are.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> <strong>Ctrl+F</strong> on the commit graph, or in the diff viewer.</p>
+            </article>
+            <div class="chapter-footer"><a href="#safety">&larr; Safety</a><a href="#workspace">Your Workspace &rarr;</a></div>
+          </section>
+          <section class="chapter" id="workspace" aria-labelledby="workspace-title">
+            <div class="chapter-head">
+              <h2 id="workspace-title">Your Workspace</h2>
+            </div>
+            <p class="intro">Make the app fit the way you work.</p>
+            <article class="feature-detail" id="built-in-terminal">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="m7 9 3 3-3 3"/><path d="M13 15h4"/></svg></span>
+                <div>
+                  <h3>Built-in Terminal</h3>
+                  <p class="feature-tagline">A real shell in every repository tab, already in the right folder.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Each repository tab has its own terminal in the bottom panel. It starts in the repository root, using <code>cmd</code> on Windows or your login shell elsewhere. Command history is kept across sessions (↑ / ↓), and copy / paste works as you'd expect. Next to it, the <strong>Activity Log</strong> records every operation the app performed, so you can always see what happened and when.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most GUIs send you to an external terminal and you have to <code>cd</code> to the repository yourself.</li><li>Here the shell is part of the tab, one per repository, and switches with it.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> The bottom panel of each repository tab (<em>Terminal</em> / <em>Activity Log</em>).</p>
+            </article>
+            <article class="feature-detail" id="custom-toolbar-buttons">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="7" rx="2"/><path d="M7 8.5h.01M11 8.5h.01M15 8.5h.01"/><path d="M12 15v6M9 18h6"/></svg></span>
+                <div>
+                  <h3>Custom Toolbar Buttons</h3>
+                  <p class="feature-tagline">Put your own commands, scripts and links one click away.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Add buttons to the main toolbar that run a Git action (pull, push, stash, merge, rebase…), an app action (open the repository in the terminal, file explorer or your editor; copy the branch name, last commit hash or remote URL; open the remote in the browser), a URL or text template, or a <strong>shell command</strong>. Templates can use placeholders such as <code>{repo_path}</code>, <code>{repo_name}</code> and <code>{branch}</code>. Each button has a label and an icon; you can reorder or duplicate buttons, and hide the built-in ones.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Custom actions in other clients are usually buried in menus, or limited to shell scripts.</li><li>Here they are first-class toolbar buttons with repository-aware placeholders, and shell commands run through the same cancellable, logged runner as Git itself.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> <strong>Edit → Custom Toolbar Buttons…</strong>.</p>
+            </article>
+            <article class="feature-detail" id="custom-themes">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.9 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></svg></span>
+                <div>
+                  <h3>Custom Themes</h3>
+                  <p class="feature-tagline">Dark, Light, or your own theme from five colours — with a live preview.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Dark (the default) and Light are built in. To create your own theme, pick five colours: primary background, secondary background, accent, primary text and secondary text. The app derives every other shade from them: borders, hover and pressed states, selections, and diff, graph and conflict backgrounds. Changes are previewed live on the whole app, a contrast check warns about unreadable combinations, and any theme can be set as the default.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most Git GUIs offer a fixed light / dark switch, or require editing a theme file by hand.</li><li>Here a complete, consistent theme takes five colour picks and a few seconds.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> <strong>Edit → Themes → Manage Themes…</strong>.</p>
+            </article>
+            <article class="feature-detail" id="commit-templates">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h2M13 13h3M8 17h5"/></svg></span>
+                <div>
+                  <h3>Commit Templates</h3>
+                  <p class="feature-tagline">Pre-filled commit titles with your project's version and branch.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>You keep a list of predefined commit titles with placeholders: <code>{version}</code> is the project's next version and <code>{branch}</code> is the current branch. The version is detected from <code>pom.xml</code>, from the commit message, or from version-named branches. The first template pre-fills the commit title automatically; the sparkle button next to the title offers the others. The title field shows a character counter that warns before you pass 72 characters. You can amend the previous commit, or commit and push in one click.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most clients start every commit from an empty box, or support only one static template.</li><li>Templates here are a list with live placeholders, which suits teams with commit conventions such as <code>[FIX]</code>, <code>[NEW]</code> or version bumps.</li><li>The same version detection suggests branch names like <code>dev-release/1.4.0</code> when you create a branch.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> The <em>Commit</em> box in the right panel; edit the list in <strong>Edit → Commit Messages…</strong>.</p>
+            </article>
+            <article class="feature-detail" id="smart-diff-views">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/><path d="M6 9h3M6 13h3M15 9h3M15 13h3"/></svg></span>
+                <div>
+                  <h3>Smart Diff Views</h3>
+                  <p class="feature-tagline">Hunk, Inline or Split — one click to switch, with syntax highlighting and search.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>Three views:</strong> <em>Hunk</em> shows only the changed blocks, <em>Inline</em> shows the whole file with changes in place, and <em>Split</em> shows old and new side by side with aligned rows.</li><li><strong>Readability:</strong> syntax highlighting for 16 languages (Python, JavaScript, TypeScript, Java, C/C++, Go, Rust, Ruby, PHP, SQL, HTML, CSS, JSON, YAML, XML, shell), a minimap of changes, and Ctrl+F search inside the diff.</li><li><strong>Clean copy:</strong> copied code has no <code>+</code> / <code>-</code> prefixes, so it can be pasted straight into an editor.</li></ul>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most Git GUIs offer one diff layout, or at most two.</li><li>Hunk-level staging works straight from the diff (see <a href="#hunk-level-staging">Hunk-level staging</a>).</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Click a changed file in the right panel, or a file of a commit; the view switcher is in the diff header.</p>
+            </article>
+            <article class="feature-detail" id="commit-details">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="10" r="2"/><path d="M5.5 16c.6-1.5 1.7-2.2 3-2.2s2.4.7 3 2.2"/><path d="M14 9h4M14 12h4M14 15h2"/></svg></span>
+                <div>
+                  <h3>Commit Details</h3>
+                  <p class="feature-tagline">Author, SHA, full message and changed files at a glance.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Selecting a commit shows its details in the right panel:</p>
+<ul><li>the author's avatar (initials), date and short SHA with a copy button;</li><li>the title and full body, scrollable when long;</li><li>the list of changed files, as a flat list or as a folder tree.</li></ul>
+<p>Clicking a file opens its diff for that commit. A right-click on a commit's coloured dot in the graph offers cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag here, and copy the SHA; a right-click on a branch label in the graph offers checkout, merge, fast-forward, rebase, push, pull, rename and delete.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Everything about a commit is in one side panel next to the graph, instead of spread across several windows.</li><li>The folder-tree view makes large commits easy to scan.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Click a commit in the graph; right-click its coloured dot for the commit menu.</p>
+            </article>
+            <article class="feature-detail" id="guided-feature-tour">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></span>
+                <div>
+                  <h3>Guided Feature Tour</h3>
+                  <p class="feature-tagline">A short, skippable tour points at each feature in the real app.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>On first launch a tour highlights each feature directly in the interface with a spotlight, an arrow and a short explanation. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from <strong>Help → Feature Tour</strong>.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>It points at the live interface rather than at screenshots, so it always matches your theme and layout.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> First launch; <strong>Help → Feature Tour</strong>.</p>
+            </article>
+            <div class="chapter-footer"><a href="#scale">&larr; Scale</a><a href="#trust">Trust &rarr;</a></div>
+          </section>
+          <section class="chapter" id="trust" aria-labelledby="trust-title">
+            <div class="chapter-head">
+              <h2 id="trust-title">Trust</h2>
+            </div>
+            <p class="intro">Know what you install and what the app does.</p>
+            <article class="feature-detail" id="virustotal">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>
+                <div>
+                  <h3>VirusTotal-Scanned Installers</h3>
+                  <p class="feature-tagline">Each installer is scanned on VirusTotal at release time.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Each installer is scanned on VirusTotal at release time. The scan report for every version's Windows and macOS installer is linked on the <a href="releases.html">Releases</a> page.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>The app checks the downloaded file against the published checksum before running it (see <a href="#automatic-updates">Verified automatic updates</a>).</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> The VirusTotal links under each version on the <a href="releases.html">Releases</a> page.</p>
+            </article>
+            <article class="feature-detail" id="automatic-updates">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v11"/><path d="m7.5 9.5 4.5 4.5 4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
+                <div>
+                  <h3>Verified Automatic Updates</h3>
+                  <p class="feature-tagline">Get notified of new versions — then download, verify and install in one click.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>A few seconds after startup the app checks for a new release in the background. It is silent if you're offline and never delays startup. When a newer version exists, a non-blocking dialog shows what's new. <strong>Download &amp; Install</strong> fetches the installer for your platform, verifies its SHA-256 checksum, starts it and closes the app. You can postpone the update or skip that version, and <strong>Help → Check for Updates</strong> checks on demand.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Each installer is scanned on VirusTotal at release time.</li><li>The app checks the downloaded file against the published checksum before running it.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Automatic at startup; <strong>Help → Check for Updates…</strong>.</p>
+            </article>
+            <article class="feature-detail" id="activity-log-full-command-logs">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h8"/></svg></span>
+                <div>
+                  <h3>Activity Log &amp; Full Logs</h3>
+                  <p class="feature-tagline">See everything the app did — and export every Git command's raw output.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>The Activity Log in each tab lists every operation with its outcome. Behind the scenes, every Git command the app runs is recorded with its arguments, exit code, duration and complete output. <strong>File → Export Full Logs</strong> saves this record (plus the terminal output of each tab) to one file, ready to attach to a bug report.</p>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>When a Git GUI fails you usually get a one-line error.</li><li>Here the exact commands and their full output are one export away, which makes problems reproducible.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> The <em>Activity Log</em> tab in the bottom panel; <strong>File → Export Full Logs…</strong>.</p>
+            </article>
+            <div class="chapter-footer"><a href="#workspace">&larr; Your Workspace</a><span></span></div>
+          </section>
+        </div>
+      </div>
+
+      <section class="card doc-section" id="comparison" aria-labelledby="comparison-title">
+        <h2 id="comparison-title">Comparison summary</h2>
+        <p class="intro">"Typical Git GUIs" means the common behaviour of popular free clients (SourceTree, GitHub Desktop, git-gui / gitk). Individual tools vary; the table describes the usual experience, not any single product.</p>
+          <div class="table-wrap">
+            <table class="compare">
+              <thead><tr><th scope="col">Capability</th><th scope="col">Typical Git GUIs</th><th scope="col">Rasch-Git</th></tr></thead>
+              <tbody>
+              <tr><th scope="row">UI during long operations</th><td>Often blocked or modal</td><td>Always responsive (background workers, per-repo queues)</td></tr>
+              <tr><th scope="row">Cancel a running operation</th><td>Rare</td><td>Cancel button kills the Git process</td></tr>
+              <tr><th scope="row">Progress</th><td>Spinner or indeterminate bar</td><td>Git's real progress percentage</td></tr>
+              <tr><th scope="row">Large histories</th><td>Slow to load and scroll</td><td>Virtualized graph, paged loading</td></tr>
+              <tr><th scope="row">Undo</th><td>None, or "undo last commit"</td><td>Undo / redo for most local operations, with safety checks</td></tr>
+              <tr><th scope="row">Diff layouts</th><td>One (sometimes two)</td><td>Hunk, Inline and Split, with syntax highlighting, minimap, search</td></tr>
+              <tr><th scope="row">Conflicts</th><td>External merge tool or per-file choice</td><td>Built-in three-pane editor, line and hunk level</td></tr>
+              <tr><th scope="row">Merge / cherry-pick</th><td>Commit immediately</td><td>Staged for review first</td></tr>
+              <tr><th scope="row">Branch switching with local changes</th><td>Manual stash, or refusal</td><td>Automatic stash and restore</td></tr>
+              <tr><th scope="row">Many branches / repos</th><td>One at a time</td><td>Bulk actions with a per-item report</td></tr>
+              <tr><th scope="row">Many repositories</th><td>Window per repo or bookmark list</td><td>Tabs with coloured, collapsible groups</td></tr>
+              <tr><th scope="row">Terminal</th><td>External</td><td>Built in, one per repository tab</td></tr>
+              <tr><th scope="row">Toolbar</th><td>Fixed</td><td>Custom buttons (Git, app, URL, shell)</td></tr>
+              <tr><th scope="row">Themes</th><td>Light / dark</td><td>Built-in plus custom themes from 5 colours</td></tr>
+              <tr><th scope="row">Commit messages</th><td>Empty box</td><td>Templates with <code>{version}</code> / <code>{branch}</code></td></tr>
+              <tr><th scope="row">Debugging</th><td>Short error text</td><td>Activity log plus exportable raw command logs</td></tr>
+              </tbody>
+            </table>
+          </div>
+      </section>
+
+      <section class="card doc-section" id="shortcuts" aria-labelledby="shortcuts-title">
+        <h2 id="shortcuts-title">Keyboard shortcuts</h2>
+          <div class="table-wrap">
+            <table class="shortcuts">
+              <thead><tr><th scope="col">Shortcut</th><th scope="col">Action</th></tr></thead>
+              <tbody>
+              <tr><th scope="row"><span class="kbd">Ctrl+O</span></th><td>Open a repository</td></tr>
+              <tr><th scope="row"><span class="kbd">Ctrl+Z</span> / <span class="kbd">Ctrl+Shift+Z</span> (<span class="kbd">Ctrl+Y</span>)</th><td>Undo / redo the last operation</td></tr>
+              <tr><th scope="row"><span class="kbd">Ctrl+F</span></th><td>Search commits (graph) or the diff (diff viewer)</td></tr>
+              <tr><th scope="row"><span class="kbd">Enter</span> / <span class="kbd">Shift+Enter</span></th><td>Next / previous search match</td></tr>
+              <tr><th scope="row"><span class="kbd">F5</span></th><td>Refresh the current repository</td></tr>
+              <tr><th scope="row"><span class="kbd">Esc</span></th><td>Back to the graph / working changes; pause conflict mode</td></tr>
+              <tr><th scope="row"><span class="kbd">Ctrl+Q</span></th><td>Quit</td></tr>
+              </tbody>
+            </table>
+          </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Raschild. All rights reserved. Redistribution is not permitted.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/chapters.js"></script>
+</body>
+</html>
