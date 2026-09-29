@@ -1,5 +1,36 @@
 [
   {
+    "version": "0.0.3",
+    "tag": "v0.0.3",
+    "date": "2026-09-29",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.3/RaschildGitManager-0.0.3-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.3/RaschildGitManager-0.0.3-macos-arm64.dmg"
+    },
+    "changelog": {
+      "New Features": [
+        "Automatic update checker (startup + Help → Check for Updates)",
+        "Undo / Redo of local operations; Edit menu reorganised",
+        "Theme Manager with custom themes",
+        "UI/layout refactor: consistent, professional look on Windows and macOS",
+        "Detached HEAD label, custom toolbar buttons, per-repo \"Show tags\""
+      ],
+      "Bug Fixes": [
+        "hard reset crash, toolbar Pop",
+        "default commit title is the first template",
+        "pull non-current branch, empty merge"
+      ],
+      "Improvements": [
+        "version 0.0.3"
+      ]
+    },
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/87bf02e0b91cef0330c882a9ce30293bcee2537d45993a12b5be39776677f023",
+      "macos": "https://www.virustotal.com/gui/file/7b922158970529e4dffa9af21d261958f63f90e20283049ce5562feb68788ac9"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v0.0.3"
+  },
+  {
     "version": "0.0.2",
     "tag": "v0.0.2",
     "date": "2026-09-25",
