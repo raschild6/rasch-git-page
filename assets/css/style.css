@@ -861,6 +861,16 @@ code {
   .doc-section { padding: 24px 20px; }
 }
 
+/* ---------- License ---------- */
+
+.license-chapter .chapter-head { margin-bottom: 18px; }
+.license-chapter p { margin: 0 0 12px; color: var(--text-muted); }
+.license-chapter p.lead { font-size: 1.05rem; color: var(--text); }
+.license-chapter p.lead strong { font-weight: 600; }
+.license-chapter ul:not(.contact-list) { margin: 0 0 12px; padding-left: 22px; color: var(--text-muted); }
+.license-chapter li { margin: 6px 0; }
+.license-chapter .contact-list { margin-top: 18px; }
+
 /* ---------- About ---------- */
 
 .about-grid {
@@ -960,6 +970,9 @@ code {
   color: var(--text-dim);
 }
 .footer p { margin: 0; }
+.footer .license-notice { margin-top: 6px; }
+.footer .license-notice a { color: var(--text-muted); }
+.footer .license-notice a:hover { color: var(--accent); }
 
 /* ---------- Misc ---------- */
 
