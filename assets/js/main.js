@@ -125,6 +125,28 @@
     });
   }
 
+  // Navbar dropdown (Features / How-to Guides). Opens on hover and keyboard
+  // focus via CSS; the button toggles it for touch and keyboard users.
+  function initDropdowns() {
+    document.querySelectorAll(".nav-dropdown").forEach(function (dd) {
+      var btn = dd.querySelector(".nav-dropdown-toggle");
+      if (!btn) return;
+      var setOpen = function (open) {
+        dd.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      };
+      btn.addEventListener("click", function () { setOpen(!dd.classList.contains("open")); });
+      document.addEventListener("click", function (e) { if (!dd.contains(e.target)) setOpen(false); });
+      dd.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && dd.classList.contains("open")) {
+          e.stopPropagation();
+          setOpen(false);
+          btn.focus();
+        }
+      });
+    });
+  }
+
   // Home hero: point the buttons at the latest release in releases.json.
   // Falls back to the GitHub API, then to the static releases-page link.
   function initHeroDownloads() {
@@ -156,6 +178,7 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     initNav();
+    initDropdowns();
     initHeroDownloads();
   });
 })();

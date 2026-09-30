@@ -143,6 +143,72 @@ main { flex: 1; }
 }
 .nav-toggle svg { width: 22px; height: 22px; }
 
+/* Features dropdown */
+.nav-dropdown { position: relative; }
+.nav-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 10px 8px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+.nav-dropdown-toggle svg { width: 16px; height: 16px; transition: transform 0.2s var(--ease); }
+.nav-dropdown-toggle:hover { color: var(--text); background: rgba(255, 255, 255, 0.05); }
+.nav-dropdown.active > .nav-dropdown-toggle { color: var(--accent); background: var(--accent-soft); }
+.nav-submenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 60;
+  min-width: 190px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: rgba(26, 27, 46, 0.98);
+  box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.15s var(--ease), transform 0.15s var(--ease), visibility 0.15s;
+}
+/* Invisible bridge so the menu stays open while the pointer moves down to it */
+.nav-submenu::before { content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 8px; }
+.nav-submenu li + li { margin-top: 2px; }
+.nav-submenu a { white-space: nowrap; }
+.nav-dropdown:hover > .nav-submenu,
+.nav-dropdown:focus-within > .nav-submenu,
+.nav-dropdown.open > .nav-submenu { opacity: 1; visibility: visible; transform: none; }
+.nav-dropdown:hover > .nav-dropdown-toggle svg,
+.nav-dropdown.open > .nav-dropdown-toggle svg { transform: rotate(180deg); }
+
+@media (max-width: 640px) {
+  .nav-dropdown-toggle { width: 100%; padding: 12px 14px; cursor: default; }
+  .nav-dropdown-toggle svg { display: none; }
+  .nav-dropdown-toggle:hover { background: transparent; color: var(--text-muted); }
+  .nav-submenu {
+    position: static;
+    min-width: 0;
+    padding: 0 0 0 14px;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .nav-submenu::before { display: none; }
+}
+
 @media (max-width: 640px) {
   .nav-toggle { display: inline-flex; }
   .nav-links {
@@ -459,6 +525,12 @@ a.feature:hover { color: var(--text); }
 }
 .release-item.active .date { color: rgba(45, 212, 168, 0.75); }
 
+.badge.badge-exp {
+  margin-left: 8px;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+}
 .badge {
   display: inline-block;
   padding: 2px 9px;
@@ -871,6 +943,109 @@ code {
 .license-chapter li { margin: 6px 0; }
 .license-chapter .contact-list { margin-top: 18px; }
 
+/* ---------- Screenshots ---------- */
+
+.shots { margin: 18px 0 4px; }
+.shots-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.shot { margin: 0; text-align: center; }
+.shot a {
+  display: block;
+  border-radius: 12px;
+  border: 1px solid var(--border-strong);
+  overflow: hidden;
+  background: #0f1020;
+  box-shadow: 0 16px 40px -18px rgba(0, 0, 0, 0.8);
+  transition: border-color 0.2s var(--ease), box-shadow 0.25s var(--ease), transform 0.2s var(--ease);
+}
+.shot a:hover {
+  border-color: rgba(45, 212, 168, 0.45);
+  box-shadow: 0 18px 44px -16px rgba(0, 0, 0, 0.85), 0 0 26px -12px var(--accent-glow);
+  transform: translateY(-2px);
+}
+.shot img { width: 100%; height: auto; margin: 0 auto; }
+.shot figcaption {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text-dim);
+}
+.guide .shot { margin: 20px 0; }
+
+@media (max-width: 760px) {
+  .shots-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Guides ---------- */
+
+.guide-h {
+  margin: 34px 0 12px;
+  padding-top: 26px;
+  border-top: 1px solid var(--border);
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  scroll-margin-top: calc(var(--nav-h) + 20px);
+}
+.guide > p,
+.guide-list { color: var(--text-muted); }
+.guide > p { margin: 0 0 12px; }
+.guide strong { color: var(--text); font-weight: 600; }
+.guide .intro { font-size: 1.02rem; }
+.guide-list { margin: 0 0 14px; padding-left: 22px; }
+.guide-list li { margin: 7px 0; }
+.guide-list li::marker { color: var(--accent); }
+.guide .steps { margin: 6px 0 16px; }
+.guide .table-wrap { margin: 8px 0 18px; }
+.guide-table td { vertical-align: top; }
+
+.guide .callout,
+.feature-body .callout { margin: 16px 0; }
+.callout > div { min-width: 0; }
+.callout-tip {
+  border-color: rgba(45, 212, 168, 0.28);
+  background: rgba(45, 212, 168, 0.07);
+  color: #bff3e4;
+}
+.callout-tip svg { color: var(--accent); }
+
+.example {
+  margin: 18px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.025);
+  overflow: hidden;
+}
+.example-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  font-weight: 600;
+  color: var(--text);
+}
+.example-head span {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.example-body { padding: 14px 16px 4px; color: var(--text-muted); }
+.example-body > p { margin: 0 0 10px; }
+.example-body .steps { margin-bottom: 12px; }
+.example-body .cmd { margin: 0 0 12px; }
+
+.cmd-plain code::before { content: none; }
+
+.res-ok { color: var(--accent); font-weight: 600; white-space: nowrap; }
+.res-warn { color: #fbbf24; font-weight: 600; white-space: nowrap; }
+.res-skip { color: var(--text-dim); font-weight: 600; white-space: nowrap; }
+
 /* ---------- About ---------- */
 
 .about-grid {
@@ -970,6 +1145,16 @@ code {
   color: var(--text-dim);
 }
 .footer p { margin: 0; }
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 18px;
+  margin-bottom: 14px;
+}
+.footer-links a { color: var(--text-muted); font-size: 0.88rem; }
+.footer-links a:hover,
+.footer-links a[aria-current="page"] { color: var(--accent); }
 .footer .license-notice { margin-top: 6px; }
 .footer .license-notice a { color: var(--text-muted); }
 .footer .license-notice a:hover { color: var(--accent); }
