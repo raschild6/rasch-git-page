@@ -1,5 +1,40 @@
 [
   {
+    "version": "0.0.2",
+    "tag": "v0.0.2",
+    "date": "2026-09-30",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.2/RaschildGitManager-0.0.2-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.2/RaschildGitManager-0.0.2-macos-arm64.dmg"
+    },
+    "changelog": {
+      "New Features": [
+        "Scheduler: choose the branches a rule acts on",
+        "Action Scheduler (experimental)",
+        "Spinner on a repo tab while its graph refreshes",
+        "Tab groups on their own row; hide tabs without closing them",
+        "Two-step file discard, styled + draggable group tabs, Reload Repository"
+      ],
+      "Bug Fixes": [
+        "Scheduled run crashed after the Scheduled Actions window was closed",
+        "Tour menu steps on macOS: dead QMenu wrapper, no menu shown",
+        "Understated group chips; larger tour cards, menu steps show the menu",
+        "About box clipped the license text; '&' in tab and menu names",
+        "Tags brought by fetch / pull (or made in the terminal) didn't appear"
+      ],
+      "Improvements": [
+        "version 0.0.2",
+        "Action Scheduler: functional analysis (proposal)",
+        "Feature screenshots (dark theme, 1600x1000)"
+      ]
+    },
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/e149e5cd7f0db2b13348b66566968480ac593d4523c9f46824f5273b4c77554e",
+      "macos": "https://www.virustotal.com/gui/file/dd0a63bdd65cb1732300b68b60b40091e8b7fb84f05c530998320b6293ab1196"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v0.0.2"
+  },
+  {
     "version": "0.0.1",
     "tag": "v0.0.1",
     "date": "2026-09-29",
