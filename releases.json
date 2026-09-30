@@ -1,5 +1,26 @@
 [
   {
+    "version": "0.0.3",
+    "tag": "v0.0.3",
+    "date": "2026-09-30",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.3/RaschildGitManager-0.0.3-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.3/RaschildGitManager-0.0.3-macos-arm64.dmg"
+    },
+    "changelog": {
+      "New Features": [],
+      "Bug Fixes": [],
+      "Improvements": [
+        "release 0.0.3"
+      ]
+    },
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/f282802ca1e6bc2d5800a17c171888619b6d1b58e276c99eae47a4a21858a6c0",
+      "macos": "https://www.virustotal.com/gui/file/e87c387ac8d010ba9ef92f2609be4e1a010be8b95bb1ad320eef7053b4ac611f"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v0.0.3"
+  },
+  {
     "version": "0.0.2",
     "tag": "v0.0.2",
     "date": "2026-09-30",
