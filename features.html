@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260930-3">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261001">
 </head>
 <body>
   <header class="navbar">
@@ -522,7 +522,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>Add buttons to the main toolbar that run a Git action (pull, push, stash, merge, rebase…), an app action (open the repository in the terminal, file explorer or your editor; copy the branch name, last commit hash or remote URL; open the remote in the browser), a URL or text template, or a <strong>shell command</strong>. Templates can use placeholders such as <code>{repo_path}</code>, <code>{repo_name}</code> and <code>{branch}</code>. Each button has a label and an icon; you can reorder or duplicate buttons, and hide the built-in ones.</p>
+                <p>Add buttons to the main toolbar that run a Git action (pull, push, stash, merge, rebase…), an app action (open the repository in the terminal, file explorer or your editor; copy the branch name, last commit hash or remote URL; open the remote in the browser), a URL or text template, or a <strong>shell command</strong>. Templates can use placeholders such as <code>{repo_path}</code>, <code>{repo_name}</code>, <code>{branch}</code>, <code>{remote_url}</code>, <code>{remote_owner}</code> and <code>{remote_repo}</code>. Each button has a label and an icon; you can reorder or duplicate buttons, and hide the built-in ones. Six ready-made buttons come with the app: <strong>Copy Remote URL</strong>, <strong>Copy Branch Name</strong>, <strong>Open in Folder</strong>, <strong>Open in Terminal</strong>, <strong>Open in VS Code</strong> and <strong>Open on GitHub</strong>, with the right command for macOS, Windows and Linux. On a narrow window the buttons turn icon-only instead of disappearing.</p>
               </div>
               <div class="shots">
                 <figure class="shot">
@@ -532,7 +532,7 @@
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
-                <ul><li>Custom actions in other clients are usually buried in menus, or limited to shell scripts.</li><li>Here they are first-class toolbar buttons with repository-aware placeholders, and shell commands run through the same cancellable, logged runner as Git itself.</li></ul>
+                <ul><li>Custom actions in other clients are usually buried in menus, or limited to shell scripts.</li><li>Here they are first-class toolbar buttons with repository-aware placeholders, and shell commands run through the same cancellable, logged runner as Git itself. Placeholder values are escaped, so a malicious branch name can't run commands.</li></ul>
               </div>
               <p class="feature-where"><span>Where to find it</span> <strong>Edit → Custom Toolbar Buttons…</strong>.</p>
             </article>
@@ -869,7 +869,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=20260930-3"></script>
-  <script src="assets/js/chapters.js?v=20260930-3"></script>
+  <script src="assets/js/main.js?v=20261001"></script>
+  <script src="assets/js/chapters.js?v=20261001"></script>
 </body>
 </html>
