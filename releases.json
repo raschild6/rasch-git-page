@@ -8,10 +8,15 @@
       "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.3/RaschildGitManager-0.0.3-macos-arm64.dmg"
     },
     "changelog": {
-      "New Features": [],
+      "New Features": [
+        "New default toolbar buttons: Copy Remote URL, Copy Branch Name, Open in Folder, Open in Terminal, Open in VS Code and Open on GitHub, with the right command for macOS, Windows and Linux; they replace the earlier site-specific defaults",
+        "Placeholders {remote_owner} and {remote_repo} for custom toolbar buttons"
+      ],
       "Bug Fixes": [],
       "Improvements": [
-        "release 0.0.3"
+        "On a narrow window the toolbar buttons turn icon-only instead of hiding the progress and cancel area",
+        "Branch names, paths and URLs in custom shell commands are escaped, so a crafted branch name can't run commands",
+        "Leftover files of the original app removed from the project"
       ]
     },
     "virustotal": {
