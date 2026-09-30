@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="assets/css/style.css?v=20260930">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260930-2">
 </head>
 <body>
   <header class="navbar">
@@ -34,7 +34,13 @@
       </button>
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="features.html" aria-current="page">Features</a></li>
+        <li class="nav-dropdown active">
+          <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-features-menu">Features <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <ul class="nav-submenu" id="nav-features-menu">
+            <li><a href="features.html" aria-current="page">Features</a></li>
+            <li><a href="guides.html">How-to Guides</a></li>
+          </ul>
+        </li>
         <li><a href="install.html">Install</a></li>
         <li><a href="releases.html">Releases</a></li>
         <li><a href="about.html">About</a></li>
@@ -101,6 +107,16 @@
 <p>The graph is also where you act on history, with <strong>right-click menus</strong>:</p>
 <ul><li><strong>Branch and tag labels:</strong> check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete).</li><li><strong>A commit's coloured dot:</strong> cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag there, copy the SHA.</li><li><strong>A stash node:</strong> apply, pop or drop it.</li></ul>
               </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/graph-commit-menu.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Right-click on a commit&#x27;s dot: cherry-pick, revert, reset, create a branch or tag"><img src="assets/screenshots/graph-commit-menu.png" alt="Right-click on a commit&#x27;s dot: cherry-pick, revert, reset, create a branch or tag" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Right-click on a commit&#x27;s dot: cherry-pick, revert, reset, create a branch or tag</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/graph-branch-menu.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Right-click on a branch label"><img src="assets/screenshots/graph-branch-menu.png" alt="Right-click on a branch label" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Right-click on a branch label</figcaption>
+                </figure>
+              </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>Typical Git GUIs build every row of the history up front, which gets slow on large repositories.</li><li>Stashes and work in progress usually live in a separate list; here they are part of the history view.</li><li>The graph can optionally show tags (a per-repository setting) and marks a detached HEAD explicitly.</li><li>Branch and commit actions are one right-click away on the graph itself, instead of in separate dialogs or menus.</li></ul>
@@ -117,6 +133,16 @@
               </div>
               <div class="feature-body">
                 <p>The repository you are looking at is fetched when you switch to its tab and periodically at an interval you choose; you can also fetch on demand. Long operations (clone, fetch, pull, push, slow checkouts, merges) show Git's own progress as a real percentage in the toolbar, not a fake spinner. The cancel button next to the spinner kills the running Git process tree, so an operation can be stopped in the middle, and the repository is refreshed afterwards.</p>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/fetch-progress-cancel.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Real progress with a cancel button"><img src="assets/screenshots/fetch-progress-cancel.png" alt="Real progress with a cancel button" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Real progress with a cancel button</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/auto-fetch-settings.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Auto-fetch settings"><img src="assets/screenshots/auto-fetch-settings.png" alt="Auto-fetch settings" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Auto-fetch settings</figcaption>
+                </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
@@ -159,6 +185,12 @@
               <div class="feature-body">
                 <ul><li><strong>Scope:</strong> covers local operations — commit and amend, checkout, create / delete / rename branch, reset (soft, mixed or hard), discarding files (including untracked ones), staged merges and cherry-picks, revert, rebase, pull, fast-forward, tags, stash save / pop / apply / delete, and bulk branch actions.</li><li><strong>Commits:</strong> undoing a commit puts its changes back in the staging area and its message back in the commit box.</li><li><strong>Hard resets:</strong> undoing a hard reset brings back your uncommitted changes.</li><li><strong>Safety check:</strong> before applying, undo and redo verify that nothing they would touch has changed since. If something has, they refuse and say what changed.</li></ul>
               </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/undo-redo.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Edit menu with Undo Stash changes"><img src="assets/screenshots/undo-redo.png" alt="Edit menu with Undo Stash changes" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Edit menu with Undo Stash changes</figcaption>
+                </figure>
+              </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>Most Git GUIs have no undo at all, or only "undo last commit".</li><li>Here almost every local action is reversible, including destructive ones like hard reset and discard.</li><li>Undo never overwrites work you did afterwards.</li><li>Undoing something that was already pushed asks first.</li></ul>
@@ -175,6 +207,12 @@
               </div>
               <div class="feature-body">
                 <p>Merging a branch or cherry-picking a commit applies the changes to the staging area with the commit message pre-filled, and stops there. You review the result, adjust it if needed, and press <strong>Commit</strong> when you're happy; <strong>Abort Merge</strong> discards it. A merge that would change nothing ("already up to date") is detected and reported instead of producing an empty merge commit.</p>
+              </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/review-before-commit.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: A merge staged for review, message prefilled, Abort Merge"><img src="assets/screenshots/review-before-commit.png" alt="A merge staged for review, message prefilled, Abort Merge" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>A merge staged for review, message prefilled, Abort Merge</figcaption>
+                </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
@@ -210,6 +248,12 @@
               <div class="feature-body">
                 <ul><li><strong>Where it opens:</strong> when a merge, pull, rebase, cherry-pick or revert produces conflicts, the tab switches to conflict mode — a list of conflicted and resolved files, plus a three-pane editor (<em>ours</em>, <em>theirs</em> and the <em>result</em>).</li><li><strong>Resolving:</strong> take a whole hunk from either side with a checkbox, or single lines with +/−, and the result builds in the order you pick. <em>Use all ours / theirs</em> is one click, and <em>Save &amp; Mark Resolved</em> marks the file done.</li><li><strong>Finishing:</strong> <strong>Esc</strong> pauses conflict mode and you can resume it from the changes panel; <em>Continue</em> and <em>Abort</em> finish or cancel the operation.</li><li><strong>Auto-stash:</strong> checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically.</li></ul>
               </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/conflict-editor.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Three-pane conflict editor: ours, theirs and the result"><img src="assets/screenshots/conflict-editor.png" alt="Three-pane conflict editor: ours, theirs and the result" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Three-pane conflict editor: ours, theirs and the result</figcaption>
+                </figure>
+              </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>Many GUIs hand conflicts to an external merge tool, or only offer "use mine / use theirs" per file.</li><li>Here resolution is built in and works line by line, and it can be paused.</li><li>Safe checkout means switching branches never requires a manual stash.</li></ul>
@@ -225,7 +269,21 @@
                 </div>
               </div>
               <div class="feature-body">
-                <ul><li><strong>Files:</strong> stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with <em>Stage All</em> / <em>Unstage All</em>.</li><li><strong>Hunks:</strong> in the diff, stage or <strong>discard</strong> a single hunk of an unstaged file (discard asks first, reverts only that hunk and can be undone), or unstage a single hunk of a staged one.</li><li><strong>Fallbacks:</strong> when Git's standard patch application can't handle a hunk (for example, new files or unusual line endings), the app falls back to its own blob-level staging so the action still works.</li><li><strong>Views:</strong> changed files can be shown as a flat list or as a folder tree, remembered per repository for the unstaged and staged lists.</li></ul>
+                <ul><li><strong>Files:</strong> stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with <em>Stage All</em> / <em>Unstage All</em>. Discarding a file takes two clicks: the first turns the red arrow into a red bin, the second discards; clicking elsewhere or waiting a few seconds cancels it.</li><li><strong>Hunks:</strong> in the diff, stage or <strong>discard</strong> a single hunk of an unstaged file (discard asks first, reverts only that hunk and can be undone), or unstage a single hunk of a staged one.</li><li><strong>Fallbacks:</strong> when Git's standard patch application can't handle a hunk (for example, new files or unusual line endings), the app falls back to its own blob-level staging so the action still works.</li><li><strong>Views:</strong> changed files can be shown as a flat list or as a folder tree, remembered per repository for the unstaged and staged lists.</li></ul>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/diff-hunk-staging.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Hunk view with Discard Hunk / Stage Hunk"><img src="assets/screenshots/diff-hunk-staging.png" alt="Hunk view with Discard Hunk / Stage Hunk" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Hunk view with Discard Hunk / Stage Hunk</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/working-changes-tree.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Unstaged and staged files as folder trees"><img src="assets/screenshots/working-changes-tree.png" alt="Unstaged and staged files as folder trees" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Unstaged and staged files as folder trees</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/discard-armed.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Two-step discard: the first click turns a file&#x27;s discard arrow into a red bin"><img src="assets/screenshots/discard-armed.png" alt="Two-step discard: the first click turns a file&#x27;s discard arrow into a red bin" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Two-step discard: the first click turns a file&#x27;s discard arrow into a red bin</figcaption>
+                </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
@@ -249,13 +307,31 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>Every repository opens in its own tab, and tabs are restored the next time you start the app. Right-click a tab to create a group or add the tab to one. Grouped tabs get the group's colour, and a header tab in front of them shows the group name and count. Clicking the header collapses or expands the whole group, and collapsed groups stay collapsed across restarts. Folders can also be dragged onto the window (see <a href="#drag-drop-to-open">Drag &amp; drop to open</a>).</p>
+                <p>Every repository opens in its own tab, and tabs are restored the next time you start the app. Right-click a tab to create a group or add the tab to one. Groups get their own row above the repository tabs: each group is a coloured chip with its name and number of repositories, and the tab row below lists the repositories group by group, in the group's colour. Click a group to collapse it: its tabs are hidden, but the repositories stay open in the background, ready the moment you bring them back. Or hide only some of them (<em>Hide Tab</em>, <em>Hide Other Tabs</em>, or untick tabs in the group's menu). The <strong>N hidden</strong> button lists every hidden tab and brings any of them back in one click. Drag a group chip to reorder groups. Group order, hidden tabs and the active tab are all kept across restarts. <strong>Reload Repository</strong> in a tab's right-click menu reopens a repository in place, in the same group and position. Folders can also be dragged onto the window (see <a href="#drag-drop-to-open">Drag &amp; drop to open</a>).</p>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/tab-groups.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Group row above the repository tabs: a partially hidden group, a collapsed group, hidden tabs"><img src="assets/screenshots/tab-groups.png" alt="Group row above the repository tabs: a partially hidden group, a collapsed group, hidden tabs" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Group row above the repository tabs: a partially hidden group, a collapsed group, hidden tabs</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/group-menu.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Right-click on a group: collapse / expand, tick the tabs to show"><img src="assets/screenshots/group-menu.png" alt="Right-click on a group: collapse / expand, tick the tabs to show" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Right-click on a group: collapse / expand, tick the tabs to show</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/hidden-tabs-menu.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Hidden tabs by group; one click brings a tab back"><img src="assets/screenshots/hidden-tabs-menu.png" alt="Hidden tabs by group; one click brings a tab back" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Hidden tabs by group; one click brings a tab back</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/tab-context-menu.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Repository tab menu: Reload Repository, Hide Tab, group entries"><img src="assets/screenshots/tab-context-menu.png" alt="Repository tab menu: Reload Repository, Hide Tab, group entries" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Repository tab menu: Reload Repository, Hide Tab, group entries</figcaption>
+                </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>Many Git GUIs show one repository per window, or a flat bookmark list.</li><li>Grouping keeps projects with many repositories manageable in a single window: front-end + back-end, a set of microservices, or client work.</li></ul>
               </div>
-              <p class="feature-where"><span>Where to find it</span> Right-click a repository tab.</p>
+              <p class="feature-where"><span>Where to find it</span> Right-click a repository tab; the group row above the tabs; <strong>View → Hidden Tabs</strong>.</p>
             </article>
             <article class="feature-detail" id="bulk-branch-repo-management">
               <div class="feature-detail-head">
@@ -267,6 +343,20 @@
               </div>
               <div class="feature-body">
                 <ul><li><strong>Manage Branches:</strong> lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull them or merge them.</li><li><strong>Manage Repos:</strong> runs fetch, pull, checkout, create branch, push or delete branch across all open repositories at once.</li><li><strong>Reporting:</strong> the work continues past individual failures, and a summary report lists what succeeded, what was skipped and why each failure happened.</li></ul>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/manage-branches.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Manage Branches"><img src="assets/screenshots/manage-branches.png" alt="Manage Branches" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Manage Branches</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/manage-repos.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Manage Repos"><img src="assets/screenshots/manage-repos.png" alt="Manage Repos" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Manage Repos</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/bulk-summary-report.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Summary report after a bulk action"><img src="assets/screenshots/bulk-summary-report.png" alt="Summary report after a bulk action" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Summary report after a bulk action</figcaption>
+                </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
@@ -285,6 +375,12 @@
               <div class="feature-body">
                 <ul><li><strong>What's listed:</strong> local branches (the current one highlighted), remote branches by remote, tags with their hash, and stashes; a detached HEAD is shown explicitly with Git's own wording.</li><li><strong>Filter:</strong> a filter box narrows everything as you type.</li><li><strong>Actions:</strong> a right-click offers checkout, merge, rebase, fast-forward, pull (even a branch that isn't checked out, via a safe fast-forward), push, rename and delete. Tags can be checked out, pushed or deleted (locally and optionally on the remote).</li></ul>
               </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/branch-tree-remote-menu.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Remote menu: switch HTTPS ↔ SSH, choose the SSH key"><img src="assets/screenshots/branch-tree-remote-menu.png" alt="Remote menu: switch HTTPS ↔ SSH, choose the SSH key" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Remote menu: switch HTTPS ↔ SSH, choose the SSH key</figcaption>
+                </figure>
+              </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>Most clients can only pull the branch you are on.</li><li>Here you can update any local branch without switching to it, and a detached HEAD is never a mystery.</li></ul>
@@ -302,6 +398,12 @@
               <div class="feature-body">
                 <p>Press <strong>Ctrl+F</strong> with the graph focused to open a search bar. Matching rows are highlighted as you type, the current match stands out, and <strong>Enter</strong> / <strong>Shift+Enter</strong> (or the arrow keys) jump between matches. A counter shows how many matches there are among the loaded commits. The same shortcut searches inside a diff when the diff viewer has focus.</p>
               </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/commit-search.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Ctrl+F commit search in the graph"><img src="assets/screenshots/commit-search.png" alt="Ctrl+F commit search in the graph" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Ctrl+F commit search in the graph</figcaption>
+                </figure>
+              </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>Search is built into the graph itself, rather than into a separate log window or a filter that hides the rest of the history.</li><li>One shortcut does the right thing depending on where you are.</li></ul>
@@ -318,6 +420,12 @@
               </div>
               <div class="feature-body">
                 <p>Type a file name, part of it, or a glob (<code>*.sql</code>, <code>src/**/test_*.py</code>); optionally limit how many commits to search and a date range. Results list every commit that added, modified, renamed or deleted a matching file, with hash, date, author and message. Click one and the graph jumps to that commit — loading older history if needed — while the diff viewer shows that file's changes. The search runs in the background with a progress bar and can be cancelled.</p>
+              </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/deep-search.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Edit → Deep Search: a file across the whole history"><img src="assets/screenshots/deep-search.png" alt="Edit → Deep Search: a file across the whole history" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Edit → Deep Search: a file across the whole history</figcaption>
+                </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
@@ -342,6 +450,39 @@
               </div>
               <p class="feature-where"><span>Where to find it</span> Anywhere on the main window; also <strong>File → Open</strong> (<strong>Ctrl+O</strong>). The feature tour shows it as its second step.</p>
             </article>
+            <article class="feature-detail" id="scheduled-actions">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                <div>
+                  <h3>Action Scheduler <span class="badge badge-exp">Experimental</span></h3>
+                  <p class="feature-tagline">Fetch, pull (keeping local changes), push or run your own commands automatically, on a schedule.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Rules run while the app is open. Each rule is an action, some repositories and a trigger.</p>
+<ul><li><strong>Actions:</strong> fetch, pull (fast-forward only by default), stash + pull + unstash, push, fast-forward local branches, git maintenance, or one of your custom toolbar commands.</li><li><strong>Repositories:</strong> all open ones, a tab group, or chosen ones.</li><li><strong>Triggers:</strong> every N minutes (optionally only between, say, 08:00 and 19:00), daily at a time, on chosen weekdays, or at startup.</li></ul>
+<p>Scheduled work waits for your own operations, and each change can be undone. A run that ends in a conflict keeps your local changes in the stash and pauses that repository until you resolve it; the others carry on. Successful runs show one short summary; failures and conflicts collect in a window with a button to jump to the repository. A status-bar indicator always shows the next run. Push rules must be confirmed, never force-push, and skip protected branches.</p>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/scheduled-actions.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Edit → Scheduled Actions…: the warning banner, rules, and the rule editor"><img src="assets/screenshots/scheduled-actions.png" alt="Edit → Scheduled Actions…: the warning banner, rules, and the rule editor" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Edit → Scheduled Actions…: the warning banner, rules, and the rule editor</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/scheduler-problems.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Problems window: a repeated authentication failure and a conflict with local changes kept in the stash"><img src="assets/screenshots/scheduler-problems.png" alt="Problems window: a repeated authentication failure and a conflict with local changes kept in the stash" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Problems window: a repeated authentication failure and a conflict with local changes kept in the stash</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/feature-tour-scheduler.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The scheduler step of the feature tour"><img src="assets/screenshots/feature-tour-scheduler.png" alt="The scheduler step of the feature tour" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>The scheduler step of the feature tour</figcaption>
+                </figure>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most Git GUIs only offer a periodic fetch; here the whole morning routine (fetch, update each repo without losing local work) runs by itself, safely.</li><li>Missed runs (laptop asleep, app closed) are caught up once, not in a burst.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> <strong>Edit → Scheduled Actions…</strong> and the status bar.</p>
+            </article>
             <div class="chapter-footer"><a href="#safety">&larr; Safety</a><a href="#workspace">Your Workspace &rarr;</a></div>
           </section>
           <section class="chapter" id="workspace" aria-labelledby="workspace-title">
@@ -360,6 +501,12 @@
               <div class="feature-body">
                 <p>Each repository tab has its own terminal in the bottom panel. It starts in the repository root, using <code>cmd</code> on Windows or your login shell elsewhere. Command history is kept across sessions (↑ / ↓), and copy / paste works as you'd expect. Next to it, the <strong>Activity Log</strong> records every operation the app performed, so you can always see what happened and when.</p>
               </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/terminal.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Built-in terminal in the repository folder"><img src="assets/screenshots/terminal.png" alt="Built-in terminal in the repository folder" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Built-in terminal in the repository folder</figcaption>
+                </figure>
+              </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>Most GUIs send you to an external terminal and you have to <code>cd</code> to the repository yourself.</li><li>Here the shell is part of the tab, one per repository, and switches with it.</li></ul>
@@ -376,6 +523,12 @@
               </div>
               <div class="feature-body">
                 <p>Add buttons to the main toolbar that run a Git action (pull, push, stash, merge, rebase…), an app action (open the repository in the terminal, file explorer or your editor; copy the branch name, last commit hash or remote URL; open the remote in the browser), a URL or text template, or a <strong>shell command</strong>. Templates can use placeholders such as <code>{repo_path}</code>, <code>{repo_name}</code> and <code>{branch}</code>. Each button has a label and an icon; you can reorder or duplicate buttons, and hide the built-in ones.</p>
+              </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/custom-toolbar-buttons.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Custom toolbar buttons editor"><img src="assets/screenshots/custom-toolbar-buttons.png" alt="Custom toolbar buttons editor" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Custom toolbar buttons editor</figcaption>
+                </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
@@ -394,6 +547,12 @@
               <div class="feature-body">
                 <p>Dark (the default) and Light are built in. To create your own theme, pick five colours: primary background, secondary background, accent, primary text and secondary text. The app derives every other shade from them: borders, hover and pressed states, selections, and diff, graph and conflict backgrounds. Changes are previewed live on the whole app, a contrast check warns about unreadable combinations, and any theme can be set as the default.</p>
               </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/theme-manager.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Theme Manager with custom themes"><img src="assets/screenshots/theme-manager.png" alt="Theme Manager with custom themes" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Theme Manager with custom themes</figcaption>
+                </figure>
+              </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>Most Git GUIs offer a fixed light / dark switch, or require editing a theme file by hand.</li><li>Here a complete, consistent theme takes five colour picks and a few seconds.</li></ul>
@@ -411,6 +570,16 @@
               <div class="feature-body">
                 <p>You keep a list of predefined commit titles with placeholders: <code>{version}</code> is the project's next version and <code>{branch}</code> is the current branch. The version is detected from <code>pom.xml</code>, from the commit message, or from version-named branches. The first template pre-fills the commit title automatically; the sparkle button next to the title offers the others. The title field shows a character counter that warns before you pass 72 characters. You can amend the previous commit, or commit and push in one click.</p>
               </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/commit-templates.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Commit title templates in the commit box"><img src="assets/screenshots/commit-templates.png" alt="Commit title templates in the commit box" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Commit title templates in the commit box</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/commit-messages-settings.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Commit message templates settings"><img src="assets/screenshots/commit-messages-settings.png" alt="Commit message templates settings" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Commit message templates settings</figcaption>
+                </figure>
+              </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>Most clients start every commit from an empty box, or support only one static template.</li><li>Templates here are a list with live placeholders, which suits teams with commit conventions such as <code>[FIX]</code>, <code>[NEW]</code> or version bumps.</li><li>The same version detection suggests branch names like <code>dev-release/1.4.0</code> when you create a branch.</li></ul>
@@ -427,6 +596,16 @@
               </div>
               <div class="feature-body">
                 <ul><li><strong>Three views:</strong> <em>Hunk</em> shows only the changed blocks, <em>Inline</em> shows the whole file with changes in place, and <em>Split</em> shows old and new side by side with aligned rows.</li><li><strong>Readability:</strong> syntax highlighting for 16 languages (Python, JavaScript, TypeScript, Java, C/C++, Go, Rust, Ruby, PHP, SQL, HTML, CSS, JSON, YAML, XML, shell), a minimap of changes, and Ctrl+F search inside the diff.</li><li><strong>Clean copy:</strong> copied code has no <code>+</code> / <code>-</code> prefixes, so it can be pasted straight into an editor.</li></ul>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/diff-split.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Split diff of a TypeScript commit"><img src="assets/screenshots/diff-split.png" alt="Split diff of a TypeScript commit" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Split diff of a TypeScript commit</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/diff-inline.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Inline diff of the same commit"><img src="assets/screenshots/diff-inline.png" alt="Inline diff of the same commit" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Inline diff of the same commit</figcaption>
+                </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
@@ -447,6 +626,12 @@
 <ul><li>the author's avatar (initials), date and short SHA with a copy button;</li><li>the title and full body, scrollable when long;</li><li>the list of changed files, as a flat list or as a folder tree.</li></ul>
 <p>Clicking a file opens its diff for that commit. A right-click on a commit offers cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag here, and copy the SHA; a right-click on a branch label offers checkout, merge, fast-forward, rebase, push, pull, rename and delete.</p>
               </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/commit-details.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Commit details: avatar, SHA, message, changed files"><img src="assets/screenshots/commit-details.png" alt="Commit details: avatar, SHA, message, changed files" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Commit details: avatar, SHA, message, changed files</figcaption>
+                </figure>
+              </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>Everything about a commit is in one side panel next to the graph, instead of spread across several windows.</li><li>The folder-tree view makes large commits easy to scan.</li></ul>
@@ -463,6 +648,16 @@
               </div>
               <div class="feature-body">
                 <p>Every file in the changes panel and in a commit's file list has <strong>Open with System Default</strong> and <strong>Open with…</strong>; the diff viewer has <strong>Open Externally</strong>. Double-clicking an image, PDF, office document or other binary file opens it in its program instead of showing an empty diff. In <strong>Edit → External Editors</strong> you map extensions to programs (for example <code>.csv, .xlsx</code> → Excel, <code>.png, .jpg</code> → Preview or Photoshop, <code>.md</code> → your editor); anything unmapped opens with the operating system's default. Files from past commits or stashes are extracted to a temporary copy, cleaned up when the app closes.</p>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/external-editors.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Extension → program mappings"><img src="assets/screenshots/external-editors.png" alt="Extension → program mappings" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Extension → program mappings</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/file-open-externally-menu.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Open with System Default / Open with… on a file"><img src="assets/screenshots/file-open-externally-menu.png" alt="Open with System Default / Open with… on a file" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Open with System Default / Open with… on a file</figcaption>
+                </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
@@ -481,7 +676,17 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>On first launch a tour highlights each feature directly in the interface with a spotlight, an arrow and a short explanation. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from <strong>Help → Feature Tour</strong>.</p>
+                <p>On first launch a tour highlights each feature directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from <strong>Help → Feature Tour</strong>.</p>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/feature-tour.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: First-launch feature tour"><img src="assets/screenshots/feature-tour.png" alt="First-launch feature tour" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>First-launch feature tour</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/feature-tour-deep-search.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: A tour step on a menu: the menu opens with its entry ringed"><img src="assets/screenshots/feature-tour-deep-search.png" alt="A tour step on a menu: the menu opens with its entry ringed" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>A tour step on a menu: the menu opens with its entry ringed</figcaption>
+                </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
@@ -524,6 +729,12 @@
               <div class="feature-body">
                 <p>A few seconds after startup the app checks for a new release in the background. It is silent if you're offline and never delays startup. When a newer version exists, a non-blocking dialog shows what's new. <strong>Download &amp; Install</strong> fetches the installer for your platform, verifies its SHA-256 checksum, starts it and closes the app. You can postpone the update or skip that version, and <strong>Help → Check for Updates</strong> checks on demand.</p>
               </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/update-available.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Update dialog with changelog"><img src="assets/screenshots/update-available.png" alt="Update dialog with changelog" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Update dialog with changelog</figcaption>
+                </figure>
+              </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>Each installer is scanned on VirusTotal at release time.</li><li>The app checks the downloaded file against the published checksum before running it.</li></ul>
@@ -541,6 +752,12 @@
               <div class="feature-body">
                 <p>The Activity Log in each tab lists every operation with its outcome. Behind the scenes, every Git command the app runs is recorded with its arguments, exit code, duration and complete output. <strong>File → Export Full Logs</strong> saves this record (plus the terminal output of each tab) to one file, ready to attach to a bug report.</p>
               </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/activity-log.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Activity log of the session"><img src="assets/screenshots/activity-log.png" alt="Activity log of the session" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Activity log of the session</figcaption>
+                </figure>
+              </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
                 <ul><li>When a Git GUI fails you usually get a one-line error.</li><li>Here the exact commands and their full output are one export away, which makes problems reproducible.</li></ul>
@@ -557,6 +774,24 @@
               </div>
               <div class="feature-body">
                 <p><strong>Sign in to GitHub</strong> opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries.</p>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/accounts.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Accounts"><img src="assets/screenshots/accounts.png" alt="Accounts" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Accounts</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/ssh-keys.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: SSH keys"><img src="assets/screenshots/ssh-keys.png" alt="SSH keys" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>SSH keys</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/github-sign-in.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: GitHub sign-in"><img src="assets/screenshots/github-sign-in.png" alt="GitHub sign-in" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>GitHub sign-in</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/auth-recovery.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Recovery from a refused push"><img src="assets/screenshots/auth-recovery.png" alt="Recovery from a refused push" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Recovery from a refused push</figcaption>
+                </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
@@ -622,12 +857,13 @@
 
   <footer class="footer">
     <div class="container">
+      <nav class="footer-links" aria-label="Footer"><a href="index.html">Home</a><a href="features.html" aria-current="page">Features</a><a href="guides.html">How-to Guides</a><a href="install.html">Install</a><a href="releases.html">Releases</a><a href="about.html">About</a><a href="license.html">License</a></nav>
       <p>&copy; 2025 Raschild. All rights reserved. Redistribution is not permitted.</p>
       <p class="license-notice"><a href="license.html">Free for personal use. Commercial use requires a license.</a></p>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=20260930"></script>
-  <script src="assets/js/chapters.js?v=20260930"></script>
+  <script src="assets/js/main.js?v=20260930-2"></script>
+  <script src="assets/js/chapters.js?v=20260930-2"></script>
 </body>
 </html>

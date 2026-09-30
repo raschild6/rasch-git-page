@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How-to Guides — Rasch-Git</title>
+  <meta name="description" content="Practical, example-driven guides for Rasch-Git: Action Scheduler, bulk branch and repo management, custom toolbar buttons, Deep Search and external editors.">
+  <meta name="theme-color" content="#1a1b2e">
+  <meta property="og:title" content="How-to Guides — Rasch-Git">
+  <meta property="og:description" content="Practical, example-driven guides for Rasch-Git: Action Scheduler, bulk branch and repo management, custom toolbar buttons, Deep Search and external editors.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://raschild6.github.io/rasch-git-page/assets/img/logo-512.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260930-2">
+</head>
+<body>
+  <header class="navbar">
+    <nav class="container" aria-label="Main">
+      <a class="brand" href="index.html">
+        <picture>
+          <source srcset="assets/img/logo-96.webp" type="image/webp">
+          <img src="assets/img/logo-96.png" alt="" width="38" height="38">
+        </picture>
+        <span>Rasch-Git</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li class="nav-dropdown active">
+          <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-features-menu">Features <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <ul class="nav-submenu" id="nav-features-menu">
+            <li><a href="features.html">Features</a></li>
+            <li><a href="guides.html" aria-current="page">How-to Guides</a></li>
+          </ul>
+        </li>
+        <li><a href="install.html">Install</a></li>
+        <li><a href="releases.html">Releases</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="license.html">License</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-head">
+        <h1>How-to Guides</h1>
+        <p>Practical, step-by-step guides with real examples for Rasch-Git's power features.</p>
+      </div>
+      <div class="install">
+        <nav class="card chapter-nav" aria-label="Guides">
+          <h2>Guides</h2>
+          <ul>
+            <li><a class="chapter-item" href="#scheduler"><span class="num">1</span><span class="label">Action Scheduler</span></a></li>
+            <li><a class="chapter-item" href="#bulk"><span class="num">2</span><span class="label">Bulk Repo &amp; Branch Management</span></a></li>
+            <li><a class="chapter-item" href="#toolbar"><span class="num">3</span><span class="label">Custom Toolbar Buttons</span></a></li>
+            <li><a class="chapter-item" href="#deep-search"><span class="num">4</span><span class="label">Deep Search</span></a></li>
+            <li><a class="chapter-item" href="#external-editors"><span class="num">5</span><span class="label">External Editors</span></a></li>
+          </ul>
+        </nav>
+        <section class="card chapter-content" id="chapter-content">
+          <article class="chapter guide" id="scheduler" aria-labelledby="scheduler-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+              <h2 id="scheduler-title">Action Scheduler <span class="badge badge-exp">Experimental</span></h2>
+            </div>
+<p class="intro">Let Rasch-Git fetch, pull, push or run maintenance for you on a schedule — across all your repositories, a tab group, or just the ones you pick.</p>
+<div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div><strong>Experimental.</strong> Scheduled actions run <em>without asking</em>, and pull, stash + pull + unstash and push <strong>change working trees</strong> (push also changes the remote). Start with fetch-only rules, review every rule, and turn on anything that changes files only once you trust it.</div></div>
+
+<h3 class="guide-h" id="scheduler-what">What it does</h3>
+<p>A <strong>rule</strong> is an action, some repositories and a trigger: <em>what</em> to run, <em>where</em> and <em>when</em>. Rules run while the app is open, in the background:</p>
+<ul class="guide-list">
+ <li>Scheduled work <strong>waits for your own operations</strong> — it never runs over something you are doing.</li>
+ <li>Every change a scheduled action makes <strong>can be undone</strong>, like your own.</li>
+ <li>Successful runs show <strong>one short summary</strong>; failures and conflicts are collected in one <strong>Problems</strong> window instead of interrupting you.</li>
+ <li>Missed runs (laptop asleep, app closed) are <strong>caught up once</strong>, not in a burst.</li>
+ <li>The status bar always shows the next run, e.g. <em>Next: Fetch everything · 16:59 (in 58 min)</em>.</li>
+</ul>
+<figure class="shot"><a href="assets/screenshots/scheduled-actions.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Edit → Scheduled Actions…: warning banner, the rule list, and the editor for a rule"><img src="assets/screenshots/scheduled-actions.png" alt="Edit → Scheduled Actions…: warning banner, the rule list, and the editor for a rule" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Edit → Scheduled Actions…: warning banner, the rule list, and the editor for a rule</figcaption></figure>
+
+<h3 class="guide-h" id="scheduler-rule">Create your first rule</h3>
+<ol class="steps"><li>Open <strong>Edit → Scheduled Actions…</strong> and stay on the <strong>Rules</strong> tab.</li><li>Click <strong>New</strong> and give the rule a name you will recognize in the status bar and in the Problems window — e.g. <em>Fetch everything</em>.</li><li>Choose the <strong>action</strong> (see the table below). For a first rule, pick <strong>Fetch</strong>: it never touches your working tree.</li><li>Under <strong>Repositories</strong>, choose <strong>On</strong>: all open repositories, <em>a tab group</em>, or chosen repositories. When you pick a group, the dialog shows how many repositories that means right now (e.g. <em>3 open repositories now</em>).</li><li>For actions that work on branches, choose <strong>Branches</strong> (see <a href="#scheduler-stash-pull">stash + pull + unstash</a>).</li><li>Under <strong>When</strong>, set the trigger, then click <strong>Save rule</strong>. The tick in the first column enables or disables a rule without deleting it.</li><li>Click <strong>Run now</strong> once to check the rule does what you expect before waiting for its first scheduled run.</li></ol>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div><strong>Duplicate</strong> is the fastest way to make a variant of a rule — e.g. the same pull, but for a different group and time.</div></div>
+
+<h3 class="guide-h" id="scheduler-actions">Actions and triggers</h3>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Action</th><th scope="col">What it does</th><th scope="col">Changes files?</th></tr></thead><tbody><tr><th scope="row">Fetch</th><td>Downloads new commits from the remotes.</td><td>No</td></tr><tr><th scope="row">Pull</th><td>Updates the branch; <strong>fast-forward only</strong> by default.</td><td>Yes</td></tr><tr><th scope="row">Stash + Pull + Unstash</th><td>Puts your local changes aside, pulls, then restores them.</td><td>Yes</td></tr><tr><th scope="row">Fast-forward local branches</th><td>Moves local branches up to their upstream without checking them out.</td><td>Branches only</td></tr><tr><th scope="row">Push</th><td>Pushes to the remote. Push rules must be confirmed, never force-push, and skip protected branches.</td><td>The remote</td></tr><tr><th scope="row">Git maintenance</th><td>Runs Git housekeeping on the repository.</td><td>No</td></tr><tr><th scope="row">Your toolbar commands</th><td>Runs one of your <a href="#toolbar">custom toolbar buttons</a>.</td><td>Depends on the command</td></tr></tbody></table></div>
+<p><strong>Triggers:</strong> every <em>N</em> minutes (optionally only inside an active window), daily at a time, on chosen weekdays, or at startup. Example rules:</p>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Rule</th><th scope="col">Action</th><th scope="col">Repositories</th><th scope="col">When</th></tr></thead><tbody><tr><th scope="row">Morning update</th><td>Stash + Pull + Unstash</td><td>Group “Orbit”</td><td>Weekdays at 09:00</td></tr><tr><th scope="row">Fetch everything</th><td>Fetch</td><td>All open repositories</td><td>Every 1 h, 08:00–19:00</td></tr><tr><th scope="row">Weekly maintenance</th><td>Git maintenance</td><td>All open repositories</td><td>Fri at 18:30</td></tr></tbody></table></div>
+
+<h3 class="guide-h" id="scheduler-window">Active window: interval rules that respect your day</h3>
+<p>An interval rule can be limited to an <strong>active window</strong>, so “every hour” means every hour <em>during the day</em>, not all night. The rule list shows it next to the interval, as in <em>Every 1 h, 08:00–19:00</em>.</p>
+<div class="example"><div class="example-head"><span>Example</span>Keep everything fetched during office hours</div><div class="example-body"><ol class="steps"><li>Action: <strong>Fetch</strong> · Repositories: <strong>All open repositories</strong>.</li><li>When: every <strong>60</strong> minutes, only between <strong>08:00</strong> and <strong>19:00</strong>.</li><li>Save. Your branch labels and ahead / behind counts stay current all day, and nothing in your working trees changes.</li></ol></div></div>
+
+<h3 class="guide-h" id="scheduler-stash-pull">Stash + pull + unstash, step by step</h3>
+<p>This is the “start the day up to date” action. For each repository in the rule:</p>
+<ol class="steps"><li><strong>The checked-out branch:</strong> your local changes are stashed, the branch is pulled, and the changes are restored.</li><li><strong>Other chosen branches</strong> are <em>fast-forwarded without checking them out</em>, so your working tree is not switched.</li><li><strong>Branches:</strong> pick <em>Current branch</em> (the one checked out in each repository) or <em>Chosen branches</em> — names or patterns such as <code>main</code>, <code>develop</code> or <code>release/*</code>. A repository that has none of them is skipped.</li></ol>
+<div class="example"><div class="example-head"><span>Example</span>Morning update for one project</div><div class="example-body"><ol class="steps"><li>Action: <strong>Stash + Pull + Unstash</strong> · Repositories: <strong>A tab group → Orbit</strong>.</li><li>Branches: <strong>Chosen branches</strong> → tick <code>main</code> and <code>develop</code>.</li><li>When: <strong>weekdays at 09:00</strong>.</li><li>Result: at nine, <code>main</code> and <code>develop</code> are current in every Orbit repository, and whatever you had in progress is back in place.</li></ol></div></div>
+
+<h3 class="guide-h" id="scheduler-errors">When something goes wrong</h3>
+<p>Failures never pop up in the middle of your work. They go to the <strong>Problems</strong> window, and the status bar turns red with a count (e.g. <em>2 problems</em>). Other repositories and rules keep running.</p>
+<figure class="shot"><a href="assets/screenshots/scheduler-problems.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Scheduler problems: a repeated authentication failure (×3) and a conflict with the local changes kept in a stash"><img src="assets/screenshots/scheduler-problems.png" alt="Scheduler problems: a repeated authentication failure (×3) and a conflict with the local changes kept in a stash" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Scheduler problems: a repeated authentication failure (×3) and a conflict with the local changes kept in a stash</figcaption></figure>
+<ul class="guide-list">
+ <li><strong>Repeated failures are grouped:</strong> the same error from the same rule shows once with a counter (<em>×3 · last 30/09 16:02</em>).</li>
+ <li><strong>Authentication failed:</strong> use <strong>Fix sign-in…</strong> (see <a href="features.html#accounts-ssh-keys">Accounts &amp; SSH keys</a>), then <strong>Retry</strong>.</li>
+ <li><strong>Conflict:</strong> the repository is <strong>paused</strong> — the scheduler leaves it alone until you resolve the conflict, while the others carry on. Your local changes are kept in the stash, named after the rule, e.g. <em>“Scheduled update Morning update”</em>. Click <strong>Go to repository</strong> to resolve it.</li>
+ <li><strong>Acknowledge</strong> an entry once you have dealt with it; <strong>Acknowledge all</strong>, <strong>Clear acknowledged</strong> and <strong>Show acknowledged</strong> keep the list tidy.</li>
+ <li>In <strong>Scheduled Actions…</strong>, <strong>Pause scheduler</strong> stops future runs and <strong>Stop running jobs</strong> stops the ones in progress. The <strong>History</strong> tab shows what ran.</li>
+</ul>
+
+<h3 class="guide-h" id="scheduler-warnings">Before you schedule: short intervals and pushes</h3>
+<div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div><strong>Short intervals on many repositories</strong> load your machine and the Git server, and actions repeated in quick succession can pile up. Prefer hourly fetches over “every minute”, and use an active window.</div></div>
+<div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div><strong>Scheduling a push:</strong> push rules must be confirmed, never force-push and skip protected branches — but a push still publishes <em>whatever is committed at that moment</em>, including commits you made a minute ago and did not mean to share yet, and undo does not revert pushes. If you schedule pushes at all, limit them to chosen branches and one group, and watch the rule with <strong>Run now</strong> first.</div></div>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>A safe default setup: <strong>Fetch</strong> for everything during the day, plus one <strong>Stash + Pull + Unstash</strong> in the morning for the project you work on. Leave push and pull on many repositories to <a href="#bulk">Manage Repos</a>, where you see the result immediately.</div></div>
+<figure class="shot"><a href="assets/screenshots/feature-tour-scheduler.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The scheduler in the feature tour, with the Edit menu open"><img src="assets/screenshots/feature-tour-scheduler.png" alt="The scheduler in the feature tour, with the Edit menu open" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>The scheduler in the feature tour, with the Edit menu open</figcaption></figure>
+            <div class="chapter-footer"><span></span><a href="#bulk">Bulk Repo &amp; Branch Management &rarr;</a></div>
+          </article>
+          <article class="chapter guide" id="bulk" aria-labelledby="bulk-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10"/><path d="M18 10c0 4-6 3-10.6 7.3"/><path d="m14 17 2 2 4-4"/></svg></span>
+              <h2 id="bulk-title">Bulk Repo &amp; Branch Management</h2>
+            </div>
+<p class="intro">Clean up dozens of branches or update every open repository in one action — with a report of what happened to each one.</p>
+
+<h3 class="guide-h" id="bulk-branches">Manage Branches: many branches of one repository</h3>
+<p>Open <strong>Edit → Manage Branches…</strong>. You get every branch of the current repository, with whether it exists <em>locally</em>, on the <em>remote</em>, and its <em>upstream</em>. The current branch is marked with ★.</p>
+<figure class="shot"><a href="assets/screenshots/manage-branches.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Manage Branches: branches with local / remote / upstream, and the Delete local action"><img src="assets/screenshots/manage-branches.png" alt="Manage Branches: branches with local / remote / upstream, and the Delete local action" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Manage Branches: branches with local / remote / upstream, and the Delete local action</figcaption></figure>
+<ol class="steps"><li>Type in <strong>Filter branches…</strong> to narrow the list — e.g. <code>feature/</code>.</li><li>Tick the branches (or <strong>Select all</strong>).</li><li>Pick an <strong>Action</strong>: delete (locally, on the remote, or both), pull, or merge.</li><li>Click <strong>Run</strong>. When it finishes you get a summary report.</li></ol>
+<div class="example"><div class="example-head"><span>Example</span>Delete merged feature branches — safely</div><div class="example-body"><ol class="steps"><li>Filter: <code>feature/</code> → <strong>Select all</strong>.</li><li>Action: <strong>Delete local</strong>. Leave <strong>Force delete (unmerged)</strong> <em>unchecked</em>.</li><li><strong>Run.</strong> Merged branches are deleted; branches with unmerged work are <em>refused</em>, not lost. The current branch is never deleted.</li></ol><div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>Changed your mind? Bulk branch actions can be undone with <strong>Edit → Undo</strong> (see <a href="features.html#undo-redo">Undo / Redo</a>).</div></div></div></div>
+<div class="example"><div class="example-head"><span>Example</span>Bring every local branch up to date</div><div class="example-body"><ol class="steps"><li><strong>Select all</strong> → Action: <strong>Pull</strong> → <strong>Run</strong>.</li><li>Branches that can fast-forward are updated without being checked out; the rest are reported.</li></ol></div></div>
+
+<h3 class="guide-h" id="bulk-report">Reading the summary report</h3>
+<figure class="shot"><a href="assets/screenshots/bulk-summary-report.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Summary report: 3 ok · 1 conflict · 1 skipped"><img src="assets/screenshots/bulk-summary-report.png" alt="Summary report: 3 ok · 1 conflict · 1 skipped" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Summary report: 3 ok · 1 conflict · 1 skipped</figcaption></figure>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Result</th><th scope="col">Meaning</th><th scope="col">What to do</th></tr></thead><tbody><tr><th scope="row"><span class="res-ok">✓ OK</span></th><td>Done — e.g. “Fast-forwarded 2 commits” or “Already up to date”.</td><td>Nothing.</td></tr><tr><th scope="row"><span class="res-warn">⚠ Conflict</span></th><td>e.g. “not a fast-forward — requires manual resolution”: the branch and its upstream have diverged.</td><td>Check the branch out and pull or rebase it yourself.</td></tr><tr><th scope="row"><span class="res-skip">– Skipped</span></th><td>e.g. “No upstream branch”: there was nothing to do.</td><td>Set an upstream if you expected it to be updated.</td></tr></tbody></table></div>
+<p>The work continues past individual failures, so one bad branch never stops the batch. <strong>Copy report</strong> puts the whole table on the clipboard — handy for a stand-up note or a ticket.</p>
+
+<h3 class="guide-h" id="bulk-repos">Manage Repos: one action across all open repositories</h3>
+<p>Open <strong>Edit → Manage Repos…</strong>. It lists every open repository with its path and current branch. Tick the ones you want (or <strong>Select all</strong>), pick an action — <strong>fetch, pull, checkout, create branch, push</strong> or <strong>delete branch</strong> — and <strong>Run</strong>.</p>
+<figure class="shot"><a href="assets/screenshots/manage-repos.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Manage Repos: open repositories, the action, and its options"><img src="assets/screenshots/manage-repos.png" alt="Manage Repos: open repositories, the action, and its options" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Manage Repos: open repositories, the action, and its options</figcaption></figure>
+<div class="example"><div class="example-head"><span>Example</span>Start a release branch in every service</div><div class="example-body"><ol class="steps"><li><strong>Select all</strong> → Action: <strong>Create branch</strong>.</li><li>Branch: <code>release/1.4.0</code> · keep <strong>Checkout after create</strong> ticked.</li><li><strong>Run</strong>, then run <strong>Push</strong> on the same selection to publish the branch.</li></ol></div></div>
+<div class="example"><div class="example-head"><span>Example</span>Remove a finished branch everywhere, remote included</div><div class="example-body"><ol class="steps"><li><strong>Select all</strong> → Action: <strong>Delete branch</strong> · Branch: <code>feature/search-ui</code>.</li><li>Tick <strong>Also delete on remote</strong>. Leave <strong>Force (unmerged)</strong> unchecked so unmerged copies are refused.</li><li><strong>Run</strong> and read the summary report for any repository where the branch could not be deleted.</li></ol></div></div>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>Organize related repositories into a <a href="features.html#tab-groups">tab group</a> first; it makes it easy to see which repositories a bulk action is about to touch.</div></div>
+            <div class="chapter-footer"><a href="#scheduler">&larr; Action Scheduler</a><a href="#toolbar">Custom Toolbar Buttons &rarr;</a></div>
+          </article>
+          <article class="chapter guide" id="toolbar" aria-labelledby="toolbar-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="7" rx="2"/><path d="M7 8.5h.01M11 8.5h.01M15 8.5h.01"/><path d="M12 15v6M9 18h6"/></svg></span>
+              <h2 id="toolbar-title">Custom Toolbar Buttons</h2>
+            </div>
+<p class="intro">Turn the commands you type every day into one-click toolbar buttons that know which repository, branch and commit you are on.</p>
+
+<h3 class="guide-h" id="toolbar-basics">Create a button</h3>
+<ol class="steps"><li>Open <strong>Edit → Custom Toolbar Buttons…</strong>.</li><li>Click <strong>Add</strong>, then fill in <strong>Label</strong> (the text under the icon) and pick an <strong>Icon</strong>.</li><li>Choose the <strong>Action</strong>: a Git action, an app action, a URL or text template, or a shell command. The fields below it change with the action.</li><li>Use <strong>▲ / ▼</strong> to order the buttons, <strong>Duplicate</strong> for variants, then <strong>OK</strong>.</li></ol>
+<figure class="shot"><a href="assets/screenshots/custom-toolbar-buttons.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The editor: an Open in Editor button, a Shell Command button and an Open Remote in Browser button"><img src="assets/screenshots/custom-toolbar-buttons.png" alt="The editor: an Open in Editor button, a Shell Command button and an Open Remote in Browser button" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>The editor: an Open in Editor button, a Shell Command button and an Open Remote in Browser button</figcaption></figure>
+<p><strong>Placeholders</strong> are filled in from the active repository when you click the button:</p>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Placeholder</th><th scope="col">Becomes</th></tr></thead><tbody><tr><th scope="row"><code>{repo_path}</code></th><td>The repository folder</td></tr><tr><th scope="row"><code>{repo_name}</code></th><td>The repository name — the last part of its folder path</td></tr><tr><th scope="row"><code>{branch}</code></th><td>The current branch</td></tr><tr><th scope="row"><code>{commit}</code></th><td>The current commit hash</td></tr><tr><th scope="row"><code>{short_commit}</code></th><td>The short commit hash</td></tr><tr><th scope="row"><code>{remote_url}</code></th><td>The remote URL</td></tr></tbody></table></div>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div><strong>Add default buttons (Open Actions, Copy Quay)</strong> adds ready-made examples you can edit. Untick <strong>Show the built-in Pull / Push / Stash buttons</strong> if you replace them with your own.</div></div>
+
+<h3 class="guide-h" id="toolbar-basic-examples">Basic buttons</h3>
+<div class="example"><div class="example-head"><span>Example</span>Open the repository in your editor</div><div class="example-body"><p>Action: <strong>App: Open in Editor</strong> · Editor command:</p><div class="cmd cmd-plain"><code>code</code><button class="copy-btn" type="button" data-copy="code">Copy</button></div><p>On Windows you can give the full path instead, e.g. <code>C:\Program Files\Notepad++\notepad++.exe</code>.</p></div></div>
+<div class="example"><div class="example-head"><span>Example</span>Open the repository page in the browser</div><div class="example-body"><p>Action: <strong>Open Remote in Browser</strong>. One click takes you from the repository you are in to its page on GitHub, GitLab or your own server — no typing, no bookmarks.</p></div></div>
+<div class="example"><div class="example-head"><span>Example</span>Your own Pull / Stash</div><div class="example-body"><p>Action: a <strong>Git action</strong> such as pull, push, stash, merge or rebase. Useful if you hide the built-in buttons and want a different set.</p></div></div>
+
+<h3 class="guide-h" id="toolbar-advanced">Advanced buttons</h3>
+<div class="example"><div class="example-head"><span>Example</span>Run the tests</div><div class="example-body"><p>Action: <strong>Shell Command</strong>:</p><div class="cmd"><code>npm test --prefix &quot;{repo_path}&quot;</code><button class="copy-btn" type="button" data-copy="npm test --prefix &quot;{repo_path}&quot;">Copy</button></div><p>Use <code>{repo_path}</code> whenever a command needs the repository folder. Shell commands run through the same runner as Git: you can cancel them, and they are recorded in the logs.</p></div></div>
+<div class="example"><div class="example-head"><span>Example</span>Open the CI/CD page for the current branch</div><div class="example-body"><p>Action: <strong>URL</strong>. Write the address of your CI server with the fixed parts typed in and <code>{repo_name}</code> / <code>{branch}</code> where they change. For GitHub Actions in your organization:</p><div class="cmd cmd-plain"><code>https://github.com/my-org/{repo_name}/actions?query=branch%3A{branch}</code><button class="copy-btn" type="button" data-copy="https://github.com/my-org/{repo_name}/actions?query=branch%3A{branch}">Copy</button></div><p>For GitLab pipelines:</p><div class="cmd cmd-plain"><code>https://gitlab.com/my-group/{repo_name}/-/pipelines?ref={branch}</code><button class="copy-btn" type="button" data-copy="https://gitlab.com/my-group/{repo_name}/-/pipelines?ref={branch}">Copy</button></div><p>Replace <em>my-org</em> / <em>my-group</em> with yours. This works when each repository folder has the same name as the repository on the server.</p></div></div>
+<div class="example"><div class="example-head"><span>Example</span>Copy an image URL with the repository name</div><div class="example-body"><p>Action: <strong>text template</strong>. Clicking the button fills in the placeholders and <strong>copies the result to the clipboard</strong>. For a container image on Quay tagged with the current commit:</p><div class="cmd cmd-plain"><code>quay.io/my-org/{repo_name}:{short_commit}</code><button class="copy-btn" type="button" data-copy="quay.io/my-org/{repo_name}:{short_commit}">Copy</button></div><p>The default <em>Copy Quay</em> button works exactly like this — start from it and change the organization.</p></div></div>
+<div class="example"><div class="example-head"><span>Example</span>Build and tag a Docker image</div><div class="example-body"><p>Action: <strong>Shell Command</strong>:</p><div class="cmd"><code>docker build -t {repo_name}:{short_commit} &quot;{repo_path}&quot;</code><button class="copy-btn" type="button" data-copy="docker build -t {repo_name}:{short_commit} &quot;{repo_path}&quot;">Copy</button></div></div></div>
+<div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div>A shell-command button runs with your user’s permissions. Only add commands you understand, and never paste one from an untrusted source.</div></div>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>Buttons can also be run by the <a href="#scheduler">Action Scheduler</a> — e.g. a nightly “Run tests” on a tab group.</div></div>
+            <div class="chapter-footer"><a href="#bulk">&larr; Bulk Repo &amp; Branch Management</a><a href="#deep-search">Deep Search &rarr;</a></div>
+          </article>
+          <article class="chapter guide" id="deep-search" aria-labelledby="deep-search-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m20 20-5.5-5.5"/><path d="M8 8h4M8 10.5h4M8 13h2"/></svg></span>
+              <h2 id="deep-search-title">Deep Search</h2>
+            </div>
+<p class="intro">Find any file by name — even one that was renamed or deleted long ago — and jump straight to the commits that touched it.</p>
+
+<h3 class="guide-h" id="deep-open">Run a search</h3>
+<ol class="steps"><li>Open <strong>Edit → Deep Search…</strong> or press <span class="kbd">Ctrl+Shift+F</span>.</li><li><strong>File name:</strong> type a name, part of a name, or a glob such as <code>*.sql</code> or <code>src/**/test_*.py</code>.</li><li><strong>Max commits</strong> (optional): leave <em>All history</em>, or limit how many commits to search in a very large repository.</li><li><strong>Date range</strong> (optional): tick <strong>From</strong> and / or <strong>To</strong> and pick the dates.</li><li>Click <strong>Search</strong>. It runs in the background with a progress bar, and you can cancel it.</li></ol>
+<figure class="shot"><a href="assets/screenshots/deep-search.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Deep Search for “payments”: 6 matches in 196 commits"><img src="assets/screenshots/deep-search.png" alt="Deep Search for “payments”: 6 matches in 196 commits" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Deep Search for “payments”: 6 matches in 196 commits</figcaption></figure>
+
+<h3 class="guide-h" id="deep-results">Reading the results</h3>
+<p>Every row is one commit that touched a matching file: <strong>Commit</strong>, <strong>Date</strong>, <strong>Author</strong>, <strong>Message</strong>, the <strong>Change</strong> (added, modified, renamed or deleted) and the <strong>File</strong> path. The line above the table sums it up, e.g. <em>6 match(es) in 196 commit(s)</em>.</p>
+<p><strong>Click a row</strong> and the graph jumps to that commit — loading older history if needed — while the diff viewer shows that file's changes.</p>
+
+<h3 class="guide-h" id="deep-examples">Examples</h3>
+<div class="example"><div class="example-head"><span>Example</span>“When was the old config deleted?”</div><div class="example-body"><ol class="steps"><li>File name: <code>legacy.yml</code> → <strong>Search</strong>.</li><li>Look for the row whose Change is <strong>deleted</strong>; the message and author tell you why and who.</li><li>Click the last <strong>modified</strong> row before the deletion to see the file’s final contents.</li></ol></div></div>
+<div class="example"><div class="example-head"><span>Example</span>“Where did everything about payments come from?”</div><div class="example-body"><ol class="steps"><li>File name: <code>payments</code>. A fragment is enough — it matches <code>src/orbit/services/payments.py</code> and <code>tests/test_payments.py</code>.</li><li>The oldest rows (<strong>added</strong>) show when each file was created; the rest are its history.</li></ol></div></div>
+<div class="example"><div class="example-head"><span>Example</span>“Which SQL migrations were added this year?”</div><div class="example-body"><ol class="steps"><li>File name: <code>*.sql</code> · tick <strong>From</strong> and set it to 1 January.</li><li>Focus on the rows whose Change is <strong>added</strong>.</li></ol></div></div>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>Deep Search looks through the <em>files</em> in history. To find a commit by its <em>message, author or hash</em>, use commit search in the graph (<span class="kbd">Ctrl+F</span>) instead.</div></div>
+            <div class="chapter-footer"><a href="#toolbar">&larr; Custom Toolbar Buttons</a><a href="#external-editors">External Editors &rarr;</a></div>
+          </article>
+          <article class="chapter guide" id="external-editors" aria-labelledby="external-editors-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg></span>
+              <h2 id="external-editors-title">External Editors</h2>
+            </div>
+<p class="intro">Open images, PDFs, spreadsheets and anything else in the program you choose — the current file or any committed version of it.</p>
+
+<h3 class="guide-h" id="ext-where">Where files open externally</h3>
+<ul class="guide-list">
+ <li><strong>Right-click a file</strong> in the changes panel or in a commit's file list → <strong>Open with System Default</strong> or <strong>Open with…</strong>.</li>
+ <li><strong>Double-click</strong> an image, PDF, office document or other binary file — it opens in its program instead of an empty diff.</li>
+ <li><strong>Open Externally</strong> in the diff viewer's header.</li>
+</ul>
+<figure class="shot"><a href="assets/screenshots/file-open-externally-menu.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Right-click on a changed file: Open with System Default and Open with…"><img src="assets/screenshots/file-open-externally-menu.png" alt="Right-click on a changed file: Open with System Default and Open with…" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Right-click on a changed file: Open with System Default and Open with…</figcaption></figure>
+
+<h3 class="guide-h" id="ext-mappings">Map extensions to programs</h3>
+<ol class="steps"><li>Open <strong>Edit → External Editors…</strong>.</li><li>Click <strong>Add</strong> and fill in a <strong>Label</strong> (e.g. <em>Spreadsheets</em>) and the <strong>Extensions</strong>, comma-separated with the dot: <code>.csv, .xlsx</code>.</li><li>Set the <strong>Program</strong> with <strong>Browse…</strong>, or tick <strong>Use the system default application</strong>.</li><li>Order the rows with <strong>Move Up</strong> / <strong>Move Down</strong>, then <strong>OK</strong>. <strong>Restore Defaults</strong> brings back the original list.</li></ol>
+<figure class="shot"><a href="assets/screenshots/external-editors.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: External Editors: Spreadsheets, Images and Markdown mapped to programs"><img src="assets/screenshots/external-editors.png" alt="External Editors: Spreadsheets, Images and Markdown mapped to programs" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>External Editors: Spreadsheets, Images and Markdown mapped to programs</figcaption></figure>
+
+<h3 class="guide-h" id="ext-fallback">How the right program is chosen</h3>
+<ol class="steps"><li>The rows are checked <strong>from top to bottom</strong>, and the <strong>first row</strong> whose extensions match the file wins.</li><li>If <strong>no row</strong> matches, the file opens with the operating system’s <strong>default application</strong>.</li></ol>
+<div class="example"><div class="example-head"><span>Example</span>Order matters</div><div class="example-body"><p>You have <em>Images → Photoshop</em> for <code>.png, .jpg, .psd</code> and, further down, <em>Screenshots → Preview</em> for <code>.png</code>. A <code>.png</code> always opens in Photoshop, because that row comes first. Move <em>Screenshots</em> above <em>Images</em> and <code>.png</code> files open in Preview while <code>.jpg</code> and <code>.psd</code> still go to Photoshop.</p></div></div>
+
+<h3 class="guide-h" id="ext-examples">Useful mappings</h3>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Label</th><th scope="col">Extensions</th><th scope="col">Program</th></tr></thead><tbody><tr><th scope="row">Spreadsheets</th><td><code>.csv, .xlsx</code></td><td>Excel, LibreOffice Calc or Numbers</td></tr><tr><th scope="row">Images</th><td><code>.png, .jpg, .svg</code></td><td>Preview, Photoshop, GIMP…</td></tr><tr><th scope="row">Markdown</th><td><code>.md</code></td><td>Your editor, e.g. VS Code or Typora</td></tr><tr><th scope="row">Documents</th><td><code>.pdf</code></td><td>Tick <strong>Use the system default application</strong></td></tr></tbody></table></div>
+<div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div>Opening a file from a <strong>past commit or a stash</strong> opens a <strong>temporary copy</strong> — it is cleaned up when the app closes, and edits to it do not change your repository. To change the file, open the version in your working tree.</div></div>
+            <div class="chapter-footer"><a href="#deep-search">&larr; Deep Search</a><span></span></div>
+          </article>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-links" aria-label="Footer"><a href="index.html">Home</a><a href="features.html">Features</a><a href="guides.html" aria-current="page">How-to Guides</a><a href="install.html">Install</a><a href="releases.html">Releases</a><a href="about.html">About</a><a href="license.html">License</a></nav>
+      <p>&copy; 2025 Raschild. All rights reserved. Redistribution is not permitted.</p>
+      <p class="license-notice"><a href="license.html">Free for personal use. Commercial use requires a license.</a></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js?v=20260930-2"></script>
+  <script src="assets/js/chapters.js?v=20260930-2"></script>
+</body>
+</html>
