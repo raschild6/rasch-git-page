@@ -42,7 +42,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 2 | Virtualized commit graph | Smooth scrolling through huge histories, with stashes and uncommitted work in the graph. |
 | 3 | Smart diff views | Hunk, Inline or Split — one click to switch, with syntax highlighting and search. |
 | 4 | Built-in terminal | A real shell in every repository tab, already in the right folder. |
-| 5 | Tab groups | Organize many repositories into coloured, collapsible groups. |
+| 5 | Tab groups | Organize many repositories into coloured, collapsible groups on their own row; hide tabs without closing them. |
 | 6 | Bulk branch & repo management | Delete, pull or merge many branches — or act on every open repo — in one go. |
 | 7 | Auto fetch with real progress & cancel | Always up to date, real progress bars, and a cancel button that actually stops Git. |
 | 8 | Visual conflict resolution & auto-stash | Resolve conflicts line by line; checkouts carry your changes across automatically. |
@@ -63,6 +63,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 23 | Open in external programs | Open any file — or any committed version of it — in the app you choose. |
 | 24 | Accounts & SSH keys | Sign in to GitHub once — or add a token or an SSH key — and push just works. |
 | 25 | Deep Search | Find any file by name across the whole history — and jump to the commit that touched it. |
+| 26 | Scheduled actions *(experimental)* | Fetch, pull (keeping local changes), push or run your own commands automatically, on a schedule. |
 
 ---
 
@@ -143,6 +144,27 @@ The graph is also where you act on history, with **right-click menus**:
 
 ---
 
+### 26. Scheduled actions *(experimental)*
+
+**In one line:** Fetch, pull (keeping local changes), push or run your own commands automatically, on a schedule.
+
+**What it does:** Rules run while the app is open. Each rule is an action, some repositories and a trigger.
+- **Actions:** fetch, pull (fast-forward only by default), stash + pull + unstash, push, fast-forward local branches, git maintenance, or one of your custom toolbar commands.
+- **Repositories:** all open ones, a tab group, or chosen ones.
+- **Triggers:** every N minutes (optionally only between, say, 08:00 and 19:00), daily at a time, on chosen weekdays, or at startup.
+
+Scheduled work waits for your own operations, and each change can be undone. A run that ends in a conflict keeps your local changes in the stash and pauses that repository until you resolve it; the others carry on. Successful runs show one short summary; failures and conflicts collect in a window with a button to jump to the repository. A status-bar indicator always shows the next run. Push rules must be confirmed, never force-push, and skip protected branches.
+
+**Why it's different:**
+- Most Git GUIs only offer a periodic fetch; here the whole morning routine (fetch, update each repo without losing local work) runs by itself, safely.
+- Missed runs (laptop asleep, app closed) are caught up once, not in a burst.
+
+**Accuracy note:** marked **experimental** in the app, with a warning always visible in its window.
+
+**Where to find it:** **Edit → Scheduled Actions…** and the status bar.
+
+---
+
 ### 3. Smart diff views
 
 **In one line:** Hunk, Inline or Split — one click to switch, with syntax highlighting and search.
@@ -184,7 +206,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 **In one line:** Stage or unstage individual hunks right from the diff.
 
 **What it does:**
-- **Files:** stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with *Stage All* / *Unstage All*.
+- **Files:** stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with *Stage All* / *Unstage All*. Discarding a file takes two clicks: the first turns the red arrow into a red bin, the second discards; clicking elsewhere or waiting a few seconds cancels it.
 - **Hunks:** in the diff, stage or **discard** a single hunk of an unstaged file (discard asks first, reverts only that hunk and can be undone), or unstage a single hunk of a staged one.
 - **Fallbacks:** when Git's standard patch application can't handle a hunk (for example, new files or unusual line endings), the app falls back to its own blob-level staging so the action still works.
 - **Views:** changed files can be shown as a flat list or as a folder tree, remembered per repository for the unstaged and staged lists.
@@ -294,13 +316,13 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** Organize many repositories into coloured, collapsible groups.
 
-**What it does:** Every repository opens in its own tab, and tabs are restored the next time you start the app. Right-click a tab to create a group or add the tab to one. Grouped tabs get the group's colour, and a header tab in front of them shows the group name and count. Clicking the header collapses or expands the whole group, and collapsed groups stay collapsed across restarts. Folders can also be dragged onto the window (see [Drag & drop to open](#22-drag--drop-to-open)).
+**What it does:** Every repository opens in its own tab, and tabs are restored the next time you start the app. Right-click a tab to create a group or add the tab to one. Groups get their own row above the repository tabs: each group is a coloured chip with its name and number of repositories, and the tab row below lists the repositories group by group, in the group's colour. Click a group to collapse it: its tabs are hidden, but the repositories stay open in the background, ready the moment you bring them back. Or hide only some of them (*Hide Tab*, *Hide Other Tabs*, or untick tabs in the group's menu). The **N hidden** button lists every hidden tab and brings any of them back in one click. Drag a group chip to reorder groups. Group order, hidden tabs and the active tab are all kept across restarts. **Reload Repository** in a tab's right-click menu reopens a repository in place, in the same group and position. Folders can also be dragged onto the window (see [Drag & drop to open](#22-drag--drop-to-open)).
 
 **Why it's different:**
 - Many Git GUIs show one repository per window, or a flat bookmark list.
 - Grouping keeps projects with many repositories manageable in a single window: front-end + back-end, a set of microservices, or client work.
 
-**Where to find it:** Right-click a repository tab.
+**Where to find it:** Right-click a repository tab; the group row above the tabs; **View → Hidden Tabs**.
 
 ### 6. Bulk branch & repo management
 
@@ -429,7 +451,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** A short, skippable tour points at each feature in the real app.
 
-**What it does:** On first launch a tour highlights each feature directly in the interface with a spotlight, an arrow and a short explanation. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from **Help → Feature Tour**.
+**What it does:** On first launch a tour highlights each feature directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from **Help → Feature Tour**.
 
 **Why it's different:**
 - It points at the live interface rather than at screenshots, so it always matches your theme and layout.
@@ -505,9 +527,9 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **Accuracy notes — please don't claim:**
 
-- **Blame, file history, git-flow, submodules, pull-request creation:** these aren't available in the interface yet.
+- **Blame, file history, git-flow, submodules, pull-request creation:** helper code exists, but these aren't available in the interface yet.
 - **Undo for everything:** stage / unstage and pushes are not undone. Remote changes are never reverted, and the undo history lasts for the current session only.
 - **Search the whole history:** commit search covers the commits loaded so far (the graph loads more as you scroll).
 - **Comparisons with GitKraken:** don't name it on the page.
-- **"Sign in with GitLab / Bitbucket":** only GitHub has a browser sign-in; the others use access tokens.
+- **"Sign in with GitLab / Bitbucket":** only GitHub has a browser sign-in; the others use access tokens. GitHub sign-in needs the app's OAuth App to be registered (maintainers: `docs/AUTHENTICATION.md`).
 - **Specific numbers** (for example "a million commits"): they haven't been benchmarked; say "huge histories" / "very long histories".
