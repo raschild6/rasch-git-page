@@ -483,6 +483,12 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 | Commit messages | Empty box | Templates with `{version}` / `{branch}` |
 | Debugging | Short error text | Activity log plus exportable raw command logs |
 | Failed HTTPS / SSH authentication | "Authentication failed", fix it outside the app | Explains why, offers sign-in / token / SSH key / HTTPS↔SSH switch, then retries |
+| Scheduled work | None beyond a periodic fetch | Scheduled fetch, pull, stash + pull + unstash, push, maintenance and custom commands; triggers, targets and an active window; a repo in conflict pauses until resolved *(experimental)* |
+| Hiding repositories | All tabs shown, or a flat list | Two-row tab bar: collapsible groups, and hide single tabs while their repos stay open |
+| Opening many repositories | File dialog or wizard, one at a time | Drag & drop several folders at once |
+| Finding a file in the history | Only files that still exist; deleted or renamed ones need the terminal | Deep Search by name or glob across every branch, deleted and renamed files included |
+| Opening files in other programs | System default only, often just the working copy | Program per file extension; any version from any commit or stash |
+| Getting started | Documentation, or nothing | Interactive tour that highlights each feature in the real interface |
 
 ---
 
