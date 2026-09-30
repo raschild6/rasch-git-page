@@ -359,11 +359,11 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** Put your own commands, scripts and links one click away.
 
-**What it does:** Add buttons to the main toolbar that run a Git action (pull, push, stash, merge, rebase…), an app action (open the repository in the terminal, file explorer or your editor; copy the branch name, last commit hash or remote URL; open the remote in the browser), a URL or text template, or a **shell command**. Templates can use placeholders such as `{repo_path}`, `{repo_name}` and `{branch}`. Each button has a label and an icon; you can reorder or duplicate buttons, and hide the built-in ones.
+**What it does:** Add buttons to the main toolbar that run a Git action (pull, push, stash, merge, rebase…), an app action (open the repository in the terminal, file explorer or your editor; copy the branch name, last commit hash or remote URL; open the remote in the browser), a URL or text template, or a **shell command**. Templates can use placeholders such as `{repo_path}`, `{repo_name}`, `{branch}`, `{remote_url}`, `{remote_owner}` and `{remote_repo}`. Each button has a label and an icon; you can reorder or duplicate buttons, and hide the built-in ones. Six ready-made buttons come with the app: **Copy Remote URL**, **Copy Branch Name**, **Open in Folder**, **Open in Terminal**, **Open in VS Code** and **Open on GitHub**, with the right command for macOS, Windows and Linux. On a narrow window the buttons turn icon-only instead of disappearing.
 
 **Why it's different:**
 - Custom actions in other clients are usually buried in menus, or limited to shell scripts.
-- Here they are first-class toolbar buttons with repository-aware placeholders, and shell commands run through the same cancellable, logged runner as Git itself.
+- Here they are first-class toolbar buttons with repository-aware placeholders, and shell commands run through the same cancellable, logged runner as Git itself. Placeholder values are escaped, so a malicious branch name can't run commands.
 
 **Where to find it:** **Edit → Custom Toolbar Buttons…**.
 
@@ -483,12 +483,6 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 | Commit messages | Empty box | Templates with `{version}` / `{branch}` |
 | Debugging | Short error text | Activity log plus exportable raw command logs |
 | Failed HTTPS / SSH authentication | "Authentication failed", fix it outside the app | Explains why, offers sign-in / token / SSH key / HTTPS↔SSH switch, then retries |
-| Scheduled work | None beyond a periodic fetch | Scheduled fetch, pull, stash + pull + unstash, push, maintenance and custom commands; triggers, targets and an active window; a repo in conflict pauses until resolved *(experimental)* |
-| Hiding repositories | All tabs shown, or a flat list | Two-row tab bar: collapsible groups, and hide single tabs while their repos stay open |
-| Opening many repositories | File dialog or wizard, one at a time | Drag & drop several folders at once |
-| Finding a file in the history | Only files that still exist; deleted or renamed ones need the terminal | Deep Search by name or glob across every branch, deleted and renamed files included |
-| Opening files in other programs | System default only, often just the working copy | Program per file extension; any version from any commit or stash |
-| Getting started | Documentation, or nothing | Interactive tour that highlights each feature in the real interface |
 
 ---
 
@@ -533,9 +527,9 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **Accuracy notes — please don't claim:**
 
-- **Blame, file history, git-flow, submodules, pull-request creation:** these aren't available in the interface yet.
+- **Blame, file history, git-flow, submodules, pull-request creation:** helper code exists, but these aren't available in the interface yet.
 - **Undo for everything:** stage / unstage and pushes are not undone. Remote changes are never reverted, and the undo history lasts for the current session only.
 - **Search the whole history:** commit search covers the commits loaded so far (the graph loads more as you scroll).
 - **Comparisons with GitKraken:** don't name it on the page.
-- **"Sign in with GitLab / Bitbucket":** only GitHub has a browser sign-in; the others use access tokens.
+- **"Sign in with GitLab / Bitbucket":** only GitHub has a browser sign-in; the others use access tokens. GitHub sign-in needs the app's OAuth App to be registered (maintainers: `docs/AUTHENTICATION.md`).
 - **Specific numbers** (for example "a million commits"): they haven't been benchmarked; say "huge histories" / "very long histories".
