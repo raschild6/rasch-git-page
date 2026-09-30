@@ -359,11 +359,11 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** Put your own commands, scripts and links one click away.
 
-**What it does:** Add buttons to the main toolbar that run a Git action (pull, push, stash, merge, rebase…), an app action (open the repository in the terminal, file explorer or your editor; copy the branch name, last commit hash or remote URL; open the remote in the browser), a URL or text template, or a **shell command**. Templates can use placeholders such as `{repo_path}`, `{repo_name}` and `{branch}`. Each button has a label and an icon; you can reorder or duplicate buttons, and hide the built-in ones.
+**What it does:** Add buttons to the main toolbar that run a Git action (pull, push, stash, merge, rebase…), an app action (open the repository in the terminal, file explorer or your editor; copy the branch name, last commit hash or remote URL; open the remote in the browser), a URL or text template, or a **shell command**. Templates can use placeholders such as `{repo_path}`, `{repo_name}`, `{branch}`, `{remote_url}`, `{remote_owner}` and `{remote_repo}`. Each button has a label and an icon; you can reorder or duplicate buttons, and hide the built-in ones. Six ready-made buttons come with the app: **Copy Remote URL**, **Copy Branch Name**, **Open in Folder**, **Open in Terminal**, **Open in VS Code** and **Open on GitHub**, with the right command for macOS, Windows and Linux. On a narrow window the buttons turn icon-only instead of disappearing.
 
 **Why it's different:**
 - Custom actions in other clients are usually buried in menus, or limited to shell scripts.
-- Here they are first-class toolbar buttons with repository-aware placeholders, and shell commands run through the same cancellable, logged runner as Git itself.
+- Here they are first-class toolbar buttons with repository-aware placeholders, and shell commands run through the same cancellable, logged runner as Git itself. Placeholder values are escaped, so a malicious branch name can't run commands.
 
 **Where to find it:** **Edit → Custom Toolbar Buttons…**.
 
