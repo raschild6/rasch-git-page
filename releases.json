@@ -1,5 +1,33 @@
 [
   {
+    "version": "0.0.4",
+    "tag": "v0.0.4",
+    "date": "2026-10-02",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.4/RaschildGitManager-0.0.4-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v0.0.4/RaschildGitManager-0.0.4-macos-arm64.dmg"
+    },
+    "changelog": {
+      "New Features": [
+        "Custom toolbar buttons: choose the label shown under the icon (separate from the button's name) and whether to show it at all; icon-only buttons keep the same icon size"
+      ],
+      "Bug Fixes": [
+        "Merging, rebasing onto or fast-forwarding to a branch that exists only on the remote (no local branch, e.g. feature/x from the graph) failed with \"not something we can merge\"; the remote branch (origin/feature/x) is now used",
+        "Pull could fail with \"divergent branches\" or \"cannot lock ref\" when the automatic fetch ran at the same moment; fetch, pull and push of a repository now run one at a time, and Pull cancels a background fetch instead of colliding with it"
+      ],
+      "Improvements": [
+        "Files inside a new, untracked folder are listed one by one in Unstaged Files (as they are once staged), instead of a single folder entry; discarding the last one also removes the empty folder",
+        "Toolbar: your own buttons all have the same compact width (long labels wrap on two lines, icon-only buttons show a large icon) and scroll sideways when they don't fit; the status message always has generous room, takes any extra space, and scrolls when long (from its beginning), with thin scrollbars and a small gap from your buttons",
+        "Pull no longer depends on your git pull settings: it fast-forwards, and when your branch and the remote have both moved on it asks whether to merge (staged for review) or rebase"
+      ]
+    },
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/63dc6253f6e3e35540563841931e9a56568427792daa4809132a590ddcc2ec5d",
+      "macos": "https://www.virustotal.com/gui/file/5b7a890166b66b2d000bcdc30489ddab2d0caa72b31937bfe06a654a56673641"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v0.0.4"
+  },
+  {
     "version": "0.0.3",
     "tag": "v0.0.3",
     "date": "2026-09-30",
