@@ -38,6 +38,7 @@
           <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-features-menu">Features <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
           <ul class="nav-submenu" id="nav-features-menu">
             <li><a href="features.html">Features</a></li>
+            <li><a href="features.html#integrations">Integrations</a></li>
             <li><a href="guides.html">How-to Guides</a></li>
           </ul>
         </li>
@@ -115,8 +116,13 @@
               <li><strong>Make sure Git is installed</strong> on your system. To verify, run in a terminal:
                 <div class="cmd"><code>git --version</code><button class="copy-btn" type="button" data-copy="git --version">Copy</button></div>
               </li>
-              <li><strong>Open a repository</strong>, or clone one from the built-in clone dialog.</li>
+              <li><strong>Connect your account</strong> (optional) in <span class="kbd">Edit</span> → <span class="kbd">Accounts &amp; SSH Keys…</span>. <strong>Sign in to GitHub</strong> is all it takes for pushing, pull requests, CI status, issues and cloning from your account. For GitLab, add an access token with the <code>api</code> scope (<code>read_api</code> is enough if you only want to read). Bitbucket and other hosts work with a token for push and pull; their pull requests open on the website.</li>
+              <li><strong>Open a repository</strong>, or clone one with <span class="kbd">File</span> → <span class="kbd">Clone…</span> — paste a URL, or pick a repository from your GitHub or GitLab account's tab.</li>
             </ol>
+            <h3 class="guide-h" id="git-lfs">Optional: Git LFS</h3>
+            <p>Repositories that store large files with Git LFS need Git LFS installed. On <strong>Windows</strong> it already comes with Git for Windows. On <strong>macOS</strong>, install it with Homebrew or the official installer from git-lfs.com:</p>
+            <div class="cmd"><code>brew install git-lfs</code><button class="copy-btn" type="button" data-copy="brew install git-lfs">Copy</button></div>
+            <p>Rasch-Git detects LFS repositories by itself and shows a banner if Git LFS is missing or not set up for a repository.</p>
             <div class="chapter-footer"><a href="#macos">&larr; macOS Installation</a><a href="#troubleshooting">Troubleshooting &rarr;</a></div>
           </article>
           <article class="chapter" id="troubleshooting" aria-labelledby="troubleshooting-title">

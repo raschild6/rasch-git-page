@@ -38,6 +38,7 @@
           <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-features-menu">Features <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
           <ul class="nav-submenu" id="nav-features-menu">
             <li><a href="features.html">Features</a></li>
+            <li><a href="features.html#integrations">Integrations</a></li>
             <li><a href="guides.html">How-to Guides</a></li>
           </ul>
         </li>
@@ -68,6 +69,12 @@
               <p>It is designed to give developers full control over their repositories, while keeping the interface fast and responsive no matter how large the project.</p>
             </div>
           </div>
+        </section>
+
+        <section class="card about-card" aria-labelledby="privacy-title">
+          <h2 id="privacy-title">Privacy</h2>
+          <p>Rasch-Git runs on your machine and has no account of its own. Pull requests, CI status, issues and cloning from your account talk to GitHub or GitLab only for the repositories you open, with your own account (public repositories also work without one). You can turn these online features off in <strong>Edit → Integrations…</strong>; the app then makes no calls to those services.</p>
+          <p>Your tokens are kept in the system keychain (Keychain on macOS, Credential Manager on Windows), never in plain-text settings or logs. The update check only reads the public list of releases from this website's repository.</p>
         </section>
 
         <section class="card about-card" aria-labelledby="contact-title">

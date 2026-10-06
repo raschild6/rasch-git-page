@@ -36,6 +36,23 @@
 | `scheduler-problems.png` | Scheduler Problems: a coalesced auth failure (×3) and a conflict with the stash kept | 26 |
 | `feature-tour-scheduler.png` | Tour step for the scheduler, with the Edit menu shown open | 21, 26 |
 | `feature-tour.png`, `feature-tour-deep-search.png` | First-launch feature tour; a menu step shows the menu open with its entry ringed | 21 |
+| `blame.png`, `file-history.png` | Blame with age bars and the selected commit's details; File History of a file with the diff of one change | 27 |
+| `interactive-rebase.png` | Interactive Rebase: pick, reword, edit, squash and fixup in one plan, combined message, change preview | 30 |
+| `rebase-edit-stop.png` | Rebase stopped at an *edit* commit: banner with *Amend Commit* / *Continue* / *Abort* | 30 |
+| `submodules.png` | SUBMODULES section and a moved submodule pointer: its new commits, *Stage Pointer* | 31 |
+| `gitflow-start.png`, `gitflow-finish.png` | Git-flow: start a release from develop; the finish plan (merge, tag, back-merge, delete) | 32 |
+| `pr-list.png` | PULL REQUESTS section: review requested, approved, changes requested, draft | 28 |
+| `pr-create.png` | Create Pull Request: base, title, description, reviewers, labels, commits | 28 |
+| `pr-view.png` | Pull request page: description, comments and reviews, *Check Out* / *Merge* | 28 |
+| `ci-status.png` | Commit details with CI checks (failed, running, passed, *Re-run Failed*) and CI marks on the branches | 33 |
+| `clone-from-account.png` | Clone dialog, account tab: organisation repositories, clone options, *Fork & Clone* | 34 |
+| `issues-tab.png` | Issues tab in the bottom panel and the branch's issue chip in the commit box | 35 |
+| `deep-search-text.png`, `deep-search-history.png` | Deep Search: text in every branch; text in history (any changed line that matches) | 25 |
+| `worktrees.png` | WORKTREES section with two tabs of the same repository | 36 |
+| `commit-signing.png`, `commit-verified.png` | Edit → Commit Signing with an SSH key after a successful test; signature line in the commit details | 37 |
+| `image-diff-swipe.png` | Image diff in Swipe mode | 3 |
+| `lfs.png` | LFS card (size before → after, *Open Before* / *Open After*) and LFS / large-file badges in the changes panel | 38 |
+| `split-view-2.png`, `split-view-4.png` | Split view: two repositories side by side; four in a 2×2 grid | 29 |
 | `about-license.png` | Help → About with the license notice | — |
 
-Dialogs are shown over the dimmed app with a drop shadow, as the operating system presents them; the capture ran without a window manager, so window title bars aren't drawn. Names, e-mail addresses, the sign-in code and the release in the update dialog are demo data.
+Dialogs are shown over the dimmed app with a drop shadow, as the operating system presents them; the capture ran without a window manager, so window title bars aren't drawn. Names, e-mail addresses, the sign-in code, the release in the update dialog and the pull requests, CI checks, issues and account repositories are demo data.
