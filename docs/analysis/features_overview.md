@@ -417,9 +417,9 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **Where to find it:** Right-click a repository tab; the group row above the tabs; **View → Hidden Tabs**.
 
-### 29. Split view
+### 29. Split view (Beta)
 
-**In one line:** Up to four repositories side by side in one window, each one live.
+**In one line:** Up to four repositories side by side in one window, each one live. *Beta: its look and the way panes are managed may still change.*
 
 **What it does:** Right-click a tab and choose **Split Right** or **Split Down**, or drag a tab to the edge of a pane, to see two, three or four repositories at once — each pane with its own tabs, graph, changes and diffs. Every pane keeps checking for changes and, with auto fetch, stays up to date. The pane you click (or reach with **Ctrl+Alt+←/→**) is the current repository: the toolbar, menus, undo / redo and shortcuts act on it, and it is marked with a coloured border. The other panes show their own progress and messages in a slim strip at the top, so a background job never overwrites what you are looking at. Drag tabs between panes, or use **Move to Pane**; **Open Side by Side** on a tab group lays out its repositories in one click. Panels are trimmed automatically to fit the narrower panes, and the whole layout comes back at the next start.
 
