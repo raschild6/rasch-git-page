@@ -675,12 +675,12 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** A short, skippable tour points at each feature in the real app.
 
-**What it does:** On first launch a tour highlights each feature directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from **Help → Feature Tour**.
+**What it does:** On first launch a tour highlights each feature directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from **Help → Feature Tour**. After an update, a shorter **What's New** tour shows only the features added since the version you used before (once; **Help → What's New** replays it, and *Don't show after updates* turns it off); the full tour stays the same.
 
 **Why it's different:**
 - It points at the live interface rather than at screenshots, so it always matches your theme and layout.
 
-**Where to find it:** First launch; **Help → Feature Tour**.
+**Where to find it:** First launch; **Help → Feature Tour**; after an update, **Help → What's New**.
 
 ---
 
