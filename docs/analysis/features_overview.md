@@ -26,7 +26,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 4. [Committing](#committing) — staging, commit templates, review-before-commit
 5. [Safety net](#safety-net) — undo / redo, interactive rebase, git-flow, safe checkout, visual conflict resolution
 6. [Branches & repositories at scale](#branches--repositories-at-scale) — the branch tree, submodules, drag & drop to open, tab groups, split view, worktrees, large files (Git LFS), bulk actions
-7. [Your workspace](#your-workspace) — built-in terminal, custom toolbar buttons, custom themes
+7. [Your workspace](#your-workspace) — built-in terminal, custom toolbar buttons, custom themes, interface scale
 8. [Integrations](#integrations) — pull requests, CI / CD status, clone & fork from your account, issues → branches (GitHub, GitLab)
 9. [Platform, updates & support](#platform-updates--support) — accounts & SSH keys, commit signing, updates, logs, cross-platform look, tour
 10. [Comparison summary](#comparison-summary)
@@ -77,6 +77,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 36 | Worktrees | Work on two branches at once: open any branch in its own folder and tab, without stashing. |
 | 37 | Commit signing | Get the *Verified* badge on your commits: sign with an SSH or GPG key, set up, tested and added to GitHub from one page. |
 | 38 | Large files (Git LFS) | Repositories with big design files, media or datasets just work: download progress, real sizes, no pointer text. |
+| 39 | Interface scale | The whole app larger or smaller, 80% to 150%, with Ctrl+Plus / Ctrl+Minus — text, icons and spacing together. |
 
 ---
 
@@ -520,6 +521,20 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 ---
 
+### 39. Interface scale
+
+**In one line:** Make the whole app larger or smaller — text, icons and spacing together — from 80% to 150%.
+
+**What it does:** **Edit → Interface Scale…** offers 80, 90, 100 (default), 110, 120, 130 and 150%. **Ctrl+Plus** and **Ctrl+Minus** (Cmd on macOS) step it up or down, **Ctrl+0** resets it to 100%. The whole interface is scaled uniformly, so nothing is left at the old size or cut off. The scale is applied when the app starts: after a change the app offers to restart right away (your open repositories and layout come back) or later. It works on Windows, macOS and Linux and comes on top of the operating system's display scaling (Windows at 150% and 120% in the app = 180%).
+
+**Why it's different:**
+- Many Git GUIs only let you change the font size, leaving icons, rows and toolbars at their original size.
+- Here everything scales together, which helps on 4K screens, small laptops and when presenting.
+
+**Where to find it:** **Edit → Interface Scale…** · **View → Interface Scale** · Ctrl+Plus / Ctrl+Minus / Ctrl+0.
+
+---
+
 ### 23. Open files in external programs
 
 **In one line:** Open any file — or any committed version of it — in the app you choose.
@@ -734,6 +749,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 | Ctrl+B / Ctrl+H | Blame / File History of the file in the diff viewer |
 | ↑ / ↓ | Previous / next commit in the graph |
 | Ctrl+Alt+→ / Ctrl+Alt+← | Split view: focus the next / previous pane |
+| Ctrl+Plus / Ctrl+Minus / Ctrl+0 | Interface larger / smaller / back to 100% (after a restart) |
 | Enter / Shift+Enter | Next / previous search match |
 | F5 | Refresh the current repository |
 | Esc | Back to the graph / working changes; pause conflict mode |
