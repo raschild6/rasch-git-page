@@ -77,7 +77,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 36 | Worktrees | Work on two branches at once: open any branch in its own folder and tab, without stashing. |
 | 37 | Commit signing | Get the *Verified* badge on your commits: sign with an SSH or GPG key, set up, tested and added to GitHub from one page. |
 | 38 | Large files (Git LFS) | Repositories with big design files, media or datasets just work: download progress, real sizes, no pointer text. |
-| 39 | Interface scale | The whole app larger or smaller, 80% to 150%, with Ctrl+Plus / Ctrl+Minus — text, icons and spacing together. |
+| 39 | Interface scale | The whole app larger or smaller, to any size from 25% to 400%, with Ctrl+Plus / Ctrl+Minus — text, icons and spacing together. |
 
 ---
 
@@ -523,9 +523,9 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 ### 39. Interface scale
 
-**In one line:** Make the whole app larger or smaller — text, icons and spacing together — from 80% to 150%.
+**In one line:** Make the whole app larger or smaller — text, icons and spacing together — to any percentage.
 
-**What it does:** **Edit → Interface Scale…** offers 80, 90, 100 (default), 110, 120, 130 and 150%. **Ctrl+Plus** and **Ctrl+Minus** (Cmd on macOS) step it up or down, **Ctrl+0** resets it to 100%. The whole interface is scaled uniformly, so nothing is left at the old size or cut off. The scale is applied when the app starts: after a change the app offers to restart right away (your open repositories and layout come back) or later. It works on Windows, macOS and Linux and comes on top of the operating system's display scaling (Windows at 150% and 120% in the app = 180%).
+**What it does:** **Edit → Interface Scale…** takes any percentage from 25% to 400% (default 100%), typed or with a slider. **Ctrl+Plus** and **Ctrl+Minus** (Cmd on macOS) move it 5% up or down, **Ctrl+0** resets it to 100%. The whole interface is scaled uniformly, so nothing is left at the old size or cut off. The scale is applied when the app starts: after a change the app offers to restart right away (your open repositories and layout come back) or later. It works on Windows, macOS and Linux and comes on top of the operating system's display scaling (Windows at 150% and 120% in the app = 180%).
 
 **Why it's different:**
 - Many Git GUIs only let you change the font size, leaving icons, rows and toolbars at their original size.
