@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Features — Rasch-Git</title>
-  <meta name="description" content="Every Rasch-Git feature in detail: async GUI, undo / redo, visual conflict resolution, bulk actions, built-in terminal and more.">
+  <meta name="description" content="Every Rasch-Git feature in detail: async GUI, undo / redo, interactive rebase, split view, worktrees, blame, pull requests, CI status, signed commits, Git LFS and more.">
   <meta name="theme-color" content="#1a1b2e">
   <meta property="og:title" content="Features — Rasch-Git">
-  <meta property="og:description" content="Every Rasch-Git feature in detail: async GUI, undo / redo, visual conflict resolution, bulk actions, built-in terminal and more.">
+  <meta property="og:description" content="Every Rasch-Git feature in detail: async GUI, undo / redo, interactive rebase, split view, worktrees, blame, pull requests, CI status, signed commits, Git LFS and more.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://raschild6.github.io/rasch-git-page/assets/img/logo-512.png">
   <link rel="icon" href="favicon.ico" sizes="any">
@@ -38,6 +38,7 @@
           <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-features-menu">Features <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
           <ul class="nav-submenu" id="nav-features-menu">
             <li><a href="features.html" aria-current="page">Features</a></li>
+            <li><a href="features.html#integrations">Integrations</a></li>
             <li><a href="guides.html">How-to Guides</a></li>
           </ul>
         </li>
@@ -63,7 +64,8 @@
             <li><a class="chapter-item" href="#safety"><span class="num">2</span><span class="label">Safety</span></a></li>
             <li><a class="chapter-item" href="#scale"><span class="num">3</span><span class="label">Scale</span></a></li>
             <li><a class="chapter-item" href="#workspace"><span class="num">4</span><span class="label">Your Workspace</span></a></li>
-            <li><a class="chapter-item" href="#trust"><span class="num">5</span><span class="label">Trust</span></a></li>
+            <li><a class="chapter-item" href="#integrations"><span class="num">5</span><span class="label">Integrations</span></a></li>
+            <li><a class="chapter-item" href="#trust"><span class="num">6</span><span class="label">Trust</span></a></li>
           </ul>
           <h2 class="chapter-nav-sub">More</h2>
           <ul>
@@ -197,6 +199,33 @@
               </div>
               <p class="feature-where"><span>Where to find it</span> The toolbar's <strong>Undo</strong> / <strong>Redo</strong> buttons, <strong>Edit → Undo / Redo</strong>, or <strong>Ctrl+Z</strong> / <strong>Ctrl+Shift+Z</strong> (<strong>Ctrl+Y</strong>).</p>
             </article>
+            <article class="feature-detail" id="interactive-rebase">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="12" r="2"/><circle cx="6" cy="19" r="2"/><path d="M11 5h9M11 12h9M11 19h9"/><path d="m17 9 3 3-3 3"/></svg></span>
+                <div>
+                  <h3>Interactive Rebase</h3>
+                  <p class="feature-tagline">Reorder, reword, squash or drop commits visually — and undo the whole rebase in one step.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>The editor:</strong> pick a commit and the dialog lists it and every commit after it, newest on top. Drag commits to reorder them and set each one to <em>pick</em>, <em>reword</em>, <em>edit</em>, <em>squash</em>, <em>fixup</em> or <em>drop</em> with a button or a single key (P R E S F D). Reworded commits and squash groups get a message box, pre-filled like Git would; the selected commit's changes are shown below, and a summary says how many commits you will end up with.</li><li><strong>Quick actions:</strong> a commit's right-click menu can reword it, squash or fixup it into its parent, drop it or move it up / down without opening the editor. <strong>Autosquash</strong> places <code>fixup!</code> / <code>squash!</code> commits automatically.</li><li><strong>Warnings first:</strong> commits that are already pushed are marked (rewriting them needs a force-push), and local changes can be stashed for the duration of the rebase with one tick.</li><li><strong>Pauses:</strong> a conflict opens the usual conflict editor, showing which step of the rebase you are on, with <em>Skip This Commit</em>; a commit marked <em>edit</em> stops with a banner above the graph to amend it, then <em>Continue</em> or <em>Abort</em>. The banner comes back if you close the app mid-rebase.</li><li><strong>Undo:</strong> the whole rebase — even one that paused for conflicts — is a single undo step.</li></ul>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/interactive-rebase.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The interactive rebase editor: reorder, reword, squash, fixup or drop each commit"><img src="assets/screenshots/interactive-rebase.png" alt="The interactive rebase editor: reorder, reword, squash, fixup or drop each commit" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>The interactive rebase editor: reorder, reword, squash, fixup or drop each commit</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/rebase-edit-stop.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: A rebase stopped at a commit marked edit, with Continue and Abort in the banner"><img src="assets/screenshots/rebase-edit-stop.png" alt="A rebase stopped at a commit marked edit, with Continue and Abort in the banner" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>A rebase stopped at a commit marked edit, with Continue and Abort in the banner</figcaption>
+                </figure>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most Git GUIs leave history rewriting to <code>git rebase -i</code> in a terminal and a text editor, or offer only "amend last commit".</li><li>Here it is a visual editor with previews and warnings, the paused states are explained in place, and a finished rebase is one Ctrl+Z away from undone.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Right-click a commit in the graph → <strong>Edit History</strong>; right-click the current branch's label in the graph → <strong>Interactive Rebase…</strong>. Step by step: <a href="guides.html#rebase">Clean up your branch before a pull request</a>.</p>
+            </article>
             <article class="feature-detail" id="review-before-commit">
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
@@ -219,6 +248,33 @@
                 <ul><li>Most GUIs merge and cherry-pick straight into a commit, and you notice problems afterwards.</li><li>Here nothing lands in history until you have looked at it.</li></ul>
               </div>
               <p class="feature-where"><span>Where to find it</span> Right-click a branch → <em>Merge</em>; right-click a commit → <em>Cherry-pick</em>.</p>
+            </article>
+            <article class="feature-detail" id="git-flow">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="12" r="2"/><path d="M5 7v10"/><path d="M7 5h4a6 6 0 0 1 6 6"/><path d="M7 19h4a6 6 0 0 0 6-6"/></svg></span>
+                <div>
+                  <h3>Git-flow, Built In</h3>
+                  <p class="feature-tagline">Start and finish features, releases and hotfixes in a few clicks — every step shown, every merge reviewed, no extension to install.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>Set up:</strong> <em>Initialise Git-flow</em> picks the production branch (<code>main</code> or <code>master</code>), creates <code>develop</code> if it's missing and sets the branch prefixes and the version tag prefix. Repositories already set up with the git-flow command-line tool are recognised as they are, and the two can be mixed.</li><li><strong>Start:</strong> a feature, bugfix, release, hotfix or support branch from the right base. For a release or hotfix the version is suggested (next minor / next patch from the latest version tag), and it can be written into <code>pom.xml</code> / <code>package.json</code> as a "Bump version to …" commit — only the version changes, the file's formatting is kept.</li><li><strong>Finish:</strong> a checklist of every step before anything runs — merge into <code>develop</code> (and into the production branch, tag and merge back into <code>develop</code> for a release or hotfix), delete the branch, optionally push. Each merge is staged for your review; commit it and the finish carries on by itself. A banner above the graph shows the step you're on, conflicts open the usual conflict editor, and the finish resumes after a restart. Each part of the finish can be undone.</li><li><strong>At a glance:</strong> flow branches get an icon in the sidebar, with <em>Finish…</em> in their right-click menu.</li></ul>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/gitflow-finish.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Finishing a release: every step listed as a checklist before anything runs"><img src="assets/screenshots/gitflow-finish.png" alt="Finishing a release: every step listed as a checklist before anything runs" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Finishing a release: every step listed as a checklist before anything runs</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/gitflow-start.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Starting a release with a suggested version"><img src="assets/screenshots/gitflow-start.png" alt="Starting a release with a suggested version" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Starting a release with a suggested version</figcaption>
+                </figure>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most Git GUIs need the git-flow extension installed, and their finish runs everything at once: merges are committed, tags created and branches deleted before you see the result.</li><li>Here it's built in, the plan is shown first, every merge is reviewed like any other merge (or committed automatically if you choose), and a finish interrupted by a conflict or a restart picks up where it stopped.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> <strong>Repository → Git-flow</strong>; right-click a feature / bugfix / release / hotfix branch in the left panel → <strong>Finish …</strong>. Step by step: <a href="guides.html#git-flow">Ship a release with git-flow</a>.</p>
             </article>
             <article class="feature-detail" id="checkout">
               <div class="feature-detail-head">
@@ -307,7 +363,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>Every repository opens in its own tab, and tabs are restored the next time you start the app. Right-click a tab to create a group or add the tab to one. Groups get their own row above the repository tabs: each group is a coloured chip with its name and number of repositories, and the tab row below lists the repositories group by group, in the group's colour. Click a group to collapse it: its tabs are hidden, but the repositories stay open in the background, ready the moment you bring them back. Or hide only some of them (<em>Hide Tab</em>, <em>Hide Other Tabs</em>, or untick tabs in the group's menu). The <strong>N hidden</strong> button lists every hidden tab and brings any of them back in one click. Drag a group chip to reorder groups. Group order, hidden tabs and the active tab are all kept across restarts. <strong>Reload Repository</strong> in a tab's right-click menu reopens a repository in place, in the same group and position. Folders can also be dragged onto the window (see <a href="#drag-drop-to-open">Drag &amp; drop to open</a>).</p>
+                <p>Every repository opens in its own tab, and tabs are restored the next time you start the app: the window opens at once with the repository you were on, and the other tabs open in the background, one at a time. Right-click a tab to create a group or add the tab to one. Groups get their own row above the repository tabs: each group is a coloured chip with its name and number of repositories, and the tab row below lists the repositories group by group, in the group's colour. Click a group to collapse it: its tabs are hidden, but the repositories stay open in the background, ready the moment you bring them back. Or hide only some of them (<em>Hide Tab</em>, <em>Hide Other Tabs</em>, or untick tabs in the group's menu). The <strong>N hidden</strong> button lists every hidden tab and brings any of them back in one click. Drag a group chip to reorder groups. Group order, hidden tabs and the active tab are all kept across restarts. <strong>Reload Repository</strong> in a tab's right-click menu reopens a repository in place, in the same group and position. Folders can also be dragged onto the window (see <a href="#drag-drop-to-open">Drag &amp; drop to open</a>).</p>
               </div>
               <div class="shots shots-grid">
                 <figure class="shot">
@@ -332,6 +388,57 @@
                 <ul><li>Many Git GUIs show one repository per window, or a flat bookmark list.</li><li>Grouping keeps projects with many repositories manageable in a single window: front-end + back-end, a set of microservices, or client work.</li></ul>
               </div>
               <p class="feature-where"><span>Where to find it</span> Right-click a repository tab; the group row above the tabs; <strong>View → Hidden Tabs</strong>.</p>
+            </article>
+            <article class="feature-detail" id="split-view">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/><path d="M12 12h9"/></svg></span>
+                <div>
+                  <h3>Split View (Beta)</h3>
+                  <p class="feature-tagline">Up to four repositories side by side in one window, each one live. Beta: its look and the way panes are managed may still change.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p>Right-click a tab and choose <strong>Split Right</strong> or <strong>Split Down</strong>, or drag a tab to the edge of a pane, to see two, three or four repositories at once — each pane with its own tabs, graph, changes and diffs. Every pane keeps checking for changes and, with auto fetch, stays up to date.</p>
+<ul><li><strong>One current repository:</strong> the pane you click (or reach with <strong>Ctrl+Alt+← / →</strong>) is the current repository: the toolbar, menus, undo / redo and shortcuts act on it, and it is marked with a coloured border.</li><li><strong>Quiet background panes:</strong> the other panes show their own progress and messages in a slim strip at the top, so a background job never overwrites what you are looking at.</li><li><strong>Rearrange freely:</strong> drag tabs between panes, or use <strong>Move to Pane</strong>; <strong>Open Side by Side</strong> on a tab group lays out its repositories in one click.</li><li><strong>Fits and comes back:</strong> panels are trimmed automatically to fit the narrower panes, and the whole layout comes back at the next start.</li></ul>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/split-view-2.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Two repositories side by side: a library and the app that uses it"><img src="assets/screenshots/split-view-2.png" alt="Two repositories side by side: a library and the app that uses it" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Two repositories side by side: a library and the app that uses it</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/split-view-4.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Four repositories in a 2×2 grid, each one live"><img src="assets/screenshots/split-view-4.png" alt="Four repositories in a 2×2 grid, each one live" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Four repositories in a 2×2 grid, each one live</figcaption>
+                </figure>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most Git GUIs show one repository at a time; comparing two means two windows, or switching tabs back and forth.</li><li>Here related repositories — a library and the app using it, front-end and back-end — sit next to each other, all live, in one window.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Right-click a repository tab; <strong>View → Split View</strong>; drag a tab onto another pane; right-click a group chip → <strong>Open Side by Side</strong>. Step by step: <a href="guides.html#several-repos">Work on several repositories at once</a>.</p>
+            </article>
+            <article class="feature-detail" id="worktrees">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7a2 2 0 0 1 2-2h3l2 2h4a2 2 0 0 1 2 2v1"/><path d="M2 7v9a2 2 0 0 0 2 2h4"/><rect x="11" y="11" width="11" height="9" rx="2"/><path d="M14.5 15.5h4M16.5 13.5v4"/></svg></span>
+                <div>
+                  <h3>Worktrees</h3>
+                  <p class="feature-tagline">Work on two branches at once — each in its own folder and tab, without stashing.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>One click from a branch:</strong> right-click any branch (in the sidebar or on the graph) → <strong>Open in New Worktree</strong>. The branch is checked out in a second folder next to the repository and opens in its own tab, right beside the repository's tab and in the same group. A remote branch gets a local branch that tracks it. Your current work stays exactly where it is — review a pull request or fix an urgent bug, then close the tab.</li><li><strong>New Worktree…</strong> for more control: an existing branch or a new one from any starting point, the folder (a sensible default, or Browse), open it in a tab or not, and initialise its submodules.</li><li><strong>At a glance:</strong> repositories with worktrees get a <strong>WORKTREES</strong> section in the sidebar — each one with its branch and folder, marked <em>current</em>, <em>main</em>, <em>locked</em> or <em>missing</em> (folder deleted by hand). Open it in a tab, its folder or a terminal; lock it (e.g. on a removable drive), prune missing ones, or remove one — with a confirmation, and never silently discarding uncommitted changes.</li><li><strong>No "already checked out" surprises:</strong> a branch can be checked out in only one worktree, so branches used elsewhere are marked in the sidebar and in the graph's tooltips, and <strong>Checkout</strong> becomes <strong>Switch to Its Worktree</strong>, which jumps to that tab.</li><li><strong>Everything stays in step:</strong> a commit made in one worktree shows in the others' graphs right away; fetch, pull and push of worktrees of one repository never collide; undo refuses to move a branch another worktree is using; tab titles read "repository · folder".</li></ul>
+              </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/worktrees.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The WORKTREES section and two tabs of the same repository"><img src="assets/screenshots/worktrees.png" alt="The WORKTREES section and two tabs of the same repository" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>The WORKTREES section and two tabs of the same repository</figcaption>
+                </figure>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most Git GUIs don't show worktrees at all: working on a second branch means stash, switch, switch back, unstash — or a separate clone.</li><li>Here a second working copy of the same repository is one right-click away, lives in its own tab, and shares branches, stashes and remotes with the first.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Right-click a branch → <strong>Open in New Worktree</strong>; the <strong>WORKTREES</strong> section of the left panel (right-click a worktree or the section header); <strong>Repository → Worktrees</strong>. Needs Git 2.36 or newer. Step by step: <a href="guides.html#worktrees">Review a pull request without stashing</a>.</p>
             </article>
             <article class="feature-detail" id="bulk-branch-repo-management">
               <div class="feature-detail-head">
@@ -387,6 +494,52 @@
               </div>
               <p class="feature-where"><span>Where to find it</span> The left panel of each repository tab.</p>
             </article>
+            <article class="feature-detail" id="submodules">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="11" y="11" width="7" height="7" rx="1"/><path d="M7 7h5M7 10h2"/></svg></span>
+                <div>
+                  <h3>Submodules</h3>
+                  <p class="feature-tagline">Every submodule's state at a glance — update, open, add or remove them without a terminal.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>At a glance:</strong> repositories with submodules get a <strong>SUBMODULES</strong> section in the sidebar. Each submodule shows its state — up to date (with its commit), <em>modified</em>, <em>moved</em> (checked out at a different commit than the repository records), <em>not initialised</em>, <em>conflict</em> — and nested submodules are indented under their parent. The tooltip shows the URL, the tracked branch and both commits.</li><li><strong>Actions:</strong> initialise or update one submodule or all of them, update to the tip of its tracked branch, sync URLs, set the URL or branch, add a new submodule, remove one cleanly. A submodule with local commits that aren't on any remote is never moved without a warning.</li><li><strong>Open as a tab:</strong> double-click a submodule to open it in its own tab, right next to its parent and in the same group; the tab reacts to changes immediately, like any other repository.</li><li><strong>Readable changes:</strong> a changed submodule in the changes panel says what changed (new commits, modified or untracked content). Opening it shows "moved from abc1234 to def5678" and the list of commits in between, with <em>Open Submodule</em>, <em>Update to Recorded Commit</em> and <em>Stage Pointer</em> — the same for a submodule changed in a commit.</li><li><strong>Kept in step:</strong> cloning initialises submodules (a checkbox in the Clone dialog), and an optional setting updates the submodules a pull or checkout moved. A merge conflict on a submodule offers a simple <em>Use Ours / Use Theirs</em> choice.</li><li><strong>Safe and undoable:</strong> adding, removing and changing a submodule's URL or branch can be undone; signed-in accounts are used for submodules on any host, and a URL with a password in it is refused (it would be committed).</li></ul>
+              </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/submodules.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The SUBMODULES section and a submodule change: moved from one commit to another, with the commits in between"><img src="assets/screenshots/submodules.png" alt="The SUBMODULES section and a submodule change: moved from one commit to another, with the commits in between" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>The SUBMODULES section and a submodule change: moved from one commit to another, with the commits in between</figcaption>
+                </figure>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Many Git GUIs list submodules at most and leave initialising and updating them to the terminal; a moved submodule shows up as a cryptic "Subproject commit" diff.</li><li>Here their state is visible at a glance, every common action is a right-click away, and a pointer change reads as the commits it brings in.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> The <strong>SUBMODULES</strong> section of the left panel (right-click a submodule or the section header) or <strong>Repository → Submodules</strong>; the changes panel; <strong>Edit → Submodules…</strong> for the settings; <strong>File → Clone…</strong> → <em>Initialise submodules</em>.</p>
+            </article>
+            <article class="feature-detail" id="git-lfs">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 12v6"/><path d="m9 15 3 3 3-3"/></svg></span>
+                <div>
+                  <h3>Large Files (Git LFS)</h3>
+                  <p class="feature-tagline">Repositories with big design files, media or datasets just work — download progress, real sizes, no pointer text.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>Recognised automatically:</strong> a repository that stores files with Git LFS is detected from its files, at no cost to the app's speed. If something is wrong, a banner says what and fixes it: Git LFS isn't installed (with a link to install it — Windows already has it with Git), it isn't set up for this repository (<strong>Set Up</strong>), or some large files weren't downloaded and are only placeholders (<strong>Pull LFS Files</strong>). Close the banner to hide it for that repository.</li><li><strong>Long downloads that don't fail:</strong> checkouts, pulls, clones, merges and stashes that download large files show "Downloading LFS objects 45%" in the toolbar instead of a silent wait, and keep going as long as the download moves — no "timed out" on a slow multi-gigabyte checkout.</li><li><strong>LFS files at a glance:</strong> in your changes they're marked "LFS" with their size; a new untracked file over 50 MB gets a "large file" note suggesting LFS.</li><li><strong>Readable changes:</strong> clicking a changed LFS file shows "LFS file changed · 12.4 MB → 12.9 MB" instead of the pointer text, with <strong>Open Before</strong> / <strong>Open After</strong> (the real files, even for old commits); LFS images open straight in the <a href="#image-diff">image diff</a> with their real pixels.</li><li><strong>Track from the file menu:</strong> right-click a file → <strong>Track with Git LFS…</strong> (<code>*.psd</code> suggested) or <strong>Stop Tracking with Git LFS</strong>; the change to <code>.gitattributes</code> is staged and can be undone. <strong>Repository → Git LFS</strong> fetches objects for this branch or all branches, pulls missing files, lists the tracked patterns, sets up LFS and prunes the local cache.</li></ul>
+              </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/lfs.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: LFS files marked with their sizes, and a changed LFS file: size before and after instead of pointer text"><img src="assets/screenshots/lfs.png" alt="LFS files marked with their sizes, and a changed LFS file: size before and after instead of pointer text" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>LFS files marked with their sizes, and a changed LFS file: size before and after instead of pointer text</figcaption>
+                </figure>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most Git GUIs show an LFS file's pointer text as its diff and run long LFS checkouts with no progress — or give up on them with a timeout.</li><li>Here LFS files are recognised with their sizes, tracking a file type is a right-click, and LFS images compare visually like any other image.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> The banner above the graph; the <strong>LFS</strong> marks and right-click menu in the changes panel; <strong>Repository → Git LFS</strong>. Needs Git LFS installed (see <a href="install.html#git-lfs">Install</a>).</p>
+            </article>
             <article class="feature-detail" id="commit-search">
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
@@ -415,23 +568,60 @@
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m20 20-5.5-5.5"/><path d="M8 8h4M8 10.5h4M8 13h2"/></svg></span>
                 <div>
                   <h3>Deep Search</h3>
-                  <p class="feature-tagline">Find any file by name across the whole history — and jump to the commit that touched it.</p>
+                  <p class="feature-tagline">Find any file — or any line of code — across every branch and the whole history.</p>
                 </div>
               </div>
               <div class="feature-body">
-                <p>Type a file name, part of it, or a glob (<code>*.sql</code>, <code>src/**/test_*.py</code>); optionally limit how many commits to search and a date range. Results list every commit that added, modified, renamed or deleted a matching file, with hash, date, author and message. Click one and the graph jumps to that commit — loading older history if needed — while the diff viewer shows that file's changes. The search runs in the background with a progress bar and can be cancelled.</p>
+                <p>One window, three searches (it reopens on the one you used last):</p>
+<ul><li><strong>File names</strong> — type a file name, part of it, or a glob (<code>*.sql</code>, <code>src/**/test_*.py</code>); optionally limit how many commits to search and a date range. Results list every commit that added, modified, renamed or deleted a matching file, with hash, date, author and message. Click one and the graph jumps to that commit — loading older history if needed — while the diff viewer shows that file's changes.</li><li><strong>Text in branches</strong> — "where is <code>parse_config</code> still used?": every line containing a text or a regular expression at the tip of all your branches (local and remote), only the local ones, or the current one. Results are grouped by file, with the line number, the match highlighted and the branches that have that line ("main +3") — the same line on many branches is one row, not one per branch. Double-click a line to open the blame of that file, at that branch, on that line.</li><li><strong>Text in history</strong> — "when was <code>OLD_API_KEY</code> added, and when was it removed?": the commits that added or removed a piece of text, even in files deleted long ago, or (option) every commit whose changed lines match a regular expression. Each result shows whether the text was added or removed, with the matching line; click it to see the commit and the file's diff.</li></ul>
+<p>The text searches have <strong>Regex</strong>, <strong>Match case</strong>, <strong>Whole word</strong> (branches) and an <strong>In files</strong> filter (<code>src/**/*.py, *.md</code>). Right-click a result for File History, Blame or Show in Graph. Every search runs in the background with a progress bar, shows results as they arrive and can be cancelled. Text searches look at committed content.</p>
               </div>
-              <div class="shots">
+              <div class="shots shots-grid">
                 <figure class="shot">
-                  <a href="assets/screenshots/deep-search.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Edit → Deep Search: a file across the whole history"><img src="assets/screenshots/deep-search.png" alt="Edit → Deep Search: a file across the whole history" width="1600" height="1000" loading="lazy" decoding="async"></a>
-                  <figcaption>Edit → Deep Search: a file across the whole history</figcaption>
+                  <a href="assets/screenshots/deep-search-text.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Text in branches: matches grouped by file, with the branches that have each line"><img src="assets/screenshots/deep-search-text.png" alt="Text in branches: matches grouped by file, with the branches that have each line" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Text in branches: matches grouped by file, with the branches that have each line</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/deep-search-history.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Text in history: the commits that added or removed a piece of text"><img src="assets/screenshots/deep-search-history.png" alt="Text in history: the commits that added or removed a piece of text" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Text in history: the commits that added or removed a piece of text</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/deep-search.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: File names: a file across the whole history"><img src="assets/screenshots/deep-search.png" alt="File names: a file across the whole history" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>File names: a file across the whole history</figcaption>
                 </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
-                <ul><li>Most Git GUIs only show the history of a file that still exists and that you've already found in the tree; deleted or renamed files need <code>git log --all -- '**/name'</code> in a terminal.</li><li>Here a name fragment is enough, across every branch, and each hit is one click from its diff.</li></ul>
+                <ul><li>Most Git GUIs only show the history of a file that still exists and that you've already found in the tree; deleted or renamed files need <code>git log --all -- '**/name'</code> in a terminal.</li><li>Searching code in other branches, or finding the commit that introduced or removed a line, usually means <code>git grep</code> and <code>git log -S</code> in a terminal, one branch at a time. Here it's one search over every branch at once, grouped by file, each hit one click from its blame or diff.</li></ul>
               </div>
-              <p class="feature-where"><span>Where to find it</span> <strong>Edit → Deep Search…</strong> (<code>Ctrl+Shift+F</code>).</p>
+              <p class="feature-where"><span>Where to find it</span> <strong>Edit → Deep Search…</strong> (<code>Ctrl+Shift+F</code>). Step by step: <a href="guides.html#deep-search">Deep Search guide</a>.</p>
+            </article>
+            <article class="feature-detail" id="blame-file-history">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h4M4 9h4M4 13h4M4 17h4"/><path d="M11 5h9M11 9h6M11 13h9M11 17h5"/><path d="M9.5 3v18" opacity=".5"/></svg></span>
+                <div>
+                  <h3>Blame &amp; File History</h3>
+                  <p class="feature-tagline">Who changed each line and why — and every version of a file, renames included.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>Blame</strong> shows the file with a gutter of author, date and commit next to each block of lines, shaded by age (newer is warmer). Click a line to select its commit in the graph and see its details; <em>Blame Previous Version</em> steps back past a commit to see what was there before; formatting-only commits listed in <code>.git-blame-ignore-revs</code> are skipped.</li><li><strong>File History</strong> lists every commit that changed the file — following it across renames — with the change each one made, ready to open, blame at that commit or restore that version (undoable).</li></ul>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/blame.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Blame: author, date and commit next to each block of lines, shaded by age"><img src="assets/screenshots/blame.png" alt="Blame: author, date and commit next to each block of lines, shaded by age" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Blame: author, date and commit next to each block of lines, shaded by age</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/file-history.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: File History: every commit that changed the file, across renames"><img src="assets/screenshots/file-history.png" alt="File History: every commit that changed the file, across renames" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>File History: every commit that changed the file, across renames</figcaption>
+                </figure>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Many Git GUIs offer blame as a plain, separate window or not at all; here it sits in the main view, linked to the graph and the commit details.</li><li>File History follows renames and shows each change inline, without a terminal <code>git log --follow -p</code>.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Right-click a file (working changes or a commit's file list) → <strong>Blame</strong> / <strong>File History</strong>; the buttons in the diff header (<strong>Ctrl+B</strong> / <strong>Ctrl+H</strong>); a Deep Search result's menu.</p>
             </article>
             <article class="feature-detail" id="drag-drop-to-open">
               <div class="feature-detail-head">
@@ -522,7 +712,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>Add buttons to the main toolbar that run a Git action (pull, push, stash, merge, rebase…), an app action (open the repository in the terminal, file explorer or your editor; copy the branch name, last commit hash or remote URL; open the remote in the browser), a URL or text template, or a <strong>shell command</strong>. Templates can use placeholders such as <code>{repo_path}</code>, <code>{repo_name}</code>, <code>{branch}</code>, <code>{remote_url}</code>, <code>{remote_owner}</code> and <code>{remote_repo}</code>. Each button has a label and an icon; you can reorder or duplicate buttons, and hide the built-in ones. Six ready-made buttons come with the app: <strong>Copy Remote URL</strong>, <strong>Copy Branch Name</strong>, <strong>Open in Folder</strong>, <strong>Open in Terminal</strong>, <strong>Open in VS Code</strong> and <strong>Open on GitHub</strong>, with the right command for macOS, Windows and Linux. On a narrow window the buttons turn icon-only instead of disappearing.</p>
+                <p>Add buttons to the main toolbar that run a Git action (pull, push, stash, merge, rebase…), an app action (open the repository in the terminal, file explorer or your editor; copy the branch name, last commit hash or remote URL; open the remote in the browser), a URL or text template, or a <strong>shell command</strong>. Templates can use placeholders such as <code>{repo_path}</code>, <code>{repo_name}</code>, <code>{branch}</code>, <code>{remote_url}</code>, <code>{remote_owner}</code> and <code>{remote_repo}</code>. Each button has a label and an icon; you can reorder or duplicate buttons, and hide the built-in ones. Six ready-made buttons come with the app: <strong>Copy Remote URL</strong>, <strong>Copy Branch Name</strong>, <strong>Open in Folder</strong>, <strong>Open in Terminal</strong>, <strong>Open in VS Code</strong> and <strong>Open on GitHub</strong>, with the right command for macOS, Windows and Linux. Each button can show its icon with a label of your choice, or only the icon; long labels wrap on two lines; when you have more buttons than fit, they scroll sideways while the status messages keep their own space.</p>
               </div>
               <div class="shots">
                 <figure class="shot">
@@ -559,6 +749,24 @@
               </div>
               <p class="feature-where"><span>Where to find it</span> <strong>Edit → Themes → Manage Themes…</strong>.</p>
             </article>
+            <article class="feature-detail" id="interface-scale">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/><path d="M7 11h4M9 9v4"/><path d="M14 11h3"/></svg></span>
+                <div>
+                  <h3>Interface Scale</h3>
+                  <p class="feature-tagline">Make the whole app larger or smaller — text, icons and spacing together — to any percentage.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <p><strong>Edit → Interface Scale…</strong> takes any percentage from 25% to 400% (100% is the default), typed in or set with a slider. <strong>Ctrl+Plus</strong> and <strong>Ctrl+Minus</strong> (<strong>Cmd</strong> on macOS) move it 5% up or down from anywhere in the app, and <strong>Ctrl+0</strong> brings it back to 100%. Everything is scaled uniformly, so nothing is left at the old size or cut off.</p>
+                <ul><li><strong>Applied at startup:</strong> after a change the app offers to <strong>Restart Now</strong> — your open repositories and layout come back — or <strong>Later</strong>, at the next start.</li><li><strong>On top of your display settings:</strong> the scale multiplies the operating system's own display scaling. With Windows set to 150% and the app to 120%, the app is drawn at 180%.</li><li><strong>Everywhere:</strong> Windows, macOS and Linux.</li></ul>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Many Git GUIs only let you change the font size, leaving icons, rows and toolbars at their original size.</li><li>Here everything scales together — handy on 4K monitors, small laptop screens and when presenting.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> <strong>Edit → Interface Scale…</strong> · <strong>View → Interface Scale</strong> · <strong>Ctrl+Plus</strong> / <strong>Ctrl+Minus</strong> / <strong>Ctrl+0</strong>.</p>
+            </article>
             <article class="feature-detail" id="commit-templates">
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h2M13 13h3M8 17h5"/></svg></span>
@@ -568,7 +776,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>You keep a list of predefined commit titles with placeholders: <code>{version}</code> is the project's next version and <code>{branch}</code> is the current branch. The version is detected from <code>pom.xml</code>, from the commit message, or from version-named branches. The first template pre-fills the commit title automatically; the sparkle button next to the title offers the others. The title field shows a character counter that warns before you pass 72 characters. You can amend the previous commit, or commit and push in one click.</p>
+                <p>You keep a list of predefined commit titles with placeholders: <code>{version}</code> is the project's next version and <code>{branch}</code> is the current branch. The version is detected from <code>pom.xml</code>, from the commit message, or from version-named branches. On a branch linked to an issue, <code>{issue}</code> (<code>#123</code>) and <code>{issue_title}</code> are filled in too. The first template pre-fills the commit title automatically; the sparkle button next to the title offers the others. The title field shows a character counter that warns before you pass 72 characters. You can amend the previous commit, or commit and push in one click.</p>
               </div>
               <div class="shots shots-grid">
                 <figure class="shot">
@@ -591,11 +799,14 @@
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/><path d="M6 9h3M6 13h3M15 9h3M15 13h3"/></svg></span>
                 <div>
                   <h3>Smart Diff Views</h3>
-                  <p class="feature-tagline">Hunk, Inline or Split — one click to switch, with syntax highlighting and search.</p>
+                  <p class="feature-tagline">Hunk, Inline or Split — one click to switch, with syntax highlighting and search; changed images compared before / after.</p>
                 </div>
               </div>
               <div class="feature-body">
                 <ul><li><strong>Three views:</strong> <em>Hunk</em> shows only the changed blocks, <em>Inline</em> shows the whole file with changes in place, and <em>Split</em> shows old and new side by side with aligned rows.</li><li><strong>Readability:</strong> syntax highlighting for 16 languages (Python, JavaScript, TypeScript, Java, C/C++, Go, Rust, Ruby, PHP, SQL, HTML, CSS, JSON, YAML, XML, shell), a minimap of changes, and Ctrl+F search inside the diff.</li><li><strong>Clean copy:</strong> copied code has no <code>+</code> / <code>-</code> prefixes, so it can be pasted straight into an editor.</li></ul>
+<p id="image-diff"><strong>Image diff.</strong> Click a changed image (PNG, JPEG, GIF, BMP, WebP, ICO, SVG, TIFF where supported) — in the working tree, the staged changes, a commit or a stash — and see it before and after, right in the app:</p>
+<ul><li><em>Side by side</em> with size and file size ("Before 640×480 · 34 KB"), zoom and scrolling kept in step;</li><li><em>Swipe</em>: a slider shows the old version on one side of the line and the new one on the other;</li><li><em>Onion skin</em>: fade the new version over the old one;</li><li><em>Difference</em>: the changed pixels highlighted over a dimmed image, with how many changed ("1,234 pixels changed (3.2 %)") — or "No visible change" when only the file's metadata differs.</li></ul>
+<p>Fit, 100 % (real pixels, also on high-resolution screens), zoom buttons and the mouse wheel; a checkerboard, theme, black or white background behind transparent pixels; added and deleted images shown on their own; during a conflict, <em>ours</em> next to <em>theirs</em>. From the page you can <em>Stage</em>, <em>Unstage</em> or <em>Discard</em> (asks first) the image, copy it, open the old or new version in an external program, and for SVG switch to the text diff of its source. Very large images ask before loading and show a scaled preview; <strong>View → Image Diff</strong> turns it off.</p>
               </div>
               <div class="shots shots-grid">
                 <figure class="shot">
@@ -606,12 +817,16 @@
                   <a href="assets/screenshots/diff-inline.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Inline diff of the same commit"><img src="assets/screenshots/diff-inline.png" alt="Inline diff of the same commit" width="1600" height="1000" loading="lazy" decoding="async"></a>
                   <figcaption>Inline diff of the same commit</figcaption>
                 </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/image-diff-swipe.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Image diff in Swipe mode: the old version on one side of the slider, the new one on the other"><img src="assets/screenshots/image-diff-swipe.png" alt="Image diff in Swipe mode: the old version on one side of the slider, the new one on the other" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Image diff in Swipe mode: the old version on one side of the slider, the new one on the other</figcaption>
+                </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
-                <ul><li>Most Git GUIs offer one diff layout, or at most two.</li><li>Hunk-level staging works straight from the diff (see <a href="#hunk-level-staging">Hunk-level staging</a>).</li></ul>
+                <ul><li>Most Git GUIs offer one diff layout, or at most two.</li><li>Hunk-level staging works straight from the diff (see <a href="#hunk-level-staging">Hunk-level staging</a>).</li><li>Most Git GUIs show "binary file changed" for an image, or the two versions without a way to tell what moved; here four views, including a pixel-exact difference with a count.</li></ul>
               </div>
-              <p class="feature-where"><span>Where to find it</span> Click a changed file in the right panel, or a file of a commit; the view switcher is in the diff header.</p>
+              <p class="feature-where"><span>Where to find it</span> Click a changed file in the right panel, or a file of a commit; the view switcher is in the diff header. Images open in the image page (modes in its toolbar; <strong>View → Image Diff</strong> to turn it off).</p>
             </article>
             <article class="feature-detail" id="commit-details">
               <div class="feature-detail-head">
@@ -647,7 +862,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>Every file in the changes panel and in a commit's file list has <strong>Open with System Default</strong> and <strong>Open with…</strong>; the diff viewer has <strong>Open Externally</strong>. Double-clicking an image, PDF, office document or other binary file opens it in its program instead of showing an empty diff. In <strong>Edit → External Editors</strong> you map extensions to programs (for example <code>.csv, .xlsx</code> → Excel, <code>.png, .jpg</code> → Preview or Photoshop, <code>.md</code> → your editor); anything unmapped opens with the operating system's default. Files from past commits or stashes are extracted to a temporary copy, cleaned up when the app closes.</p>
+                <p>Every file in the changes panel and in a commit's file list has <strong>Open with System Default</strong> and <strong>Open with…</strong>; the diff viewer has <strong>Open Externally</strong>. Double-clicking a PDF, office document or other binary file opens it in its program instead of showing an empty diff; images open in the <a href="#image-diff">image diff</a> instead (its header has <em>Open externally</em> for the old and new versions; with <strong>View → Image Diff</strong> off they open in their program). In <strong>Edit → External Editors</strong> you map extensions to programs (for example <code>.csv, .xlsx</code> → Excel, <code>.png, .jpg</code> → Preview or Photoshop, <code>.md</code> → your editor); anything unmapped opens with the operating system's default. Files from past commits or stashes are extracted to a temporary copy, cleaned up when the app closes.</p>
               </div>
               <div class="shots shots-grid">
                 <figure class="shot">
@@ -663,9 +878,7 @@
                 <h4>Why it's different</h4>
                 <ul><li>Most Git GUIs show "binary file changed" and stop there, or only open the current working copy.</li><li>Here any version of a file — from any commit or stash — opens in the right program with one click, and you decide which program per file type.</li></ul>
               </div>
-              <p class="feature-where"><span>Where to find it</span> Right-click a file; double-click a binary file; <em>Open Externally</em> in the diff header; <strong>Edit → External Editors…</strong>.
-
-## Platform, updates &amp; support</p>
+              <p class="feature-where"><span>Where to find it</span> Right-click a file; double-click a binary file; <em>Open Externally</em> in the diff header; <strong>Edit → External Editors…</strong>.</p>
             </article>
             <article class="feature-detail" id="guided-feature-tour">
               <div class="feature-detail-head">
@@ -676,7 +889,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>On first launch a tour highlights each feature directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from <strong>Help → Feature Tour</strong>.</p>
+                <p>On first launch a tour highlights each feature directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from <strong>Help → Feature Tour</strong>. After an update, a shorter <strong>What's New</strong> tour shows only the features added since the version you used before (once; <strong>Help → What's New</strong> replays it, and <em>Don't show after updates</em> turns it off); the full tour stays the same.</p>
               </div>
               <div class="shots shots-grid">
                 <figure class="shot">
@@ -694,7 +907,114 @@
               </div>
               <p class="feature-where"><span>Where to find it</span> First launch; <strong>Help → Feature Tour</strong>.</p>
             </article>
-            <div class="chapter-footer"><a href="#scale">&larr; Scale</a><a href="#trust">Trust &rarr;</a></div>
+            <div class="chapter-footer"><a href="#scale">&larr; Scale</a><a href="#integrations">Integrations &rarr;</a></div>
+          </section>
+          <section class="chapter" id="integrations" aria-labelledby="integrations-title">
+            <div class="chapter-head">
+              <h2 id="integrations-title">Integrations</h2>
+            </div>
+            <p class="intro">Pull requests, CI results and issues from GitHub and GitLab, right next to the graph. They use the account you already signed in with, only for the repositories you open, and can be turned off in <strong>Edit → Integrations…</strong>.</p>
+            <article class="feature-detail" id="pull-requests">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M6 8v8"/><path d="M18 16V9a3 3 0 0 0-3-3h-4"/><path d="m13 4-2 2 2 2"/></svg></span>
+                <div>
+                  <h3>Pull Requests</h3>
+                  <p class="feature-tagline">Create, review, check out and merge pull requests without leaving the app.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>The list:</strong> the left panel lists the repository's open pull requests (GitHub) or merge requests (GitLab) with their review and checks state, filtered by <em>All</em>, <em>Created by me</em>, <em>Review requested</em> or <em>Drafts</em>.</li><li><strong>Create:</strong> <strong>Create Pull Request</strong> (branch menu) pushes the branch if needed and pre-fills the title and description from its commits and the repository's template, with base branch, draft, reviewers and labels. For any other host it opens the website's new-pull-request page with the same text.</li><li><strong>Review:</strong> a pull request opens in the main view — its conversation, commits and changed files, with diffs in the app's own diff viewer — with comment, approve, request changes and merge (merge, squash or rebase, optionally deleting the branch).</li><li><strong>Check out:</strong> <strong>Check Out</strong> brings any pull request to a local branch, including ones from forks.</li></ul>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/pr-list.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The PULL REQUESTS section: open pull requests with their review and checks state"><img src="assets/screenshots/pr-list.png" alt="The PULL REQUESTS section: open pull requests with their review and checks state" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>The PULL REQUESTS section: open pull requests with their review and checks state</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/pr-create.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Create Pull Request: title and description pre-filled from the branch's commits"><img src="assets/screenshots/pr-create.png" alt="Create Pull Request: title and description pre-filled from the branch's commits" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Create Pull Request: title and description pre-filled from the branch's commits</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/pr-view.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: A pull request in the main view: conversation, commits and changed files"><img src="assets/screenshots/pr-view.png" alt="A pull request in the main view: conversation, commits and changed files" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>A pull request in the main view: conversation, commits and changed files</figcaption>
+                </figure>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most desktop Git GUIs stop at "open in browser"; here the whole loop happens next to the graph.</li><li>Diffs come from Git itself, so they look like every other diff in the app; descriptions and comments load no remote images.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> The <strong>PULL REQUESTS</strong> section of the left panel (right-click for filters and <em>Create Pull Request…</em>); right-click a branch → <strong>Create Pull Request…</strong>; <strong>Edit → Integrations…</strong> to turn the online features off. Works with the account from <strong>Edit → Accounts &amp; SSH Keys</strong> (public repositories also without one). Step by step: <a href="guides.html#pull-requests">From branch to merged pull request</a>.</p>
+            </article>
+            <article class="feature-detail" id="ci-status">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></span>
+                <div>
+                  <h3>CI / CD Status at a Glance</h3>
+                  <p class="feature-tagline">See whether CI passed — on your branches, on any commit, and right after you push — without opening the browser.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>On the selected commit:</strong> the details panel shows "Checks passed / failed / running" with a count (e.g. "1 failed, 3 passed"); expand it to see every check with its state and duration, and open its page or logs in one click.</li><li><strong>On branches:</strong> branches in the sidebar carry a small pass / fail / running icon, for the remote's branches and for local branches that are up to date with them. Repositories without CI show no icons at all.</li><li><strong>After a push:</strong> when the checks of the commit you pushed finish, the status bar says "CI passed for main (4 checks)" or "CI failed for main: 1 check failed", and the activity log keeps a record (can be turned off in <em>Edit → Integrations</em>).</li><li><strong>Re-run Failed:</strong> restart the failed GitHub Actions jobs or GitLab pipeline jobs of a commit, when you have push rights.</li><li><strong>Light on the network:</strong> only branch tips, the selected commit and your push are asked about, and only while checks are still running; the wait between checks grows the longer they take, and it pauses when the API limit is low.</li></ul>
+              </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/ci-status.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Checks of the selected commit, expanded, next to the pass / fail icons on the branches"><img src="assets/screenshots/ci-status.png" alt="Checks of the selected commit, expanded, next to the pass / fail icons on the branches" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Checks of the selected commit, expanded, next to the pass / fail icons on the branches</figcaption>
+                </figure>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most Git GUIs leave CI results to the website: you push, switch to the browser and refresh until the build finishes.</li><li>Here the result is next to the commit and the branch, and the app tells you when your push's checks are done.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> Select a commit → the <strong>Checks</strong> row in the details panel; icons next to branch names in the left panel; <strong>Edit → Integrations…</strong> → <em>Tell me when the CI checks of my push finish</em>. GitHub and GitLab repositories, with the account from <strong>Edit → Accounts &amp; SSH Keys</strong> (public repositories also without one; on GitHub the branch icons need a signed-in account).</p>
+            </article>
+            <article class="feature-detail" id="clone-fork">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/><path d="M14.5 11.5v6M11.5 14.5h6"/></svg></span>
+                <div>
+                  <h3>Clone &amp; Fork from Your Account</h3>
+                  <p class="feature-tagline">Pick a repository from your GitHub or GitLab account instead of copying a URL — or fork it and clone your fork in one step.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>Clone from your account:</strong> <em>File → Clone…</em> has a tab for each GitHub or GitLab account you are signed in to, listing your repositories, your organisations' and the ones you starred, with a filter that also searches the whole host from three letters. Private repositories and forks are marked, with their last push.</li><li><strong>Choose how:</strong> HTTPS or SSH in one click (a pasted URL is converted too), a remembered destination folder with the name filled in for you, and options for a single branch, a shallow clone (latest commit only) and submodules. Problems — such as a folder that already exists — are shown before anything starts.</li><li><strong>Fork &amp; Clone:</strong> for a repository you don't own, one button forks it into your account, clones your fork and adds the original as <em>upstream</em>; the default branch can stay in sync with the original while your pushes go to your fork.</li><li><strong>Fork a repository you already have open:</strong> <em>Repository → Fork on GitHub…</em> (or GitLab) forks it into your account or an organisation, makes the fork your <em>origin</em> and the original <em>upstream</em>, and can send the current branch's pushes to the fork. Pull requests then go to the original project.</li><li><strong>Remote shortcuts:</strong> right-click a remote to copy its URL (without any stored password) or the other protocol's URL, open the project on its website, or fork it.</li></ul>
+              </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/clone-from-account.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: File → Clone… on an account tab: your repositories, organisations and starred ones, with Fork &amp; Clone"><img src="assets/screenshots/clone-from-account.png" alt="File → Clone… on an account tab: your repositories, organisations and starred ones, with Fork &amp; Clone" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>File → Clone… on an account tab: your repositories, organisations and starred ones, with Fork &amp; Clone</figcaption>
+                </figure>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Typical Git GUIs ask you to paste a URL, and leave forking to the website and the remote setup to the terminal.</li><li>Here picking, forking and wiring up <em>origin</em> / <em>upstream</em> is one dialog, with the account you already signed in with.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> <strong>File → Clone…</strong>; <strong>Repository → Fork on GitHub… / GitLab…</strong>; right-click a remote in the left panel. Needs a GitHub or GitLab account in <strong>Edit → Accounts &amp; SSH Keys</strong> (the URL tab works with any host).</p>
+            </article>
+            <article class="feature-detail" id="issues">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.5"/><path d="M12 3v3M12 18v3"/></svg></span>
+                <div>
+                  <h3>Issues → Branches</h3>
+                  <p class="feature-tagline">Your GitHub or GitLab issues next to the graph — start a well-named branch from one in a click, and always see which issue you're working on.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>Your issues, in the app:</strong> an <strong>Issues</strong> tab in the bottom panel lists the repository's open issues — <em>Assigned to me</em>, <em>Created by me</em>, <em>Mentioned</em> (GitHub) or <em>All open</em> — with a search, labels in their own colours, assignees and last update. Select one to read it; <strong>New Issue</strong> opens one in seconds.</li><li><strong>Start a branch from an issue:</strong> <strong>Start Branch</strong> suggests a name such as <code>feature/123-login-times-out</code> (or <code>bugfix/…</code> for issues labelled as bugs; the pattern is configurable) and remembers which issue the branch is for. Renaming or deleting the branch carries the link along, and undo covers it.</li><li><strong>The issue stays in view:</strong> the commit box shows the current branch's issue ("#123 Login times out") — linked explicitly, or recognised from names like <code>feature/123-…</code> — with one-click <em>Insert "Fixes #123"</em>, open in the browser, link to another issue or unlink.</li><li><strong>Issue references everywhere:</strong> <code>#123</code> in a commit message becomes a link with the issue's title on hover; commit title templates can use <code>{issue}</code> and <code>{issue_title}</code>; a new pull request's description gets "Fixes #123" so the issue closes when it merges.</li><li><strong>Forks too:</strong> for a fork, the issues come from the original project, where they live.</li></ul>
+              </div>
+              <div class="shots">
+                <figure class="shot">
+                  <a href="assets/screenshots/issues-tab.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The Issues tab with an issue open, and the branch's issue chip in the commit box"><img src="assets/screenshots/issues-tab.png" alt="The Issues tab with an issue open, and the branch's issue chip in the commit box" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>The Issues tab with an issue open, and the branch's issue chip in the commit box</figcaption>
+                </figure>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Typical Git GUIs leave issues to the website: you copy the number, invent a branch name and type the reference by hand.</li><li>Here the issue, the branch name, the commit message and the pull request are connected — and the link lives in the repository itself, so it survives restarts.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> <strong>Repository → Issues</strong> (the <strong>Issues</strong> tab of the bottom panel); the issue chip at the top of the commit box; <code>#123</code> links in a commit's details. GitHub and GitLab repositories, with the account from <strong>Edit → Accounts &amp; SSH Keys</strong> (public repositories show <em>All open</em> without one). Step by step: <a href="guides.html#pr-from-issue">Start from an issue</a>.</p>
+            </article>
+            <div class="chapter-footer"><a href="#workspace">&larr; Your Workspace</a><a href="#trust">Trust &rarr;</a></div>
           </section>
           <section class="chapter" id="trust" aria-labelledby="trust-title">
             <div class="chapter-head">
@@ -773,7 +1093,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p><strong>Sign in to GitHub</strong> opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries.</p>
+                <p><strong>Sign in to GitHub</strong> opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click, copy its URL in either form, or open it on the website. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries.</p>
               </div>
               <div class="shots shots-grid">
                 <figure class="shot">
@@ -799,14 +1119,41 @@
               </div>
               <p class="feature-where"><span>Where to find it</span> <strong>Edit → Accounts &amp; SSH Keys…</strong>; right-click a remote in the left panel; the dialog that appears when a push, pull or fetch is refused.</p>
             </article>
-            <div class="chapter-footer"><a href="#workspace">&larr; Your Workspace</a><span></span></div>
+            <article class="feature-detail" id="commit-signing">
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="M8.5 14.5c1.2-1 2-2.7 2.6-4.2.3.9.6 2.2 1.4 2.2s1.1-1.4 1.6-1.4.6 1.2 1.4 1.2"/></svg></span>
+                <div>
+                  <h3>Signed Commits</h3>
+                  <p class="feature-tagline">Get the <em>Verified</em> badge on your commits — sign with an SSH or GPG key, set up, tested and added to GitHub from one page.</p>
+                </div>
+              </div>
+              <div class="feature-body">
+                <ul><li><strong>One page to set it up:</strong> <strong>Edit → Commit Signing…</strong> — choose <em>SSH key</em> or <em>GPG key</em>, pick one of your keys (or create one on the spot), and sign commits and tags for all your repositories or just this one.</li><li><strong>Tested before your first commit:</strong> <strong>Test Signing</strong> signs a short text the way Git will and says "Signing works" — or exactly what to fix: the key isn't loaded in your agent, it needs a passphrase window, it has expired, the signing program is missing.</li><li><strong>Straight to GitHub:</strong> <strong>Add to GitHub as Signing Key</strong> uploads the public key to your signed-in GitHub account; <em>Copy Public Key</em> and <em>Open GitHub Settings</em> cover everything else. The page warns when your commit email isn't on the GPG key — the usual reason commits show up as <em>Unverified</em>.</li><li><strong>See who signed what:</strong> the commit details show a signature line under the author — a green shield for a good signature, red for a bad one, a warning when it can't be checked — e.g. "Signed by you@example.com · SSH key SHA256:…". A lock next to <em>Commit</em> tells you signing is on. <em>Verify SSH signatures here</em> sets up Git so your own SSH-signed commits verify on your machine too.</li><li><strong>Signed tags:</strong> Create Tag gets a <em>Sign the tag</em> checkbox.</li><li><strong>Works everywhere in the app:</strong> signing is your Git configuration, so commits from the commit box, conflict resolution, merges, git-flow, interactive rebase and your terminal are all signed the same way. Scheduled jobs check first that the key can sign without asking for a passphrase — they fail with a clear reason instead of waiting — or can be told not to sign.</li></ul>
+              </div>
+              <div class="shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/commit-signing.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Edit → Commit Signing…: an SSH key selected, and Test Signing says &quot;Signing works.&quot;"><img src="assets/screenshots/commit-signing.png" alt="Edit → Commit Signing…: an SSH key selected, and Test Signing says &quot;Signing works.&quot;" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Edit → Commit Signing…: an SSH key selected, and Test Signing says &quot;Signing works.&quot;</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/commit-verified.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The signature line in a commit's details: a good signature, and who signed it"><img src="assets/screenshots/commit-verified.png" alt="The signature line in a commit's details: a good signature, and who signed it" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>The signature line in a commit's details: a good signature, and who signed it</figcaption>
+                </figure>
+              </div>
+              <div class="feature-why">
+                <h4>Why it's different</h4>
+                <ul><li>Most Git GUIs either don't sign at all or leave the setup to a terminal and a guide: generate a key, edit the Git config, upload the key, find out at the first commit that the passphrase prompt can't appear.</li><li>Here setup, key creation, upload and a test run are on one page, failures are explained in plain words, and every commit shows whether its signature is good.</li></ul>
+              </div>
+              <p class="feature-where"><span>Where to find it</span> <strong>Edit → Commit Signing…</strong> (also the <strong>Commit Signing</strong> tab of Edit → Accounts &amp; SSH Keys); the signature line in the commit details; <em>Sign the tag</em> in the Create Tag dialog. Step by step: <a href="guides.html#signing">Get the Verified badge on GitHub</a>.</p>
+            </article>
+            <div class="chapter-footer"><a href="#integrations">&larr; Integrations</a><span></span></div>
           </section>
         </div>
       </div>
 
       <section class="card doc-section" id="comparison" aria-labelledby="comparison-title">
         <h2 id="comparison-title">Comparison summary</h2>
-        <p class="intro">"Typical Git GUIs" means the common behaviour of popular free clients (SourceTree, GitHub Desktop, git-gui / gitk). Individual tools vary; the table describes the usual experience, not any single product.</p>
+        <p class="intro">"Typical Git GUIs" means the common behaviour of popular free Git clients. Individual tools vary; the table describes the usual experience, not any single product.</p>
           <div class="table-wrap">
             <table class="compare">
               <thead><tr><th scope="col">Capability</th><th scope="col">Typical Git GUIs</th><th scope="col">Rasch-Git</th></tr></thead>
@@ -816,22 +1163,34 @@
               <tr><th scope="row">Progress</th><td>Spinner or indeterminate bar</td><td>Git's real progress percentage</td></tr>
               <tr><th scope="row">Large histories</th><td>Slow to load and scroll</td><td>Virtualized graph, paged loading</td></tr>
               <tr><th scope="row">Undo</th><td>None, or "undo last commit"</td><td>Undo / redo for most local operations, with safety checks</td></tr>
-              <tr><th scope="row">Diff layouts</th><td>One (sometimes two)</td><td>Hunk, Inline and Split, with syntax highlighting, minimap, search</td></tr>
+              <tr><th scope="row">Rewriting commits</th><td>Terminal <code>git rebase -i</code>, or not available</td><td>Drag &amp; drop editor: reword / squash / fixup / drop / edit, one-step undo</td></tr>
+              <tr><th scope="row">Diff layouts</th><td>One (sometimes two)</td><td>Hunk, Inline and Split, with syntax highlighting, minimap, search — plus side-by-side, swipe, onion-skin and difference views for images</td></tr>
               <tr><th scope="row">Conflicts</th><td>External merge tool or per-file choice</td><td>Built-in three-pane editor, line and hunk level</td></tr>
               <tr><th scope="row">Merge / cherry-pick</th><td>Commit immediately</td><td>Staged for review first</td></tr>
               <tr><th scope="row">Branch switching with local changes</th><td>Manual stash, or refusal</td><td>Automatic stash and restore</td></tr>
               <tr><th scope="row">Many branches / repos</th><td>One at a time</td><td>Bulk actions with a per-item report</td></tr>
               <tr><th scope="row">Many repositories</th><td>Window per repo or bookmark list</td><td>Tabs with coloured, collapsible groups</td></tr>
+              <tr><th scope="row">Several repositories at once</th><td>Several windows</td><td>Split view: up to four live panes side by side, layout remembered</td></tr>
+              <tr><th scope="row">Working on two branches at once</th><td>Stash, switch, switch back</td><td>Worktrees: each branch in its own folder and tab, created from the branch menu</td></tr>
+              <tr><th scope="row">Git-flow</th><td>Needs the git-flow extension; finish runs every step at once</td><td>Built in, no extension; finish shows each step and lets you review every merge, resumable</td></tr>
+              <tr><th scope="row">Large files (Git LFS)</th><td>Pointer text in diffs; long checkouts with no progress</td><td>LFS files recognised with their sizes, track from the file menu, download progress, visual compare for images</td></tr>
+              <tr><th scope="row">Submodules</th><td>Listed, updated through the terminal; pointer changes shown as raw text</td><td>State at a glance, update / open as tab / add / remove, readable "moved by N commits" diff</td></tr>
               <tr><th scope="row">Terminal</th><td>External</td><td>Built in, one per repository tab</td></tr>
               <tr><th scope="row">Toolbar</th><td>Fixed</td><td>Custom buttons (Git, app, URL, shell)</td></tr>
               <tr><th scope="row">Themes</th><td>Light / dark</td><td>Built-in plus custom themes from 5 colours</td></tr>
-              <tr><th scope="row">Commit messages</th><td>Empty box</td><td>Templates with <code>{version}</code> / <code>{branch}</code></td></tr>
+              <tr><th scope="row">Commit messages</th><td>Empty box</td><td>Templates with <code>{version}</code> / <code>{branch}</code> / <code>{issue}</code></td></tr>
               <tr><th scope="row">Debugging</th><td>Short error text</td><td>Activity log plus exportable raw command logs</td></tr>
+              <tr><th scope="row">Searching the history</th><td>Commit messages only; file contents need the terminal</td><td>File names, text in every branch, and when a line of code was added or removed</td></tr>
+              <tr><th scope="row">Who changed a line</th><td>Separate blame window, if any</td><td>Blame in the main view, linked to the graph; file history across renames</td></tr>
+              <tr><th scope="row">Pull requests</th><td>Open the website</td><td>Create, review, check out and merge in the app (GitHub, GitLab); browser fallback for every host</td></tr>
+              <tr><th scope="row">Cloning</th><td>Paste a URL</td><td>Pick from your GitHub / GitLab repositories (yours, organisations, starred, search), HTTPS or SSH, branch / shallow / submodule options; fork and clone in one step with <code>upstream</code> set up</td></tr>
+              <tr><th scope="row">CI results</th><td>Open the website</td><td>Check results on branches and commits, notified when your push's checks finish, re-run failed jobs (GitHub, GitLab)</td></tr>
+              <tr><th scope="row">Issues</th><td>Not shown, or open the website</td><td>Your issues in the app, branch from an issue in one click, linked issue shown on the branch, <code>#123</code> links in commits (GitHub, GitLab)</td></tr>
+              <tr><th scope="row">Signed commits</th><td>Configured in a terminal; a failing passphrase prompt shows up at commit time</td><td>SSH or GPG signing set up, tested and added to GitHub from one page; each commit shows who signed it</td></tr>
               <tr><th scope="row">Failed HTTPS / SSH authentication</th><td>"Authentication failed", fix it outside the app</td><td>Explains why, offers sign-in / token / SSH key / HTTPS↔SSH switch, then retries</td></tr>
               <tr><th scope="row">Scheduled work</th><td>None beyond a periodic fetch</td><td>Scheduled fetch, pull, stash + pull + unstash, push, maintenance and custom commands; triggers, targets and an active window; a repo in conflict pauses until resolved <em>(experimental)</em></td></tr>
               <tr><th scope="row">Hiding repositories</th><td>All tabs shown, or a flat list</td><td>Two-row tab bar: collapsible groups, and hide single tabs while their repos stay open</td></tr>
               <tr><th scope="row">Opening many repositories</th><td>File dialog or wizard, one at a time</td><td>Drag &amp; drop several folders at once</td></tr>
-              <tr><th scope="row">Finding a file in the history</th><td>Only files that still exist; deleted or renamed ones need the terminal</td><td>Deep Search by name or glob across every branch, deleted and renamed files included</td></tr>
               <tr><th scope="row">Opening files in other programs</th><td>System default only, often just the working copy</td><td>Program per file extension; any version from any commit or stash</td></tr>
               <tr><th scope="row">Getting started</th><td>Documentation, or nothing</td><td>Interactive tour that highlights each feature in the real interface</td></tr>
               </tbody>
@@ -848,8 +1207,11 @@
               <tr><th scope="row"><span class="kbd">Ctrl+O</span></th><td>Open a repository</td></tr>
               <tr><th scope="row"><span class="kbd">Ctrl+Z</span> / <span class="kbd">Ctrl+Shift+Z</span> (<span class="kbd">Ctrl+Y</span>)</th><td>Undo / redo the last operation</td></tr>
               <tr><th scope="row"><span class="kbd">Ctrl+F</span></th><td>Search commits (graph) or the diff (diff viewer)</td></tr>
-              <tr><th scope="row"><span class="kbd">Ctrl+Shift+F</span></th><td>Deep Search: a file across the history</td></tr>
+              <tr><th scope="row"><span class="kbd">Ctrl+Shift+F</span></th><td>Deep Search: a file, or text in every branch or in the history</td></tr>
+              <tr><th scope="row"><span class="kbd">Ctrl+B</span> / <span class="kbd">Ctrl+H</span></th><td>Blame / File History of the file in the diff viewer</td></tr>
               <tr><th scope="row"><span class="kbd">↑</span> / <span class="kbd">↓</span></th><td>Previous / next commit in the graph</td></tr>
+              <tr><th scope="row"><span class="kbd">Ctrl+Alt+→</span> / <span class="kbd">Ctrl+Alt+←</span></th><td>Split view: focus the next / previous pane</td></tr>
+              <tr><th scope="row"><span class="kbd">Ctrl+Plus</span> / <span class="kbd">Ctrl+Minus</span> / <span class="kbd">Ctrl+0</span></th><td>Interface larger / smaller / back to 100% (after a restart)</td></tr>
               <tr><th scope="row"><span class="kbd">Enter</span> / <span class="kbd">Shift+Enter</span></th><td>Next / previous search match</td></tr>
               <tr><th scope="row"><span class="kbd">F5</span></th><td>Refresh the current repository</td></tr>
               <tr><th scope="row"><span class="kbd">Esc</span></th><td>Back to the graph / working changes; pause conflict mode</td></tr>

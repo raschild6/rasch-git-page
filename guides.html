@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>How-to Guides — Rasch-Git</title>
-  <meta name="description" content="Practical, example-driven guides for Rasch-Git: Action Scheduler, bulk branch and repo management, custom toolbar buttons, Deep Search and external editors.">
+  <meta name="description" content="Practical, example-driven guides for Rasch-Git: Action Scheduler, bulk management, toolbar buttons, Deep Search, external editors, interactive rebase, pull requests, worktrees, git-flow, signed commits and split view.">
   <meta name="theme-color" content="#1a1b2e">
   <meta property="og:title" content="How-to Guides — Rasch-Git">
-  <meta property="og:description" content="Practical, example-driven guides for Rasch-Git: Action Scheduler, bulk branch and repo management, custom toolbar buttons, Deep Search and external editors.">
+  <meta property="og:description" content="Practical, example-driven guides for Rasch-Git: Action Scheduler, bulk management, toolbar buttons, Deep Search, external editors, interactive rebase, pull requests, worktrees, git-flow, signed commits and split view.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://raschild6.github.io/rasch-git-page/assets/img/logo-512.png">
   <link rel="icon" href="favicon.ico" sizes="any">
@@ -38,6 +38,7 @@
           <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-features-menu">Features <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
           <ul class="nav-submenu" id="nav-features-menu">
             <li><a href="features.html">Features</a></li>
+            <li><a href="features.html#integrations">Integrations</a></li>
             <li><a href="guides.html" aria-current="page">How-to Guides</a></li>
           </ul>
         </li>
@@ -64,6 +65,12 @@
             <li><a class="chapter-item" href="#toolbar"><span class="num">3</span><span class="label">Custom Toolbar Buttons</span></a></li>
             <li><a class="chapter-item" href="#deep-search"><span class="num">4</span><span class="label">Deep Search</span></a></li>
             <li><a class="chapter-item" href="#external-editors"><span class="num">5</span><span class="label">External Editors</span></a></li>
+            <li><a class="chapter-item" href="#rebase"><span class="num">6</span><span class="label">Clean Up Your Branch</span></a></li>
+            <li><a class="chapter-item" href="#pull-requests"><span class="num">7</span><span class="label">From Branch to Merged Pull Request</span></a></li>
+            <li><a class="chapter-item" href="#worktrees"><span class="num">8</span><span class="label">Review Without Stashing</span></a></li>
+            <li><a class="chapter-item" href="#git-flow"><span class="num">9</span><span class="label">Ship a Release with Git-flow</span></a></li>
+            <li><a class="chapter-item" href="#signing"><span class="num">10</span><span class="label">Get the Verified Badge</span></a></li>
+            <li><a class="chapter-item" href="#several-repos"><span class="num">11</span><span class="label">Several Repositories at Once</span></a></li>
           </ul>
         </nav>
         <section class="card chapter-content" id="chapter-content">
@@ -162,7 +169,7 @@
 <figure class="shot"><a href="assets/screenshots/custom-toolbar-buttons.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The button editor with the six default buttons; Copy Remote URL is a shell command"><img src="assets/screenshots/custom-toolbar-buttons.png" alt="The button editor with the six default buttons; Copy Remote URL is a shell command" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>The button editor with the six default buttons; Copy Remote URL is a shell command</figcaption></figure>
 <p>Each default button is a <strong>shell command</strong>, so it is also the best example of how to write your own. Select one to see its command — Copy Remote URL on macOS, for instance, is:</p>
 <div class="cmd"><code>printf %s &quot;{remote_url}&quot; | pbcopy</code><button class="copy-btn" type="button" data-copy="printf %s &quot;{remote_url}&quot; | pbcopy">Copy</button></div>
-<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>On a narrow window the toolbar buttons turn <strong>icon-only</strong> instead of disappearing, so give each button an icon you can recognize.</div></div>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>Each button can show its icon with your label, or only the icon — give each button an icon you can recognize. When there are more buttons than fit, the toolbar scrolls sideways.</div></div>
 
 <h3 class="guide-h" id="toolbar-basics">Create or edit a button</h3>
 <ol class="steps"><li>Open <strong>Edit → Custom Toolbar Buttons…</strong>.</li><li>Click <strong>Add</strong> — or select a default button and click <strong>Duplicate</strong> to start from a working command.</li><li>Fill in the <strong>Label</strong> (the text under the icon) and pick an <strong>Icon</strong>.</li><li>Choose the <strong>Action</strong>: a Git action, an app action, a URL or text template, or a <strong>shell command</strong>. Shell commands run in the repository folder, e.g. <code>make test</code>.</li><li>Use <strong>▲ / ▼</strong> to order the buttons, then <strong>OK</strong>. Untick <strong>Show the built-in Pull / Push / Stash buttons</strong> if you want only your own.</li></ol>
@@ -189,10 +196,11 @@
               <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m20 20-5.5-5.5"/><path d="M8 8h4M8 10.5h4M8 13h2"/></svg></span>
               <h2 id="deep-search-title">Deep Search</h2>
             </div>
-<p class="intro">Find any file by name — even one that was renamed or deleted long ago — and jump straight to the commits that touched it.</p>
+<p class="intro">Find any file by name — even one that was renamed or deleted long ago — or any line of code, in every branch and across the whole history.</p>
+<p>The window has three searches, chosen with the buttons at the top (it reopens on the one you used last): <strong>File names</strong>, <strong>Text in branches</strong> and <strong>Text in history</strong>. This guide starts with file names; for code, jump to <a href="#deep-code">Find where code lives, and when it changed</a>.</p>
 
 <h3 class="guide-h" id="deep-open">Run a search</h3>
-<ol class="steps"><li>Open <strong>Edit → Deep Search…</strong> or press <span class="kbd">Ctrl+Shift+F</span>.</li><li><strong>File name:</strong> type a name, part of a name, or a glob such as <code>*.sql</code> or <code>src/**/test_*.py</code>.</li><li><strong>Max commits</strong> (optional): leave <em>All history</em>, or limit how many commits to search in a very large repository.</li><li><strong>Date range</strong> (optional): tick <strong>From</strong> and / or <strong>To</strong> and pick the dates.</li><li>Click <strong>Search</strong>. It runs in the background with a progress bar, and you can cancel it.</li></ol>
+<ol class="steps"><li>Open <strong>Edit → Deep Search…</strong> or press <span class="kbd">Ctrl+Shift+F</span>, and choose <strong>File names</strong>.</li><li><strong>File name:</strong> type a name, part of a name, or a glob such as <code>*.sql</code> or <code>src/**/test_*.py</code>.</li><li><strong>Max commits</strong> (optional): leave <em>All history</em>, or limit how many commits to search in a very large repository.</li><li><strong>Date range</strong> (optional): tick <strong>From</strong> and / or <strong>To</strong> and pick the dates.</li><li>Click <strong>Search</strong>. It runs in the background with a progress bar, and you can cancel it.</li></ol>
 <figure class="shot"><a href="assets/screenshots/deep-search.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Deep Search for “payments”: 6 matches in 196 commits"><img src="assets/screenshots/deep-search.png" alt="Deep Search for “payments”: 6 matches in 196 commits" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Deep Search for “payments”: 6 matches in 196 commits</figcaption></figure>
 
 <h3 class="guide-h" id="deep-results">Reading the results</h3>
@@ -203,7 +211,30 @@
 <div class="example"><div class="example-head"><span>Example</span>“When was the old config deleted?”</div><div class="example-body"><ol class="steps"><li>File name: <code>legacy.yml</code> → <strong>Search</strong>.</li><li>Look for the row whose Change is <strong>deleted</strong>; the message and author tell you why and who.</li><li>Click the last <strong>modified</strong> row before the deletion to see the file’s final contents.</li></ol></div></div>
 <div class="example"><div class="example-head"><span>Example</span>“Where did everything about payments come from?”</div><div class="example-body"><ol class="steps"><li>File name: <code>payments</code>. A fragment is enough — it matches <code>src/orbit/services/payments.py</code> and <code>tests/test_payments.py</code>.</li><li>The oldest rows (<strong>added</strong>) show when each file was created; the rest are its history.</li></ol></div></div>
 <div class="example"><div class="example-head"><span>Example</span>“Which SQL migrations were added this year?”</div><div class="example-body"><ol class="steps"><li>File name: <code>*.sql</code> · tick <strong>From</strong> and set it to 1 January.</li><li>Focus on the rows whose Change is <strong>added</strong>.</li></ol></div></div>
-<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>Deep Search looks through the <em>files</em> in history. To find a commit by its <em>message, author or hash</em>, use commit search in the graph (<span class="kbd">Ctrl+F</span>) instead.</div></div>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>To find a commit by its <em>message, author or hash</em>, use commit search in the graph (<span class="kbd">Ctrl+F</span>) instead.</div></div>
+
+<h3 class="guide-h" id="deep-code">Find where code lives, and when it changed</h3>
+<p>Two text searches answer two different questions:</p>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Search</th><th scope="col">Answers</th><th scope="col">Looks at</th></tr></thead><tbody><tr><th scope="row">Text in branches</th><td>“Where is <code>parse_config</code> still used?”</td><td>The files as they are now, at the tip of your branches</td></tr><tr><th scope="row">Text in history</th><td>“When was <code>OLD_API_KEY</code> added, and when was it removed?”</td><td>The changes made by each commit, even in files deleted long ago</td></tr></tbody></table></div>
+
+<h3 class="guide-h" id="deep-branches">Text in branches</h3>
+<ol class="steps"><li>Choose <strong>Text in branches</strong> and type the text in <strong>Text</strong>.</li><li><strong>Branches:</strong> all branches (local and remote), local branches, or the current branch.</li><li>Optionally narrow it with <strong>In files</strong> — e.g. <code>src/**/*.py, *.md</code> — and tick <strong>Match case</strong>, <strong>Whole word</strong> or <strong>Regex</strong>.</li><li><strong>Search.</strong> Results are grouped by file, with the line number, the match highlighted and the branches that have that line (<em>main +3</em>): the same line on many branches is one row.</li><li><strong>Double-click</strong> a line to open the blame of that file, at that branch, on that line.</li></ol>
+<figure class="shot"><a href="assets/screenshots/deep-search-text.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Text in branches: results grouped by file, with the branches that have each line"><img src="assets/screenshots/deep-search-text.png" alt="Text in branches: results grouped by file, with the branches that have each line" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Text in branches: results grouped by file, with the branches that have each line</figcaption></figure>
+
+<h3 class="guide-h" id="deep-history">Text in history</h3>
+<ol class="steps"><li>Choose <strong>Text in history</strong> and type the text.</li><li>Pick what to look for:<ul class="guide-list"><li><strong>When was it added or removed?</strong> (the default) finds the commits that changed how many times the text appears — the commit that introduced it, and the one that removed it. Code that was only moved around isn't reported.</li><li><strong>Any changed line that matches</strong> finds every commit with an added or removed line matching the text — use it with <strong>Regex</strong> to follow a pattern through history.</li></ul></li><li><strong>Max commits</strong> limits how far back it looks (5000 by default; 0 searches everything).</li><li>Each result says whether the text was <strong>added</strong> or <strong>removed</strong>, with the matching line. Click it to see the commit and the file's diff.</li></ol>
+<figure class="shot"><a href="assets/screenshots/deep-search-history.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Text in history: the commits that added or removed a piece of text"><img src="assets/screenshots/deep-search-history.png" alt="Text in history: the commits that added or removed a piece of text" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Text in history: the commits that added or removed a piece of text</figcaption></figure>
+<div class="example"><div class="example-head"><span>Example</span>“Did that old key ever get committed?”</div><div class="example-body"><ol class="steps"><li>Text in history · Text: <code>OLD_API_KEY</code> · Max commits: <code>0</code>.</li><li>The <strong>added</strong> row shows who introduced it and when; the <strong>removed</strong> row shows when it went away. If it was ever committed, it's still in the history — rotate it.</li></ol></div></div>
+<div class="example"><div class="example-head"><span>Example</span>“Which branches still call the old function?”</div><div class="example-body"><ol class="steps"><li>Text in branches · Text: <code>legacy_login(</code> · Branches: all branches.</li><li>Each row lists the branches that still have that line — merge or clean them up before deleting the function.</li></ol></div></div>
+<h3 class="guide-h" id="deep-regex">Regex tips</h3>
+<ul class="guide-list">
+ <li><code>def +parse_[a-z_]+</code> — every function whose name starts with <code>parse_</code>.</li>
+ <li><code>TODO|FIXME</code> — either word.</li>
+ <li><code>^import </code> — only lines that start with <code>import</code>.</li>
+ <li>Without <strong>Regex</strong>, the text is matched literally — handy for code full of brackets and dots.</li>
+</ul>
+<p>Right-click any result for <strong>File History</strong>, <strong>Blame</strong> or <strong>Show in Graph</strong>. Every search runs in the background, shows results as they arrive and can be cancelled.</p>
+<div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div>Text searches look at <strong>committed</strong> content only — not uncommitted changes, untracked files, stashes or tags — and skip binary files. Results stop at 2000 matching lines; refine the search if you hit the limit.</div></div>
             <div class="chapter-footer"><a href="#toolbar">&larr; Custom Toolbar Buttons</a><a href="#external-editors">External Editors &rarr;</a></div>
           </article>
           <article class="chapter guide" id="external-editors" aria-labelledby="external-editors-title">
@@ -216,7 +247,7 @@
 <h3 class="guide-h" id="ext-where">Where files open externally</h3>
 <ul class="guide-list">
  <li><strong>Right-click a file</strong> in the changes panel or in a commit's file list → <strong>Open with System Default</strong> or <strong>Open with…</strong>.</li>
- <li><strong>Double-click</strong> an image, PDF, office document or other binary file — it opens in its program instead of an empty diff.</li>
+ <li><strong>Double-click</strong> a PDF, office document or other binary file — it opens in its program instead of an empty diff. Images open in the app's <a href="features.html#image-diff">image diff</a> instead; its header has <em>Open externally</em> for the old and new versions, and with <strong>View → Image Diff</strong> off they open in their program.</li>
  <li><strong>Open Externally</strong> in the diff viewer's header.</li>
 </ul>
 <figure class="shot"><a href="assets/screenshots/file-open-externally-menu.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Right-click on a changed file: Open with System Default and Open with…"><img src="assets/screenshots/file-open-externally-menu.png" alt="Right-click on a changed file: Open with System Default and Open with…" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Right-click on a changed file: Open with System Default and Open with…</figcaption></figure>
@@ -232,7 +263,180 @@
 <h3 class="guide-h" id="ext-examples">Useful mappings</h3>
 <div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Label</th><th scope="col">Extensions</th><th scope="col">Program</th></tr></thead><tbody><tr><th scope="row">Spreadsheets</th><td><code>.csv, .xlsx</code></td><td>Excel, LibreOffice Calc or Numbers</td></tr><tr><th scope="row">Images</th><td><code>.png, .jpg, .svg</code></td><td>Preview, Photoshop, GIMP…</td></tr><tr><th scope="row">Markdown</th><td><code>.md</code></td><td>Your editor, e.g. VS Code or Typora</td></tr><tr><th scope="row">Documents</th><td><code>.pdf</code></td><td>Tick <strong>Use the system default application</strong></td></tr></tbody></table></div>
 <div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div>Opening a file from a <strong>past commit or a stash</strong> opens a <strong>temporary copy</strong> — it is cleaned up when the app closes, and edits to it do not change your repository. To change the file, open the version in your working tree.</div></div>
-            <div class="chapter-footer"><a href="#deep-search">&larr; Deep Search</a><span></span></div>
+            <div class="chapter-footer"><a href="#deep-search">&larr; Deep Search</a><a href="#rebase">Clean Up Your Branch &rarr;</a></div>
+          </article>
+          <article class="chapter guide" id="rebase" aria-labelledby="rebase-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="12" r="2"/><circle cx="6" cy="19" r="2"/><path d="M11 5h9M11 12h9M11 19h9"/><path d="m17 9 3 3-3 3"/></svg></span>
+              <h2 id="rebase-title">Clean Up Your Branch Before a Pull Request</h2>
+            </div>
+<p class="intro">Turn “wip”, “fix typo” and “oops” into a short, readable series of commits with the visual interactive rebase — and undo the whole thing in one step if you change your mind.</p>
+
+<h3 class="guide-h" id="rebase-open">Open the editor</h3>
+<ol class="steps"><li>Check out the branch you want to clean up. Interactive rebase works on the checked-out branch.</li><li>In the graph, right-click the <strong>oldest commit you want to change</strong> → <strong>Edit History</strong>. (Or right-click the current branch's label → <strong>Interactive Rebase…</strong>.)</li><li>The dialog lists that commit and every commit after it, <strong>newest on top</strong>. Select a row to see its changes below the list.</li></ol>
+<figure class="shot"><a href="assets/screenshots/interactive-rebase.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The interactive rebase editor: one action per commit, the selected commit's changes below"><img src="assets/screenshots/interactive-rebase.png" alt="The interactive rebase editor: one action per commit, the selected commit's changes below" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>The interactive rebase editor: one action per commit, the selected commit's changes below</figcaption></figure>
+
+<h3 class="guide-h" id="rebase-actions">Choose what happens to each commit</h3>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Action</th><th scope="col">Key</th><th scope="col">What it does</th></tr></thead><tbody><tr><th scope="row">Pick</th><td><span class="kbd">P</span></td><td>Keep the commit as it is.</td></tr><tr><th scope="row">Reword</th><td><span class="kbd">R</span></td><td>Keep the commit, change its message (a message box appears).</td></tr><tr><th scope="row">Edit</th><td><span class="kbd">E</span></td><td>Stop at this commit so you can change it, then continue.</td></tr><tr><th scope="row">Squash</th><td><span class="kbd">S</span></td><td>Combine with the commit below it, keeping both messages.</td></tr><tr><th scope="row">Fixup</th><td><span class="kbd">F</span></td><td>Combine with the commit below it, keeping only that commit's message.</td></tr><tr><th scope="row">Drop</th><td><span class="kbd">D</span></td><td>Remove the commit.</td></tr></tbody></table></div>
+<p><strong>Drag</strong> rows to reorder them (or use <span class="kbd">Alt+↑</span> / <span class="kbd">Alt+↓</span>). A summary under the list tells you how many commits you will end up with. When you're happy, click <strong>Start Rebase</strong>.</p>
+<div class="example"><div class="example-head"><span>Example</span>Five messy commits become two</div><div class="example-body"><ol class="steps"><li>Your branch has: <em>Add login form</em>, <em>wip</em>, <em>fix typo</em>, <em>Add login validation</em>, <em>oops, missing test</em>.</li><li>Set <em>wip</em> and <em>fix typo</em> to <strong>Fixup</strong> (they fold into <em>Add login form</em>), and <em>oops, missing test</em> to <strong>Fixup</strong> (it folds into <em>Add login validation</em>).</li><li>Set <em>Add login form</em> to <strong>Reword</strong> and write a proper message.</li><li><strong>Start Rebase.</strong> The branch now has two clean commits.</li></ol></div></div>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div><strong>Small change? Skip the editor.</strong> A commit's right-click menu has <strong>Reword…</strong>, <strong>Squash into Parent</strong>, <strong>Fixup into Parent</strong>, <strong>Drop Commit</strong> and <strong>Move Up</strong> / <strong>Move Down</strong>. If you commit with <code>fixup!</code> / <code>squash!</code> titles, <strong>Autosquash</strong> puts them in place for you.</div></div>
+
+<h3 class="guide-h" id="rebase-pauses">If the rebase stops</h3>
+<ul class="guide-list">
+ <li><strong>A conflict:</strong> the usual conflict editor opens and shows which step of the rebase you are on. Resolve the files, then <strong>Continue</strong> — or <strong>Skip This Commit</strong>, or <strong>Abort</strong> to go back to where you started.</li>
+ <li><strong>A commit marked Edit:</strong> a banner above the graph tells you the rebase is waiting. Change the files, amend the commit, then click <strong>Continue</strong> (or <strong>Abort</strong>). The banner comes back if you close the app in the middle.</li>
+</ul>
+<figure class="shot"><a href="assets/screenshots/rebase-edit-stop.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: A rebase waiting at a commit marked Edit, with Continue and Abort in the banner"><img src="assets/screenshots/rebase-edit-stop.png" alt="A rebase waiting at a commit marked Edit, with Continue and Abort in the banner" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>A rebase waiting at a commit marked Edit, with Continue and Abort in the banner</figcaption></figure>
+
+<h3 class="guide-h" id="rebase-undo">Undo, and when you need a force-push</h3>
+<ul class="guide-list">
+ <li><strong>Undo:</strong> the whole rebase — even one that paused for conflicts — is a single step: <strong>Edit → Undo</strong> or <span class="kbd">Ctrl+Z</span>.</li>
+ <li><strong>Local changes:</strong> if you have uncommitted work, tick <strong>Stash my local changes during the rebase</strong>; it comes back when the rebase ends.</li>
+ <li><strong>Already pushed?</strong> Commits that are already on the remote are marked in the editor. Rewriting them means the remote branch must be replaced: use <strong>Push ▾ → Force Push</strong> afterwards — and only on a branch nobody else is working on.</li>
+</ul>
+<div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div>Interactive rebase works on the checked-out branch and on ranges without merge commits. It doesn't move commits onto another branch or split a commit inside the editor — mark the commit <strong>Edit</strong> and split it when the rebase stops there.</div></div>
+            <div class="chapter-footer"><a href="#external-editors">&larr; External Editors</a><a href="#pull-requests">From Branch to Merged Pull Request &rarr;</a></div>
+          </article>
+          <article class="chapter guide" id="pull-requests" aria-labelledby="pull-requests-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M6 8v8"/><path d="M18 16V9a3 3 0 0 0-3-3h-4"/><path d="m13 4-2 2 2 2"/></svg></span>
+              <h2 id="pull-requests-title">From Branch to Merged Pull Request</h2>
+            </div>
+<p class="intro">The whole loop — start from an issue, push, open the pull request, review, merge — without switching to the browser. Works with GitHub pull requests and GitLab merge requests.</p>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div><strong>Before you start:</strong> sign in to GitHub, or add a GitLab token, in <strong>Edit → Accounts &amp; SSH Keys…</strong> (see <a href="features.html#accounts-ssh-keys">Accounts &amp; SSH keys</a>). Public repositories can be browsed without an account; creating, commenting and merging need one. For other hosts, <strong>Create Pull Request</strong> opens the website's page with your title and description filled in.</div></div>
+
+<h3 class="guide-h" id="pr-clone">Get the repository</h3>
+<ol class="steps"><li>Open <strong>File → Clone…</strong> and switch to your account's tab: your repositories, your organisations' and the ones you starred are listed. Type three letters in the filter to also search the whole host.</li><li>Pick HTTPS or SSH, check the destination folder, and click <strong>Clone</strong>.</li><li>Contributing to a project you don't own? Use <strong>Fork &amp; Clone</strong>: the app forks it into your account, clones your fork and adds the original as <em>upstream</em>. Pull requests then go to the original project.</li></ol>
+<figure class="shot"><a href="assets/screenshots/clone-from-account.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: File → Clone… on an account tab, with Fork &amp; Clone"><img src="assets/screenshots/clone-from-account.png" alt="File → Clone… on an account tab, with Fork &amp; Clone" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>File → Clone… on an account tab, with Fork &amp; Clone</figcaption></figure>
+
+<h3 class="guide-h" id="pr-from-issue">Start from an issue</h3>
+<ol class="steps"><li>Open <strong>Repository → Issues</strong>: the <strong>Issues</strong> tab of the bottom panel lists the open issues — <em>Assigned to me</em>, <em>Created by me</em>, <em>Mentioned</em> (GitHub) or <em>All open</em>.</li><li>Select the issue and click <strong>Start Branch</strong>. The name is suggested from the issue — e.g. <code>feature/123-login-times-out</code>, or <code>bugfix/…</code> for issues labelled as bugs — and the branch remembers which issue it is for.</li><li>The commit box now shows the issue (<em>#123 Login times out</em>). Click <strong>Insert "Fixes #123"</strong> in the chip to add the reference to your message.</li></ol>
+<figure class="shot"><a href="assets/screenshots/issues-tab.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The Issues tab, and the branch's issue in the commit box"><img src="assets/screenshots/issues-tab.png" alt="The Issues tab, and the branch's issue in the commit box" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>The Issues tab, and the branch's issue in the commit box</figcaption></figure>
+
+<h3 class="guide-h" id="pr-create">Push and create the pull request</h3>
+<ol class="steps"><li>Commit your work as usual.</li><li>Right-click the branch → <strong>Create Pull Request…</strong>. If the branch isn't pushed yet, the app offers <strong>Push and Continue</strong>.</li><li>Title and description are pre-filled from the branch's commits and the repository's template; for a branch linked to an issue, the description gets <em>Fixes #123</em> so the issue closes when the pull request merges.</li><li>Check the base branch, pick reviewers and labels, tick <strong>Create as draft</strong> if it isn't ready yet, and create it.</li></ol>
+<figure class="shot"><a href="assets/screenshots/pr-create.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Create Pull Request: base branch, pre-filled title and description, reviewers and labels"><img src="assets/screenshots/pr-create.png" alt="Create Pull Request: base branch, pre-filled title and description, reviewers and labels" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Create Pull Request: base branch, pre-filled title and description, reviewers and labels</figcaption></figure>
+
+<h3 class="guide-h" id="pr-review">Follow the review and CI</h3>
+<ul class="guide-list">
+ <li>The <strong>PULL REQUESTS</strong> section of the left panel shows each pull request with its review and checks state; right-click it to filter <em>Created by me</em>, <em>Review requested</em> or <em>Drafts</em>.</li>
+ <li>Double-click a pull request to open it in the main view: <strong>Conversation</strong>, <strong>Commits</strong> and <strong>Files</strong>, with diffs in the app's own diff viewer.</li>
+ <li>When your push's CI checks finish, the status bar tells you whether they passed. The selected commit's <strong>Checks</strong> row lists every check; <strong>Re-run Failed</strong> restarts the failed jobs.</li>
+ <li><strong>Addressing comments:</strong> commit the changes on the same branch and push — the pull request updates by itself. Reply with <strong>Comment</strong>.</li>
+</ul>
+<figure class="shot"><a href="assets/screenshots/pr-view.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: A pull request open in the app: conversation, commits and files"><img src="assets/screenshots/pr-view.png" alt="A pull request open in the app: conversation, commits and files" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>A pull request open in the app: conversation, commits and files</figcaption></figure>
+
+<h3 class="guide-h" id="pr-others">Review someone else's pull request</h3>
+<ol class="steps"><li>Open it from the list and read the <strong>Files</strong> tab.</li><li>Want to run it? <strong>Check Out</strong> brings it to a local branch — also when it comes from a fork. To keep your own work untouched, open that branch in a <a href="#worktrees">new worktree</a> instead.</li><li>Leave your verdict with <strong>Approve</strong>, <strong>Request Changes</strong> or <strong>Comment</strong>.</li></ol>
+
+<h3 class="guide-h" id="pr-merge">Merge</h3>
+<p>When the pull request is approved and green, click <strong>Merge</strong> and choose <strong>Create a Merge Commit</strong>, <strong>Squash and Merge</strong> or <strong>Rebase and Merge</strong>, optionally deleting the branch. The merge happens on the server; fetch to see it in the graph.</p>
+<div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div>In-app pull requests, CI status and issues are for GitHub and GitLab. Line-by-line review comments aren't available yet, and issues can be read and created but not edited or closed in the app — <em>Fixes #123</em> closes them when the change merges.</div></div>
+            <div class="chapter-footer"><a href="#rebase">&larr; Clean Up Your Branch</a><a href="#worktrees">Review Without Stashing &rarr;</a></div>
+          </article>
+          <article class="chapter guide" id="worktrees" aria-labelledby="worktrees-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7a2 2 0 0 1 2-2h3l2 2h4a2 2 0 0 1 2 2v1"/><path d="M2 7v9a2 2 0 0 0 2 2h4"/><rect x="11" y="11" width="11" height="9" rx="2"/><path d="M14.5 15.5h4M16.5 13.5v4"/></svg></span>
+              <h2 id="worktrees-title">Review a Pull Request Without Stashing</h2>
+            </div>
+<p class="intro">You're halfway through a change and someone asks you to look at their branch. With a worktree, their branch gets its own folder and tab — your work stays exactly where it is.</p>
+
+<h3 class="guide-h" id="wt-open">Open the branch in a new worktree</h3>
+<ol class="steps"><li>Fetch, so the branch is there.</li><li>Right-click the branch — in the sidebar or on the graph — → <strong>Open in New Worktree</strong>.</li><li>The branch is checked out in a second folder next to the repository and opens in a new tab, beside the repository's tab and in the same group. The tab title reads <em>repository · folder</em>. A remote branch gets a local branch that tracks it.</li><li>Build it, run the tests, read the diffs. Your original tab still has your uncommitted changes, untouched.</li></ol>
+<figure class="shot"><a href="assets/screenshots/worktrees.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The WORKTREES section and two tabs of the same repository"><img src="assets/screenshots/worktrees.png" alt="The WORKTREES section and two tabs of the same repository" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>The WORKTREES section and two tabs of the same repository</figcaption></figure>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>Want both side by side? Right-click the new tab → <strong>Split Right</strong> (see <a href="#several-repos">Work on several repositories at once</a>).</div></div>
+
+<h3 class="guide-h" id="wt-more">More control: New Worktree…</h3>
+<p><strong>Repository → Worktrees → New Worktree…</strong> lets you pick an existing branch or create a new one from any starting point, choose the folder, decide whether to open it in a tab, and initialise its submodules.</p>
+
+<h3 class="guide-h" id="wt-checked-out">“Already checked out”? Switch instead</h3>
+<p>A branch can be checked out in only one worktree. Branches used elsewhere are marked in the sidebar and in the graph's tooltips, and their <strong>Checkout</strong> becomes <strong>Switch to Its Worktree</strong>, which jumps to that tab.</p>
+
+<h3 class="guide-h" id="wt-cleanup">Clean up</h3>
+<ol class="steps"><li>In the <strong>WORKTREES</strong> section of the left panel, right-click the worktree → <strong>Remove Worktree…</strong>. The app asks first and never silently discards uncommitted changes.</li><li>A worktree folder you deleted by hand shows as <em>missing</em>; <strong>Prune Missing Worktrees</strong> tidies them up.</li></ol>
+<div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div>Worktrees need Git 2.36 or newer. Creating or removing a worktree's folder can't be undone (a new branch created with it can).</div></div>
+            <div class="chapter-footer"><a href="#pull-requests">&larr; From Branch to Merged Pull Request</a><a href="#git-flow">Ship a Release with Git-flow &rarr;</a></div>
+          </article>
+          <article class="chapter guide" id="git-flow" aria-labelledby="git-flow-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="12" r="2"/><path d="M5 7v10"/><path d="M7 5h4a6 6 0 0 1 6 6"/><path d="M7 19h4a6 6 0 0 0 6-6"/></svg></span>
+              <h2 id="git-flow-title">Ship a Release with Git-flow</h2>
+            </div>
+<p class="intro">Features, releases and hotfixes the git-flow way — built into the app, no extension to install, and every merge shown to you before it lands.</p>
+
+<h3 class="guide-h" id="gf-init">Set it up once</h3>
+<ol class="steps"><li><strong>Repository → Git-flow → Initialise Git-flow…</strong></li><li>Pick the production branch (<code>main</code> or <code>master</code>) and the development branch (<code>develop</code> is created if it's missing). Keep the default prefixes (<code>feature/</code>, <code>bugfix/</code>, <code>release/</code>, <code>hotfix/</code>, <code>support/</code>) unless your team uses others, and set the version tag prefix (e.g. <code>v</code>).</li><li>Repositories already set up with the git-flow command-line tool are recognised as they are — you can keep using both.</li></ol>
+
+<h3 class="guide-h" id="gf-feature">A feature, start to finish</h3>
+<ol class="steps"><li><strong>Repository → Git-flow → Start Feature…</strong>, type a name (e.g. <code>login-form</code>) → <strong>Start</strong>. You're on <code>feature/login-form</code>, branched from <code>develop</code>.</li><li>Work and commit as usual.</li><li>Right-click the branch in the left panel → <strong>Finish …</strong> (or <strong>Repository → Git-flow → Finish</strong>). The dialog lists every step: merge into <code>develop</code>, delete the branch, optionally push.</li><li><strong>Start Finish.</strong> The merge is staged for your review, like any merge in the app; look at it and <strong>Commit</strong> — the finish carries on by itself.</li></ol>
+
+<h3 class="guide-h" id="gf-release">A release with a version bump</h3>
+<ol class="steps"><li><strong>Repository → Git-flow → Start Release…</strong>. The version is suggested from the latest version tag — <strong>Next Minor</strong> or <strong>Next Patch</strong> — or type your own.</li><li>Tick <strong>Set this version in</strong> <code>pom.xml</code> / <code>package.json</code> to get a “Bump version to …” commit; only the version changes, the file's formatting is kept.</li><li>Finish the release: the checklist shows the merge into the production branch, the tag (with its message), the merge back into <code>develop</code>, the branch deletion and the optional push.</li><li>Review each staged merge and commit it. Prefer not to? Tick <strong>Commit the merges automatically</strong>.</li></ol>
+<figure class="shot"><a href="assets/screenshots/gitflow-start.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Start Release with a suggested version"><img src="assets/screenshots/gitflow-start.png" alt="Start Release with a suggested version" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Start Release with a suggested version</figcaption></figure>
+<figure class="shot"><a href="assets/screenshots/gitflow-finish.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Finishing a release: the plan as a checklist"><img src="assets/screenshots/gitflow-finish.png" alt="Finishing a release: the plan as a checklist" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Finishing a release: the plan as a checklist</figcaption></figure>
+<p><strong>Hotfixes</strong> work the same way, from the production branch, with the next patch version suggested.</p>
+
+<h3 class="guide-h" id="gf-conflict">If a finish stops</h3>
+<ul class="guide-list">
+ <li>A banner above the graph shows the step you're on. A conflict opens the usual conflict editor; resolve it, commit, and the finish continues.</li>
+ <li>Closed the app in the middle? The finish resumes after a restart — <strong>Repository → Git-flow → Continue Finishing …</strong>.</li>
+ <li><strong>Abort Finish…</strong> stops the plan; steps already done stay done, and <strong>Undo</strong> reverts them one by one.</li>
+</ul>
+<div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div>The finish doesn't fetch first — fetch before you start; the dialog warns when <code>develop</code> or the production branch are behind. Support branches have no finish, as in the command-line tool.</div></div>
+            <div class="chapter-footer"><a href="#worktrees">&larr; Review Without Stashing</a><a href="#signing">Get the Verified Badge &rarr;</a></div>
+          </article>
+          <article class="chapter guide" id="signing" aria-labelledby="signing-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="M8.5 14.5c1.2-1 2-2.7 2.6-4.2.3.9.6 2.2 1.4 2.2s1.1-1.4 1.6-1.4.6 1.2 1.4 1.2"/></svg></span>
+              <h2 id="signing-title">Get the Verified Badge on GitHub</h2>
+            </div>
+<p class="intro">Sign your commits so GitHub and GitLab show them as <em>Verified</em>. With an SSH key it takes four steps, all on one page.</p>
+
+<h3 class="guide-h" id="sign-ssh">SSH signing in four steps</h3>
+<ol class="steps"><li><strong>Pick a key.</strong> Open <strong>Edit → Commit Signing…</strong>, choose <strong>SSH key</strong> and select one of your keys — or <strong>Create Key…</strong> for a new one.</li><li><strong>Turn it on.</strong> Tick <strong>Sign commits</strong> (and <strong>Sign tags</strong> if you want), choose <strong>All repositories</strong> or <strong>This repository only</strong>, and <strong>Apply</strong>.</li><li><strong>Upload it.</strong> Click <strong>Add to GitHub as Signing Key</strong> (you need to be signed in to GitHub). For other hosts, <strong>Copy Public Key</strong> and add it in the website's settings as a <em>signing</em> key.</li><li><strong>Test it.</strong> Click <strong>Test Signing</strong>. “Signing works.” means your next commit will be signed.</li></ol>
+<figure class="shot"><a href="assets/screenshots/commit-signing.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Edit → Commit Signing…: an SSH key selected and the signing test passed"><img src="assets/screenshots/commit-signing.png" alt="Edit → Commit Signing…: an SSH key selected and the signing test passed" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Edit → Commit Signing…: an SSH key selected and the signing test passed</figcaption></figure>
+<p>From then on a lock next to <strong>Commit</strong> shows that signing is on, and the commit details show who signed each commit. Tick <strong>Verify SSH signatures here</strong> so your own SSH-signed commits also verify on your machine.</p>
+<figure class="shot"><a href="assets/screenshots/commit-verified.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: A signed commit: the green signature line in the commit details"><img src="assets/screenshots/commit-verified.png" alt="A signed commit: the green signature line in the commit details" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>A signed commit: the green signature line in the commit details</figcaption></figure>
+
+<h3 class="guide-h" id="sign-gpg">Prefer GPG?</h3>
+<p>Choose <strong>GPG key</strong>, pick a key or <strong>Create GPG Key</strong> (name and email are taken from your Git settings), then upload, apply and test as above. The page warns when your commit email isn't on the key — the usual reason commits show up as <em>Unverified</em>.</p>
+
+<h3 class="guide-h" id="sign-errors">Common problems</h3>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Test Signing says</th><th scope="col">What to do</th></tr></thead><tbody><tr><th scope="row">The key isn't loaded in your agent</th><td>Add the key to your SSH agent (or GPG agent), then test again.</td></tr><tr><th scope="row">It needs a passphrase window</th><td>Install a graphical passphrase prompt for GPG, or load the key into the agent first.</td></tr><tr><th scope="row">The key has expired</th><td>Extend it, or create a new one and upload it.</td></tr><tr><th scope="row">The signing program is missing</th><td>Install it (<code>ssh-keygen</code> comes with Git and OpenSSH; GPG is a separate install on macOS).</td></tr></tbody></table></div>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>Still <em>Unverified</em> on GitHub? GitHub shows <em>Verified</em> only when the commit's email is also a verified email on your GitHub account.</div></div>
+            <div class="chapter-footer"><a href="#git-flow">&larr; Ship a Release with Git-flow</a><a href="#several-repos">Several Repositories at Once &rarr;</a></div>
+          </article>
+          <article class="chapter guide" id="several-repos" aria-labelledby="several-repos-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/><path d="M12 12h9"/></svg></span>
+              <h2 id="several-repos-title">Work on Several Repositories at Once</h2>
+            </div>
+<p class="intro">A library and the app that uses it, a front-end and its back-end: put them side by side in one window with tab groups and split view — and add a worktree when you need a second branch of the same one.</p>
+
+<h3 class="guide-h" id="multi-group">Open a group side by side</h3>
+<ol class="steps"><li>Put the related repositories in a <a href="features.html#tab-groups">tab group</a> (right-click a tab → add it to a group).</li><li>Right-click the group's chip → <strong>Open Side by Side</strong>. Its repositories are laid out in panes, up to four.</li></ol>
+<figure class="shot"><a href="assets/screenshots/split-view-2.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Two repositories side by side"><img src="assets/screenshots/split-view-2.png" alt="Two repositories side by side" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Two repositories side by side</figcaption></figure>
+
+<h3 class="guide-h" id="multi-split">Or split one tab at a time</h3>
+<ul class="guide-list">
+ <li>Right-click a tab → <strong>Split Right</strong> or <strong>Split Down</strong>, or drag a tab to the edge of a pane.</li>
+ <li>Drag tabs between panes, or use <strong>Move to Pane</strong> in a tab's menu.</li>
+ <li><strong>View → Split View</strong> has the same commands, plus <strong>Join All Panes</strong> to go back to one.</li>
+</ul>
+<figure class="shot"><a href="assets/screenshots/split-view-4.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Four repositories in a 2×2 grid"><img src="assets/screenshots/split-view-4.png" alt="Four repositories in a 2×2 grid" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Four repositories in a 2×2 grid</figcaption></figure>
+
+<h3 class="guide-h" id="multi-focus">What the toolbar acts on</h3>
+<ul class="guide-list">
+ <li>The pane you click is the <strong>current repository</strong>, marked with a coloured border: the toolbar, menus, undo / redo and shortcuts act on it.</li>
+ <li>Move between panes with <span class="kbd">Ctrl+Alt+←</span> / <span class="kbd">Ctrl+Alt+→</span>.</li>
+ <li>The other panes keep checking for changes and, with auto fetch, stay up to date. Their progress and messages appear in a slim strip at the top of each pane, so a background job never overwrites what you're looking at.</li>
+</ul>
+
+<h3 class="guide-h" id="multi-layout">Layout and restart</h3>
+<p>Panels are trimmed automatically to fit narrower panes, and the whole layout comes back the next time you start the app. To start over, <strong>Join All Panes</strong>.</p>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>A repository is shown in one pane at a time. To see <em>two branches</em> of the same repository side by side, open one of them in a <a href="#worktrees">worktree</a> — it's a separate tab you can split next to the first.</div></div>
+            <div class="chapter-footer"><a href="#signing">&larr; Get the Verified Badge</a><span></span></div>
           </article>
         </section>
       </div>

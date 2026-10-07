@@ -38,6 +38,7 @@
           <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls="nav-features-menu">Features <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
           <ul class="nav-submenu" id="nav-features-menu">
             <li><a href="features.html">Features</a></li>
+            <li><a href="features.html#integrations">Integrations</a></li>
             <li><a href="guides.html">How-to Guides</a></li>
           </ul>
         </li>
@@ -124,11 +125,25 @@
                 <p>Undo commits, checkouts, resets, discards, stashes and more — safely.</p>
               </div>
             </a>
+            <a class="card feature" href="features.html#interactive-rebase">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="12" r="2"/><circle cx="6" cy="19" r="2"/><path d="M11 5h9M11 12h9M11 19h9"/><path d="m17 9 3 3-3 3"/></svg></div>
+              <div>
+                <h4>Interactive Rebase</h4>
+                <p>Reorder, reword, squash or drop commits visually — and undo the whole rebase in one step.</p>
+              </div>
+            </a>
             <a class="card feature" href="features.html#review-before-commit">
               <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
               <div>
                 <h4>Review Before Commit</h4>
                 <p>Merges and cherry-picks are staged for review, never committed behind your back.</p>
+              </div>
+            </a>
+            <a class="card feature" href="features.html#git-flow">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="12" r="2"/><path d="M5 7v10"/><path d="M7 5h4a6 6 0 0 1 6 6"/><path d="M7 19h4a6 6 0 0 0 6-6"/></svg></div>
+              <div>
+                <h4>Git-flow, Built In</h4>
+                <p>Start and finish features, releases and hotfixes with a checklist of every step — no extension to install, every merge reviewed.</p>
               </div>
             </a>
             <a class="card feature" href="features.html#checkout">
@@ -164,6 +179,20 @@
                 <p>Organize many repositories into coloured, collapsible groups on their own row; hide tabs without closing them.</p>
               </div>
             </a>
+            <a class="card feature" href="features.html#split-view">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/><path d="M12 12h9"/></svg></div>
+              <div>
+                <h4>Split View (Beta)</h4>
+                <p>Several repositories side by side: up to four in one window, each one live.</p>
+              </div>
+            </a>
+            <a class="card feature" href="features.html#worktrees">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7a2 2 0 0 1 2-2h3l2 2h4a2 2 0 0 1 2 2v1"/><path d="M2 7v9a2 2 0 0 0 2 2h4"/><rect x="11" y="11" width="11" height="9" rx="2"/><path d="M14.5 15.5h4M16.5 13.5v4"/></svg></div>
+              <div>
+                <h4>Worktrees</h4>
+                <p>Work on two branches at once: open any branch in its own folder and tab, without stashing.</p>
+              </div>
+            </a>
             <a class="card feature" href="features.html#bulk-branch-repo-management">
               <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10"/><path d="M18 10c0 4-6 3-10.6 7.3"/><path d="m14 17 2 2 4-4"/></svg></div>
               <div>
@@ -178,6 +207,20 @@
                 <p>Branches, remotes, tags, stashes and a detached HEAD in one filterable tree.</p>
               </div>
             </a>
+            <a class="card feature" href="features.html#submodules">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="11" y="11" width="7" height="7" rx="1"/><path d="M7 7h5M7 10h2"/></svg></div>
+              <div>
+                <h4>Submodules</h4>
+                <p>Every submodule's state at a glance — update, open, add or remove them, and read "moved by N commits" instead of a raw pointer diff.</p>
+              </div>
+            </a>
+            <a class="card feature" href="features.html#git-lfs">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 12v6"/><path d="m9 15 3 3 3-3"/></svg></div>
+              <div>
+                <h4>Large Files (Git LFS)</h4>
+                <p>Big design files, media or datasets just work: download progress, real sizes, no pointer text.</p>
+              </div>
+            </a>
             <a class="card feature" href="features.html#commit-search">
               <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
               <div>
@@ -189,7 +232,14 @@
               <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m20 20-5.5-5.5"/><path d="M8 8h4M8 10.5h4M8 13h2"/></svg></div>
               <div>
                 <h4>Deep Search</h4>
-                <p>Find any file by name across the whole history — and jump to the commit that touched it.</p>
+                <p>Find any file — or any line of code — across every branch and the whole history.</p>
+              </div>
+            </a>
+            <a class="card feature" href="features.html#blame-file-history">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h4M4 9h4M4 13h4M4 17h4"/><path d="M11 5h9M11 9h6M11 13h9M11 17h5"/><path d="M9.5 3v18" opacity=".5"/></svg></div>
+              <div>
+                <h4>Blame &amp; File History</h4>
+                <p>Who changed each line and why — and every version of a file, renames included.</p>
               </div>
             </a>
             <a class="card feature" href="features.html#drag-drop-to-open">
@@ -232,6 +282,13 @@
                 <p>Dark, Light, or your own theme from five colours, with a live preview.</p>
               </div>
             </a>
+            <a class="card feature" href="features.html#interface-scale">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/><path d="M7 11h4M9 9v4"/><path d="M14 11h3"/></svg></div>
+              <div>
+                <h4>Interface Scale</h4>
+                <p>The whole app larger or smaller, to any size, with Ctrl+Plus / Ctrl+Minus.</p>
+              </div>
+            </a>
             <a class="card feature" href="features.html#commit-templates">
               <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h2M13 13h3M8 17h5"/></svg></div>
               <div>
@@ -243,7 +300,7 @@
               <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/><path d="M6 9h3M6 13h3M15 9h3M15 13h3"/></svg></div>
               <div>
                 <h4>Smart Diff Views</h4>
-                <p>Hunk, Inline or Split — one click to switch, with syntax highlighting and search.</p>
+                <p>Hunk, Inline or Split — one click to switch, with syntax highlighting and search; changed images compared before / after.</p>
               </div>
             </a>
             <a class="card feature" href="features.html#commit-details">
@@ -265,6 +322,32 @@
               <div>
                 <h4>Guided Feature Tour</h4>
                 <p>A skippable tour points at each feature in the real app.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="feature-group" aria-labelledby="group-integrations">
+          <h3 class="feature-group-title" id="group-integrations">Integrations</h3>
+          <div class="features">
+            <a class="card feature" href="features.html#pull-requests">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M6 8v8"/><path d="M18 16V9a3 3 0 0 0-3-3h-4"/><path d="m13 4-2 2 2 2"/></svg></div>
+              <div>
+                <h4>Pull Requests Without Leaving the App</h4>
+                <p>Create, review, check out and merge pull requests — and see whether CI passed on your branches, commits and pushes.</p>
+              </div>
+            </a>
+            <a class="card feature" href="features.html#clone-fork">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/><path d="M14.5 11.5v6M11.5 14.5h6"/></svg></div>
+              <div>
+                <h4>Clone &amp; Fork from Your Account</h4>
+                <p>Pick a repository from your GitHub or GitLab account instead of copying a URL — or fork it and clone your fork in one step.</p>
+              </div>
+            </a>
+            <a class="card feature" href="features.html#issues">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.5"/><path d="M12 3v3M12 18v3"/></svg></div>
+              <div>
+                <h4>Issues → Branches</h4>
+                <p>Your issues next to the graph — start a well-named branch from one in a click, and always see which issue you're working on.</p>
               </div>
             </a>
           </div>
@@ -298,6 +381,13 @@
               <div>
                 <h4>GitHub Authentication</h4>
                 <p>Sign in to GitHub once — or add a token or an SSH key — and push just works.</p>
+              </div>
+            </a>
+            <a class="card feature" href="features.html#commit-signing">
+              <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="M8.5 14.5c1.2-1 2-2.7 2.6-4.2.3.9.6 2.2 1.4 2.2s1.1-1.4 1.6-1.4.6 1.2 1.4 1.2"/></svg></div>
+              <div>
+                <h4>Signed Commits</h4>
+                <p>Get the Verified badge: sign with an SSH or GPG key, set up, tested and added to GitHub from one page.</p>
               </div>
             </a>
           </div>
