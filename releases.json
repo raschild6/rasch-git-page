@@ -1,5 +1,77 @@
 [
   {
+    "version": "1.0.0",
+    "tag": "v1.0.0",
+    "date": "2026-10-07",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.0/RaschildGitManager-1.0.0-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.0/RaschildGitManager-1.0.0-macos-arm64.dmg"
+    },
+    "changelog": {
+      "New Features": [
+        "After an update, a short What's New tour shows only the features added since the version you used before; Help > What's New replays it, and the full Feature Tour is unchanged",
+        "Blame: see who last changed each line of a file, when and in which commit, with lines shaded by age; click a line to select its commit, step back to the previous revision, and skip formatting-only commits listed in .git-blame-ignore-revs",
+        "File History: every commit that changed a file, following renames, with the change each one made; blame or open the file at any version, or restore it (undoable)",
+        "Pull requests for GitHub and merge requests for GitLab: the Pull Requests section lists them with review and checks state and filters; open one to read the conversation, commits and changed files, comment, approve, request changes or merge; check out any pull request locally, including ones from forks",
+        "Create Pull Request from a branch: pushes the branch if needed and pre-fills title and description from its commits and the repository's template, with draft, reviewers and labels; for other hosts it opens the website's new pull request page",
+        "The status bar shows which GitHub / GitLab project the repository belongs to and the account in use; Edit > Integrations turns the hosting features off",
+        "Split View (Beta): work on up to four repositories side by side. Split Right or Split Down from a tab's menu, or drag a tab to the edge of a pane; every pane stays live, and the pane you click drives the toolbar and menus. Right-click a tab group and choose Open Side by Side to lay out its repositories at once; the layout is restored at the next start",
+        "Interactive Rebase: reorder commits by drag & drop, reword, edit, squash, fixup or drop them in one editor, with a preview of each commit and of the result; quick Reword / Squash / Fixup / Drop / Move actions from a commit's menu; conflicts and commits stopped for editing pause the rebase with clear Continue / Skip / Abort choices, and the whole rebase can be undone in one step",
+        "Submodules: a SUBMODULES section in the sidebar shows each submodule's state (not initialised, moved, modified, conflict); update, sync, add or remove submodules and set their URL or branch from a right-click, double-click to open one in its own tab; a changed submodule shows the commits it moved by instead of a raw diff, with Update and Stage buttons; Clone can initialise submodules, an optional setting updates them after a pull or checkout (Edit > Submodules), and a conflict on a submodule offers a Use Ours / Use Theirs choice",
+        "Git-flow, built in (no extension to install): initialise it, start a feature, bugfix, release, hotfix or support branch from the right base (with the version bumped for you), and finish it with a checklist of every step. Merges are staged for your review and the finish carries on after you commit, even after a restart; it works with repositories set up by the git-flow command-line tool. Find it in the new Repository menu, which also holds the submodule actions",
+        "CI / CD status for GitHub and GitLab repositories: the selected commit shows whether its checks passed, failed or are still running, with the list of checks, their duration and a link to each one's page; branches in the sidebar get a pass / fail / running icon; after a push the status bar tells you when its checks finish (Edit > Integrations); Re-run Failed restarts failed GitHub Actions jobs or GitLab pipeline jobs",
+        "Clone & fork from your account: File > Clone lists the repositories of your GitHub and GitLab accounts (yours, your organisations', starred, or a search), with HTTPS or SSH, a remembered folder, and branch, shallow and submodule options; Fork & Clone forks a repository into your account and clones it with the original set up as upstream; Repository > Fork does the same for an open repository; right-click a remote to copy its HTTPS or SSH URL, open it on the website or fork it",
+        "Issues linked to branches (GitHub and GitLab): Repository > Issues opens an Issues tab in the bottom panel with your open issues (assigned to you, created by you, mentioning you, or all), a search and New Issue; Start Branch creates a branch named after the issue (e.g. feature/123-short-title) and links them; the commit box shows the current branch's issue with a one-click \"Fixes #123\"; #123 in commit messages links to the issue with its title on hover; {issue} and {issue_title} can be used in commit title templates, and a new pull request's description mentions the issue it fixes",
+        "Deep Search finds text, not just file names: search every branch at once for a word, a piece of code or a regular expression (results grouped by file, with the branches that have each line; double-click to open the blame on that line), or find the commits that added or removed it across the whole history, even in deleted files",
+        "Worktrees: work on two branches at once without stashing. Right-click a branch > Open in New Worktree checks it out in a second folder and opens it in its own tab next to the repository; a WORKTREES section in the sidebar (and Repository > Worktrees) lists them and lets you create, open, lock, prune or remove them. A branch checked out in another worktree is marked, and Checkout becomes Switch to Its Worktree",
+        "Commit signing: Edit > Commit Signing signs your commits and tags with an SSH or GPG key so GitHub and GitLab mark them as Verified. Pick or create a key, turn signing on for all repositories or just one, test it before your first commit (with a clear explanation when the key can't sign: agent, passphrase window, expired key), and add the key to GitHub as a signing key in one click",
+        "The commit details show who signed a commit and whether the signature is good, bad or can't be checked; a lock next to Commit shows when your commits are signed, and Create Tag can sign the tag",
+        "Scheduled jobs that pull with merge or rebase check first that your signing key works without a passphrase prompt, and fail with the reason instead of waiting; they can also be set not to sign",
+        "Image diff: click a changed image (PNG, JPEG, GIF, BMP, WebP, ICO, SVG, TIFF) in your changes, a commit or a stash to see it before and after in the app instead of an external program: Side by side with sizes, a Swipe slider, Onion skin, or Difference, which highlights the changed pixels and tells you how many changed. Zoom (fit, 100%, mouse wheel) and scrolling stay in sync, transparent images can be shown on a checkerboard, black, white or the theme background, and conflicts show ours next to theirs",
+        "From the image diff you can stage, unstage or discard the image, copy it, open the old or new version in an external program, and see an SVG's source as a text diff; very large images ask before loading and show a preview. View > Image Diff turns it off to open images in their program as before",
+        "Git LFS: repositories that store large files with Git LFS are recognised automatically. Checkouts, pulls, clones and merges that download LFS files show their progress and no longer time out on long downloads, and a banner tells you when Git LFS isn't installed, isn't set up for the repository, or some large files weren't downloaded, with a button to fix it",
+        "LFS files are marked with their size in your changes, and a changed one shows its old and new size instead of pointer text, with buttons to open either version; LFS images open in the image diff with their real content",
+        "Right-click a file to track its type with Git LFS (or stop tracking it), undoable; Repository > Git LFS fetches or pulls LFS files, lists the tracked patterns, sets up Git LFS and prunes the local cache. Untracked files over 50 MB get a hint to store them with Git LFS",
+        "Delete a branch locally and on its remote in one step: \"Delete Local and Remote\" in a branch's right-click menu (sidebar local and remote branches, and graph labels of branches that exist on both sides); it asks before force-deleting an unmerged branch, and undo restores the local branch",
+        "Interface scale: make the whole interface larger or smaller to any percentage (25% to 400%) in Edit > Interface Scale, or 5% at a time with Ctrl+Plus / Ctrl+Minus (Ctrl+0 resets to 100%; Cmd on macOS); it comes on top of your system's display scaling and applies after a restart, which the app offers to do for you"
+      ],
+      "Bug Fixes": [
+        "When GitHub no longer accepts a saved sign-in (revoked or expired), the app now says so and asks you to sign in again instead of failing with \"Bad credentials\", and stops sending the old token so public repositories can still be cloned and fetched",
+        "Opening a tab group side by side gives every pane the same size",
+        "The graph can no longer disappear when the changes panel is dragged wide; it shrinks and scrolls sideways instead",
+        "After resizing a graph column, a graph made narrower (a split pane, a wider side panel or a smaller window) cut off the Author and Date columns without a horizontal scrollbar; it now scrolls sideways",
+        "The GitHub token check could not read the token's permissions with recent Qt versions",
+        "Checking out a remote branch (e.g. origin/feature/x) left you on a detached HEAD; Checkout now switches to a local branch feature/x that tracks it, creating it if needed, as git and other Git clients do. \"Checkout (detached)\" is still available right below it",
+        "Custom toolbar buttons sat slightly higher than the built-in buttons; both are now vertically centred on the same line",
+        "Icon-only custom toolbar buttons showed an oversized icon; it is now about a quarter smaller, still larger than on a labelled button",
+        "Continuing a rebase, cherry-pick or revert after resolving conflicts no longer gets stuck waiting for a message editor, and a further conflict opens the conflict editor again",
+        "Bumping the version in package.json no longer re-indents the file or drops its final newline: only the version changes",
+        "Checking out a branch that another worktree already has checked out no longer stashes your local changes first and leaves the stash behind: the app now says where the branch is checked out and offers to open that worktree",
+        "After new commits appeared (for example on another branch from a terminal), the commit graph of a small repository could lose its oldest commits until the repository was reopened",
+        "Special characters such as & are shown correctly in Edit > Integrations, on the Accounts & SSH Keys button of the Clone dialog, and in dialogs that show repository, branch or rule names containing & or <",
+        "Deleting a remote branch whose name contains a slash (e.g. origin/feature/x) from a label in the commit graph's \"+N\" list failed with \"remote ref does not exist\"; it now deletes the right branch, as the sidebar does",
+        "\"Delete remote branch\" from the sidebar or a graph label now deletes the branch on the remote it belongs to (e.g. upstream), not always on origin",
+        "Signing in to a GitHub Enterprise Server now works: choose \"GitHub Enterprise Server\" in the sign-in window and enter your server and the Client ID of an OAuth App registered on it, or add a personal access token for the server; when the check fails the message now says why (rejected token, wrong host, server unreachable or untrusted certificate)"
+      ],
+      "Improvements": [
+        "Split view is marked Beta; the pane menu only closes or joins panes, and splitting starts from a tab's right-click menu",
+        "Faster and lighter, especially on Windows: open repositories no longer run git in the background every second (only the repository you are looking at checks for changes, without locking the index, so git commands in a terminal no longer collide with it), refreshing and selecting commits start fewer git processes, operations record their undo information faster, and custom toolbar buttons with placeholders such as {branch} or {remote_url} respond instantly",
+        "The View > Windows checkmarks now follow the current repository",
+        "Terminal, Activity Log and Issues in the bottom panel can each be closed from their tab and reopened from the + at the end of the tab row (open tabs are checked), and dragged into the order you prefer; your choices are kept across sessions (Issues no longer has its own entry in the Repository menu)",
+        "The Feature Tour is shorter (19 steps instead of 35) and moves across the window in order, from the toolbar to the side panel, the graph, the changes panel, the bottom panel and the settings, instead of jumping back and forth; the What's New tour after an update groups the new features the same way, in 8 steps",
+        "Group tabs no longer have a coloured underline: the group colour is shown on the folder icon, matching the coloured dots on its tabs",
+        "In the changes panel, a clear line now separates Staged Files from Unstaged Files",
+        "Faster start: the window opens at once with the repository you were on, which loads first; your other tabs open in the background one at a time, and are ready immediately when you switch to them",
+        "Lighter in the background, especially on Windows: an automatic fetch that brings nothing new no longer reloads the repository, a refresh starts half as many git processes, the app checks for file changes less often while you work in another program (and at once when you come back), and diffs, commits and their file lists you have already opened show instantly"
+      ]
+    },
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/18f4535387e1e8dc1677be8cc561d34483213207727f8c3d159795dc4c58aacc",
+      "macos": "https://www.virustotal.com/gui/file/f9b8a61c1c23f4b2d102b4a0857500a6f65f7cec55d28b4f605ccd4218204e42"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v1.0.0"
+  },
+  {
     "version": "0.0.4",
     "tag": "v0.0.4",
     "date": "2026-10-02",
