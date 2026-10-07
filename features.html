@@ -285,13 +285,14 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>Checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically.</p>
+                <p>Checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically, staged and unstaged as they were. If the branch's remote has new commits, it is brought up to date in the same step, and the graph scrolls to the branch you switched to.</p>
+                <ul><li><strong>Nothing half applied:</strong> if your changes conflict with the new branch, the working tree stays clean and the changes stay in the stash. Apply them and resolve the conflicts, switch back to the previous branch with them, or keep them for later.</li><li><strong>Checkout and pull in one:</strong> a branch that is only behind its remote branch is fast-forwarded at once, with the commits already fetched. If both sides have new commits, you choose Merge, Rebase or Cancel, as with Pull.</li><li><strong>Stashes too:</strong> applying or popping a stash is all or nothing; while you resolve its conflicts a popped stash leaves the list, and Abort puts it back untouched.</li></ul>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
-                <ul><li>Safe checkout means switching branches never requires a manual stash.</li></ul>
+                <ul><li>Safe checkout means switching branches never requires a manual stash, or a separate pull to catch up with the remote.</li><li>Your changes are always in one place: the stash or your files, never both.</li></ul>
               </div>
-              <p class="feature-where"><span>Where to find it</span> Automatic whenever you check out a branch with uncommitted changes.</p>
+              <p class="feature-where"><span>Where to find it</span> Automatic whenever you check out a branch.</p>
             </article>
             <article class="feature-detail" id="visual-conflict-resolution-auto-stash">
               <div class="feature-detail-head">
@@ -302,7 +303,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <ul><li><strong>Where it opens:</strong> when a merge, pull, rebase, cherry-pick or revert produces conflicts, the tab switches to conflict mode — a list of conflicted and resolved files, plus a three-pane editor (<em>ours</em>, <em>theirs</em> and the <em>result</em>).</li><li><strong>Resolving:</strong> take a whole hunk from either side with a checkbox, or single lines with +/−, and the result builds in the order you pick. <em>Use all ours / theirs</em> is one click, and <em>Save &amp; Mark Resolved</em> marks the file done.</li><li><strong>Finishing:</strong> <strong>Esc</strong> pauses conflict mode and you can resume it from the changes panel; <em>Continue</em> and <em>Abort</em> finish or cancel the operation.</li><li><strong>Auto-stash:</strong> checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically.</li></ul>
+                <ul><li><strong>Where it opens:</strong> when a merge, pull, rebase, cherry-pick or revert produces conflicts, the tab switches to conflict mode — a list of conflicted and resolved files, plus a three-pane editor (<em>ours</em>, <em>theirs</em> and the <em>result</em>).</li><li><strong>Resolving:</strong> take a whole hunk from either side with a checkbox, or single lines with +/−, and the result builds in the order you pick. <em>Use all ours / theirs</em> is one click, and <em>Save &amp; Mark Resolved</em> marks the file done.</li><li><strong>Finishing:</strong> <strong>Esc</strong> pauses conflict mode and you can resume it from the changes panel; <em>Continue</em> and <em>Abort</em> finish or cancel the operation.</li><li><strong>Auto-stash:</strong> checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically; changes that conflict with the new branch stay in the stash until you choose to resolve them.</li></ul>
               </div>
               <div class="shots">
                 <figure class="shot">

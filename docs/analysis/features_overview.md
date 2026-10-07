@@ -187,7 +187,7 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 - **Repositories:** all open ones, a tab group, or chosen ones.
 - **Triggers:** every N minutes (optionally only between, say, 08:00 and 19:00), daily at a time, on chosen weekdays, or at startup.
 
-Scheduled work waits for your own operations, and each change can be undone. A run that ends in a conflict keeps your local changes in the stash and pauses that repository until you resolve it; the others carry on. Successful runs show one short summary; failures and conflicts collect in a window with a button to jump to the repository. A status-bar indicator always shows the next run. Push rules must be confirmed, never force-push, and skip protected branches.
+Scheduled work waits for your own operations, and each change can be undone. A run that ends in a conflict keeps your local changes in the stash and pauses that repository until you resolve it; if your changes don't fit the pulled commits they simply stay in the stash, with the files listed. The others carry on. Successful runs show one short summary; failures and conflicts collect in a window with a button to jump to the repository. A status-bar indicator always shows the next run. Push rules must be confirmed, never force-push, and skip protected branches.
 
 **Why it's different:**
 - Most Git GUIs only offer a periodic fetch; here the whole morning routine (fetch, update each repo without losing local work) runs by itself, safely.
@@ -348,12 +348,14 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 - **Where it opens:** when a merge, pull, rebase, cherry-pick or revert produces conflicts, the tab switches to conflict mode — a list of conflicted and resolved files, plus a three-pane editor (*ours*, *theirs* and the *result*).
 - **Resolving:** take a whole hunk from either side with a checkbox, or single lines with +/−, and the result builds in the order you pick. *Use all ours / theirs* is one click, and *Save & Mark Resolved* marks the file done.
 - **Finishing:** **Esc** pauses conflict mode and you can resume it from the changes panel; *Continue* and *Abort* finish or cancel the operation.
-- **Auto-stash:** checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically.
+- **Auto-stash:** checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically, staged and unstaged as they were. If they conflict with the new branch, nothing is half applied: the working tree stays clean, the changes stay in the stash, and you choose to apply and resolve them, switch back to the previous branch with them, or keep them for later.
+- **Stash apply / pop:** all or nothing. If a stash conflicts, resolve it in the same editor; a popped stash leaves the list while you do (your changes are in one place only), and *Abort* puts it back untouched.
+- **Checkout updates the branch:** checking out a branch whose remote branch has new commits fast-forwards it right away (as last fetched, no network wait); if both sides have commits, the usual Merge / Rebase choice appears. The graph then scrolls to the branch you switched to.
 
 **Why it's different:**
 - Many GUIs hand conflicts to an external merge tool, or only offer "use mine / use theirs" per file.
 - Here resolution is built in and works line by line, and it can be paused.
-- Safe checkout means switching branches never requires a manual stash.
+- Safe checkout means switching branches never requires a manual stash, or a separate pull to catch up with the remote.
 
 **Where to find it:** Opens automatically in the repository tab when a conflict happens.
 
