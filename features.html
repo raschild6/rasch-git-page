@@ -285,13 +285,14 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>Checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically.</p>
+                <p>Checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically, staged and unstaged as they were. If the branch's remote has new commits, it is brought up to date in the same step, and the graph scrolls to the branch you switched to.</p>
+                <ul><li><strong>Nothing half applied:</strong> if your changes conflict with the new branch, the working tree stays clean and the changes stay in the stash. Apply them and resolve the conflicts, switch back to the previous branch with them, or keep them for later.</li><li><strong>Checkout and pull in one:</strong> a branch that is only behind its remote branch is fast-forwarded at once, with the commits already fetched. If both sides have new commits, you choose Merge, Rebase or Cancel, as with Pull.</li><li><strong>Stashes too:</strong> applying or popping a stash is all or nothing; while you resolve its conflicts a popped stash leaves the list, and Abort puts it back untouched.</li></ul>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
-                <ul><li>Safe checkout means switching branches never requires a manual stash.</li></ul>
+                <ul><li>Safe checkout means switching branches never requires a manual stash, or a separate pull to catch up with the remote.</li><li>Your changes are always in one place: the stash or your files, never both.</li></ul>
               </div>
-              <p class="feature-where"><span>Where to find it</span> Automatic whenever you check out a branch with uncommitted changes.</p>
+              <p class="feature-where"><span>Where to find it</span> Automatic whenever you check out a branch.</p>
             </article>
             <article class="feature-detail" id="visual-conflict-resolution-auto-stash">
               <div class="feature-detail-head">
@@ -302,7 +303,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <ul><li><strong>Where it opens:</strong> when a merge, pull, rebase, cherry-pick or revert produces conflicts, the tab switches to conflict mode — a list of conflicted and resolved files, plus a three-pane editor (<em>ours</em>, <em>theirs</em> and the <em>result</em>).</li><li><strong>Resolving:</strong> take a whole hunk from either side with a checkbox, or single lines with +/−, and the result builds in the order you pick. <em>Use all ours / theirs</em> is one click, and <em>Save &amp; Mark Resolved</em> marks the file done.</li><li><strong>Finishing:</strong> <strong>Esc</strong> pauses conflict mode and you can resume it from the changes panel; <em>Continue</em> and <em>Abort</em> finish or cancel the operation.</li><li><strong>Auto-stash:</strong> checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically.</li></ul>
+                <ul><li><strong>Where it opens:</strong> when a merge, pull, rebase, cherry-pick or revert produces conflicts, the tab switches to conflict mode — a list of conflicted and resolved files, plus a three-pane editor (<em>ours</em>, <em>theirs</em> and the <em>result</em>).</li><li><strong>Resolving:</strong> take a whole hunk from either side with a checkbox, or single lines with +/−, and the result builds in the order you pick. <em>Use all ours / theirs</em> is one click, and <em>Save &amp; Mark Resolved</em> marks the file done.</li><li><strong>Finishing:</strong> <strong>Esc</strong> pauses conflict mode and you can resume it from the changes panel; <em>Continue</em> and <em>Abort</em> finish or cancel the operation.</li><li><strong>Auto-stash:</strong> checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically; changes that conflict with the new branch stay in the stash until you choose to resolve them.</li></ul>
               </div>
               <div class="shots">
                 <figure class="shot">
@@ -325,7 +326,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <ul><li><strong>Files:</strong> stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with <em>Stage All</em> / <em>Unstage All</em>. Discarding a file takes two clicks: the first turns the red arrow into a red bin, the second discards; clicking elsewhere or waiting a few seconds cancels it.</li><li><strong>Hunks:</strong> in the diff, stage or <strong>discard</strong> a single hunk of an unstaged file (discard asks first, reverts only that hunk and can be undone), or unstage a single hunk of a staged one.</li><li><strong>Fallbacks:</strong> when Git's standard patch application can't handle a hunk (for example, new files or unusual line endings), the app falls back to its own blob-level staging so the action still works.</li><li><strong>Views:</strong> changed files can be shown as a flat list or as a folder tree, remembered per repository for the unstaged and staged lists.</li></ul>
+                <ul><li><strong>Files:</strong> stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with <em>Stage All</em> / <em>Unstage All</em>. Discarding a file takes two clicks: the first turns the red arrow into a red bin, the second discards; clicking elsewhere or waiting a few seconds cancels it.</li><li><strong>Several files at once:</strong> Ctrl+click (Cmd+click on macOS) and Shift+click select several files, in the unstaged list, the staged list or both together. Right-click the selection to <strong>Stash Selected</strong> (only those files, staged and unstaged changes alike, new files too; everything else stays exactly as it is), <strong>Stage Selected</strong> / <strong>Unstage Selected</strong> (files already on that side are skipped), <strong>Discard Selected…</strong> (asks first, listing the files; one Undo brings them all back) or <strong>Diff Selected</strong> (the first diff, with ‹ / › arrows to step through the others). Popping that stash in the app brings the files back as they were, staged parts staged.</li><li><strong>Stash one file:</strong> right-click a single file and choose <strong>Stash This File…</strong>. Stashing one file or a selection first asks for the stash message, pre-filled with Git's usual one (<em>WIP on main: …</em>) so you can keep it or write your own; Cancel stashes nothing.</li><li><strong>Hunks:</strong> in the diff, stage or <strong>discard</strong> a single hunk of an unstaged file (discard asks first, reverts only that hunk and can be undone), or unstage a single hunk of a staged one.</li><li><strong>Fallbacks:</strong> when Git's standard patch application can't handle a hunk (for example, new files or unusual line endings), the app falls back to its own blob-level staging so the action still works.</li><li><strong>Views:</strong> changed files can be shown as a flat list or as a folder tree, remembered per repository for the unstaged and staged lists.</li></ul>
               </div>
               <div class="shots shots-grid">
                 <figure class="shot">
@@ -337,13 +338,17 @@
                   <figcaption>Unstaged and staged files as folder trees</figcaption>
                 </figure>
                 <figure class="shot">
+                  <a href="assets/screenshots/bulk-selection-menu.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Files selected in both lists, right-click: Stash, Stage, Unstage, Discard or Diff the selection"><img src="assets/screenshots/bulk-selection-menu.png" alt="Files selected in both lists, right-click: Stash, Stage, Unstage, Discard or Diff the selection" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Files selected in both lists, right-click: Stash, Stage, Unstage, Discard or Diff the selection</figcaption>
+                </figure>
+                <figure class="shot">
                   <a href="assets/screenshots/discard-armed.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Two-step discard: the first click turns a file&#x27;s discard arrow into a red bin"><img src="assets/screenshots/discard-armed.png" alt="Two-step discard: the first click turns a file&#x27;s discard arrow into a red bin" width="1600" height="1000" loading="lazy" decoding="async"></a>
                   <figcaption>Two-step discard: the first click turns a file&#x27;s discard arrow into a red bin</figcaption>
                 </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
-                <ul><li>Partial staging is often missing or fragile in simpler GUIs; here it is built to work on edge cases.</li><li>Every discard can be undone (see <a href="#undo-redo">Undo / Redo</a>).</li></ul>
+                <ul><li>Partial staging is often missing or fragile in simpler GUIs; here it is built to work on edge cases.</li><li>Stash just a few files, even across the staged and unstaged lists, without disturbing the rest, and the stash holds only those files (Git's own partial stash also records everything else that was staged).</li><li>Every discard can be undone (see <a href="#undo-redo">Undo / Redo</a>).</li></ul>
               </div>
               <p class="feature-where"><span>Where to find it</span> The right panel (<em>Unstaged</em> / <em>Staged</em> files) and the diff viewer.</p>
             </article>
