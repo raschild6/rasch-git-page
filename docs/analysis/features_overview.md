@@ -759,7 +759,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 ## Notes for the website
 
-**Naming.** The product is **Rasch-Git**; the installed app is called **Raschild Git Manager**. Downloads are a Windows installer (`.exe`), a macOS disk image (`.dmg`) and, for 64-bit Linux (Ubuntu 22.04 / Debian 12 / Fedora 36 / RHEL 9 and newer, X11 and Wayland), an AppImage plus `.deb` and `.rpm` packages. The AppImage updates itself; for a `.deb` / `.rpm` the app downloads the new package and gives the install command. The app is free for personal, educational and non-commercial use; commercial use and redistribution require written authorization (see `LICENSE`).
+**Naming.** The product is **Rasch-Git**; the installed app is called **Raschild Git Manager**. Downloads are a Windows installer (`.exe`), a macOS disk image (`.dmg`) and, for 64-bit Linux (Ubuntu 22.04 / Debian 12 / Fedora 36 / RHEL 10 and newer, X11 and Wayland), an AppImage plus `.deb` and `.rpm` packages. The AppImage updates itself; for a `.deb` / `.rpm` the app downloads the new package and gives the install command. The app is free for personal, educational and non-commercial use; commercial use and redistribution require written authorization (see `LICENSE`).
 
 **Suggested hero line:** *"The Git client that never freezes — with undo for almost everything."*
 

@@ -111,7 +111,7 @@
               <span class="feature-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 1.5c-2.6 0-4.2 2.2-4.2 5 0 1.4.3 2.4-.7 4C5.7 12.6 4.5 14.7 4.5 17c0 .9.2 1.7.5 2.4l-1.4 1.2c-.5.4-.2 1.2.4 1.2h4.3c.5 0 .9-.3 1-.7.9.3 1.8.4 2.7.4s1.8-.1 2.7-.4c.1.4.5.7 1 .7H20c.6 0 .9-.8.4-1.2L19 19.4c.3-.7.5-1.5.5-2.4 0-2.3-1.2-4.4-2.6-6.5-1-1.6-.7-2.6-.7-4 0-2.8-1.6-5-4.2-5zm-2.6 11.2c.8-.9 1.7-1.2 2.6-1.2s1.8.3 2.6 1.2c1 1.2 1.6 2.7 1.6 4.3 0 2.1-1.9 2.8-4.2 2.8s-4.2-.7-4.2-2.8c0-1.6.6-3.1 1.6-4.3zM10.4 5.6a.9 1.1 0 1 0 0 2.2a.9 1.1 0 1 0 0-2.2zm3.2 0a.9 1.1 0 1 0 0 2.2a.9 1.1 0 1 0 0-2.2z"/></svg></span>
               <h2 id="linux-title">Linux Installation</h2>
             </div>
-            <p class="intro">Rasch-Git runs on 64-bit (x86_64) Linux distributions from Ubuntu 22.04, Debian 12, Fedora 36 and RHEL 9 onwards, on X11 and Wayland. Pick one of three downloads.</p>
+            <p class="intro">Rasch-Git runs on 64-bit (x86_64) Linux distributions from Ubuntu 22.04, Debian 12, Fedora 36 and RHEL 10 onwards, on X11 and Wayland. Pick one of three downloads.</p>
             <h3 class="guide-h" id="linux-appimage">AppImage (any distribution)</h3>
             <p>One file that runs everywhere, without installing anything system-wide. It updates itself when a new version is out.</p>
             <ol class="steps">
@@ -124,9 +124,9 @@
             <h3 class="guide-h" id="linux-deb">.deb package (Ubuntu, Debian, Linux Mint, Pop!_OS)</h3>
             <p>Open the downloaded file with your software center, or install it from a terminal in the download folder — Git and the other required packages are installed with it:</p>
             <div class="cmd"><code>sudo apt install ./raschild-git-manager_*_amd64.deb</code><button class="copy-btn" type="button" data-copy="sudo apt install ./raschild-git-manager_*_amd64.deb">Copy</button></div>
-            <h3 class="guide-h" id="linux-rpm">.rpm package (Fedora, RHEL, Rocky, AlmaLinux, openSUSE)</h3>
+            <h3 class="guide-h" id="linux-rpm">.rpm package (Fedora, RHEL, Rocky Linux, AlmaLinux)</h3>
             <div class="cmd"><code>sudo dnf install ./raschild-git-manager-*.x86_64.rpm</code><button class="copy-btn" type="button" data-copy="sudo dnf install ./raschild-git-manager-*.x86_64.rpm">Copy</button></div>
-            <p>On openSUSE use <code>sudo zypper install</code> with the same file. With either package, Rasch-Git appears in the application menu; when an update is out, the app downloads the new package for you to install the same way.</p>
+            <p>RHEL, Rocky Linux and AlmaLinux need version 10 or newer; on version 9 and on openSUSE, use the AppImage. With either package, Rasch-Git appears in the application menu; when an update is out, the app downloads the new package for you to install the same way.</p>
             <h3 class="guide-h" id="linux-recommended">Recommended packages</h3>
             <p>With the AppImage, install Git yourself (the app tells you the command if it is missing). These are optional with every download:</p>
             <ul>
