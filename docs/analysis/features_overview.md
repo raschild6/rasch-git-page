@@ -1,6 +1,6 @@
 # Rasch-Git — Features Overview
 
-> **Rasch-Git** (Raschild Git Manager) is a desktop Git client for Windows and macOS (it also runs on Linux from source). It pairs a fast, visual commit graph with the everyday tools developers use most — staging, diffs, branches, stashes, a terminal — and adds a set of capabilities that typical Git GUIs don't have: a user interface that never freezes, undo for almost any operation, bulk actions across branches and repositories, and conflict resolution line by line.
+> **Rasch-Git** (Raschild Git Manager) is a desktop Git client for Windows, macOS and Linux. It pairs a fast, visual commit graph with the everyday tools developers use most — staging, diffs, branches, stashes, a terminal — and adds a set of capabilities that typical Git GUIs don't have: a user interface that never freezes, undo for almost any operation, bulk actions across branches and repositories, and conflict resolution line by line.
 
 This document has two audiences:
 
@@ -58,7 +58,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 17 | Commit details | Author avatar, copyable SHA, full message and changed files at a glance. |
 | 18 | Activity log & full command logs | See everything the app did; export every Git command's raw output. |
 | 19 | Automatic updates | Get notified of new versions, then download, verify and install in one click. |
-| 20 | Consistent cross-platform look | Same layout and sizes on Windows and macOS, no overlapping controls. |
+| 20 | Consistent cross-platform look | Same layout and sizes on Windows, macOS and Linux, no overlapping controls. |
 | 21 | Guided feature tour | A skippable tour points at each feature in the real app. |
 | 22 | Drag & drop to open | Drop repository folders on the window to open them — several at once. |
 | 23 | Open in external programs | Open any file — or any committed version of it — in the app you choose. |
@@ -620,7 +620,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** Sign in to GitHub once — or add a token or an SSH key — and push just works.
 
-**What it does:** **Sign in to GitHub** opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click, copy its URL in either form, or open it on the website. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries.
+**What it does:** **Sign in to GitHub** opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows, the Secret Service — GNOME Keyring or KWallet — on Linux). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click, copy its URL in either form, or open it on the website. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries.
 
 **Why it's different:**
 - Many Git GUIs leave a failed HTTPS push at "authentication failed" and send you to a terminal or a credential helper.
@@ -672,7 +672,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 ### 20. Consistent cross-platform look
 
-**In one line:** The same layout and sizes on Windows and macOS — no overlapping controls.
+**In one line:** The same layout and sizes on Windows, macOS and Linux — no overlapping controls.
 
 **What it does:**
 - The app uses one rendering style and one pixel-based font size on every platform, with a scalable vector icon set.
@@ -759,7 +759,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 ## Notes for the website
 
-**Naming.** The product is **Rasch-Git**; the installed app is called **Raschild Git Manager**. Downloads are a Windows installer (`.exe`) and a macOS disk image (`.dmg`). Running on Linux requires running from source. The app is free for personal, educational and non-commercial use; commercial use and redistribution require written authorization (see `LICENSE`).
+**Naming.** The product is **Rasch-Git**; the installed app is called **Raschild Git Manager**. Downloads are a Windows installer (`.exe`), a macOS disk image (`.dmg`) and, for 64-bit Linux (Ubuntu 22.04 / Debian 12 / Fedora 36 / RHEL 9 and newer, X11 and Wayland), an AppImage plus `.deb` and `.rpm` packages. The AppImage updates itself; for a `.deb` / `.rpm` the app downloads the new package and gives the install command. The app is free for personal, educational and non-commercial use; commercial use and redistribution require written authorization (see `LICENSE`).
 
 **Suggested hero line:** *"The Git client that never freezes — with undo for almost everything."*
 
@@ -807,6 +807,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 - **Worktrees:** creating or removing a worktree's folder can't be undone (only a new branch created with it can); undo in one worktree won't move a branch another worktree has checked out; a worktree-only (bare) repository has no tab for its main entry; nothing is painted on the graph (the tooltips say where a branch is checked out); needs a recent Git (2.36 or newer).
 - **Commit signing:** no signature badges in the graph (only in the selected commit's details); a key with a passphrase needs a passphrase window (graphical pinentry) or an agent that already has it; X.509 signing is shown but not set up from the app; SSH signatures verify locally only for keys in Git's allowed signers file (the app adds your own); *Add to GitHub* is GitHub-only and needs signing in again once; GitHub shows *Verified* only when the commit email is also verified on the GitHub account.
 - **Image diff:** PNG, JPEG, GIF, BMP, WebP, ICO, SVG and (where the system supports it) TIFF — not PSD, HEIC or camera RAW files, which still open in their program; animated GIF / WebP show their first frame; images can't be staged in parts (whole file only); the page doesn't update by itself when the image changes again on disk (click it again); very large images (over 40 megapixels or 50 MB) ask first and may show a scaled preview; the difference view needs both versions to have the same size.
-- **Git LFS:** needs Git LFS installed (included with Git for Windows; on macOS install it separately); no file locking yet; LFS marks follow the patterns of the repository's top-level `.gitattributes` only, and a commit's file list says "LFS" without the size; upload progress for pushes and sign-in to private hosted LFS repositories with the app's accounts haven't been verified yet — don't claim them.
+- **Git LFS:** needs Git LFS installed (included with Git for Windows; on macOS and Linux install it separately); no file locking yet; LFS marks follow the patterns of the repository's top-level `.gitattributes` only, and a commit's file list says "LFS" without the size; upload progress for pushes and sign-in to private hosted LFS repositories with the app's accounts haven't been verified yet — don't claim them.
 - **Interactive rebase:** only on the checked-out branch and on ranges without merge commits; it can't move commits onto another branch, add `exec` lines or split a commit inside the editor (use *edit* instead).
+- **Linux:** 64-bit x86 only (no ARM build yet), glibc 2.35 or newer (Ubuntu 22.04 era); no Flatpak, Snap or distribution repository — AppImage, `.deb` and `.rpm` downloads. On Wayland the window position isn't restored and the app can't bring its window to the front by itself (the desktop highlights it instead). Remembered sign-ins need a running Secret Service (GNOME Keyring or KWallet) and `secret-tool`.
 - **Specific numbers** (for example "a million commits"): they haven't been benchmarked; say "huge histories" / "very long histories".

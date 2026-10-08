@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Install — Rasch-Git</title>
-  <meta name="description" content="How to install Rasch-Git on Windows and macOS, first launch, and troubleshooting.">
+  <meta name="description" content="How to install Rasch-Git on Windows, macOS and Linux, first launch, and troubleshooting.">
   <meta name="theme-color" content="#1a1b2e">
   <meta property="og:title" content="Install — Rasch-Git">
-  <meta property="og:description" content="How to install Rasch-Git on Windows and macOS, first launch, and troubleshooting.">
+  <meta property="og:description" content="How to install Rasch-Git on Windows, macOS and Linux, first launch, and troubleshooting.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://raschild6.github.io/rasch-git-page/assets/img/logo-512.png">
   <link rel="icon" href="favicon.ico" sizes="any">
@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261001">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261008">
 </head>
 <body>
   <header class="navbar">
@@ -62,8 +62,9 @@
           <ul>
             <li><a class="chapter-item" href="#windows"><span class="num">1</span><span class="label">Windows Installation</span></a></li>
             <li><a class="chapter-item" href="#macos"><span class="num">2</span><span class="label">macOS Installation</span></a></li>
-            <li><a class="chapter-item" href="#first-launch"><span class="num">3</span><span class="label">First Launch</span></a></li>
-            <li><a class="chapter-item" href="#troubleshooting"><span class="num">4</span><span class="label">Troubleshooting</span></a></li>
+            <li><a class="chapter-item" href="#linux"><span class="num">3</span><span class="label">Linux Installation</span></a></li>
+            <li><a class="chapter-item" href="#first-launch"><span class="num">4</span><span class="label">First Launch</span></a></li>
+            <li><a class="chapter-item" href="#troubleshooting"><span class="num">5</span><span class="label">Troubleshooting</span></a></li>
           </ul>
         </nav>
         <section class="card chapter-content" id="chapter-content" data-default="os">
@@ -103,7 +104,38 @@
               <li><strong>Drag the app to the Applications folder.</strong></li>
               <li><strong>Launch Rasch-Git</strong> from Applications or Spotlight.</li>
             </ol>
-            <div class="chapter-footer"><a href="#windows">&larr; Windows Installation</a><a href="#first-launch">First Launch &rarr;</a></div>
+            <div class="chapter-footer"><a href="#windows">&larr; Windows Installation</a><a href="#linux">Linux Installation &rarr;</a></div>
+          </article>
+          <article class="chapter" id="linux" aria-labelledby="linux-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 1.5c-2.6 0-4.2 2.2-4.2 5 0 1.4.3 2.4-.7 4C5.7 12.6 4.5 14.7 4.5 17c0 .9.2 1.7.5 2.4l-1.4 1.2c-.5.4-.2 1.2.4 1.2h4.3c.5 0 .9-.3 1-.7.9.3 1.8.4 2.7.4s1.8-.1 2.7-.4c.1.4.5.7 1 .7H20c.6 0 .9-.8.4-1.2L19 19.4c.3-.7.5-1.5.5-2.4 0-2.3-1.2-4.4-2.6-6.5-1-1.6-.7-2.6-.7-4 0-2.8-1.6-5-4.2-5zm-2.6 11.2c.8-.9 1.7-1.2 2.6-1.2s1.8.3 2.6 1.2c1 1.2 1.6 2.7 1.6 4.3 0 2.1-1.9 2.8-4.2 2.8s-4.2-.7-4.2-2.8c0-1.6.6-3.1 1.6-4.3zM10.4 5.6a.9 1.1 0 1 0 0 2.2a.9 1.1 0 1 0 0-2.2zm3.2 0a.9 1.1 0 1 0 0 2.2a.9 1.1 0 1 0 0-2.2z"/></svg></span>
+              <h2 id="linux-title">Linux Installation</h2>
+            </div>
+            <p class="intro">Rasch-Git runs on 64-bit (x86_64) Linux distributions from Ubuntu 22.04, Debian 12, Fedora 36 and RHEL 9 onwards, on X11 and Wayland. Pick one of three downloads.</p>
+            <h3 class="guide-h" id="linux-appimage">AppImage (any distribution)</h3>
+            <p>One file that runs everywhere, without installing anything system-wide. It updates itself when a new version is out.</p>
+            <ol class="steps">
+              <li><strong>Download the <code>.AppImage</code> file</strong> from the <a href="releases.html">Releases</a> page or the <a href="index.html">Home</a> page.</li>
+              <li><strong>Make it executable:</strong> <span class="kbd">right-click</span> → <span class="kbd">Properties</span> → <span class="kbd">Allow executing file as program</span>, or in a terminal:
+                <div class="cmd"><code>chmod +x RaschildGitManager-*-linux-x86_64.AppImage</code><button class="copy-btn" type="button" data-copy="chmod +x RaschildGitManager-*-linux-x86_64.AppImage">Copy</button></div>
+              </li>
+              <li><strong>Double-click it</strong> to start Rasch-Git. To get a menu entry, use an AppImage manager such as Gear Lever or AppImageLauncher.</li>
+            </ol>
+            <h3 class="guide-h" id="linux-deb">.deb package (Ubuntu, Debian, Linux Mint, Pop!_OS)</h3>
+            <p>Open the downloaded file with your software center, or install it from a terminal in the download folder — Git and the other required packages are installed with it:</p>
+            <div class="cmd"><code>sudo apt install ./raschild-git-manager_*_amd64.deb</code><button class="copy-btn" type="button" data-copy="sudo apt install ./raschild-git-manager_*_amd64.deb">Copy</button></div>
+            <h3 class="guide-h" id="linux-rpm">.rpm package (Fedora, RHEL, Rocky, AlmaLinux, openSUSE)</h3>
+            <div class="cmd"><code>sudo dnf install ./raschild-git-manager-*.x86_64.rpm</code><button class="copy-btn" type="button" data-copy="sudo dnf install ./raschild-git-manager-*.x86_64.rpm">Copy</button></div>
+            <p>On openSUSE use <code>sudo zypper install</code> with the same file. With either package, Rasch-Git appears in the application menu; when an update is out, the app downloads the new package for you to install the same way.</p>
+            <h3 class="guide-h" id="linux-recommended">Recommended packages</h3>
+            <p>With the AppImage, install Git yourself (the app tells you the command if it is missing). These are optional with every download:</p>
+            <ul>
+              <li><strong>Remembered sign-ins:</strong> <code>libsecret-tools</code> (Debian / Ubuntu) or <code>libsecret</code> (Fedora), with GNOME Keyring or KWallet running — otherwise accounts are kept only until you quit.</li>
+              <li><strong>Large files:</strong> <code>git-lfs</code>.</li>
+              <li><strong>Signed commits with GPG:</strong> <code>gnupg</code> and a graphical pinentry (<code>pinentry-gnome3</code> or <code>pinentry-qt</code>).</li>
+            </ul>
+            <div class="cmd"><code>sudo apt install git git-lfs libsecret-tools</code><button class="copy-btn" type="button" data-copy="sudo apt install git git-lfs libsecret-tools">Copy</button></div>
+            <div class="chapter-footer"><a href="#macos">&larr; macOS Installation</a><a href="#first-launch">First Launch &rarr;</a></div>
           </article>
           <article class="chapter" id="first-launch" aria-labelledby="first-launch-title">
             <div class="chapter-head">
@@ -122,8 +154,10 @@
             <h3 class="guide-h" id="git-lfs">Optional: Git LFS</h3>
             <p>Repositories that store large files with Git LFS need Git LFS installed. On <strong>Windows</strong> it already comes with Git for Windows. On <strong>macOS</strong>, install it with Homebrew or the official installer from git-lfs.com:</p>
             <div class="cmd"><code>brew install git-lfs</code><button class="copy-btn" type="button" data-copy="brew install git-lfs">Copy</button></div>
+            <p>On <strong>Linux</strong>, install the <code>git-lfs</code> package (the .deb and .rpm packages suggest it already):</p>
+            <div class="cmd"><code>sudo apt install git-lfs</code><button class="copy-btn" type="button" data-copy="sudo apt install git-lfs">Copy</button></div>
             <p>Rasch-Git detects LFS repositories by itself and shows a banner if Git LFS is missing or not set up for a repository.</p>
-            <div class="chapter-footer"><a href="#macos">&larr; macOS Installation</a><a href="#troubleshooting">Troubleshooting &rarr;</a></div>
+            <div class="chapter-footer"><a href="#linux">&larr; Linux Installation</a><a href="#troubleshooting">Troubleshooting &rarr;</a></div>
           </article>
           <article class="chapter" id="troubleshooting" aria-labelledby="troubleshooting-title">
             <div class="chapter-head">
@@ -140,6 +174,19 @@
               <li class="issue">
                 <h3>SmartScreen blocks every launch (Windows)</h3>
                 <p><span class="kbd">Right-click</span> the <code>.exe</code> → <span class="kbd">Properties</span> → check <span class="kbd">Unblock</span>, then click <span class="kbd">OK</span>.</p>
+              </li>
+              <li class="issue">
+                <h3>Sign-ins are forgotten after a restart (Linux)</h3>
+                <p>Rasch-Git keeps tokens in the system keyring through the Secret Service. Install <code>libsecret-tools</code> (Debian / Ubuntu) or <code>libsecret</code> (Fedora) and make sure GNOME Keyring or KWallet is running; <span class="kbd">Edit</span> → <span class="kbd">Accounts &amp; SSH Keys…</span> says what is missing.</p>
+              </li>
+              <li class="issue">
+                <h3>The window looks wrong or won’t start on Wayland (Linux)</h3>
+                <p>Start Rasch-Git through XWayland instead:</p>
+                <div class="cmd"><code>QT_QPA_PLATFORM=xcb ./RaschildGitManager-*-linux-x86_64.AppImage</code><button class="copy-btn" type="button" data-copy="QT_QPA_PLATFORM=xcb ./RaschildGitManager-*-linux-x86_64.AppImage">Copy</button></div>
+              </li>
+              <li class="issue">
+                <h3>The AppImage doesn’t start (Linux)</h3>
+                <p>Make sure it is executable (see <a href="#linux">Linux Installation</a>). On a system without FUSE, run it with <code>--appimage-extract-and-run</code>.</p>
               </li>
               <li class="issue">
                 <h3>The app doesn’t detect Git</h3>
@@ -165,7 +212,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=20261001"></script>
-  <script src="assets/js/chapters.js?v=20261001"></script>
+  <script src="assets/js/main.js?v=20261008"></script>
+  <script src="assets/js/chapters.js?v=20261008"></script>
 </body>
 </html>
