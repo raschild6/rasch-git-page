@@ -10,7 +10,10 @@
   // Asset matchers, most specific first.
   var PLATFORM_MATCHERS = {
     windows: [/\.(exe|msi|msix|appx)$/i, /(win|windows).*\.zip$/i],
-    macos: [/\.(dmg|pkg)$/i, /(mac|macos|darwin|osx).*\.zip$/i]
+    macos: [/\.(dmg|pkg)$/i, /(mac|macos|darwin|osx).*\.zip$/i],
+    linux: [/\.AppImage$/i],
+    "linux-deb": [/\.deb$/i],
+    "linux-rpm": [/\.rpm$/i]
   };
 
   function pickAsset(assets, platform) {
@@ -37,7 +40,8 @@
 
   /**
    * Points the download buttons inside `root` at the matching release assets.
-   * Buttons are marked with data-platform="windows|macos"; their static href
+   * Buttons are marked with data-platform="windows|macos|linux|linux-deb|
+   * linux-rpm"; their static href
    * (the release page) is kept as a fallback when the API is unavailable or
    * the release has no matching asset.
    */
@@ -66,6 +70,9 @@
       date: raw.date || "",
       windows: downloads.windows || raw.windows || "",
       macos: downloads.macos || raw.macos || "",
+      linux: downloads.linux || "",
+      "linux-deb": downloads["linux-deb"] || "",
+      "linux-rpm": downloads["linux-rpm"] || "",
       changelog: raw.changelog || {},
       virustotal: raw.virustotal || {},
       releaseUrl: raw.release_url || RELEASES_URL + "/tag/" + encodeURIComponent(tag)

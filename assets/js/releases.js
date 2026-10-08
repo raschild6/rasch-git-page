@@ -9,9 +9,11 @@
      "version": "0.0.1",
      "tag": "v0.0.1",
      "date": "YYYY-MM-DD",
-     "downloads": { "windows": "<url>", "macos": "<url>" },
+     "downloads": { "windows": "<url>", "macos": "<url>", "linux": "<url>",
+                    "linux-deb": "<url>", "linux-rpm": "<url>" },
      "changelog": { "New Features": [], "Bug Fixes": [], "Improvements": [] },
-     "virustotal": { "windows": "<url>", "macos": "<url>" },
+     "virustotal": { "windows": "<url>", "macos": "<url>", "linux": "<url>",
+                     "linux-deb": "<url>", "linux-rpm": "<url>" },
      "release_url": "https://github.com/<repo>/releases/tag/v0.0.1"
    }
 
@@ -25,11 +27,17 @@
 
   var GROUP_ORDER = ["New Features", "Bug Fixes", "Improvements"];
 
+  // Keys of "virustotal", in display order.
+  var VT_LABELS = [["windows", "Windows"], ["macos", "macOS"],
+    ["linux", "Linux AppImage"], ["linux-deb", "Linux .deb"], ["linux-rpm", "Linux .rpm"]];
+
   var ICONS = {
     windows:
       '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 3.449 9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>',
     macos:
-      '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>'
+      '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>',
+    linux:
+      '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 1.5c-2.6 0-4.2 2.2-4.2 5 0 1.4.3 2.4-.7 4C5.7 12.6 4.5 14.7 4.5 17c0 .9.2 1.7.5 2.4l-1.4 1.2c-.5.4-.2 1.2.4 1.2h4.3c.5 0 .9-.3 1-.7.9.3 1.8.4 2.7.4s1.8-.1 2.7-.4c.1.4.5.7 1 .7H20c.6 0 .9-.8.4-1.2L19 19.4c.3-.7.5-1.5.5-2.4 0-2.3-1.2-4.4-2.6-6.5-1-1.6-.7-2.6-.7-4 0-2.8-1.6-5-4.2-5zm-2.6 11.2c.8-.9 1.7-1.2 2.6-1.2s1.8.3 2.6 1.2c1 1.2 1.6 2.7 1.6 4.3 0 2.1-1.9 2.8-4.2 2.8s-4.2-.7-4.2-2.8c0-1.6.6-3.1 1.6-4.3zM10.4 5.6a.9 1.1 0 1 0 0 2.2a.9 1.1 0 1 0 0-2.2zm3.2 0a.9 1.1 0 1 0 0 2.2a.9 1.1 0 1 0 0-2.2z"/></svg>'
   };
 
   function el(tag, attrs, children) {
@@ -81,20 +89,33 @@
     var fallback = release.releaseUrl;
     var buttons = el("div", { class: "btn-group" }, [
       downloadButton("windows", "Download for Windows", release.windows, fallback, true),
-      downloadButton("macos", "Download for macOS", release.macos, fallback, false)
+      downloadButton("macos", "Download for macOS", release.macos, fallback, false),
+      // Linux only for releases that ship it (from 1.0.1).
+      release.linux ? downloadButton("linux", "Download for Linux", release.linux, fallback, false) : null
     ]);
+
+    var linuxPackages = null;
+    if (release["linux-deb"] || release["linux-rpm"]) {
+      linuxPackages = el("p", { class: "linux-packages" }, [el("span", { text: "Linux packages: " })]);
+      [["linux-deb", ".deb"], ["linux-rpm", ".rpm"]].forEach(function (p) {
+        if (!release[p[0]]) return;
+        if (linuxPackages.children.length > 1) linuxPackages.appendChild(document.createTextNode(" \u00b7 "));
+        linuxPackages.appendChild(el("a", { href: release[p[0]], rel: "noopener", text: p[1] }));
+      });
+    }
 
     var unsignedNotice = el("p", {
       class: "unsigned-notice",
       text: "* This app is not code-signed yet. Windows SmartScreen or macOS Gatekeeper may show a warning \u2014 this is normal. " +
-        "On Windows, click \u201cMore info\u201d \u2192 \u201cRun anyway\u201d. On macOS, right-click the app and select \u201cOpen\u201d."
+        "On Windows, click \u201cMore info\u201d \u2192 \u201cRun anyway\u201d. On macOS, right-click the app and select \u201cOpen\u201d. " +
+        "On Linux, make the AppImage executable first."
     });
 
     var vt = release.virustotal;
     var vtLinks = null;
-    if (vt.windows || vt.macos) {
+    if (VT_LABELS.some(function (p) { return vt[p[0]]; })) {
       vtLinks = el("p", { class: "vt-links" }, [el("span", { text: "VirusTotal scan: " })]);
-      [["windows", "Windows"], ["macos", "macOS"]].forEach(function (p) {
+      VT_LABELS.forEach(function (p) {
         if (!vt[p[0]]) return;
         if (vtLinks.children.length > 1) vtLinks.appendChild(document.createTextNode(" \u00b7 "));
         vtLinks.appendChild(el("a", { href: vt[p[0]], target: "_blank", rel: "noopener", text: p[1] }));
@@ -121,6 +142,7 @@
     container.appendChild(titleRow);
     container.appendChild(meta);
     container.appendChild(buttons);
+    if (linuxPackages) container.appendChild(linuxPackages);
     container.appendChild(unsignedNotice);
     if (vtLinks) container.appendChild(vtLinks);
     container.appendChild(changelog);
