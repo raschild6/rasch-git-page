@@ -250,6 +250,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **What it does:**
 - **Files:** stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with *Stage All* / *Unstage All*. Discarding a file takes two clicks: the first turns the red arrow into a red bin, the second discards; clicking elsewhere or waiting a few seconds cancels it.
+- **Room for either list:** drag the line between *Unstaged Files* and *Staged Files* to give one list more space; either can shrink down to just its header (both headers always stay visible). Double-click the line for half and half; the position is remembered.
 - **Several files at once:** Ctrl+click (Cmd+click on macOS) and Shift+click select several files, in the unstaged list, the staged list or both together. Right-click the selection for:
   - **Stash Selected** (or **Stash This File** on a single file's right-click menu) — asks for a stash message first (pre-filled with Git's usual one, editable; Cancel stashes nothing), then stashes only those files, staged and unstaged changes alike (new untracked files too); every other change stays exactly where it is, staged or not. Popping the stash in the app brings the files back as they were, staged parts staged (a staged deletion comes back as an unstaged one); a plain `git stash pop` on the command line brings them back unstaged, except new files.
   - **Stage Selected** / **Unstage Selected** — files already on that side are skipped.
