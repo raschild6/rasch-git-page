@@ -54,7 +54,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 13 | Undo / Redo | Undo commits, checkouts, resets, discards, stashes and more — safely. |
 | 14 | Review before commit | Merges and cherry-picks are staged for review, never committed behind your back. |
 | 15 | One tree for every ref | Branches, remotes, tags, stashes and a detached HEAD in one filterable tree. |
-| 16 | Hunk-level staging | Stage or unstage individual hunks right from the diff. |
+| 16 | Hunk-level staging | Stage or unstage individual hunks right from the diff; stash, stage, unstage or discard several selected files at once. |
 | 17 | Commit details | Author avatar, copyable SHA, full message and changed files at a glance. |
 | 18 | Activity log & full command logs | See everything the app did; export every Git command's raw output. |
 | 19 | Automatic updates | Get notified of new versions, then download, verify and install in one click. |
@@ -250,12 +250,20 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **What it does:**
 - **Files:** stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with *Stage All* / *Unstage All*. Discarding a file takes two clicks: the first turns the red arrow into a red bin, the second discards; clicking elsewhere or waiting a few seconds cancels it.
+- **Several files at once:** Ctrl+click (Cmd+click on macOS) and Shift+click select several files, in the unstaged list, the staged list or both together. Right-click the selection for:
+  - **Stash Selected** — stashes only those files, staged and unstaged changes alike (new untracked files too); every other change stays exactly where it is, staged or not. Popping the stash in the app brings the files back as they were, staged parts staged (a staged deletion comes back as an unstaged one); a plain `git stash pop` on the command line brings them back unstaged, except new files.
+  - **Stage Selected** / **Unstage Selected** — files already on that side are skipped.
+  - **Discard Selected…** — asks first, listing the files; files picked in the staged list lose their staged changes too, new files are deleted. One Undo brings them all back.
+  - **Diff Selected** — opens the first file's diff with **‹ 1 / 3 ›** arrows to step through the others.
+
+  A plain click starts a new selection; the single-file menu is unchanged when only one file is selected.
 - **Hunks:** in the diff, stage or **discard** a single hunk of an unstaged file (discard asks first, reverts only that hunk and can be undone), or unstage a single hunk of a staged one.
 - **Fallbacks:** when Git's standard patch application can't handle a hunk (for example, new files or unusual line endings), the app falls back to its own blob-level staging so the action still works.
 - **Views:** changed files can be shown as a flat list or as a folder tree, remembered per repository for the unstaged and staged lists.
 
 **Why it's different:**
 - Partial staging is often missing or fragile in simpler GUIs; here it is built to work on edge cases.
+- Stashing just a few files, even across the staged and unstaged lists, without disturbing the rest — and the stash holds only those files (Git's own partial stash also records everything else that was staged).
 - Every discard can be undone (see [Undo / Redo](#13-undo--redo)).
 
 **Where to find it:** The right panel (*Unstaged* / *Staged* files) and the diff viewer.
