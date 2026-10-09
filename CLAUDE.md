@@ -8,7 +8,7 @@ Public website for Rasch-Git — a cross-platform Git client. Hosted on GitHub P
 - `features.html` — Detailed feature descriptions, with screenshots
 - `guides.html` — How-to Guides: practical, example-driven usage guides (Action Scheduler, bulk management, toolbar buttons, Deep Search, external editors)
 - `releases.html` — Release history with changelogs and download links
-- `install.html` — Installation guide for Windows and macOS
+- `install.html` — Installation guide for Windows, macOS and Linux (AppImage, .deb, .rpm)
 - `about.html` — About the app and contact details
 - `license.html` — License and terms of use
 - `sitemap.xml` — Sitemap listing every page (update it when adding a page)

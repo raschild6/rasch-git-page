@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261001">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261008">
 </head>
 <body>
   <header class="navbar">
@@ -107,7 +107,7 @@
               <div class="feature-body">
                 <p>The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. With the graph focused, <strong>↑ / ↓</strong> step from commit to commit and the view follows.</p>
 <p>The graph is also where you act on history, with <strong>right-click menus</strong>:</p>
-<ul><li><strong>Branch and tag labels:</strong> check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete).</li><li><strong>A commit's coloured dot:</strong> cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag there, copy the SHA.</li><li><strong>A stash node:</strong> apply, pop or drop it.</li></ul>
+<ul><li><strong>Branch and tag labels:</strong> check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete).<ul><li><strong>Fast-forward in both directions:</strong> on <code>main</code>, a right-click on <code>dev</code> offers <em>Fast-forward 'main' to 'dev'</em> and <em>Fast-forward 'dev' to 'main'</em>: the second moves <code>dev</code> up to <code>main</code> without leaving <code>main</code> (only offered when it really is a fast-forward).</li><li><strong>Reset Soft / Mixed / Hard to here</strong> on another branch's label or on a remote label (e.g. <code>origin/feature</code>) moves the branch you are on to it: useful to make a local branch match its remote.</li></ul></li><li><strong>A commit's coloured dot:</strong> cherry-pick, revert, <strong>Reset Soft / Mixed / Hard to here</strong> (soft keeps the differences staged, mixed keeps them unstaged, hard discards them after a confirmation; only when a branch is checked out, and undoable), create a branch or tag there, copy the SHA.</li><li><strong>A stash node:</strong> apply, pop or drop it.</li></ul>
               </div>
               <div class="shots shots-grid">
                 <figure class="shot">
@@ -157,7 +157,7 @@
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="14" height="10" rx="1.5"/><path d="M6 18h6M9 14v4"/><rect x="17" y="8" width="5" height="12" rx="1"/><path d="M19.5 17h.01"/></svg></span>
                 <div>
                   <h3>Consistent Cross-Platform Look</h3>
-                  <p class="feature-tagline">The same layout and sizes on Windows and macOS — no overlapping controls.</p>
+                  <p class="feature-tagline">The same layout and sizes on Windows, macOS and Linux — no overlapping controls.</p>
                 </div>
               </div>
               <div class="feature-body">
@@ -165,7 +165,7 @@
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
-                <ul><li>Cross-platform GUIs often look native on one OS and cramped or misaligned on the other.</li><li>Here the interface is designed once and looks identical on both.</li></ul>
+                <ul><li>Cross-platform GUIs often look native on one OS and cramped or misaligned on the others.</li><li>Here the interface is designed once and looks identical on all three.</li></ul>
               </div>
               <p class="feature-where"><span>Where to find it</span> Everywhere.</p>
             </article>
@@ -285,13 +285,14 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>Checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically.</p>
+                <p>Checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically, staged and unstaged as they were. If the branch's remote has new commits, it is brought up to date in the same step, and the graph scrolls to the branch you switched to.</p>
+                <ul><li><strong>Nothing half applied:</strong> if your changes conflict with the new branch, the working tree stays clean and the changes stay in the stash. Apply them and resolve the conflicts, switch back to the previous branch with them, or keep them for later.</li><li><strong>Checkout and pull in one:</strong> a branch that is only behind its remote branch is fast-forwarded at once, with the commits already fetched. If both sides have new commits, you choose Merge, Rebase or Cancel, as with Pull.</li><li><strong>Stashes too:</strong> applying or popping a stash is all or nothing; while you resolve its conflicts a popped stash leaves the list, and Abort puts it back untouched.</li></ul>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
-                <ul><li>Safe checkout means switching branches never requires a manual stash.</li></ul>
+                <ul><li>Safe checkout means switching branches never requires a manual stash, or a separate pull to catch up with the remote.</li><li>Your changes are always in one place: the stash or your files, never both.</li></ul>
               </div>
-              <p class="feature-where"><span>Where to find it</span> Automatic whenever you check out a branch with uncommitted changes.</p>
+              <p class="feature-where"><span>Where to find it</span> Automatic whenever you check out a branch.</p>
             </article>
             <article class="feature-detail" id="visual-conflict-resolution-auto-stash">
               <div class="feature-detail-head">
@@ -302,7 +303,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <ul><li><strong>Where it opens:</strong> when a merge, pull, rebase, cherry-pick or revert produces conflicts, the tab switches to conflict mode — a list of conflicted and resolved files, plus a three-pane editor (<em>ours</em>, <em>theirs</em> and the <em>result</em>).</li><li><strong>Resolving:</strong> take a whole hunk from either side with a checkbox, or single lines with +/−, and the result builds in the order you pick. <em>Use all ours / theirs</em> is one click, and <em>Save &amp; Mark Resolved</em> marks the file done.</li><li><strong>Finishing:</strong> <strong>Esc</strong> pauses conflict mode and you can resume it from the changes panel; <em>Continue</em> and <em>Abort</em> finish or cancel the operation.</li><li><strong>Auto-stash:</strong> checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically.</li></ul>
+                <ul><li><strong>Where it opens:</strong> when a merge, pull, rebase, cherry-pick or revert produces conflicts, the tab switches to conflict mode — a list of conflicted and resolved files, plus a three-pane editor (<em>ours</em>, <em>theirs</em> and the <em>result</em>).</li><li><strong>Resolving:</strong> take a whole hunk from either side with a checkbox, or single lines with +/−, and the result builds in the order you pick. <em>Use all ours / theirs</em> is one click, and <em>Save &amp; Mark Resolved</em> marks the file done.</li><li><strong>Finishing:</strong> <strong>Esc</strong> pauses conflict mode and you can resume it from the changes panel; <em>Continue</em> and <em>Abort</em> finish or cancel the operation.</li><li><strong>Auto-stash:</strong> checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically; changes that conflict with the new branch stay in the stash until you choose to resolve them.</li></ul>
               </div>
               <div class="shots">
                 <figure class="shot">
@@ -325,7 +326,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <ul><li><strong>Files:</strong> stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with <em>Stage All</em> / <em>Unstage All</em>. Discarding a file takes two clicks: the first turns the red arrow into a red bin, the second discards; clicking elsewhere or waiting a few seconds cancels it.</li><li><strong>Hunks:</strong> in the diff, stage or <strong>discard</strong> a single hunk of an unstaged file (discard asks first, reverts only that hunk and can be undone), or unstage a single hunk of a staged one.</li><li><strong>Fallbacks:</strong> when Git's standard patch application can't handle a hunk (for example, new files or unusual line endings), the app falls back to its own blob-level staging so the action still works.</li><li><strong>Views:</strong> changed files can be shown as a flat list or as a folder tree, remembered per repository for the unstaged and staged lists.</li></ul>
+                <ul><li><strong>Files:</strong> stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with <em>Stage All</em> / <em>Unstage All</em>. Discarding a file takes two clicks: the first turns the red arrow into a red bin, the second discards; clicking elsewhere or waiting a few seconds cancels it.</li><li><strong>Several files at once:</strong> Ctrl+click (Cmd+click on macOS) and Shift+click select several files, in the unstaged list, the staged list or both together. Right-click the selection to <strong>Stash Selected</strong> (only those files, staged and unstaged changes alike, new files too; everything else stays exactly as it is), <strong>Stage Selected</strong> / <strong>Unstage Selected</strong> (files already on that side are skipped), <strong>Discard Selected…</strong> (asks first, listing the files; one Undo brings them all back) or <strong>Diff Selected</strong> (the first diff, with ‹ / › arrows to step through the others). Popping that stash in the app brings the files back as they were, staged parts staged.</li><li><strong>Stash one file:</strong> right-click a single file and choose <strong>Stash This File…</strong>. Stashing one file or a selection first asks for the stash message, pre-filled with Git's usual one (<em>WIP on main: …</em>) so you can keep it or write your own; Cancel stashes nothing.</li><li><strong>Room for either list:</strong> drag the line between <em>Unstaged Files</em> and <em>Staged Files</em> to give one list more space; either can shrink down to just its header, so both headers always stay visible. Double-click the line for half and half; the position is remembered.</li><li><strong>Hunks:</strong> in the diff, stage or <strong>discard</strong> a single hunk of an unstaged file (discard asks first, reverts only that hunk and can be undone), or unstage a single hunk of a staged one.</li><li><strong>Fallbacks:</strong> when Git's standard patch application can't handle a hunk (for example, new files or unusual line endings), the app falls back to its own blob-level staging so the action still works.</li><li><strong>Views:</strong> changed files can be shown as a flat list or as a folder tree, remembered per repository for the unstaged and staged lists.</li></ul>
               </div>
               <div class="shots shots-grid">
                 <figure class="shot">
@@ -337,13 +338,17 @@
                   <figcaption>Unstaged and staged files as folder trees</figcaption>
                 </figure>
                 <figure class="shot">
+                  <a href="assets/screenshots/bulk-selection-menu.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Files selected in both lists, right-click: Stash, Stage, Unstage, Discard or Diff the selection"><img src="assets/screenshots/bulk-selection-menu.png" alt="Files selected in both lists, right-click: Stash, Stage, Unstage, Discard or Diff the selection" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Files selected in both lists, right-click: Stash, Stage, Unstage, Discard or Diff the selection</figcaption>
+                </figure>
+                <figure class="shot">
                   <a href="assets/screenshots/discard-armed.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Two-step discard: the first click turns a file&#x27;s discard arrow into a red bin"><img src="assets/screenshots/discard-armed.png" alt="Two-step discard: the first click turns a file&#x27;s discard arrow into a red bin" width="1600" height="1000" loading="lazy" decoding="async"></a>
                   <figcaption>Two-step discard: the first click turns a file&#x27;s discard arrow into a red bin</figcaption>
                 </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
-                <ul><li>Partial staging is often missing or fragile in simpler GUIs; here it is built to work on edge cases.</li><li>Every discard can be undone (see <a href="#undo-redo">Undo / Redo</a>).</li></ul>
+                <ul><li>Partial staging is often missing or fragile in simpler GUIs; here it is built to work on edge cases.</li><li>Stash just a few files, even across the staged and unstaged lists, without disturbing the rest, and the stash holds only those files (Git's own partial stash also records everything else that was staged).</li><li>Every discard can be undone (see <a href="#undo-redo">Undo / Redo</a>).</li></ul>
               </div>
               <p class="feature-where"><span>Where to find it</span> The right panel (<em>Unstaged</em> / <em>Staged</em> files) and the diff viewer.</p>
             </article>
@@ -803,7 +808,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <ul><li><strong>Three views:</strong> <em>Hunk</em> shows only the changed blocks, <em>Inline</em> shows the whole file with changes in place, and <em>Split</em> shows old and new side by side with aligned rows.</li><li><strong>Readability:</strong> syntax highlighting for 16 languages (Python, JavaScript, TypeScript, Java, C/C++, Go, Rust, Ruby, PHP, SQL, HTML, CSS, JSON, YAML, XML, shell), a minimap of changes, and Ctrl+F search inside the diff.</li><li><strong>Clean copy:</strong> copied code has no <code>+</code> / <code>-</code> prefixes, so it can be pasted straight into an editor.</li></ul>
+                <ul><li><strong>Three views:</strong> <em>Hunk</em> shows only the changed blocks, <em>Inline</em> shows the whole file with changes in place, and <em>Split</em> shows old and new side by side with aligned rows.</li><li><strong>Readability:</strong> syntax highlighting for 16 languages (Python, JavaScript, TypeScript, Java, C/C++, Go, Rust, Ruby, PHP, SQL, HTML, CSS, JSON, YAML, XML, shell), a minimap of changes, and Ctrl+F search inside the diff.</li><li><strong>Clean copy:</strong> copied code has no <code>+</code> / <code>-</code> prefixes, so it can be pasted straight into an editor.</li><li><strong>Always current:</strong> an open diff updates by itself. A working-tree or staged diff shows the file's new state after a pull, a reset or a change made elsewhere (scroll position kept), and closes when the file has no changes left; a commit's diff opened on a branch tip follows that branch when a fetch or pull brings a newer commit that changes the file.</li></ul>
 <p id="image-diff"><strong>Image diff.</strong> Click a changed image (PNG, JPEG, GIF, BMP, WebP, ICO, SVG, TIFF where supported) — in the working tree, the staged changes, a commit or a stash — and see it before and after, right in the app:</p>
 <ul><li><em>Side by side</em> with size and file size ("Before 640×480 · 34 KB"), zoom and scrolling kept in step;</li><li><em>Swipe</em>: a slider shows the old version on one side of the line and the new one on the other;</li><li><em>Onion skin</em>: fade the new version over the old one;</li><li><em>Difference</em>: the changed pixels highlighted over a dimmed image, with how many changed ("1,234 pixels changed (3.2 %)") — or "No visible change" when only the file's metadata differs.</li></ul>
 <p>Fit, 100 % (real pixels, also on high-resolution screens), zoom buttons and the mouse wheel; a checkerboard, theme, black or white background behind transparent pixels; added and deleted images shown on their own; during a conflict, <em>ours</em> next to <em>theirs</em>. From the page you can <em>Stage</em>, <em>Unstage</em> or <em>Discard</em> (asks first) the image, copy it, open the old or new version in an external program, and for SVG switch to the text diff of its source. Very large images ask before loading and show a scaled preview; <strong>View → Image Diff</strong> turns it off.</p>
@@ -839,7 +844,7 @@
               <div class="feature-body">
                 <p>Selecting a commit shows its details in the right panel:</p>
 <ul><li>the author's avatar (initials), date and short SHA with a copy button;</li><li>the title and full body, scrollable when long;</li><li>the list of changed files, as a flat list or as a folder tree.</li></ul>
-<p>Clicking a file opens its diff for that commit. A right-click on a commit offers cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag here, and copy the SHA; a right-click on a branch label offers checkout, merge, fast-forward, rebase, push, pull, rename and delete.</p>
+<p>Clicking a file opens its diff for that commit. A right-click on a commit offers cherry-pick, revert, Reset Soft / Mixed / Hard to here, create a branch or tag here, and copy the SHA; a right-click on a branch label offers checkout, merge, fast-forward (either direction), reset to it, rebase, push, pull, rename and delete.</p>
               </div>
               <div class="shots">
                 <figure class="shot">
@@ -1030,7 +1035,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>Each installer is scanned on VirusTotal at release time. The scan report for every version's Windows and macOS installer is linked on the <a href="releases.html">Releases</a> page.</p>
+                <p>Each installer is scanned on VirusTotal at release time. The scan report for every version's installers (Windows, macOS and Linux) is linked on the <a href="releases.html">Releases</a> page.</p>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
@@ -1093,7 +1098,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p><strong>Sign in to GitHub</strong> opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click, copy its URL in either form, or open it on the website. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries.</p>
+                <p><strong>Sign in to GitHub</strong> opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows, the Secret Service on Linux). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click, copy its URL in either form, or open it on the website. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries.</p>
               </div>
               <div class="shots shots-grid">
                 <figure class="shot">
@@ -1231,7 +1236,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=20261001"></script>
-  <script src="assets/js/chapters.js?v=20261001"></script>
+  <script src="assets/js/main.js?v=20261008"></script>
+  <script src="assets/js/chapters.js?v=20261008"></script>
 </body>
 </html>

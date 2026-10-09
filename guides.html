@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261001">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261008">
 </head>
 <body>
   <header class="navbar">
@@ -167,7 +167,7 @@
 <p>Rasch-Git comes with six ready-made buttons, each with the right command for macOS, Windows and Linux. If you don’t see them, open <strong>Edit → Custom Toolbar Buttons…</strong> and click <strong>Add default buttons</strong>.</p>
 <div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Button</th><th scope="col">What it does</th></tr></thead><tbody><tr><th scope="row">Copy Remote URL</th><td>Copies the repository’s remote URL to the clipboard.</td></tr><tr><th scope="row">Copy Branch Name</th><td>Copies the current branch name to the clipboard.</td></tr><tr><th scope="row">Open in Folder</th><td>Opens the repository folder in Explorer, Finder or your file manager.</td></tr><tr><th scope="row">Open in Terminal</th><td>Opens a system terminal in the repository folder.</td></tr><tr><th scope="row">Open in VS Code</th><td>Opens the repository in Visual Studio Code.</td></tr><tr><th scope="row">Open on GitHub</th><td>Opens the repository’s page on GitHub in your browser.</td></tr></tbody></table></div>
 <figure class="shot"><a href="assets/screenshots/custom-toolbar-buttons.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The button editor with the six default buttons; Copy Remote URL is a shell command"><img src="assets/screenshots/custom-toolbar-buttons.png" alt="The button editor with the six default buttons; Copy Remote URL is a shell command" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>The button editor with the six default buttons; Copy Remote URL is a shell command</figcaption></figure>
-<p>Each default button is a <strong>shell command</strong>, so it is also the best example of how to write your own. Select one to see its command — Copy Remote URL on macOS, for instance, is:</p>
+<p>The default buttons are <strong>shell commands</strong> (on Linux the two copy buttons and Open in Terminal use the app’s own actions instead, so they work without extra tools), so they are also the best example of how to write your own. Select one to see its command — Copy Remote URL on macOS, for instance, is:</p>
 <div class="cmd"><code>printf %s &quot;{remote_url}&quot; | pbcopy</code><button class="copy-btn" type="button" data-copy="printf %s &quot;{remote_url}&quot; | pbcopy">Copy</button></div>
 <div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>Each button can show its icon with your label, or only the icon — give each button an icon you can recognize. When there are more buttons than fit, the toolbar scrolls sideways.</div></div>
 
@@ -451,7 +451,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=20261001"></script>
-  <script src="assets/js/chapters.js?v=20261001"></script>
+  <script src="assets/js/main.js?v=20261008"></script>
+  <script src="assets/js/chapters.js?v=20261008"></script>
 </body>
 </html>

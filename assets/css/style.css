@@ -1135,6 +1135,19 @@ code {
 .vt-links a { color: var(--text-muted); text-decoration: underline; text-underline-offset: 2px; }
 .vt-links a:hover { color: var(--accent); }
 
+/* Linux .deb / .rpm links under the download buttons (home hero and
+   release cards). */
+.linux-packages {
+  margin: 12px auto 0;
+  max-width: 560px;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+.linux-packages a { color: var(--text-muted); text-decoration: underline; text-underline-offset: 2px; }
+.linux-packages a:hover { color: var(--accent); }
+.release-detail .btn-group + .linux-packages { margin: -20px 0 26px; max-width: 620px; }
+.release-detail .linux-packages + .unsigned-notice { margin: 0 0 34px; max-width: 620px; }
+
 /* ---------- Footer ---------- */
 
 .footer {

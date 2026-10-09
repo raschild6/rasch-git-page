@@ -4,7 +4,7 @@
  * inside #chapter-content. With JS only the selected chapter is shown; links
  * and hashes may also target an element inside a chapter (e.g. one feature),
  * which opens that chapter and scrolls to it. #chapter-content[data-default="os"]
- * opens "macos" or "windows" by visitor OS when no hash is given.
+ * opens "macos", "linux" or "windows" by visitor OS when no hash is given.
  */
 (function () {
   "use strict";
@@ -35,7 +35,10 @@
 
     function defaultChapter() {
       if (content.getAttribute("data-default") === "os") {
-        var os = document.getElementById(/Mac|iPhone|iPad/i.test(navigator.userAgent) ? "macos" : "windows");
+        var ua = navigator.userAgent;
+        var os = document.getElementById(
+          /Mac|iPhone|iPad/i.test(ua) ? "macos"
+            : /Linux|X11/i.test(ua) && !/Android/i.test(ua) ? "linux" : "windows");
         if (os) return os;
       }
       return chapters[0];

@@ -1,6 +1,6 @@
 # Rasch-Git — Features Overview
 
-> **Rasch-Git** (Raschild Git Manager) is a desktop Git client for Windows and macOS (it also runs on Linux from source). It pairs a fast, visual commit graph with the everyday tools developers use most — staging, diffs, branches, stashes, a terminal — and adds a set of capabilities that typical Git GUIs don't have: a user interface that never freezes, undo for almost any operation, bulk actions across branches and repositories, and conflict resolution line by line.
+> **Rasch-Git** (Raschild Git Manager) is a desktop Git client for Windows, macOS and Linux. It pairs a fast, visual commit graph with the everyday tools developers use most — staging, diffs, branches, stashes, a terminal — and adds a set of capabilities that typical Git GUIs don't have: a user interface that never freezes, undo for almost any operation, bulk actions across branches and repositories, and conflict resolution line by line.
 
 This document has two audiences:
 
@@ -54,11 +54,11 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 13 | Undo / Redo | Undo commits, checkouts, resets, discards, stashes and more — safely. |
 | 14 | Review before commit | Merges and cherry-picks are staged for review, never committed behind your back. |
 | 15 | One tree for every ref | Branches, remotes, tags, stashes and a detached HEAD in one filterable tree. |
-| 16 | Hunk-level staging | Stage or unstage individual hunks right from the diff. |
+| 16 | Hunk-level staging | Stage or unstage individual hunks right from the diff; stash, stage, unstage or discard several selected files at once. |
 | 17 | Commit details | Author avatar, copyable SHA, full message and changed files at a glance. |
 | 18 | Activity log & full command logs | See everything the app did; export every Git command's raw output. |
 | 19 | Automatic updates | Get notified of new versions, then download, verify and install in one click. |
-| 20 | Consistent cross-platform look | Same layout and sizes on Windows and macOS, no overlapping controls. |
+| 20 | Consistent cross-platform look | Same layout and sizes on Windows, macOS and Linux, no overlapping controls. |
 | 21 | Guided feature tour | A skippable tour points at each feature in the real app. |
 | 22 | Drag & drop to open | Drop repository folders on the window to open them — several at once. |
 | 23 | Open in external programs | Open any file — or any committed version of it — in the app you choose. |
@@ -104,7 +104,9 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 
 The graph is also where you act on history, with **right-click menus**:
 - **Branch and tag labels:** check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete).
-- **A commit's coloured dot:** cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag there, copy the SHA.
+  - **Fast-forward in both directions:** on `main`, a right-click on `dev` offers *Fast-forward 'main' to 'dev'* and *Fast-forward 'dev' to 'main'*: the second moves `dev` up to `main` without leaving `main` (only offered when it really is a fast-forward).
+  - **Reset Soft / Mixed / Hard to here** on another branch's label or on a remote label (e.g. `origin/feature`) moves the branch you are on to it: useful to make a local branch match its remote.
+- **A commit's coloured dot:** cherry-pick, revert, **Reset Soft / Mixed / Hard to here** (soft keeps the differences staged, mixed keeps them unstaged, hard discards them after a confirmation; only when a branch is checked out, and undoable), create a branch or tag there, copy the SHA.
 - **A stash node:** apply, pop or drop it.
 
 **Why it's different:**
@@ -187,7 +189,7 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 - **Repositories:** all open ones, a tab group, or chosen ones.
 - **Triggers:** every N minutes (optionally only between, say, 08:00 and 19:00), daily at a time, on chosen weekdays, or at startup.
 
-Scheduled work waits for your own operations, and each change can be undone. A run that ends in a conflict keeps your local changes in the stash and pauses that repository until you resolve it; the others carry on. Successful runs show one short summary; failures and conflicts collect in a window with a button to jump to the repository. A status-bar indicator always shows the next run. Push rules must be confirmed, never force-push, and skip protected branches.
+Scheduled work waits for your own operations, and each change can be undone. A run that ends in a conflict keeps your local changes in the stash and pauses that repository until you resolve it; if your changes don't fit the pulled commits they simply stay in the stash, with the files listed. The others carry on. Successful runs show one short summary; failures and conflicts collect in a window with a button to jump to the repository. A status-bar indicator always shows the next run. Push rules must be confirmed, never force-push, and skip protected branches.
 
 **Why it's different:**
 - Most Git GUIs only offer a periodic fetch; here the whole morning routine (fetch, update each repo without losing local work) runs by itself, safely.
@@ -215,6 +217,7 @@ Scheduled work waits for your own operations, and each change can be undone. A r
   - Fit, 100 % (real pixels, also on high-resolution screens), zoom buttons and the mouse wheel; a checkerboard, theme, black or white background behind transparent pixels; added and deleted images shown on their own; during a conflict, *ours* next to *theirs*.
   - From the page: *Stage*, *Unstage* or *Discard* (asks first) the image, copy it, open the old or new version in an external program, and for SVG switch to the text diff of its source.
   - Very large images ask before loading and show a scaled preview; **View → Image Diff** turns it off (images then open in their program, as before).
+- **Always current:** an open diff updates by itself. A working-tree or staged diff shows the file's new state after a pull, a reset or a change made elsewhere (scroll position kept), and closes when the file has no changes left; a commit's diff opened on a branch tip follows that branch when a fetch or pull brings a newer commit that changes the file.
 
 **Why it's different:**
 - Most Git GUIs offer one diff layout, or at most two.
@@ -232,7 +235,7 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 - the title and full body, scrollable when long;
 - the list of changed files, as a flat list or as a folder tree.
 
-Clicking a file opens its diff for that commit. A right-click on a commit offers cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag here, and copy the SHA; a right-click on a branch label offers checkout, merge, fast-forward, rebase, push, pull, rename and delete.
+Clicking a file opens its diff for that commit. A right-click on a commit offers cherry-pick, revert, Reset Soft / Mixed / Hard to here, create a branch or tag here, and copy the SHA; a right-click on a branch label offers checkout, merge, fast-forward (either direction), reset to it, rebase, push, pull, rename and delete.
 
 **Why it's different:**
 - Everything about a commit is in one side panel next to the graph, instead of spread across several windows.
@@ -250,12 +253,21 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **What it does:**
 - **Files:** stage, unstage or discard a single file with the buttons that appear when you hover it, or everything at once with *Stage All* / *Unstage All*. Discarding a file takes two clicks: the first turns the red arrow into a red bin, the second discards; clicking elsewhere or waiting a few seconds cancels it.
+- **Room for either list:** drag the line between *Unstaged Files* and *Staged Files* to give one list more space; either can shrink down to just its header (both headers always stay visible). Double-click the line for half and half; the position is remembered.
+- **Several files at once:** Ctrl+click (Cmd+click on macOS) and Shift+click select several files, in the unstaged list, the staged list or both together. Right-click the selection for:
+  - **Stash Selected** (or **Stash This File** on a single file's right-click menu) — asks for a stash message first (pre-filled with Git's usual one, editable; Cancel stashes nothing), then stashes only those files, staged and unstaged changes alike (new untracked files too); every other change stays exactly where it is, staged or not. Popping the stash in the app brings the files back as they were, staged parts staged (a staged deletion comes back as an unstaged one); a plain `git stash pop` on the command line brings them back unstaged, except new files.
+  - **Stage Selected** / **Unstage Selected** — files already on that side are skipped.
+  - **Discard Selected…** — asks first, listing the files; files picked in the staged list lose their staged changes too, new files are deleted. One Undo brings them all back.
+  - **Diff Selected** — opens the first file's diff with **‹ 1 / 3 ›** arrows to step through the others.
+
+  A plain click starts a new selection; the single-file menu is unchanged when only one file is selected.
 - **Hunks:** in the diff, stage or **discard** a single hunk of an unstaged file (discard asks first, reverts only that hunk and can be undone), or unstage a single hunk of a staged one.
 - **Fallbacks:** when Git's standard patch application can't handle a hunk (for example, new files or unusual line endings), the app falls back to its own blob-level staging so the action still works.
 - **Views:** changed files can be shown as a flat list or as a folder tree, remembered per repository for the unstaged and staged lists.
 
 **Why it's different:**
 - Partial staging is often missing or fragile in simpler GUIs; here it is built to work on edge cases.
+- Stashing just a few files, even across the staged and unstaged lists, without disturbing the rest — and the stash holds only those files (Git's own partial stash also records everything else that was staged).
 - Every discard can be undone (see [Undo / Redo](#13-undo--redo)).
 
 **Where to find it:** The right panel (*Unstaged* / *Staged* files) and the diff viewer.
@@ -348,12 +360,14 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 - **Where it opens:** when a merge, pull, rebase, cherry-pick or revert produces conflicts, the tab switches to conflict mode — a list of conflicted and resolved files, plus a three-pane editor (*ours*, *theirs* and the *result*).
 - **Resolving:** take a whole hunk from either side with a checkbox, or single lines with +/−, and the result builds in the order you pick. *Use all ours / theirs* is one click, and *Save & Mark Resolved* marks the file done.
 - **Finishing:** **Esc** pauses conflict mode and you can resume it from the changes panel; *Continue* and *Abort* finish or cancel the operation.
-- **Auto-stash:** checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically.
+- **Auto-stash:** checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically, staged and unstaged as they were. If they conflict with the new branch, nothing is half applied: the working tree stays clean, the changes stay in the stash, and you choose to apply and resolve them, switch back to the previous branch with them, or keep them for later.
+- **Stash apply / pop:** all or nothing. If a stash conflicts, resolve it in the same editor; a popped stash leaves the list while you do (your changes are in one place only), and *Abort* puts it back untouched.
+- **Checkout updates the branch:** checking out a branch whose remote branch has new commits fast-forwards it right away (as last fetched, no network wait); if both sides have commits, the usual Merge / Rebase choice appears. The graph then scrolls to the branch you switched to.
 
 **Why it's different:**
 - Many GUIs hand conflicts to an external merge tool, or only offer "use mine / use theirs" per file.
 - Here resolution is built in and works line by line, and it can be paused.
-- Safe checkout means switching branches never requires a manual stash.
+- Safe checkout means switching branches never requires a manual stash, or a separate pull to catch up with the remote.
 
 **Where to find it:** Opens automatically in the repository tab when a conflict happens.
 
@@ -620,7 +634,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** Sign in to GitHub once — or add a token or an SSH key — and push just works.
 
-**What it does:** **Sign in to GitHub** opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click, copy its URL in either form, or open it on the website. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries.
+**What it does:** **Sign in to GitHub** opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows, the Secret Service — GNOME Keyring or KWallet — on Linux). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click, copy its URL in either form, or open it on the website. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries.
 
 **Why it's different:**
 - Many Git GUIs leave a failed HTTPS push at "authentication failed" and send you to a terminal or a credential helper.
@@ -672,7 +686,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 ### 20. Consistent cross-platform look
 
-**In one line:** The same layout and sizes on Windows and macOS — no overlapping controls.
+**In one line:** The same layout and sizes on Windows, macOS and Linux — no overlapping controls.
 
 **What it does:**
 - The app uses one rendering style and one pixel-based font size on every platform, with a scalable vector icon set.
@@ -759,7 +773,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 ## Notes for the website
 
-**Naming.** The product is **Rasch-Git**; the installed app is called **Raschild Git Manager**. Downloads are a Windows installer (`.exe`) and a macOS disk image (`.dmg`). Running on Linux requires running from source. The app is free for personal, educational and non-commercial use; commercial use and redistribution require written authorization (see `LICENSE`).
+**Naming.** The product is **Rasch-Git**; the installed app is called **Raschild Git Manager**. Downloads are a Windows installer (`.exe`), a macOS disk image (`.dmg`) and, for 64-bit Linux (Ubuntu 22.04 / Debian 12 / Fedora 36 / RHEL 10 and newer, X11 and Wayland), an AppImage plus `.deb` and `.rpm` packages. The AppImage updates itself; for a `.deb` / `.rpm` the app downloads the new package and gives the install command. The app is free for personal, educational and non-commercial use; commercial use and redistribution require written authorization (see `LICENSE`).
 
 **Suggested hero line:** *"The Git client that never freezes — with undo for almost everything."*
 
@@ -807,6 +821,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 - **Worktrees:** creating or removing a worktree's folder can't be undone (only a new branch created with it can); undo in one worktree won't move a branch another worktree has checked out; a worktree-only (bare) repository has no tab for its main entry; nothing is painted on the graph (the tooltips say where a branch is checked out); needs a recent Git (2.36 or newer).
 - **Commit signing:** no signature badges in the graph (only in the selected commit's details); a key with a passphrase needs a passphrase window (graphical pinentry) or an agent that already has it; X.509 signing is shown but not set up from the app; SSH signatures verify locally only for keys in Git's allowed signers file (the app adds your own); *Add to GitHub* is GitHub-only and needs signing in again once; GitHub shows *Verified* only when the commit email is also verified on the GitHub account.
 - **Image diff:** PNG, JPEG, GIF, BMP, WebP, ICO, SVG and (where the system supports it) TIFF — not PSD, HEIC or camera RAW files, which still open in their program; animated GIF / WebP show their first frame; images can't be staged in parts (whole file only); the page doesn't update by itself when the image changes again on disk (click it again); very large images (over 40 megapixels or 50 MB) ask first and may show a scaled preview; the difference view needs both versions to have the same size.
-- **Git LFS:** needs Git LFS installed (included with Git for Windows; on macOS install it separately); no file locking yet; LFS marks follow the patterns of the repository's top-level `.gitattributes` only, and a commit's file list says "LFS" without the size; upload progress for pushes and sign-in to private hosted LFS repositories with the app's accounts haven't been verified yet — don't claim them.
+- **Git LFS:** needs Git LFS installed (included with Git for Windows; on macOS and Linux install it separately); no file locking yet; LFS marks follow the patterns of the repository's top-level `.gitattributes` only, and a commit's file list says "LFS" without the size; upload progress for pushes and sign-in to private hosted LFS repositories with the app's accounts haven't been verified yet — don't claim them.
 - **Interactive rebase:** only on the checked-out branch and on ranges without merge commits; it can't move commits onto another branch, add `exec` lines or split a commit inside the editor (use *edit* instead).
+- **Linux:** 64-bit x86 only (no ARM build yet), glibc 2.35 or newer (Ubuntu 22.04 era); no Flatpak, Snap or distribution repository — AppImage, `.deb` and `.rpm` downloads. On Wayland the window position isn't restored and the app can't bring its window to the front by itself (the desktop highlights it instead). Remembered sign-ins need a running Secret Service (GNOME Keyring or KWallet) and `secret-tool`.
 - **Specific numbers** (for example "a million commits"): they haven't been benchmarked; say "huge histories" / "very long histories".
