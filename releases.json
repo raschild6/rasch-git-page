@@ -1,5 +1,53 @@
 [
   {
+    "version": "1.0.1",
+    "tag": "v1.0.1",
+    "date": "2026-10-09",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.1/RaschildGitManager-1.0.1-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.1/RaschildGitManager-1.0.1-macos-arm64.dmg",
+      "linux": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.1/RaschildGitManager-1.0.1-linux-x86_64.AppImage",
+      "linux-deb": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.1/raschild-git-manager_1.0.1-1_amd64.deb",
+      "linux-rpm": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.1/raschild-git-manager-1.0.1-1.x86_64.rpm"
+    },
+    "changelog": {
+      "New Features": [
+        "Linux: Rasch-Git is now available for 64-bit Linux as an AppImage that runs on any distribution and as .deb and .rpm packages (Ubuntu 22.04, Debian 12, Fedora 36, RHEL 10 and newer, on X11 and Wayland)",
+        "Linux: updates install themselves in the AppImage; for the .deb and .rpm packages the app downloads the new version and gives you the command to install it",
+        "Checking out a branch whose remote branch has new commits fast-forwards it right away (checkout and pull in one step, no network wait); if both sides have new commits you get the usual Merge / Rebase / Cancel choice",
+        "Select several files in the unstaged and staged lists (Ctrl+click, Shift+click, also across both lists) and right-click them to stash only those files, stage, unstage or discard them together, or step through their diffs",
+        "Stash a single file from its right-click menu (Stash This File…)",
+        "Stashing one or a few files asks for a stash message first, pre-filled with Git's usual one; Cancel stashes nothing",
+        "Drag the separator between the unstaged and staged lists to give either one more room (both headers stay visible, double-click for half and half); the position is remembered",
+        "Right-click a commit, another branch or a remote branch (e.g. origin/feature) in the graph and choose Reset Soft, Mixed or Hard to here to move your current branch there: soft keeps the differences staged, mixed keeps them unstaged, hard discards them after asking (all undoable)",
+        "Fast-forward the other way without switching branches: on main, right-click dev and choose \"Fast-forward 'dev' to 'main'\" (only offered when it is a fast-forward); the existing item now reads \"Fast-forward 'main' to 'dev'\""
+      ],
+      "Bug Fixes": [
+        "Local changes stashed automatically during a checkout that conflict with the new branch no longer end up both in the stash and in your working files: they stay in the stash, the working tree is clean, and you can apply and resolve them, switch back to the previous branch with them, or keep them for later",
+        "If a checkout fails after your local changes were stashed, they are put back at once",
+        "Staged and unstaged changes stay that way across a checkout with local changes (they all came back unstaged)",
+        "Applying or popping a stash is all or nothing: if git refuses it, nothing is left half applied; with conflicts, a popped stash leaves the list while you resolve them, and Abort puts it back untouched",
+        "Scheduled Stash + Pull and Stash Pop no longer leave conflicts behind with the changes still in the stash",
+        "Popping a stash while other new or deleted files are staged no longer fails and unstages your staged changes"
+      ],
+      "Improvements": [
+        "Linux: the diff, terminal and blame use your desktop's monospace font, the window has its icon and groups with its launcher on Wayland, and the default Copy and Open in Terminal buttons work without extra tools (Ptyxis, GNOME Console, Konsole and other terminals are recognised)",
+        "Linux: sign-ins are remembered only when a keyring service (GNOME Keyring or KWallet) is really running; otherwise the Accounts window says what to install",
+        "If Git isn't installed, the app says so at startup with the command to install it",
+        "After a checkout the commit graph scrolls so the branch you switched to is in the middle of the view, loading older history if needed (also for branches far back in history)",
+        "An open diff no longer goes stale: after a fetch, pull or reset it shows the file's current changes (closing when none are left), and a commit's diff opened on a branch tip follows the branch to the newest commit that changed the file"
+      ]
+    },
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/13e0704d48ccaae98d422c34a5b83e3a9c8b1c0dd52e10d22102039dab5d718c",
+      "macos": "https://www.virustotal.com/gui/file/5b1d6759bc60d15d91bc4541e245f3e2c97b9eb82308f69844a8896a2d13e8b7",
+      "linux": "https://www.virustotal.com/gui/file/9ea0b98da900b8fa901391f68f58b05007079e358658b52eee13b72893951d97",
+      "linux-deb": "https://www.virustotal.com/gui/file/d2c6d8ef142af18be074b140e747fd65a98836831ed8d02609880c1fbd1cd9f2",
+      "linux-rpm": "https://www.virustotal.com/gui/file/d86212589ea8bdbcd39cecfc04ebd7aa5e0dadd9a577db9feba17a582bc0e1e6"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v1.0.1"
+  },
+  {
     "version": "1.0.0",
     "tag": "v1.0.0",
     "date": "2026-10-07",
