@@ -104,7 +104,9 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 
 The graph is also where you act on history, with **right-click menus**:
 - **Branch and tag labels:** check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete).
-- **A commit's coloured dot:** cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag there, copy the SHA.
+  - **Fast-forward in both directions:** on `main`, a right-click on `dev` offers *Fast-forward 'main' to 'dev'* and *Fast-forward 'dev' to 'main'*: the second moves `dev` up to `main` without leaving `main` (only offered when it really is a fast-forward).
+  - **Reset Soft / Mixed / Hard to here** on another branch's label or on a remote label (e.g. `origin/feature`) moves the branch you are on to it: useful to make a local branch match its remote.
+- **A commit's coloured dot:** cherry-pick, revert, **Reset Soft / Mixed / Hard to here** (soft keeps the differences staged, mixed keeps them unstaged, hard discards them after a confirmation; only when a branch is checked out, and undoable), create a branch or tag there, copy the SHA.
 - **A stash node:** apply, pop or drop it.
 
 **Why it's different:**
@@ -215,6 +217,7 @@ Scheduled work waits for your own operations, and each change can be undone. A r
   - Fit, 100 % (real pixels, also on high-resolution screens), zoom buttons and the mouse wheel; a checkerboard, theme, black or white background behind transparent pixels; added and deleted images shown on their own; during a conflict, *ours* next to *theirs*.
   - From the page: *Stage*, *Unstage* or *Discard* (asks first) the image, copy it, open the old or new version in an external program, and for SVG switch to the text diff of its source.
   - Very large images ask before loading and show a scaled preview; **View → Image Diff** turns it off (images then open in their program, as before).
+- **Always current:** an open diff updates by itself. A working-tree or staged diff shows the file's new state after a pull, a reset or a change made elsewhere (scroll position kept), and closes when the file has no changes left; a commit's diff opened on a branch tip follows that branch when a fetch or pull brings a newer commit that changes the file.
 
 **Why it's different:**
 - Most Git GUIs offer one diff layout, or at most two.
@@ -232,7 +235,7 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 - the title and full body, scrollable when long;
 - the list of changed files, as a flat list or as a folder tree.
 
-Clicking a file opens its diff for that commit. A right-click on a commit offers cherry-pick, revert, reset (soft / mixed / hard), create a branch or tag here, and copy the SHA; a right-click on a branch label offers checkout, merge, fast-forward, rebase, push, pull, rename and delete.
+Clicking a file opens its diff for that commit. A right-click on a commit offers cherry-pick, revert, Reset Soft / Mixed / Hard to here, create a branch or tag here, and copy the SHA; a right-click on a branch label offers checkout, merge, fast-forward (either direction), reset to it, rebase, push, pull, rename and delete.
 
 **Why it's different:**
 - Everything about a commit is in one side panel next to the graph, instead of spread across several windows.
