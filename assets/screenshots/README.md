@@ -16,6 +16,7 @@
 | `discard-armed.png` | Two-step discard: the first click turned a file's discard arrow into a red bin | 16 |
 | `bulk-selection-menu.png` | Files selected in both the unstaged and staged lists, right-click: Stash / Stage / Unstage / Discard / Diff Selected | 16 |
 | `commit-templates.png`, `commit-messages-settings.png` | Commit title templates and their settings | 12 |
+| `version-source.png` | Repository → Version Source…: auto-detect trace (Helm chart wins over package.json), a file + YAML key, Test result | 12 |
 | `review-before-commit.png` | A merge staged for review, message prefilled, *Abort Merge* | 14 |
 | `undo-redo.png` | Edit menu with *Undo Stash changes* | 13 |
 | `conflict-editor.png` | Three-pane conflict editor (ours / theirs / result) | 8 |
