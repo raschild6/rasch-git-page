@@ -781,7 +781,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>You keep a list of predefined commit titles with placeholders: <code>{version}</code> is the project's next version and <code>{branch}</code> is the current branch. The version is detected from <code>pom.xml</code>, from the commit message, or from version-named branches. On a branch linked to an issue, <code>{issue}</code> (<code>#123</code>) and <code>{issue_title}</code> are filled in too. The first template pre-fills the commit title automatically; the sparkle button next to the title offers the others. The title field shows a character counter that warns before you pass 72 characters. You can amend the previous commit, or commit and push in one click.</p>
+                <p>You keep a list of predefined commit titles with placeholders: <code>{version}</code> is the project's version and <code>{branch}</code> is the current branch. The version is read from the right place for about 50 kinds of projects — <code>package.json</code>, <code>pyproject.toml</code>, <code>Cargo.toml</code>, <code>pom.xml</code>, Gradle, <code>.csproj</code>, a Helm chart's <code>appVersion</code>, <code>pubspec.yaml</code>, CMake, a <code>VERSION</code> file and many more — skipping the traps (a dependency's version, the Node or SDK version, the chart's own version). Without a version file it comes from the current release branch (<code>release/1.4.0</code>) or the next patch after the latest version tag; never from commit messages. <strong>Repository → Version Source…</strong> points a repository at any file (JSON, TOML, YAML, XML, INI, regex or plain text, with a <em>Test</em> button) or at a tag pattern. On a branch linked to an issue, <code>{issue}</code> (<code>#123</code>) and <code>{issue_title}</code> are filled in too. The first template pre-fills the commit title automatically and keeps it up to date when you change the version, until you type your own title; the sparkle button next to the title offers the others. The title field shows a character counter that warns before you pass 72 characters. You can amend the previous commit, or commit and push in one click.</p>
               </div>
               <div class="shots shots-grid">
                 <figure class="shot">
@@ -792,12 +792,16 @@
                   <a href="assets/screenshots/commit-messages-settings.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Commit message templates settings"><img src="assets/screenshots/commit-messages-settings.png" alt="Commit message templates settings" width="1600" height="1000" loading="lazy" decoding="async"></a>
                   <figcaption>Commit message templates settings</figcaption>
                 </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/version-source.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Repository → Version Source: a Helm chart's appVersion, tested"><img src="assets/screenshots/version-source.png" alt="Repository → Version Source: a Helm chart's appVersion, tested" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Version Source: where {version} comes from</figcaption>
+                </figure>
               </div>
               <div class="feature-why">
                 <h4>Why it's different</h4>
-                <ul><li>Most clients start every commit from an empty box, or support only one static template.</li><li>Templates here are a list with live placeholders, which suits teams with commit conventions such as <code>[FIX]</code>, <code>[NEW]</code> or version bumps.</li><li>The same version detection suggests branch names like <code>dev-release/1.4.0</code> when you create a branch.</li></ul>
+                <ul><li>Most clients start every commit from an empty box, or support only one static template.</li><li>Templates here are a list with live placeholders, which suits teams with commit conventions such as <code>[FIX]</code>, <code>[NEW]</code> or version bumps.</li><li>The version comes from your project's own manifest, whatever the language, and the title updates when you bump it.</li><li>The same version detection suggests branch names like <code>dev-release/1.4.0</code> when you create a branch, and git-flow release names.</li></ul>
               </div>
-              <p class="feature-where"><span>Where to find it</span> The <em>Commit</em> box in the right panel; edit the list in <strong>Edit → Commit Messages…</strong>.</p>
+              <p class="feature-where"><span>Where to find it</span> The <em>Commit</em> box in the right panel; edit the list in <strong>Edit → Commit Messages…</strong>; choose the version's source in <strong>Repository → Version Source…</strong>. Step by step: <a href="guides.html#version-source">The right version in every commit</a>.</p>
             </article>
             <article class="feature-detail" id="smart-diff-views">
               <div class="feature-detail-head">

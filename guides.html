@@ -71,6 +71,7 @@
             <li><a class="chapter-item" href="#git-flow"><span class="num">9</span><span class="label">Ship a Release with Git-flow</span></a></li>
             <li><a class="chapter-item" href="#signing"><span class="num">10</span><span class="label">Get the Verified Badge</span></a></li>
             <li><a class="chapter-item" href="#several-repos"><span class="num">11</span><span class="label">Several Repositories at Once</span></a></li>
+            <li><a class="chapter-item" href="#version-source"><span class="num">12</span><span class="label">The Right Version in Every Commit</span></a></li>
           </ul>
         </nav>
         <section class="card chapter-content" id="chapter-content">
@@ -436,7 +437,44 @@
 <h3 class="guide-h" id="multi-layout">Layout and restart</h3>
 <p>Panels are trimmed automatically to fit narrower panes, and the whole layout comes back the next time you start the app. To start over, <strong>Join All Panes</strong>.</p>
 <div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>A repository is shown in one pane at a time. To see <em>two branches</em> of the same repository side by side, open one of them in a <a href="#worktrees">worktree</a> — it's a separate tab you can split next to the first.</div></div>
-            <div class="chapter-footer"><a href="#signing">&larr; Get the Verified Badge</a><span></span></div>
+            <div class="chapter-footer"><a href="#signing">&larr; Get the Verified Badge</a><a href="#version-source">The Right Version in Every Commit &rarr;</a></div>
+          </article>
+          <article class="chapter guide" id="version-source" aria-labelledby="version-source-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span>
+              <h2 id="version-source-title">The Right Version in Every Commit</h2>
+            </div>
+<p class="intro">Commit titles such as <code>[BUMP VERSION] {version}</code> fill in your project's version by themselves, from the file your kind of project keeps it in, and follow it when you change it.</p>
+
+<h3 class="guide-h" id="vs-bump">Bump a version, commit it</h3>
+<ol class="steps"><li>Change the version in your project file: <code>"version"</code> in <code>package.json</code>, <code>appVersion</code> in <code>Chart.yaml</code>, <code>version</code> in <code>pyproject.toml</code> or <code>Cargo.toml</code>, <code>&lt;version&gt;</code> in <code>pom.xml</code>…</li><li>The pre-filled commit title switches to the new version a moment later, without touching anything.</li><li>Commit. Typed your own title instead? It stays exactly as you wrote it; clear it to get the template back.</li></ol>
+
+<h3 class="guide-h" id="vs-where">Where the version comes from</h3>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Your project</th><th scope="col">The version is read from</th><th scope="col">Never from</th></tr></thead><tbody>
+<tr><th scope="row">Node.js</th><td><code>package.json</code> → <code>version</code></td><td><code>engines.node</code>, <code>.nvmrc</code>, dependencies</td></tr>
+<tr><th scope="row">Python</th><td><code>pyproject.toml</code> → <code>[project] version</code> or Poetry, or the <code>__version__</code> it points to; <code>setup.cfg</code>, <code>setup.py</code></td><td><code>requires-python</code>, <code>.python-version</code></td></tr>
+<tr><th scope="row">Java / Kotlin</th><td><code>pom.xml</code> project version (<code>${revision}</code> resolved), Gradle <code>version</code></td><td>the parent POM, plugin and dependency versions</td></tr>
+<tr><th scope="row">.NET</th><td><code>&lt;Version&gt;</code> / <code>&lt;VersionPrefix&gt;</code> in <code>Directory.Build.props</code> or the project</td><td><code>global.json</code>, package references</td></tr>
+<tr><th scope="row">Helm chart</th><td><code>Chart.yaml</code> → <code>appVersion</code></td><td>the chart's own <code>version</code></td></tr>
+<tr><th scope="row">Go, Swift packages, Terraform</th><td>the latest version tag (these projects have no version file)</td><td>the <code>go 1.22</code> line</td></tr>
+<tr><th scope="row">C / C++</th><td><code>project(… VERSION …)</code> in CMake, Meson, <code>AC_INIT</code>, a <code>version.h</code></td><td><code>cmake_minimum_required</code></td></tr>
+</tbody></table></div>
+<p>Also Rust, Ruby, PHP, Dart / Flutter, Elixir, Erlang, Scala, Clojure, Haskell, Perl, R, Julia, Lua, Zig and more, a plain <code>VERSION</code> file, Xcode and Android apps, Expo, Unity, Godot, browser extensions, Debian packaging and Dockerfile labels. When several are present, the project's own manifest wins over tooling: a Helm chart with a <code>package.json</code> for its linters uses the chart's <code>appVersion</code>.</p>
+<p>Without a version file: on a release branch such as <code>release/1.4.0</code> the version is <strong>1.4.0</strong>; otherwise it is the next patch after the latest version tag (<code>v1.4.2</code> → <strong>1.4.3</strong>). Version numbers in commit messages are ignored — they are usually another project's.</p>
+
+<h3 class="guide-h" id="vs-choose">Choose the source yourself</h3>
+<ol class="steps"><li>Open <strong>Repository → Version Source…</strong>. The top shows what auto-detect finds and which file wins.</li><li>Pick <strong>A file</strong>, choose it with <strong>Browse…</strong>, set the <strong>Format</strong> (JSON, TOML, YAML, XML, INI / properties, Regex or Plain text) and the key to read.</li><li>Click <strong>Test</strong>: you see the version, or exactly what is missing (with the keys that are there).</li><li><strong>Save</strong>. The setting belongs to this repository and is kept across restarts; <strong>Reset to Auto-Detect</strong> removes it.</li></ol>
+<figure class="shot"><a href="assets/screenshots/version-source.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Version Source: Chart.yaml appVersion, tested"><img src="assets/screenshots/version-source.png" alt="Version Source: Chart.yaml appVersion, tested" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption>Version Source: a file, its format and key, and the Test result</figcaption></figure>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Where your version is</th><th scope="col">Format</th><th scope="col">Key / pattern</th></tr></thead><tbody>
+<tr><th scope="row">An Expo app</th><td>JSON</td><td><code>expo.version</code></td></tr>
+<tr><th scope="row">One package of a monorepo (file <code>packages/api/package.json</code>)</th><td>JSON</td><td><code>version</code></td></tr>
+<tr><th scope="row">A Salesforce project</th><td>JSON</td><td><code>packageDirectories[0].versionNumber</code></td></tr>
+<tr><th scope="row">A Java properties file</th><td>INI / properties</td><td><code>app.version</code></td></tr>
+<tr><th scope="row">The top of a changelog</th><td>Regex</td><td><code>^## \[(\d[^\]]*)\]</code></td></tr>
+</tbody></table></div>
+<p><strong>Git tags</strong> instead of a file: give a pattern such as <code>api-v*</code> for a monorepo that tags each service. <strong>Use the next patch version</strong> turns the last released version into the one you're preparing.</p>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>The same version names new branches (<code>dev-release/1.4.0</code>) and git-flow releases. Files are only read, never run, so opening a repository never executes its build scripts.</div></div>
+            <div class="chapter-footer"><a href="#several-repos">&larr; Several Repositories at Once</a><span></span></div>
           </article>
         </section>
       </div>
