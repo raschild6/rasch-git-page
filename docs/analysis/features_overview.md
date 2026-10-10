@@ -635,13 +635,13 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** Sign in to GitHub once — or add a token or an SSH key — and push just works.
 
-**What it does:** **Sign in to GitHub** opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows, the Secret Service — GNOME Keyring or KWallet — on Linux). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click, copy its URL in either form, or open it on the website. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries.
+**What it does:** **Sign in to GitHub** opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows, the Secret Service — GNOME Keyring or KWallet — on Linux). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click, copy its URL in either form, or open it on the website. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries. You don't have to wait for a failed push to find out a sign-in stopped working: the app checks your saved tokens at startup, and a revoked or expired one turns the account badge in the status bar red with a cross ("sign-in expired") and is flagged in Accounts & SSH Keys, with **Sign In Again** one click away; a token about to expire gets an amber warning in its last 12 hours.
 
 **Why it's different:**
 - Many Git GUIs leave a failed HTTPS push at "authentication failed" and send you to a terminal or a credential helper.
 - Here the fix is one click away, the token never touches the command line, logs or `.git/config`, and SSH keys are managed without leaving the app.
 
-**Where to find it:** **Edit → Accounts & SSH Keys…**; right-click a remote in the left panel; the dialog that appears when a push, pull or fetch is refused.
+**Where to find it:** **Edit → Accounts & SSH Keys…**; the account badge at the bottom right of the window; right-click a remote in the left panel; the dialog that appears when a push, pull or fetch is refused.
 
 ### 37. Commit signing
 
