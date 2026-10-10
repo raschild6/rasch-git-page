@@ -41,7 +41,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 |---|---|---|
 | 1 | Fully async GUI | Every Git operation runs in the background — the window never freezes. |
 | 2 | Virtualized commit graph | Smooth scrolling through huge histories, with stashes and uncommitted work in the graph. |
-| 3 | Smart diff views | Hunk, Inline or Split — one click to switch, with syntax highlighting and search; changed images compared before / after. |
+| 3 | Smart diff views | Hunk, Inline or Split — one click to switch, with syntax highlighting and search; changed images compared before / after; Edit Here turns the diff into an editor for a quick fix. |
 | 4 | Built-in terminal | A real shell in every repository tab, already in the right folder. |
 | 5 | Tab groups | Organize many repositories into coloured, collapsible groups on their own row; hide tabs without closing them. |
 | 6 | Bulk branch & repo management | Delete, pull or merge many branches — or act on every open repo — in one go. |
@@ -203,11 +203,11 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 
 ### 3. Smart diff views
 
-**In one line:** Hunk, Inline or Split — one click to switch, with syntax highlighting and search; changed images compared before / after.
+**In one line:** Hunk, Inline or Split — one click to switch, with syntax highlighting and search; changed images compared before / after; Edit Here turns the diff into an editor for a quick fix.
 
 **What it does:**
 - **Three views:** *Hunk* shows only the changed blocks, *Inline* shows the whole file with changes in place, and *Split* shows old and new side by side with aligned rows.
-- **Readability:** syntax highlighting for 16 languages (Python, JavaScript, TypeScript, Java, C/C++, Go, Rust, Ruby, PHP, SQL, HTML, CSS, JSON, YAML, XML, shell), a minimap of changes, and Ctrl+F search inside the diff.
+- **Readability:** syntax highlighting for 24 languages (Python, JavaScript, TypeScript, Java, C/C++, C#, Go, Rust, Kotlin, Swift, Ruby, PHP, SQL, HTML, CSS, JSON, YAML, TOML, XML, Markdown, INI / `.env`, Dockerfile, Makefile, shell), a minimap of changes, and Ctrl+F search inside the diff.
 - **Clean copy:** copied code has no `+` / `-` prefixes, so it can be pasted straight into an editor.
 - **Image diff:** click a changed image (PNG, JPEG, GIF, BMP, WebP, ICO, SVG, TIFF where supported) — in the working tree, the staged changes, a commit or a stash — and see it before and after, right in the app:
   - *Side by side* with size and file size ("Before 640×480 · 34 KB"), zoom and scrolling kept in step;
@@ -217,14 +217,20 @@ Scheduled work waits for your own operations, and each change can be undone. A r
   - Fit, 100 % (real pixels, also on high-resolution screens), zoom buttons and the mouse wheel; a checkerboard, theme, black or white background behind transparent pixels; added and deleted images shown on their own; during a conflict, *ours* next to *theirs*.
   - From the page: *Stage*, *Unstage* or *Discard* (asks first) the image, copy it, open the old or new version in an external program, and for SVG switch to the text diff of its source.
   - Very large images ask before loading and show a scaled preview; **View → Image Diff** turns it off (images then open in their program, as before).
+- **Edit Here:** fix a file without switching to an IDE. Right-click a changed file → *Edit Here*, press **Edit** in the diff (`Ctrl+E`), or right-click a line → *Edit Here at Line N*: the diff turns into an editor at that line, highlighted.
+  - Save with `Ctrl+S`: the changes lists update straight away, and back in the diff (`Esc` or a segment) you see the new change at the line you were on.
+  - The file stays as it was in every other respect: encoding (UTF-8, UTF-16, with or without BOM, Latin-1), line endings (LF, CRLF, CR) and the executable bit.
+  - Find (`Ctrl+F`), go to line (`Ctrl+G`, `Cmd+L` on macOS), word wrap, auto-indent, line numbers, the same syntax colours as the diff; files up to 10 MB (highlighting up to 2 MB).
+  - Nothing is lost by accident: switching file, closing the tab or quitting asks to save, and so does a git operation (stage, commit, checkout…) while edits are unsaved. If another program changes the file, the editor reloads it, or asks when you have unsaved edits.
 - **Always current:** an open diff updates by itself. A working-tree or staged diff shows the file's new state after a pull, a reset or a change made elsewhere (scroll position kept), and closes when the file has no changes left; a commit's diff opened on a branch tip follows that branch when a fetch or pull brings a newer commit that changes the file.
 
 **Why it's different:**
 - Most Git GUIs offer one diff layout, or at most two.
 - Hunk-level staging works straight from the diff (see [Hunk-level staging](#16-hunk-level-staging)).
+- Most Git GUIs open an external editor for any change to a file; here a one-line fix happens where you are reading the diff, and the diff is back one key away.
 - Most Git GUIs show "binary file changed" for an image, or the two versions without a way to tell what moved; here four views, including a pixel-exact difference with a count.
 
-**Where to find it:** Click a changed file in the right panel, or a file of a commit; the view switcher is in the diff header. Images open in the image page (modes in its toolbar; **View → Image Diff** to turn it off).
+**Where to find it:** Click a changed file in the right panel, or a file of a commit; the view switcher is in the diff header. Images open in the image page (modes in its toolbar; **View → Image Diff** to turn it off). Edit Here: the file menu of the changes lists, the **Edit** segment of the diff header, or a diff line's context menu.
 
 ### 17. Commit details
 
