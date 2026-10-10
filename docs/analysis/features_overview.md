@@ -282,7 +282,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 - Most clients start every commit from an empty box, or support only one static template.
 - Templates here are a list with live placeholders, which suits teams with commit conventions such as `[FIX]`, `[NEW]` or version bumps.
 - The version comes from your project's own manifest, whatever the language, and the title updates when you bump it.
-- The same version detection suggests branch names like `dev-release/1.4.0` when you create a branch, and git-flow release names.
+- The same version detection suggests branch names like `dev-release/1.4.0` when you create a branch (the pattern is yours to choose per repository: `release/{version}`, `{branch}-{date}`…), and git-flow release names.
 
 **Where to find it:** The *Commit* box in the right panel; edit the list in **Edit → Commit Messages…**; choose the version's source in **Repository → Version Source…**.
 
