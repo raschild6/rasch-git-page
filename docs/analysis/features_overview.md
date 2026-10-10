@@ -276,14 +276,15 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** Pre-filled commit titles with your project's version and branch.
 
-**What it does:** You keep a list of predefined commit titles with placeholders: `{version}` is the project's next version and `{branch}` is the current branch. The version is detected from `pom.xml`, from the commit message, or from version-named branches. On a branch linked to an issue, `{issue}` (`#123`) and `{issue_title}` are filled in too. The first template pre-fills the commit title automatically; the sparkle button next to the title offers the others. The title field shows a character counter that warns before you pass 72 characters. You can amend the previous commit, or commit and push in one click.
+**What it does:** You keep a list of predefined commit titles with placeholders: `{version}` is the project's version and `{branch}` is the current branch. The version is read from the right place for about 50 kinds of projects — `package.json`, `pyproject.toml`, `Cargo.toml`, `pom.xml`, Gradle, `.csproj`, a Helm chart's `appVersion`, `pubspec.yaml`, CMake, a `VERSION` file and many more — skipping the traps (a dependency's version, the Node or SDK version, the chart's own version). Without a version file it comes from the current release branch (`release/1.4.0`) or the next patch after the latest version tag; never from commit messages. **Repository → Version Source…** points a repository at any file (JSON, TOML, YAML, XML, INI, regex or plain text, with a Test button) or at a tag pattern. On a branch linked to an issue, `{issue}` (`#123`) and `{issue_title}` are filled in too. The first template pre-fills the commit title automatically and keeps it up to date when you change the version, until you type your own title; the sparkle button next to the title offers the others. The title field shows a character counter that warns before you pass 72 characters. You can amend the previous commit, or commit and push in one click.
 
 **Why it's different:**
 - Most clients start every commit from an empty box, or support only one static template.
 - Templates here are a list with live placeholders, which suits teams with commit conventions such as `[FIX]`, `[NEW]` or version bumps.
-- The same version detection suggests branch names like `dev-release/1.4.0` when you create a branch.
+- The version comes from your project's own manifest, whatever the language, and the title updates when you bump it.
+- The same version detection suggests branch names like `dev-release/1.4.0` when you create a branch, and git-flow release names.
 
-**Where to find it:** The *Commit* box in the right panel; edit the list in **Edit → Commit Messages…**.
+**Where to find it:** The *Commit* box in the right panel; edit the list in **Edit → Commit Messages…**; choose the version's source in **Repository → Version Source…**.
 
 ### 14. Review before commit (merge & cherry-pick)
 
