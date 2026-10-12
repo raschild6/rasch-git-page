@@ -270,11 +270,13 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 - **Hunks:** in the diff, stage or **discard** a single hunk of an unstaged file (discard asks first, reverts only that hunk and can be undone), or unstage a single hunk of a staged one.
 - **Fallbacks:** when Git's standard patch application can't handle a hunk (for example, new files or unusual line endings), the app falls back to its own blob-level staging so the action still works.
 - **Views:** changed files can be shown as a flat list or as a folder tree, remembered per repository for the unstaged and staged lists.
+- **Moved and renamed files:** a file you move to another folder or rename (in the file manager, your editor or with `git mv`) is one row, *R*, with where it came from next to its name in grey (`← src/old/`), in both lists: before staging too, where Git itself still sees a deleted file and a new one. Its diff starts with "Moved src/old/ → src/new/" and shows only what changed inside the file, or "No content changes" for a plain move. Stage, unstage, discard and stash take both sides of the move together; the commit details show renames the same way. Files with accented or non-Latin names work everywhere too.
 
 **Why it's different:**
 - Partial staging is often missing or fragile in simpler GUIs; here it is built to work on edge cases.
 - Stashing just a few files, even across the staged and unstaged lists, without disturbing the rest — and the stash holds only those files (Git's own partial stash also records everything else that was staged).
 - Every discard can be undone (see [Undo / Redo](#13-undo--redo)).
+- Most Git GUIs show a moved file as a deletion plus a new file until both are staged, and a staged move as a whole new file; here it is one row with only its real changes, before and after staging.
 
 **Where to find it:** The right panel (*Unstaged* / *Staged* files) and the diff viewer.
 
