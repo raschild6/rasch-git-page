@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Features — Rasch-Git</title>
   <meta name="description" content="Every Rasch-Git feature in detail: async GUI, undo / redo, interactive rebase, split view, worktrees, blame, pull requests, CI status, signed commits, Git LFS and more.">
   <meta name="theme-color" content="#1a1b2e">
@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261008">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261012">
 </head>
 <body>
   <header class="navbar">
@@ -1173,41 +1173,41 @@
             <table class="compare">
               <thead><tr><th scope="col">Capability</th><th scope="col">Typical Git GUIs</th><th scope="col">Rasch-Git</th></tr></thead>
               <tbody>
-              <tr><th scope="row">UI during long operations</th><td>Often blocked or modal</td><td>Always responsive (background workers, per-repo queues)</td></tr>
-              <tr><th scope="row">Cancel a running operation</th><td>Rare</td><td>Cancel button kills the Git process</td></tr>
-              <tr><th scope="row">Progress</th><td>Spinner or indeterminate bar</td><td>Git's real progress percentage</td></tr>
-              <tr><th scope="row">Large histories</th><td>Slow to load and scroll</td><td>Virtualized graph, paged loading</td></tr>
-              <tr><th scope="row">Undo</th><td>None, or "undo last commit"</td><td>Undo / redo for most local operations, with safety checks</td></tr>
-              <tr><th scope="row">Rewriting commits</th><td>Terminal <code>git rebase -i</code>, or not available</td><td>Drag &amp; drop editor: reword / squash / fixup / drop / edit, one-step undo</td></tr>
-              <tr><th scope="row">Diff layouts</th><td>One (sometimes two)</td><td>Hunk, Inline and Split, with syntax highlighting, minimap, search — plus side-by-side, swipe, onion-skin and difference views for images</td></tr>
-              <tr><th scope="row">Conflicts</th><td>External merge tool or per-file choice</td><td>Built-in three-pane editor, line and hunk level</td></tr>
-              <tr><th scope="row">Merge / cherry-pick</th><td>Commit immediately</td><td>Staged for review first</td></tr>
-              <tr><th scope="row">Branch switching with local changes</th><td>Manual stash, or refusal</td><td>Automatic stash and restore</td></tr>
-              <tr><th scope="row">Many branches / repos</th><td>One at a time</td><td>Bulk actions with a per-item report</td></tr>
-              <tr><th scope="row">Many repositories</th><td>Window per repo or bookmark list</td><td>Tabs with coloured, collapsible groups</td></tr>
-              <tr><th scope="row">Several repositories at once</th><td>Several windows</td><td>Split view: up to four live panes side by side, layout remembered</td></tr>
-              <tr><th scope="row">Working on two branches at once</th><td>Stash, switch, switch back</td><td>Worktrees: each branch in its own folder and tab, created from the branch menu</td></tr>
-              <tr><th scope="row">Git-flow</th><td>Needs the git-flow extension; finish runs every step at once</td><td>Built in, no extension; finish shows each step and lets you review every merge, resumable</td></tr>
-              <tr><th scope="row">Large files (Git LFS)</th><td>Pointer text in diffs; long checkouts with no progress</td><td>LFS files recognised with their sizes, track from the file menu, download progress, visual compare for images</td></tr>
-              <tr><th scope="row">Submodules</th><td>Listed, updated through the terminal; pointer changes shown as raw text</td><td>State at a glance, update / open as tab / add / remove, readable "moved by N commits" diff</td></tr>
-              <tr><th scope="row">Terminal</th><td>External</td><td>Built in, one per repository tab</td></tr>
-              <tr><th scope="row">Toolbar</th><td>Fixed</td><td>Custom buttons (Git, app, URL, shell)</td></tr>
-              <tr><th scope="row">Themes</th><td>Light / dark</td><td>Built-in plus custom themes from 5 colours</td></tr>
-              <tr><th scope="row">Commit messages</th><td>Empty box</td><td>Templates with <code>{version}</code> / <code>{branch}</code> / <code>{issue}</code></td></tr>
-              <tr><th scope="row">Debugging</th><td>Short error text</td><td>Activity log plus exportable raw command logs</td></tr>
-              <tr><th scope="row">Searching the history</th><td>Commit messages only; file contents need the terminal</td><td>File names, text in every branch, and when a line of code was added or removed</td></tr>
-              <tr><th scope="row">Who changed a line</th><td>Separate blame window, if any</td><td>Blame in the main view, linked to the graph; file history across renames</td></tr>
-              <tr><th scope="row">Pull requests</th><td>Open the website</td><td>Create, review, check out and merge in the app (GitHub, GitLab); browser fallback for every host</td></tr>
-              <tr><th scope="row">Cloning</th><td>Paste a URL</td><td>Pick from your GitHub / GitLab repositories (yours, organisations, starred, search), HTTPS or SSH, branch / shallow / submodule options; fork and clone in one step with <code>upstream</code> set up</td></tr>
-              <tr><th scope="row">CI results</th><td>Open the website</td><td>Check results on branches and commits, notified when your push's checks finish, re-run failed jobs (GitHub, GitLab)</td></tr>
-              <tr><th scope="row">Issues</th><td>Not shown, or open the website</td><td>Your issues in the app, branch from an issue in one click, linked issue shown on the branch, <code>#123</code> links in commits (GitHub, GitLab)</td></tr>
-              <tr><th scope="row">Signed commits</th><td>Configured in a terminal; a failing passphrase prompt shows up at commit time</td><td>SSH or GPG signing set up, tested and added to GitHub from one page; each commit shows who signed it</td></tr>
-              <tr><th scope="row">Failed HTTPS / SSH authentication</th><td>"Authentication failed", fix it outside the app</td><td>Explains why, offers sign-in / token / SSH key / HTTPS↔SSH switch, then retries</td></tr>
-              <tr><th scope="row">Scheduled work</th><td>None beyond a periodic fetch</td><td>Scheduled fetch, pull, stash + pull + unstash, push, maintenance and custom commands; triggers, targets and an active window; a repo in conflict pauses until resolved <em>(experimental)</em></td></tr>
-              <tr><th scope="row">Hiding repositories</th><td>All tabs shown, or a flat list</td><td>Two-row tab bar: collapsible groups, and hide single tabs while their repos stay open</td></tr>
-              <tr><th scope="row">Opening many repositories</th><td>File dialog or wizard, one at a time</td><td>Drag &amp; drop several folders at once</td></tr>
-              <tr><th scope="row">Opening files in other programs</th><td>System default only, often just the working copy</td><td>Program per file extension; any version from any commit or stash</td></tr>
-              <tr><th scope="row">Getting started</th><td>Documentation, or nothing</td><td>Interactive tour that highlights each feature in the real interface</td></tr>
+              <tr><th scope="row">UI during long operations</th><td data-label="Typical Git GUIs">Often blocked or modal</td><td data-label="Rasch-Git">Always responsive (background workers, per-repo queues)</td></tr>
+              <tr><th scope="row">Cancel a running operation</th><td data-label="Typical Git GUIs">Rare</td><td data-label="Rasch-Git">Cancel button kills the Git process</td></tr>
+              <tr><th scope="row">Progress</th><td data-label="Typical Git GUIs">Spinner or indeterminate bar</td><td data-label="Rasch-Git">Git's real progress percentage</td></tr>
+              <tr><th scope="row">Large histories</th><td data-label="Typical Git GUIs">Slow to load and scroll</td><td data-label="Rasch-Git">Virtualized graph, paged loading</td></tr>
+              <tr><th scope="row">Undo</th><td data-label="Typical Git GUIs">None, or "undo last commit"</td><td data-label="Rasch-Git">Undo / redo for most local operations, with safety checks</td></tr>
+              <tr><th scope="row">Rewriting commits</th><td data-label="Typical Git GUIs">Terminal <code>git rebase -i</code>, or not available</td><td data-label="Rasch-Git">Drag &amp; drop editor: reword / squash / fixup / drop / edit, one-step undo</td></tr>
+              <tr><th scope="row">Diff layouts</th><td data-label="Typical Git GUIs">One (sometimes two)</td><td data-label="Rasch-Git">Hunk, Inline and Split, with syntax highlighting, minimap, search — plus side-by-side, swipe, onion-skin and difference views for images</td></tr>
+              <tr><th scope="row">Conflicts</th><td data-label="Typical Git GUIs">External merge tool or per-file choice</td><td data-label="Rasch-Git">Built-in three-pane editor, line and hunk level</td></tr>
+              <tr><th scope="row">Merge / cherry-pick</th><td data-label="Typical Git GUIs">Commit immediately</td><td data-label="Rasch-Git">Staged for review first</td></tr>
+              <tr><th scope="row">Branch switching with local changes</th><td data-label="Typical Git GUIs">Manual stash, or refusal</td><td data-label="Rasch-Git">Automatic stash and restore</td></tr>
+              <tr><th scope="row">Many branches / repos</th><td data-label="Typical Git GUIs">One at a time</td><td data-label="Rasch-Git">Bulk actions with a per-item report</td></tr>
+              <tr><th scope="row">Many repositories</th><td data-label="Typical Git GUIs">Window per repo or bookmark list</td><td data-label="Rasch-Git">Tabs with coloured, collapsible groups</td></tr>
+              <tr><th scope="row">Several repositories at once</th><td data-label="Typical Git GUIs">Several windows</td><td data-label="Rasch-Git">Split view: up to four live panes side by side, layout remembered</td></tr>
+              <tr><th scope="row">Working on two branches at once</th><td data-label="Typical Git GUIs">Stash, switch, switch back</td><td data-label="Rasch-Git">Worktrees: each branch in its own folder and tab, created from the branch menu</td></tr>
+              <tr><th scope="row">Git-flow</th><td data-label="Typical Git GUIs">Needs the git-flow extension; finish runs every step at once</td><td data-label="Rasch-Git">Built in, no extension; finish shows each step and lets you review every merge, resumable</td></tr>
+              <tr><th scope="row">Large files (Git LFS)</th><td data-label="Typical Git GUIs">Pointer text in diffs; long checkouts with no progress</td><td data-label="Rasch-Git">LFS files recognised with their sizes, track from the file menu, download progress, visual compare for images</td></tr>
+              <tr><th scope="row">Submodules</th><td data-label="Typical Git GUIs">Listed, updated through the terminal; pointer changes shown as raw text</td><td data-label="Rasch-Git">State at a glance, update / open as tab / add / remove, readable "moved by N commits" diff</td></tr>
+              <tr><th scope="row">Terminal</th><td data-label="Typical Git GUIs">External</td><td data-label="Rasch-Git">Built in, one per repository tab</td></tr>
+              <tr><th scope="row">Toolbar</th><td data-label="Typical Git GUIs">Fixed</td><td data-label="Rasch-Git">Custom buttons (Git, app, URL, shell)</td></tr>
+              <tr><th scope="row">Themes</th><td data-label="Typical Git GUIs">Light / dark</td><td data-label="Rasch-Git">Built-in plus custom themes from 5 colours</td></tr>
+              <tr><th scope="row">Commit messages</th><td data-label="Typical Git GUIs">Empty box</td><td data-label="Rasch-Git">Templates with <code>{version}</code> / <code>{branch}</code> / <code>{issue}</code></td></tr>
+              <tr><th scope="row">Debugging</th><td data-label="Typical Git GUIs">Short error text</td><td data-label="Rasch-Git">Activity log plus exportable raw command logs</td></tr>
+              <tr><th scope="row">Searching the history</th><td data-label="Typical Git GUIs">Commit messages only; file contents need the terminal</td><td data-label="Rasch-Git">File names, text in every branch, and when a line of code was added or removed</td></tr>
+              <tr><th scope="row">Who changed a line</th><td data-label="Typical Git GUIs">Separate blame window, if any</td><td data-label="Rasch-Git">Blame in the main view, linked to the graph; file history across renames</td></tr>
+              <tr><th scope="row">Pull requests</th><td data-label="Typical Git GUIs">Open the website</td><td data-label="Rasch-Git">Create, review, check out and merge in the app (GitHub, GitLab); browser fallback for every host</td></tr>
+              <tr><th scope="row">Cloning</th><td data-label="Typical Git GUIs">Paste a URL</td><td data-label="Rasch-Git">Pick from your GitHub / GitLab repositories (yours, organisations, starred, search), HTTPS or SSH, branch / shallow / submodule options; fork and clone in one step with <code>upstream</code> set up</td></tr>
+              <tr><th scope="row">CI results</th><td data-label="Typical Git GUIs">Open the website</td><td data-label="Rasch-Git">Check results on branches and commits, notified when your push's checks finish, re-run failed jobs (GitHub, GitLab)</td></tr>
+              <tr><th scope="row">Issues</th><td data-label="Typical Git GUIs">Not shown, or open the website</td><td data-label="Rasch-Git">Your issues in the app, branch from an issue in one click, linked issue shown on the branch, <code>#123</code> links in commits (GitHub, GitLab)</td></tr>
+              <tr><th scope="row">Signed commits</th><td data-label="Typical Git GUIs">Configured in a terminal; a failing passphrase prompt shows up at commit time</td><td data-label="Rasch-Git">SSH or GPG signing set up, tested and added to GitHub from one page; each commit shows who signed it</td></tr>
+              <tr><th scope="row">Failed HTTPS / SSH authentication</th><td data-label="Typical Git GUIs">"Authentication failed", fix it outside the app</td><td data-label="Rasch-Git">Explains why, offers sign-in / token / SSH key / HTTPS↔SSH switch, then retries</td></tr>
+              <tr><th scope="row">Scheduled work</th><td data-label="Typical Git GUIs">None beyond a periodic fetch</td><td data-label="Rasch-Git">Scheduled fetch, pull, stash + pull + unstash, push, maintenance and custom commands; triggers, targets and an active window; a repo in conflict pauses until resolved <em>(experimental)</em></td></tr>
+              <tr><th scope="row">Hiding repositories</th><td data-label="Typical Git GUIs">All tabs shown, or a flat list</td><td data-label="Rasch-Git">Two-row tab bar: collapsible groups, and hide single tabs while their repos stay open</td></tr>
+              <tr><th scope="row">Opening many repositories</th><td data-label="Typical Git GUIs">File dialog or wizard, one at a time</td><td data-label="Rasch-Git">Drag &amp; drop several folders at once</td></tr>
+              <tr><th scope="row">Opening files in other programs</th><td data-label="Typical Git GUIs">System default only, often just the working copy</td><td data-label="Rasch-Git">Program per file extension; any version from any commit or stash</td></tr>
+              <tr><th scope="row">Getting started</th><td data-label="Typical Git GUIs">Documentation, or nothing</td><td data-label="Rasch-Git">Interactive tour that highlights each feature in the real interface</td></tr>
               </tbody>
             </table>
           </div>
@@ -1246,7 +1246,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=20261008"></script>
-  <script src="assets/js/chapters.js?v=20261008"></script>
+  <script src="assets/js/main.js?v=20261012"></script>
+  <script src="assets/js/chapters.js?v=20261012"></script>
 </body>
 </html>

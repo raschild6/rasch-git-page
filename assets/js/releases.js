@@ -165,6 +165,7 @@
         var active = i === index;
         btn.classList.toggle("active", active);
         btn.setAttribute("aria-current", active ? "true" : "false");
+        if (active) window.RaschGit.revealChip(btn, updateHash);
       });
       renderDetail(detail, releases[index], index === 0);
       if (updateHash && history.replaceState) {
