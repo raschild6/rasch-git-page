@@ -706,7 +706,7 @@
                 <h4>Why it's different</h4>
                 <ul><li>Most GUIs send you to an external terminal and you have to <code>cd</code> to the repository yourself.</li><li>Here the shell is part of the tab, one per repository, and switches with it.</li></ul>
               </div>
-              <p class="feature-where"><span>Where to find it</span> The bottom panel of each repository tab (<em>Terminal</em> / <em>Activity Log</em>).</p>
+              <p class="feature-where"><span>Where to find it</span> The bottom panel of each repository tab (<em>Terminal</em> / <em>Activity Log</em>). Close the tabs you don't use with their <strong>×</strong>, reopen them from the <strong>+</strong> at the end of the tab row, and drag them into the order you like; both are kept across sessions.</p>
             </article>
             <article class="feature-detail" id="custom-toolbar-buttons">
               <div class="feature-detail-head">
@@ -904,7 +904,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p>On first launch a tour highlights each feature directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from <strong>Help → Feature Tour</strong>. After an update, a shorter <strong>What's New</strong> tour shows only the features added since the version you used before (once; <strong>Help → What's New</strong> replays it, and <em>Don't show after updates</em> turns it off); the full tour stays the same.</p>
+                <p>On first launch a short tour (about 20 steps) moves across the window area by area — toolbar, tabs, side panel, graph, changes panel, bottom panel, then the settings menus — and highlights each part directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from <strong>Help → Feature Tour</strong>. After an update, a shorter <strong>What's New</strong> tour shows only the features added since the version you used before (once; <strong>Help → What's New</strong> replays it, and <em>Don't show after updates</em> turns it off); the full tour stays the same.</p>
               </div>
               <div class="shots shots-grid">
                 <figure class="shot">
@@ -1027,7 +1027,7 @@
                 <h4>Why it's different</h4>
                 <ul><li>Typical Git GUIs leave issues to the website: you copy the number, invent a branch name and type the reference by hand.</li><li>Here the issue, the branch name, the commit message and the pull request are connected — and the link lives in the repository itself, so it survives restarts.</li></ul>
               </div>
-              <p class="feature-where"><span>Where to find it</span> <strong>Repository → Issues</strong> (the <strong>Issues</strong> tab of the bottom panel); the issue chip at the top of the commit box; <code>#123</code> links in a commit's details. GitHub and GitLab repositories, with the account from <strong>Edit → Accounts &amp; SSH Keys</strong> (public repositories show <em>All open</em> without one). Step by step: <a href="guides.html#pr-from-issue">Start from an issue</a>.</p>
+              <p class="feature-where"><span>Where to find it</span> The <strong>Issues</strong> tab of the bottom panel (closed? the <strong>+</strong> at the end of the tab row reopens it); the issue chip at the top of the commit box; <code>#123</code> links in a commit's details. GitHub and GitLab repositories, with the account from <strong>Edit → Accounts &amp; SSH Keys</strong> (public repositories show <em>All open</em> without one). Step by step: <a href="guides.html#pr-from-issue">Start from an issue</a>.</p>
             </article>
             <div class="chapter-footer"><a href="#workspace">&larr; Your Workspace</a><a href="#trust">Trust &rarr;</a></div>
           </section>
@@ -1108,7 +1108,7 @@
                 </div>
               </div>
               <div class="feature-body">
-                <p><strong>Sign in to GitHub</strong> opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows, the Secret Service on Linux). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click, copy its URL in either form, or open it on the website. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries. You don't have to wait for a failed push to find out a sign-in stopped working: the app checks your saved tokens at startup, and a revoked or expired one turns the account badge in the status bar red with a cross ("sign-in expired") and is flagged in Accounts &amp; SSH Keys, with <strong>Sign In Again</strong> one click away; a token about to expire gets an amber warning in its last 12 hours.</p>
+                <p><strong>Sign in to GitHub</strong> opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows, the Secret Service on Linux). It works with GitHub.com and with a company GitHub Enterprise Server. Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click, copy its URL in either form, or open it on the website. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries. You don't have to wait for a failed push to find out a sign-in stopped working: the app checks your saved tokens at startup, and a revoked or expired one turns the account badge in the status bar red with a cross ("sign-in expired") and is flagged in Accounts &amp; SSH Keys, with <strong>Sign In Again</strong> one click away; a token about to expire gets an amber warning in its last 12 hours.</p>
               </div>
               <div class="shots shots-grid">
                 <figure class="shot">
