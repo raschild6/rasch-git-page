@@ -115,21 +115,40 @@
     return releasesPromise;
   }
 
+  // Width below which the navbar collapses into the hamburger menu (style.css).
+  var NAV_MOBILE_QUERY = "(max-width: 860px)";
+
   function initNav() {
     var toggle = document.querySelector(".nav-toggle");
     var links = document.getElementById("nav-links");
+    var navbar = document.querySelector(".navbar");
     if (!toggle || !links) return;
-    toggle.addEventListener("click", function () {
-      var open = links.classList.toggle("open");
+    var setOpen = function (open) {
+      links.classList.toggle("open", open);
+      document.documentElement.classList.toggle("nav-open", open);
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    toggle.addEventListener("click", function () {
+      setOpen(!links.classList.contains("open"));
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && links.classList.contains("open")) {
-        links.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
+        setOpen(false);
         toggle.focus();
       }
     });
+    // Close on a tap outside the navbar and on any link in the menu (a link
+    // to the same page, e.g. Features → Integrations, wouldn't reload it).
+    document.addEventListener("click", function (e) {
+      if (links.classList.contains("open") && navbar && !navbar.contains(e.target)) setOpen(false);
+    });
+    links.addEventListener("click", function (e) {
+      if (e.target.closest && e.target.closest("a")) setOpen(false);
+    });
+    var mq = window.matchMedia(NAV_MOBILE_QUERY);
+    var onChange = function () { if (!mq.matches) setOpen(false); };
+    if (mq.addEventListener) mq.addEventListener("change", onChange);
+    else if (mq.addListener) mq.addListener(onChange);
   }
 
   // Navbar dropdown (Features / How-to Guides). Opens on hover and keyboard
@@ -176,8 +195,36 @@
     }, viaApi);
   }
 
+  // Chip rows (sidebar on phones / tablets): scrolls the row sideways so the
+  // active chip is centred. No-op when the row doesn't scroll (desktop sidebar).
+  function revealChip(chip, smooth) {
+    var row = chip && chip.closest(".chapter-nav, .release-list");
+    if (!row || row.scrollWidth <= row.clientWidth) return;
+    var rowBox = row.getBoundingClientRect();
+    var chipBox = chip.getBoundingClientRect();
+    var left = row.scrollLeft + chipBox.left - rowBox.left - (rowBox.width - chipBox.width) / 2;
+    row.scrollTo({ left: Math.max(0, left), behavior: smooth ? "smooth" : "auto" });
+  }
+
+  // Fades the edge of a table that has more columns to scroll to.
+  function initTableFades() {
+    document.querySelectorAll(".table-wrap").forEach(function (wrap) {
+      var update = function () {
+        var max = wrap.scrollWidth - wrap.clientWidth;
+        wrap.classList.toggle("fade-left", max > 1 && wrap.scrollLeft > 1);
+        wrap.classList.toggle("fade-right", max > 1 && wrap.scrollLeft < max - 1);
+      };
+      wrap.addEventListener("scroll", update, { passive: true });
+      // Also fires when a hidden chapter is shown, not only on window resize.
+      if (window.ResizeObserver) new ResizeObserver(update).observe(wrap);
+      else window.addEventListener("resize", update);
+      update();
+    });
+  }
+
   window.RaschGit = {
     REPO: REPO,
+    revealChip: revealChip,
     RELEASES_URL: RELEASES_URL,
     loadReleases: loadReleases,
     resolveDownloads: resolveDownloads
@@ -187,5 +234,6 @@
     initNav();
     initDropdowns();
     initHeroDownloads();
+    initTableFades();
   });
 })();

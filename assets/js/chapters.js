@@ -63,7 +63,10 @@
       links.forEach(function (a) {
         var active = a.getAttribute("href") === "#" + id;
         a.classList.toggle("active", active);
-        if (active) a.setAttribute("aria-current", "true");
+        if (active) {
+          a.setAttribute("aria-current", "true");
+          if (window.RaschGit) window.RaschGit.revealChip(a, fromClick);
+        }
         else a.removeAttribute("aria-current");
       });
       if (res.target) res.target.scrollIntoView({ behavior: fromClick ? "smooth" : "instant", block: "start" });
