@@ -1,5 +1,54 @@
 [
   {
+    "version": "1.0.2",
+    "tag": "v1.0.2",
+    "date": "2026-10-12",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.2/RaschildGitManager-1.0.2-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.2/RaschildGitManager-1.0.2-macos-arm64.dmg",
+      "linux": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.2/RaschildGitManager-1.0.2-linux-x86_64.AppImage",
+      "linux-deb": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.2/raschild-git-manager_1.0.2-1_amd64.deb",
+      "linux-rpm": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.2/raschild-git-manager-1.0.2-1.x86_64.rpm"
+    },
+    "changelog": {
+      "New Features": [
+        "When a saved sign-in stops working (token revoked or expired) the account badge in the status bar turns red with a cross and Accounts & SSH Keys says so, with a Sign In Again button; tokens about to expire get an amber warning in their last 12 hours",
+        "Repository → Version Source… lets you choose where a repository's version comes from: a file and the key to read (JSON, TOML, YAML, XML, INI, regex or plain text) or a tag pattern, with a Test button and Reset to Auto-Detect",
+        "Create Branch: choose how the suggested name is built for each repository (for example release/{version} or release/{version}-{date}) instead of always dev-release/<version>",
+        "Edit Here: fix a file without leaving the app. Right-click a changed file, or press Edit in the diff, and the diff turns into an editor at the line you were looking at; save with Ctrl+S and the changes and the diff update"
+      ],
+      "Bug Fixes": [
+        "Linux: error and information messages near the toolbar now appear on Wayland desktops too",
+        "The pre-filled commit title now updates when the project's version changes, unless you have typed your own title",
+        "The Graph column of the commit history can now be resized by dragging its border, like the other columns; lanes that don't fit are cut at the edge",
+        "Resolving a conflict in the built-in conflict editor no longer changes the file's line endings (Windows) or damages accented characters in non-UTF-8 files",
+        "A file moved to another folder or renamed is now one row with where it came from, in Unstaged as well as in Staged (before, a deletion plus a new file), and its diff shows the move and only the real changes instead of an empty page; Stage, Unstage, Discard and Stash take both sides of the move",
+        "Commit details show a renamed file's real changes instead of the whole file as new",
+        "Files with accented or non-Latin characters in their names (e.g. città.txt) can be diffed, staged and edited again",
+        "Windows: the app window and its taskbar button show the app's own icon instead of the generic one"
+      ],
+      "Improvements": [
+        "Create Branch, Create Tag, Fork and Git-flow Finish now push through a \"… & Push\" button instead of a checkbox (Create Branch had both)",
+        "Consistent button colours: each dialog has at most one green button (its main action), and delete, remove and discard buttons are red",
+        "The button on a staged hunk is now called Unstage Hunk and is no longer red, since it does not throw anything away",
+        "Confirmations before deleting, discarding or aborting show a red button named after the action instead of Yes / No, and Cancel is the default",
+        "GitHub sign-ins whose token expires after 8 hours (the new GitHub default) now renew themselves in the background: no more signing in again every day (sign in once more after updating)",
+        "When Git refuses a commit or merge because no name and email are set, the app offers to set them (suggesting the name of your account) instead of only showing the error",
+        "The project's version is now found for about 50 kinds of projects (Node.js, Python, Rust, Java, .NET, Go, Helm charts, Flutter, CMake and many more), reading the right field of each; without a version file it comes from the current release branch or the latest version tag, never from commit messages",
+        "Commit history column widths you drag are remembered for each repository after a restart; double-click a column border to fit them again",
+        "Syntax highlighting now also covers Markdown, TOML, INI and .env files, Dockerfiles, Makefiles, C#, Kotlin and Swift"
+      ]
+    },
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/64dd62344b4b0052a731c8eb7ff1c21ab5b212aa0a5401ff1320f12c9daaf80d",
+      "macos": "https://www.virustotal.com/gui/file/ea43570a9156414a9db458e7ee5b14505f7a9ab6af15a9a405dbd3a50a35826d",
+      "linux": "https://www.virustotal.com/gui/file/5cedadc003e4dad81199301488e7facb9793063d227c83db2b37d2bbb4123659",
+      "linux-deb": "https://www.virustotal.com/gui/file/d460213468c9a9f2ae0bd9bc060181eb5bd9c8264af695efe8f4df1d795749a3",
+      "linux-rpm": "https://www.virustotal.com/gui/file/6440e401c80b07d788e167f915a8e330cb17df778704238ce58b7080b5fa7908"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v1.0.2"
+  },
+  {
     "version": "1.0.1",
     "tag": "v1.0.1",
     "date": "2026-10-09",
