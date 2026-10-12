@@ -427,7 +427,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 - Many clients only open repositories through a file dialog or an "add repository" wizard, one at a time.
 - Here, getting ten repositories into the app is one drag.
 
-**Where to find it:** Anywhere on the main window; also **File → Open** (**Ctrl+O**). The feature tour shows it as its second step.
+**Where to find it:** Anywhere on the main window; also **File → Open** (**Ctrl+O**). The feature tour mentions it in its second step.
 
 ### 5. Tab grouping
 
@@ -516,7 +516,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 - Most GUIs send you to an external terminal and you have to `cd` to the repository yourself.
 - Here the shell is part of the tab, one per repository, and switches with it.
 
-**Where to find it:** The bottom panel of each repository tab (*Terminal* / *Activity Log*).
+**Where to find it:** The bottom panel of each repository tab (*Terminal* / *Activity Log*). Close the tabs you don't use with their **×**, reopen them from the **+** at the end of the tab row, and drag them into the order you like; both are kept across sessions.
 
 ### 9. Customizable toolbar buttons
 
@@ -633,7 +633,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 - Typical Git GUIs leave issues to the website: you copy the number, invent a branch name and type the reference by hand.
 - Here the issue, the branch name, the commit message and the pull request are connected — and the link lives in the repository itself, so it survives restarts.
 
-**Where to find it:** **Repository → Issues** (the **Issues** tab of the bottom panel); the issue chip at the top of the commit box; `#123` links in a commit's details. GitHub and GitLab repositories, with the account from **Edit → Accounts & SSH Keys** (public repositories show *All open* without one).
+**Where to find it:** The **Issues** tab of the bottom panel (closed? the **+** at the end of the tab row reopens it); the issue chip at the top of the commit box; `#123` links in a commit's details. GitHub and GitLab repositories, with the account from **Edit → Accounts & SSH Keys** (public repositories show *All open* without one).
 
 ---
 
@@ -643,7 +643,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** Sign in to GitHub once — or add a token or an SSH key — and push just works.
 
-**What it does:** **Sign in to GitHub** opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows, the Secret Service — GNOME Keyring or KWallet — on Linux). Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click, copy its URL in either form, or open it on the website. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries. You don't have to wait for a failed push to find out a sign-in stopped working: the app checks your saved tokens at startup, and a revoked or expired one turns the account badge in the status bar red with a cross ("sign-in expired") and is flagged in Accounts & SSH Keys, with **Sign In Again** one click away; a token about to expire gets an amber warning in its last 12 hours.
+**What it does:** **Sign in to GitHub** opens the browser, you confirm a short code, and the app stores the token in the system keychain (Keychain on macOS, Credential Manager on Windows, the Secret Service — GNOME Keyring or KWallet — on Linux). It works with GitHub.com and with a company GitHub Enterprise Server. Tokens for GitLab, Bitbucket or your own server can be added by hand. From then on every HTTPS fetch, pull, push and clone to that host authenticates on its own. For SSH users the app lists your keys with their fingerprints, generates new ones, copies the public key or adds it to GitHub directly, and lets you choose which key each remote uses. Right-click a remote to switch it between HTTPS and SSH in one click, copy its URL in either form, or open it on the website. When a push is refused, the app says why (no credentials, expired token, missing permission, unknown key or host) and offers the fix, then retries. You don't have to wait for a failed push to find out a sign-in stopped working: the app checks your saved tokens at startup, and a revoked or expired one turns the account badge in the status bar red with a cross ("sign-in expired") and is flagged in Accounts & SSH Keys, with **Sign In Again** one click away; a token about to expire gets an amber warning in its last 12 hours.
 
 **Why it's different:**
 - Many Git GUIs leave a failed HTTPS push at "authentication failed" and send you to a terminal or a credential helper.
@@ -713,7 +713,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** A short, skippable tour points at each feature in the real app.
 
-**What it does:** On first launch a tour highlights each feature directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from **Help → Feature Tour**. After an update, a shorter **What's New** tour shows only the features added since the version you used before (once; **Help → What's New** replays it, and *Don't show after updates* turns it off); the full tour stays the same.
+**What it does:** On first launch a short tour (about 20 steps) moves across the window area by area — toolbar, tabs, side panel, graph, changes panel, bottom panel, then the settings menus — and highlights each part directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from **Help → Feature Tour**. After an update, a shorter **What's New** tour shows only the features added since the version you used before (once; **Help → What's New** replays it, and *Don't show after updates* turns it off); the full tour stays the same.
 
 **Why it's different:**
 - It points at the live interface rather than at screenshots, so it always matches your theme and layout.
