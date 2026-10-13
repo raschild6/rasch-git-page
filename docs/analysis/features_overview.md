@@ -106,7 +106,8 @@ The graph is also where you act on history, with **right-click menus**:
 - **Branch and tag labels:** check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete).
   - **Fast-forward in both directions:** on `main`, a right-click on `dev` offers *Fast-forward 'main' to 'dev'* and *Fast-forward 'dev' to 'main'*: the second moves `dev` up to `main` without leaving `main` (only offered when it really is a fast-forward).
   - **Reset Soft / Mixed / Hard to here** on another branch's label or on a remote label (e.g. `origin/feature`) moves the branch you are on to it: useful to make a local branch match its remote.
-- **A commit's coloured dot:** cherry-pick, revert, **Reset Soft / Mixed / Hard to here** (soft keeps the differences staged, mixed keeps them unstaged, hard discards them after a confirmation; only when a branch is checked out, and undoable), create a branch or tag there, copy the SHA.
+- **A commit (its row or its coloured dot):** cherry-pick, revert, **Reset Soft / Mixed / Hard to here** (soft keeps the differences staged, mixed keeps them unstaged, hard discards them after a confirmation; only when a branch is checked out, and undoable), create a branch or tag there, copy the SHA.
+  - **Several commits at once:** **Ctrl+click** (Cmd+click on macOS) adds or removes a commit, **Shift+click** or **Shift+↑ / ↓** selects a range. Right-click one of them → **Cherry-pick N Commits (No Commit)** applies them all, oldest first, in one go; or copy their SHAs.
 - **A stash node:** apply, pop or drop it.
 
 **Why it's different:**
@@ -298,13 +299,13 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** Merges and cherry-picks are staged for review — never committed behind your back.
 
-**What it does:** Merging a branch or cherry-picking a commit applies the changes to the staging area with the commit message pre-filled, and stops there. You review the result, adjust it if needed, and press **Commit** when you're happy; **Abort Merge** discards it. A merge that would change nothing ("already up to date") is detected and reported instead of producing an empty merge commit.
+**What it does:** Merging a branch or cherry-picking a commit applies the changes to the staging area with the commit message pre-filled, and stops there. You review the result, adjust it if needed, and press **Commit** when you're happy; **Abort Merge** discards it. A merge that would change nothing ("already up to date") is detected and reported instead of producing an empty merge commit. Several commits can be cherry-picked together (select them with Ctrl+click or Shift+click): they are applied oldest first and their changes add up in the changes panel, still without a commit. If local changes would get in the way, the app says which files before touching anything; if a commit conflicts, the conflict editor opens and **Continue Cherry-pick** goes on with the commits still to apply (the panel says which commit stopped and how many are left), while **Abort** puts back exactly what was there before, including changes you had already staged.
 
 **Why it's different:**
 - Most GUIs merge and cherry-pick straight into a commit, and you notice problems afterwards.
 - Here nothing lands in history until you have looked at it.
 
-**Where to find it:** Right-click a branch → *Merge*; right-click a commit → *Cherry-pick*.
+**Where to find it:** Right-click a branch → *Merge*; right-click a commit → *Cherry-pick*; select several commits, then right-click one → *Cherry-pick N Commits (No Commit)*.
 
 ---
 
@@ -737,6 +738,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 | Diff layouts | One (sometimes two) | Hunk, Inline and Split, with syntax highlighting, minimap, search — plus side-by-side, swipe, onion-skin and difference views for images |
 | Conflicts | External merge tool or per-file choice | Built-in three-pane editor, line and hunk level |
 | Merge / cherry-pick | Commit immediately | Staged for review first |
+| Cherry-pick several commits | One by one, or committed each time | Select them in the graph, applied together, nothing committed |
 | Branch switching with local changes | Manual stash, or refusal | Automatic stash and restore |
 | Many branches / repos | One at a time | Bulk actions with a per-item report |
 | Many repositories | Window per repo or bookmark list | Tabs with coloured, collapsible groups |
