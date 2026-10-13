@@ -100,19 +100,21 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 
 **In one line:** Smooth scrolling through huge histories, with your stashes and uncommitted work right in the graph.
 
-**What it does:** The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. With the graph focused, **↑ / ↓** step from commit to commit and the view follows.
+**What it does:** The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both (↑ / ↓ / ✓), in the colour of its line. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. With the graph focused, **↑ / ↓** step from commit to commit and the view follows.
 
 The graph is also where you act on history, with **right-click menus**:
-- **Branch and tag labels:** check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete).
+- **Branch and tag labels:** check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete; a tag that is only on the remote: fetch it, or delete it there).
   - **Fast-forward in both directions:** on `main`, a right-click on `dev` offers *Fast-forward 'main' to 'dev'* and *Fast-forward 'dev' to 'main'*: the second moves `dev` up to `main` without leaving `main` (only offered when it really is a fast-forward).
   - **Reset Soft / Mixed / Hard to here** on another branch's label or on a remote label (e.g. `origin/feature`) moves the branch you are on to it: useful to make a local branch match its remote.
 - **A commit's coloured dot:** cherry-pick, revert, **Reset Soft / Mixed / Hard to here** (soft keeps the differences staged, mixed keeps them unstaged, hard discards them after a confirmation; only when a branch is checked out, and undoable), create a branch or tag there, copy the SHA.
+  - **Create Tag** has a multi-line message box and **Load from File…**: pick your release notes (e.g. `docs/releases/v1.0.3.txt`), edit them if needed, then *Create* or *Create & Push*. Lines starting with `#` are left out, as in Git.
 - **A stash node:** apply, pop or drop it.
 
 **Why it's different:**
 - Typical Git GUIs build every row of the history up front, which gets slow on large repositories.
 - Stashes and work in progress usually live in a separate list; here they are part of the history view.
 - The graph can optionally show tags (a per-repository setting) and marks a detached HEAD explicitly.
+- **Labels in the colour of their history line:** branch and tag labels are outlined in the colour of the line their commit sits on, so you see at once which branch owns which part of the history. A mark says where each one is: **✓** here and on the remote, **↑** only here (not pushed yet, or ahead), **↓** only on the remote, and a red **≠** when the remote has a different tag with that name. Tags have a dashed border, branches a solid one; the checked-out branch stands out in bold, raised with a soft glow of its colour. The remote's tag list is read along with the fetches you already do (and remembered across restarts), never while you scroll.
 - Branch and commit actions are one right-click away on the graph itself, instead of in separate dialogs or menus.
 
 **Where to find it:** The center of each repository tab; right-click a branch / tag label or a commit's dot.
