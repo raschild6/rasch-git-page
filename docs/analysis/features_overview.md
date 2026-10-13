@@ -100,7 +100,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 
 **In one line:** Smooth scrolling through huge histories, with your stashes and uncommitted work right in the graph.
 
-**What it does:** The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. With the graph focused, **↑ / ↓** step from commit to commit and the view follows.
+**What it does:** The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both (↑ / ↓ / ✓), in the colour of its line. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. With the graph focused, **↑ / ↓** step from commit to commit and the view follows.
 
 The graph is also where you act on history, with **right-click menus**:
 - **Branch and tag labels:** check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete; a tag that is only on the remote: fetch it, or delete it there).
@@ -114,7 +114,7 @@ The graph is also where you act on history, with **right-click menus**:
 - Typical Git GUIs build every row of the history up front, which gets slow on large repositories.
 - Stashes and work in progress usually live in a separate list; here they are part of the history view.
 - The graph can optionally show tags (a per-repository setting) and marks a detached HEAD explicitly.
-- **Tags say whether they are pushed:** tags are outlined badges (branches stay filled), coloured like the branches: **green with ↑** = only in this repository (push it), **blue with ↓** = only on the remote, **gold with ✓** = on both, **red with ≠** = the remote has a different tag with that name. The remote's tag list is read along with the fetches you already do (and remembered across restarts), never while you scroll.
+- **Labels in the colour of their history line:** branch and tag labels are outlined in the colour of the line their commit sits on, so you see at once which branch owns which part of the history. A mark says where each one is: **✓** here and on the remote, **↑** only here (not pushed yet, or ahead), **↓** only on the remote, and a red **≠** when the remote has a different tag with that name. Tags have a dashed border, branches a solid one; the checked-out branch is lightly filled. The remote's tag list is read along with the fetches you already do (and remembered across restarts), never while you scroll.
 - Branch and commit actions are one right-click away on the graph itself, instead of in separate dialogs or menus.
 
 **Where to find it:** The center of each repository tab; right-click a branch / tag label or a commit's dot.
