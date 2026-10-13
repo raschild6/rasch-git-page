@@ -107,7 +107,7 @@ The graph is also where you act on history, with **right-click menus**:
   - **Fast-forward in both directions:** on `main`, a right-click on `dev` offers *Fast-forward 'main' to 'dev'* and *Fast-forward 'dev' to 'main'*: the second moves `dev` up to `main` without leaving `main` (only offered when it really is a fast-forward).
   - **Reset Soft / Mixed / Hard to here** on another branch's label or on a remote label (e.g. `origin/feature`) moves the branch you are on to it: useful to make a local branch match its remote.
 - **A commit (its row or its coloured dot):** cherry-pick, revert, **Reset Soft / Mixed / Hard to here** (soft keeps the differences staged, mixed keeps them unstaged, hard discards them after a confirmation; only when a branch is checked out, and undoable), create a branch or tag there, copy the SHA.
-  - **Several commits at once:** **Ctrl+click** (Cmd+click on macOS) adds or removes a commit, **Shift+click** or **Shift+↑ / ↓** selects a range. Right-click one of them → **Cherry-pick N Commits (No Commit)** applies them all, oldest first, in one go; or copy their SHAs.
+  - **Several commits at once:** **Ctrl+click** (Cmd+click on macOS) adds or removes a commit, **Shift+click** or **Shift+↑ / ↓** selects a range. Right-click one of them → **Cherry-pick N Commits (No Commit)** applies them all, oldest first, in one go; or copy their SHAs. **Branches on These Commits** acts on the branches labelled on the selected commits: pull, push, merge into the current branch, delete them locally, on the remote or both (deletions ask first; the checked-out branch is left out), with a summary report of what happened to each.
 - **A stash node:** apply, pop or drop it.
 
 **Why it's different:**
@@ -493,7 +493,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 **In one line:** Delete, pull or merge many branches — or act on every open repository — in one go.
 
 **What it does:**
-- **Manage Branches:** lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull them or merge them.
+- **Manage Branches:** lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull, push or merge them.
 - **Manage Repos:** runs fetch, pull, checkout, create branch, push or delete branch across all open repositories at once.
 - **Reporting:** the work continues past individual failures, and a summary report lists what succeeded, what was skipped and why each failure happened.
 
