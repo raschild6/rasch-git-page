@@ -23,6 +23,13 @@ Public website for Rasch-Git — a cross-platform Git client. Hosted on GitHub P
 - Download links point to GitHub Releases on this repo, where binaries are uploaded by the CI/CD pipeline.
 - When updating styles or scripts, bump the `?v=` query parameter in all HTML files to bust browser cache.
 
+## Branches
+
+- `main` is what GitHub Pages publishes. `dev` collects the page changes for the next app version.
+- Every site PR targets `dev` and is merged there when ready; merging into `dev` does not go live.
+- At an app release, `dev` is merged into `main` (merge commit) with the maintainer's approval, then `main` is merged back into `dev` so it carries the new `releases.json`.
+- The release CI commits `releases.json` to `main` only.
+
 ## Security Guidelines
 
 Every change must be checked for security before committing:

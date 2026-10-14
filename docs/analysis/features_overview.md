@@ -100,19 +100,22 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 
 **In one line:** Smooth scrolling through huge histories, with your stashes and uncommitted work right in the graph.
 
-**What it does:** The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. With the graph focused, **↑ / ↓** step from commit to commit and the view follows.
+**What it does:** The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both (↑ / ↓ / ✓), in the colour of its line. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. With the graph focused, **↑ / ↓** step from commit to commit and the view follows.
 
 The graph is also where you act on history, with **right-click menus**:
-- **Branch and tag labels:** check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete).
+- **Branch and tag labels:** check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete; a tag that is only on the remote: fetch it, or delete it there).
   - **Fast-forward in both directions:** on `main`, a right-click on `dev` offers *Fast-forward 'main' to 'dev'* and *Fast-forward 'dev' to 'main'*: the second moves `dev` up to `main` without leaving `main` (only offered when it really is a fast-forward).
   - **Reset Soft / Mixed / Hard to here** on another branch's label or on a remote label (e.g. `origin/feature`) moves the branch you are on to it: useful to make a local branch match its remote.
-- **A commit's coloured dot:** cherry-pick, revert, **Reset Soft / Mixed / Hard to here** (soft keeps the differences staged, mixed keeps them unstaged, hard discards them after a confirmation; only when a branch is checked out, and undoable), create a branch or tag there, copy the SHA.
+- **A commit (its row or its coloured dot):** cherry-pick, revert, **Reset Soft / Mixed / Hard to here** (soft keeps the differences staged, mixed keeps them unstaged, hard discards them after a confirmation; only when a branch is checked out, and undoable), create a branch or tag there, copy the SHA.
+  - **Several commits at once:** **Ctrl+click** (Cmd+click on macOS) adds or removes a commit, **Shift+click** or **Shift+↑ / ↓** selects a range. Right-click one of them (or any branch / tag label while several are selected) → **Cherry-pick N Commits (No Commit)** applies them all, oldest first, in one go; or copy their SHAs. **Branches on These Commits** acts on the branches labelled on the selected commits: pull, push, merge into the current branch, delete them locally, on the remote or both (deletions ask first; the checked-out branch is left out), with the same progress, cancel and summary report as Manage Branches.
+  - **Create Tag** has a multi-line message box and **Load from File…**: pick your release notes (e.g. `docs/releases/v1.0.3.txt`), edit them if needed, then *Create* or *Create & Push*. Lines starting with `#` are left out, as in Git.
 - **A stash node:** apply, pop or drop it.
 
 **Why it's different:**
 - Typical Git GUIs build every row of the history up front, which gets slow on large repositories.
 - Stashes and work in progress usually live in a separate list; here they are part of the history view.
 - The graph can optionally show tags (a per-repository setting) and marks a detached HEAD explicitly.
+- **Labels in the colour of their history line:** branch and tag labels are drawn in the colour of the line their commit sits on, so you see at once which branch owns which part of the history. A mark at the start of the label, on a small filled block, says where each one is: **✓** here and on the remote, **↑** only here (not pushed yet, or ahead), **↓** only on the remote, and a red **≠** when the remote has a different tag with that name. Tags have a dashed border, branches a solid one; the checked-out branch is the only label filled with its colour, so you find it at a glance. The remote's tag list is read along with the fetches you already do (and remembered across restarts), never while you scroll.
 - Branch and commit actions are one right-click away on the graph itself, instead of in separate dialogs or menus.
 
 **Where to find it:** The center of each repository tab; right-click a branch / tag label or a commit's dot.
@@ -298,13 +301,13 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** Merges and cherry-picks are staged for review — never committed behind your back.
 
-**What it does:** Merging a branch or cherry-picking a commit applies the changes to the staging area with the commit message pre-filled, and stops there. You review the result, adjust it if needed, and press **Commit** when you're happy; **Abort Merge** discards it. A merge that would change nothing ("already up to date") is detected and reported instead of producing an empty merge commit.
+**What it does:** Merging a branch or cherry-picking a commit applies the changes to the staging area with the commit message pre-filled, and stops there. Several commits can be cherry-picked together (select them with Ctrl+click or Shift+click): they are applied oldest first and their changes add up in the changes panel, still without a commit. If local changes would get in the way, the app says which files before touching anything; if a commit conflicts, the conflict editor opens and **Continue Cherry-pick** goes on with the commits still to apply (the panel says which commit stopped and how many are left), while **Abort** puts back exactly what was there before, including changes you had already staged. You review the result, adjust it if needed, and press **Commit** when you're happy; **Abort Merge** discards it. A merge that would change nothing ("already up to date") is detected and reported instead of producing an empty merge commit.
 
 **Why it's different:**
 - Most GUIs merge and cherry-pick straight into a commit, and you notice problems afterwards.
 - Here nothing lands in history until you have looked at it.
 
-**Where to find it:** Right-click a branch → *Merge*; right-click a commit → *Cherry-pick*.
+**Where to find it:** Right-click a branch → *Merge*; right-click a commit → *Cherry-pick*; select several commits, then right-click one → *Cherry-pick N Commits (No Commit)*.
 
 ---
 
@@ -492,7 +495,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 **In one line:** Delete, pull or merge many branches — or act on every open repository — in one go.
 
 **What it does:**
-- **Manage Branches:** lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull them or merge them.
+- **Manage Branches:** lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull, push or merge them.
 - **Manage Repos:** runs fetch, pull, checkout, create branch, push or delete branch across all open repositories at once.
 - **Reporting:** the work continues past individual failures, and a summary report lists what succeeded, what was skipped and why each failure happened.
 
@@ -713,12 +716,12 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** A short, skippable tour points at each feature in the real app.
 
-**What it does:** On first launch a short tour (about 20 steps) moves across the window area by area — toolbar, tabs, side panel, graph, changes panel, bottom panel, then the settings menus — and highlights each part directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from **Help → Feature Tour**. After an update, a shorter **What's New** tour shows only the features added since the version you used before (once; **Help → What's New** replays it, and *Don't show after updates* turns it off); the full tour stays the same.
+**What it does:** On first launch a short tour (about 20 steps) moves across the window area by area — toolbar, tabs, side panel, graph, changes panel, bottom panel, then the settings menus — and highlights each part directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from **Help → Feature Tour**. After an update, a shorter **What's New** tour shows only the features added since the version you used before, even if you skipped several versions (once; **Help → What's New** replays it, **Help → What's New Since…** starts from any version, and *Don't show after updates* turns it off); its last step opens **All Changes**, every change of those versions, fixes included (also in **Help → Release Notes**). The update window lists the changes of every version you are about to get. The full tour stays the same.
 
 **Why it's different:**
 - It points at the live interface rather than at screenshots, so it always matches your theme and layout.
 
-**Where to find it:** First launch; **Help → Feature Tour**; after an update, **Help → What's New**.
+**Where to find it:** First launch; **Help → Feature Tour**; after an update, **Help → What's New**; **Help → Release Notes**.
 
 ---
 
@@ -737,6 +740,7 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 | Diff layouts | One (sometimes two) | Hunk, Inline and Split, with syntax highlighting, minimap, search — plus side-by-side, swipe, onion-skin and difference views for images |
 | Conflicts | External merge tool or per-file choice | Built-in three-pane editor, line and hunk level |
 | Merge / cherry-pick | Commit immediately | Staged for review first |
+| Cherry-pick several commits | One by one, or committed each time | Select them in the graph, applied together, nothing committed |
 | Branch switching with local changes | Manual stash, or refusal | Automatic stash and restore |
 | Many branches / repos | One at a time | Bulk actions with a per-item report |
 | Many repositories | Window per repo or bookmark list | Tabs with coloured, collapsible groups |
