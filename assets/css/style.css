@@ -546,6 +546,45 @@ a.feature:hover { color: var(--text); }
 .changelog ul { margin: 0; padding-left: 22px; color: var(--text-muted); }
 .changelog li { margin: 6px 0; }
 .changelog li::marker { color: var(--text-dim); }
+.changelog li strong { color: var(--text); font-weight: 600; }
+
+/* Release notes with levels (1.0.4 on): highlights as cards with a badge,
+   the smaller changes small and dim. */
+.changelog .highlights { display: grid; gap: 10px; }
+.changelog .highlight {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+}
+.changelog .highlight p { margin: 0; }
+.changelog .highlight-title { color: var(--text); font-weight: 600; }
+.changelog .highlight-text { margin-top: 4px !important; color: var(--text-muted); }
+.note-badge {
+  flex: none;
+  min-width: 74px;
+  margin-top: 2px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.note-new { color: #0b1f19; background: var(--accent); }
+.note-improve { color: #0b1530; background: #7aa7ff; }
+.note-fix { color: #1d1033; background: #c4a3ff; }
+.changelog h4.minor { color: var(--text-dim); }
+.changelog h4.minor::before { background: var(--text-dim); box-shadow: none; }
+.changelog ul.minor { color: var(--text-dim); font-size: 0.88rem; }
+.changelog ul.minor li { margin: 3px 0; }
+@media (max-width: 600px) {
+  .changelog .highlight { flex-direction: column; gap: 8px; }
+}
 
 @media (max-width: 1024px) {
   .releases,

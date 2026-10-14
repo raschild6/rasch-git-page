@@ -74,6 +74,11 @@
       "linux-deb": downloads["linux-deb"] || "",
       "linux-rpm": downloads["linux-rpm"] || "",
       changelog: raw.changelog || {},
+      // From 1.0.4: the same items with a title and a level (3 highlight,
+      // 2 normal, 1 minor); older releases only have "changelog".
+      notes: Array.isArray(raw.notes) ? raw.notes.filter(function (n) {
+        return n && (n.title || n.text);
+      }) : [],
       virustotal: raw.virustotal || {},
       releaseUrl: raw.release_url || RELEASES_URL + "/tag/" + encodeURIComponent(tag)
     };
