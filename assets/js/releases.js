@@ -123,7 +123,25 @@
     }
 
     var changelog = el("div", { class: "changelog" }, [el("h3", { text: "Changelog" })]);
-    var groups = release.changelog || {};
+    if (release.notes && release.notes.length) {
+      renderNotes(changelog, release.notes);
+    } else {
+      renderGroups(changelog, release.changelog || {});
+    }
+
+    container.appendChild(titleRow);
+    container.appendChild(meta);
+    container.appendChild(buttons);
+    if (linuxPackages) container.appendChild(linuxPackages);
+    container.appendChild(unsignedNotice);
+    if (vtLinks) container.appendChild(vtLinks);
+    container.appendChild(changelog);
+
+    window.RaschGit.resolveDownloads(buttons, release.tag);
+  }
+
+  // Older releases: the "changelog" lists, as they were.
+  function renderGroups(changelog, groups) {
     var names = GROUP_ORDER.concat(
       Object.keys(groups).filter(function (g) { return GROUP_ORDER.indexOf(g) === -1; })
     );
@@ -138,16 +156,51 @@
       );
     });
     if (!hasEntries) changelog.appendChild(el("p", { class: "meta", text: "No changelog entries." }));
+  }
 
-    container.appendChild(titleRow);
-    container.appendChild(meta);
-    container.appendChild(buttons);
-    if (linuxPackages) container.appendChild(linuxPackages);
-    container.appendChild(unsignedNotice);
-    if (vtLinks) container.appendChild(vtLinks);
-    container.appendChild(changelog);
+  var KIND_BADGE = { "new": "New", improve: "Improved", fix: "Fixed" };
+  var SECTIONS = [["new", "New"], ["improve", "Improved"], ["fix", "Fixed"]];
 
-    window.RaschGit.resolveDownloads(buttons, release.tag);
+  function noteLine(n) {
+    var li = el("li");
+    if (n.title) li.appendChild(el("strong", { text: n.title + (n.text ? "." : "") }));
+    if (n.title && n.text) li.appendChild(document.createTextNode(" "));
+    if (n.text) li.appendChild(document.createTextNode(n.text));
+    return li;
+  }
+
+  // From 1.0.4: highlights first (badge, title, sentence), then New /
+  // Improved / Fixed with a bold title, then the smaller changes.
+  function renderNotes(changelog, notes) {
+    var level = function (n) { return Number(n.level) || 2; };
+    var top = notes.filter(function (n) { return level(n) >= 3; });
+    var rest = notes.filter(function (n) { return level(n) === 2; });
+    var small = notes.filter(function (n) { return level(n) <= 1; });
+    if (top.length) {
+      changelog.appendChild(el("h4", { text: "Highlights" }));
+      changelog.appendChild(el("div", { class: "highlights" }, top.map(function (n) {
+        var kind = KIND_BADGE[n.kind] ? n.kind : "improve";
+        return el("div", { class: "highlight" }, [
+          el("span", { class: "note-badge note-" + kind, text: KIND_BADGE[kind] }),
+          el("div", null, [
+            el("p", { class: "highlight-title", text: n.title || n.text }),
+            n.title && n.text ? el("p", { class: "highlight-text", text: n.text }) : null
+          ])
+        ]);
+      })));
+    }
+    SECTIONS.forEach(function (s) {
+      var items = rest.filter(function (n) { return (KIND_BADGE[n.kind] ? n.kind : "improve") === s[0]; });
+      if (!items.length) return;
+      changelog.appendChild(el("h4", { text: s[1] }));
+      changelog.appendChild(el("ul", null, items.map(noteLine)));
+    });
+    if (small.length) {
+      changelog.appendChild(el("h4", { class: "minor", text: "Smaller changes" }));
+      changelog.appendChild(el("ul", { class: "minor" }, small.map(function (n) {
+        return el("li", { text: n.title || n.text });
+      })));
+    }
   }
 
   function showMessage(container, text) {
