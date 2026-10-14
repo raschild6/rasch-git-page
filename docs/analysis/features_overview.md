@@ -716,12 +716,12 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **In one line:** A short, skippable tour points at each feature in the real app.
 
-**What it does:** On first launch a short tour (about 20 steps) moves across the window area by area — toolbar, tabs, side panel, graph, changes panel, bottom panel, then the settings menus — and highlights each part directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from **Help → Feature Tour**. After an update, a shorter **What's New** tour shows only the features added since the version you used before (once; **Help → What's New** replays it, and *Don't show after updates* turns it off); the full tour stays the same.
+**What it does:** On first launch a short tour (about 20 steps) moves across the window area by area — toolbar, tabs, side panel, graph, changes panel, bottom panel, then the settings menus — and highlights each part directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from **Help → Feature Tour**. After an update, a shorter **What's New** tour shows only the features added since the version you used before, even if you skipped several versions (once; **Help → What's New** replays it, **Help → What's New Since…** starts from any version, and *Don't show after updates* turns it off); its last step opens **All Changes**, every change of those versions, fixes included (also in **Help → Release Notes**). The update window lists the changes of every version you are about to get. The full tour stays the same.
 
 **Why it's different:**
 - It points at the live interface rather than at screenshots, so it always matches your theme and layout.
 
-**Where to find it:** First launch; **Help → Feature Tour**; after an update, **Help → What's New**.
+**Where to find it:** First launch; **Help → Feature Tour**; after an update, **Help → What's New**; **Help → Release Notes**.
 
 ---
 
