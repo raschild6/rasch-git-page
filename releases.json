@@ -1,5 +1,57 @@
 [
   {
+    "version": "1.0.3",
+    "tag": "v1.0.3",
+    "date": "2026-10-14",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.3/RaschildGitManager-1.0.3-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.3/RaschildGitManager-1.0.3-macos-arm64.dmg",
+      "linux": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.3/RaschildGitManager-1.0.3-linux-x86_64.AppImage",
+      "linux-deb": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.3/raschild-git-manager_1.0.3-1_amd64.deb",
+      "linux-rpm": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.3/raschild-git-manager-1.0.3-1.x86_64.rpm"
+    },
+    "changelog": {
+      "New Features": [
+        "Create Tag: load the tag message from a file (for example your release notes), then edit it before creating the tag; the message box is now multi-line",
+        "Branch and tag labels in the graph take the colour of their line of history and show where they are: check = here and on the remote, up arrow = only here, down arrow = only on the remote; tags have a dashed border and the checked-out branch is filled with its colour. A tag that exists only on the remote can be fetched or deleted there from its menu",
+        "Commit graph: select several commits with Ctrl+click (Cmd+click on macOS), Shift+click or Shift+Up/Down, then right-click one of them (or one of their branch / tag labels) and choose \"Cherry-pick N Commits (No Commit)\": they are applied oldest first and all their changes land in the changes panel, nothing is committed. A conflict opens the conflict editor and Continue goes on with the commits still to apply; local changes that would get in the way are reported before anything changes",
+        "Commit graph: right-clicking a commit's row now opens its menu too (before, only the coloured dot did)",
+        "Commit graph: with several commits selected, the right-click menu also acts on the branches on those commits: pull, push, merge into the current branch, or delete them locally, on the remote or both, with a summary of what happened to each",
+        "Manage Branches: new Push action, to push several branches at once",
+        "Help → Release Notes lists every change since the version you choose, fixes included; the last step of What's New opens it (\"All Changes…\") for the versions you skipped",
+        "Help → What's New Since… replays the new features added after any earlier version"
+      ],
+      "Bug Fixes": [
+        "Push and Pull now follow the branch's upstream: a branch that tracks a remote branch with another name, or a branch on a remote other than origin (for example the default branch after Fork & Clone, which pulls from upstream), is pushed to and pulled from the right place; repositories without an \"origin\" remote can push and pull; branches of every remote are listed as remote branches",
+        "Windows: the taskbar button of the open app now shows the app's icon (1.0.2 fixed only the window itself); if you had pinned the app to the taskbar, pin it again after updating",
+        "Action Scheduler (experimental): a \"Stash + pull\" job could restore one of your own older stashes when the only local changes were inside a submodule (which git doesn't stash); it now leaves your stashes alone, and a \"Stash\" job no longer reports changes as stashed when nothing was saved",
+        "Staging or unstaging a single hunk that git could not apply on its own used to stage (or unstage) the whole file without saying so; now nothing changes and the app tells you why",
+        "The open diff now updates by itself when the file changes again (saved in another editor, re-staged), and a commit's diff follows its branch when it moves through a pull, fetch or reset made outside the app",
+        "Committing with nothing staged showed \"commit failed (1):\" with no reason: Commit and Commit & Push are now disabled until something is staged (unless Amend is ticked or a merge is in progress), and git errors that git reports only on its normal output now show that text",
+        "Action Scheduler (experimental): \"Fast-forward branches\" no longer moves a branch that is checked out in another worktree (that worktree would have shown the new commits as reverted changes); such branches are left alone and listed in the result",
+        "Merge commits: selecting one of their changed files now shows its changes (the diff was empty)",
+        "GitHub sign-ins with an expiring token (8 hours, used by OAuth Apps that have expiring tokens turned on) kept renewing only until the app was restarted; the renewal details are now kept across restarts",
+        "Aborting a cherry-pick that stopped on a conflict no longer throws away changes you had staged before starting it; only what the cherry-pick changed is put back",
+        "What's New after an update now shows everything added since the version you had, even if you skipped several versions: nothing is left out and nothing you already saw is shown again"
+      ],
+      "Improvements": [
+        "Commit graph: the \"+N\" list of the other branches and tags on a commit stays open while the mouse is over it, and closes only a moment after you leave it (moving back in keeps it open)",
+        "Commit graph: the first time you open a repository tab in a session, the graph scrolls to the checked-out commit if it isn't already in view (loading older history if needed); it never moves again on later visits or after you scroll",
+        "Commit box: your commit message stays in place while the commit runs and is replaced by the default message only once the commit succeeds; if the commit fails the message is kept so you can try again",
+        "Create Branch: the field with the pattern for the suggested name is now labelled \"Editable template name\", so it is clear you can change it",
+        "The update window lists the changes of every version you are about to get, not only the newest one"
+      ]
+    },
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/98fa270f8f4f22c9606f9232442c0201ecc31ef4970a29178ddca8a98208400d",
+      "macos": "https://www.virustotal.com/gui/file/7cdeb63e533382a44443fac0aabad27ed42458ad88d3fcce3568fa5432919399",
+      "linux": "https://www.virustotal.com/gui/file/2ed50ab7c22c71b6b9c238fad3c18784fe149c5343e56cdf7af6443745808b98",
+      "linux-deb": "https://www.virustotal.com/gui/file/e72a10635fe30827669d97f3d27bf4338b741cc27484c72bee60c6f5472c188a",
+      "linux-rpm": "https://www.virustotal.com/gui/file/2a5ff24f50c01c1ee74d88a992c947b6e67c1e2be513b388390eca9288a9b953"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v1.0.3"
+  },
+  {
     "version": "1.0.2",
     "tag": "v1.0.2",
     "date": "2026-10-12",
