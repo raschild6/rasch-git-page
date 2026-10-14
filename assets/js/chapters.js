@@ -1,4 +1,4 @@
-/* Rasch-Git — chapter pages (Install, Features): sidebar navigation + copy buttons
+/* Rasch-Git — chapter pages (Install, How-to Guides): sidebar navigation + copy buttons
  *
  * Markup: sidebar links .chapter-item[href="#<chapter id>"], chapters .chapter
  * inside #chapter-content. With JS only the selected chapter is shown; links
