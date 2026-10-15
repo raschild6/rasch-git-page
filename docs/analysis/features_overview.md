@@ -21,17 +21,16 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 ## Contents
 
 1. [At a glance](#at-a-glance)
-2. [Speed & reliability](#speed--reliability) — async GUI, virtualized graph, auto fetch with progress and cancel
-3. [Reading history & changes](#reading-history--changes) — commit search, Deep Search, blame & file history, smart diff views, commit details
-4. [Committing](#committing) — staging, commit templates, review-before-commit
-5. [Safety net](#safety-net) — undo / redo, interactive rebase, git-flow, safe checkout, visual conflict resolution
-6. [Branches & repositories at scale](#branches--repositories-at-scale) — the branch tree, submodules, drag & drop to open, tab groups, split view, worktrees, large files (Git LFS), bulk actions
-7. [Your workspace](#your-workspace) — built-in terminal, custom toolbar buttons, custom themes, interface scale
-8. [Integrations](#integrations) — pull requests, CI / CD status, clone & fork from your account, issues → branches (GitHub, GitLab)
-9. [Platform, updates & support](#platform-updates--support) — accounts & SSH keys, commit signing, updates, logs, cross-platform look, tour
-10. [Comparison summary](#comparison-summary)
-11. [Keyboard shortcuts](#keyboard-shortcuts)
-12. [Notes for the website](#notes-for-the-website)
+2. [Graph & history](#graph--history) — the virtualized graph, the branch tree, commit details, commit search, Deep Search, blame & file history
+3. [Changes & commits](#changes--commits) — smart diff views, hunk-level staging, commit templates, review-before-commit, conflict resolution and safe checkout
+4. [Branches & safety net](#branches--safety-net) — undo / redo, interactive rebase, git-flow, worktrees, bulk actions
+5. [Many repositories](#many-repositories) — tab groups, split view, drag & drop to open, submodules, large files (Git LFS), scheduled actions
+6. [GitHub & GitLab](#github--gitlab) — pull requests, CI / CD status, clone & fork from your account, issues → branches, accounts & SSH keys, commit signing
+7. [Your workspace](#your-workspace) — built-in terminal, custom toolbar buttons, custom themes, interface scale, external programs, guided tour
+8. [Speed & trust](#speed--trust) — async GUI, auto fetch with progress and cancel, cross-platform look, updates, logs
+9. [Comparison summary](#comparison-summary)
+10. [Keyboard shortcuts](#keyboard-shortcuts)
+11. [Notes for the website](#notes-for-the-website)
 
 ---
 
@@ -81,20 +80,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 
 ---
 
-## Speed & reliability
-
-### 1. Fully async GUI
-
-**In one line:** Every Git operation runs in the background — the window never freezes.
-
-**What it does:** Fetch, pull, push, checkout, merge, rebase, stash, commit and even the routine `git status` all run on background threads. Operations that change a repository are queued per repository, so they never collide with each other or with a refresh. The window stays responsive the whole time: you can scroll the graph, read diffs or switch to another repository while Git works. Every operation reports its result in the toolbar, and errors are never silently swallowed.
-
-**Why it's different:**
-- Many Git GUIs block the window, or show a modal "please wait", during network operations and large checkouts. Some freeze on big repositories just to refresh status.
-- Here, each repository tab has its own operation queue, so a slow push in one repository never stalls another.
-- Built-in timeouts stop stalled network connections instead of hanging forever.
-
-**Where to find it:** Everywhere; the toolbar's status area on the right shows what is running.
+## Graph & history
 
 ### 2. Commit graph with virtualization
 
@@ -103,7 +89,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 **What it does:** The graph draws branches as coloured lanes and merges as curves, and labels each branch tip as local, remote, or both (↑ / ↓ / ✓), in the colour of its line. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. With the graph focused, **↑ / ↓** step from commit to commit and the view follows.
 
 The graph is also where you act on history, with **right-click menus**:
-- **Branch and tag labels:** check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete; a tag that is only on the remote: fetch it, or delete it there).
+- **Branch and tag labels:** double-click one to check it out (the same safe checkout as the menu); right-click to check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete; a tag that is only on the remote: fetch it, or delete it there).
   - **Fast-forward in both directions:** on `main`, a right-click on `dev` offers *Fast-forward 'main' to 'dev'* and *Fast-forward 'dev' to 'main'*: the second moves `dev` up to `main` without leaving `main` (only offered when it really is a fast-forward).
   - **Reset Soft / Mixed / Hard to here** on another branch's label or on a remote label (e.g. `origin/feature`) moves the branch you are on to it: useful to make a local branch match its remote.
 - **A commit (its row or its coloured dot):** cherry-pick, revert, **Reset Soft / Mixed / Hard to here** (soft keeps the differences staged, mixed keeps them unstaged, hard discards them after a confirmation; only when a branch is checked out, and undoable), create a branch or tag there, copy the SHA.
@@ -120,22 +106,37 @@ The graph is also where you act on history, with **right-click menus**:
 
 **Where to find it:** The center of each repository tab; right-click a branch / tag label or a commit's dot.
 
-### 7. Auto fetch with real progress tracking and cancel support
+### 15. One tree for every ref
 
-**In one line:** Always up to date, real progress bars, and a cancel button that actually stops Git.
+**In one line:** Branches, remotes, tags, stashes and a detached HEAD — in one filterable tree.
 
-**What it does:** The repository you are looking at is fetched when you switch to its tab and periodically at an interval you choose; you can also fetch on demand. Long operations (clone, fetch, pull, push, slow checkouts, merges) show Git's own progress as a real percentage in the toolbar, not a fake spinner. The cancel button next to the spinner kills the running Git process tree, so an operation can be stopped in the middle, and the repository is refreshed afterwards.
+**What it does:**
+- **What's listed:** local branches (the current one highlighted), remote branches by remote, tags with their hash, and stashes; a detached HEAD is shown explicitly with Git's own wording.
+- **Filter:** a filter box narrows everything as you type.
+- **Actions:** a right-click offers checkout, merge, rebase, fast-forward, pull (even a branch that isn't checked out, via a safe fast-forward), push, rename and delete. Tags can be checked out, pushed or deleted (locally and optionally on the remote).
 
 **Why it's different:**
-- Many clients either don't auto-fetch, or fetch every open repository at once in the background.
-- Here only the active repository is fetched, which saves bandwidth and avoids credential prompts piling up.
-- Cancel is real: it terminates Git instead of just hiding the dialog.
+- Most clients can only pull the branch you are on.
+- Here you can update any local branch without switching to it, and a detached HEAD is never a mystery.
 
-**Where to find it:** Toolbar → **Fetch** (also in the Pull menu); **Edit → Auto Fetch…** sets the interval and fetch-on-tab-switch; the cancel button appears next to the toolbar spinner.
+**Where to find it:** The left panel of each repository tab.
 
----
+### 17. Commit details
 
-## Reading history & changes
+**In one line:** Author, SHA, full message and changed files at a glance.
+
+**What it does:** Selecting a commit shows its details in the right panel:
+- the author's avatar (initials), date and short SHA with a copy button;
+- the title and full body, scrollable when long;
+- the list of changed files, as a flat list or as a folder tree.
+
+Clicking a file opens its diff for that commit. A right-click on a commit offers cherry-pick, revert, Reset Soft / Mixed / Hard to here, create a branch or tag here, and copy the SHA; a right-click on a branch label offers checkout, merge, fast-forward (either direction), reset to it, rebase, push, pull, rename and delete.
+
+**Why it's different:**
+- Everything about a commit is in one side panel next to the graph, instead of spread across several windows.
+- The folder-tree view makes large commits easy to scan.
+
+**Where to find it:** Click a commit in the graph.
 
 ### 11. Commit search
 
@@ -167,8 +168,6 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 
 **Where to find it:** **Edit → Deep Search…** (`Ctrl+Shift+F`).
 
----
-
 ### 27. Blame & File History
 
 **In one line:** Who changed each line and why — and every version of a file, renames included.
@@ -183,26 +182,7 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 
 ---
 
-### 26. Scheduled actions *(experimental)*
-
-**In one line:** Fetch, pull (keeping local changes), push or run your own commands automatically, on a schedule.
-
-**What it does:** Rules run while the app is open. Each rule is an action, some repositories and a trigger.
-- **Actions:** fetch, pull (fast-forward only by default), stash + pull + unstash, push, fast-forward local branches, git maintenance, or one of your custom toolbar commands.
-- **Repositories:** all open ones, a tab group, or chosen ones.
-- **Triggers:** every N minutes (optionally only between, say, 08:00 and 19:00), daily at a time, on chosen weekdays, or at startup.
-
-Scheduled work waits for your own operations, and each change can be undone. A run that ends in a conflict keeps your local changes in the stash and pauses that repository until you resolve it; if your changes don't fit the pulled commits they simply stay in the stash, with the files listed. The others carry on. Successful runs show one short summary; failures and conflicts collect in a window with a button to jump to the repository. A status-bar indicator always shows the next run. Push rules must be confirmed, never force-push, and skip protected branches.
-
-**Why it's different:**
-- Most Git GUIs only offer a periodic fetch; here the whole morning routine (fetch, update each repo without losing local work) runs by itself, safely.
-- Missed runs (laptop asleep, app closed) are caught up once, not in a burst.
-
-**Accuracy note:** marked **experimental** in the app, with a warning always visible in its window.
-
-**Where to find it:** **Edit → Scheduled Actions…** and the status bar.
-
----
+## Changes & commits
 
 ### 3. Smart diff views
 
@@ -234,27 +214,6 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 - Most Git GUIs show "binary file changed" for an image, or the two versions without a way to tell what moved; here four views, including a pixel-exact difference with a count.
 
 **Where to find it:** Click a changed file in the right panel, or a file of a commit; the view switcher is in the diff header. Images open in the image page (modes in its toolbar; **View → Image Diff** to turn it off). Edit Here: the file menu of the changes lists, the **Edit** segment of the diff header, or a diff line's context menu.
-
-### 17. Commit details
-
-**In one line:** Author, SHA, full message and changed files at a glance.
-
-**What it does:** Selecting a commit shows its details in the right panel:
-- the author's avatar (initials), date and short SHA with a copy button;
-- the title and full body, scrollable when long;
-- the list of changed files, as a flat list or as a folder tree.
-
-Clicking a file opens its diff for that commit. A right-click on a commit offers cherry-pick, revert, Reset Soft / Mixed / Hard to here, create a branch or tag here, and copy the SHA; a right-click on a branch label offers checkout, merge, fast-forward (either direction), reset to it, rebase, push, pull, rename and delete.
-
-**Why it's different:**
-- Everything about a commit is in one side panel next to the graph, instead of spread across several windows.
-- The folder-tree view makes large commits easy to scan.
-
-**Where to find it:** Click a commit in the graph.
-
----
-
-## Committing
 
 ### 16. Hunk-level staging
 
@@ -309,9 +268,28 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **Where to find it:** Right-click a branch → *Merge*; right-click a commit → *Cherry-pick*; select several commits, then right-click one → *Cherry-pick N Commits (No Commit)*.
 
+### 8. Conflict resolution with visual editor and auto-stash
+
+**In one line:** Resolve conflicts line by line, and never lose local changes when switching branches.
+
+**What it does:**
+- **Where it opens:** when a merge, pull, rebase, cherry-pick or revert produces conflicts, the tab switches to conflict mode — a list of conflicted and resolved files, plus a three-pane editor (*ours*, *theirs* and the *result*).
+- **Resolving:** take a whole hunk from either side with a checkbox, or single lines with +/−, and the result builds in the order you pick. *Use all ours / theirs* is one click, and *Save & Mark Resolved* marks the file done.
+- **Finishing:** **Esc** pauses conflict mode and you can resume it from the changes panel; *Continue* and *Abort* finish or cancel the operation.
+- **Auto-stash:** checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically, staged and unstaged as they were. If they conflict with the new branch, nothing is half applied: the working tree stays clean, the changes stay in the stash, and you choose to apply and resolve them, switch back to the previous branch with them, or keep them for later.
+- **Stash apply / pop:** all or nothing. If a stash conflicts, resolve it in the same editor; a popped stash leaves the list while you do (your changes are in one place only), and *Abort* puts it back untouched.
+- **Checkout updates the branch:** checking out a branch whose remote branch has new commits fast-forwards it right away (as last fetched, no network wait); if both sides have commits, the usual Merge / Rebase choice appears. The graph then scrolls to the branch you switched to.
+
+**Why it's different:**
+- Many GUIs hand conflicts to an external merge tool, or only offer "use mine / use theirs" per file.
+- Here resolution is built in and works line by line, and it can be paused.
+- Safe checkout means switching branches never requires a manual stash, or a separate pull to catch up with the remote.
+
+**Where to find it:** Opens automatically in the repository tab when a conflict happens.
+
 ---
 
-## Safety net
+## Branches & safety net
 
 ### 13. Undo / Redo
 
@@ -364,73 +342,41 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **Where to find it:** **Repository → Git-flow**; right-click a feature / bugfix / release / hotfix branch in the left panel → **Finish …**.
 
-### 8. Conflict resolution with visual editor and auto-stash
+### 36. Worktrees
 
-**In one line:** Resolve conflicts line by line, and never lose local changes when switching branches.
+**In one line:** Work on two branches at once — each in its own folder and tab, without stashing.
 
 **What it does:**
-- **Where it opens:** when a merge, pull, rebase, cherry-pick or revert produces conflicts, the tab switches to conflict mode — a list of conflicted and resolved files, plus a three-pane editor (*ours*, *theirs* and the *result*).
-- **Resolving:** take a whole hunk from either side with a checkbox, or single lines with +/−, and the result builds in the order you pick. *Use all ours / theirs* is one click, and *Save & Mark Resolved* marks the file done.
-- **Finishing:** **Esc** pauses conflict mode and you can resume it from the changes panel; *Continue* and *Abort* finish or cancel the operation.
-- **Auto-stash:** checking out a branch with uncommitted changes stashes them, switches branch and restores them automatically, staged and unstaged as they were. If they conflict with the new branch, nothing is half applied: the working tree stays clean, the changes stay in the stash, and you choose to apply and resolve them, switch back to the previous branch with them, or keep them for later.
-- **Stash apply / pop:** all or nothing. If a stash conflicts, resolve it in the same editor; a popped stash leaves the list while you do (your changes are in one place only), and *Abort* puts it back untouched.
-- **Checkout updates the branch:** checking out a branch whose remote branch has new commits fast-forwards it right away (as last fetched, no network wait); if both sides have commits, the usual Merge / Rebase choice appears. The graph then scrolls to the branch you switched to.
+- **One click from a branch:** right-click any branch (in the sidebar or on the graph) → **Open in New Worktree**. The branch is checked out in a second folder next to the repository and opens in its own tab, right beside the repository's tab and in the same group. A remote branch gets a local branch that tracks it. Your current work stays exactly where it is — review a pull request or fix an urgent bug, then close the tab.
+- **New Worktree…** for more control: an existing branch or a new one from any starting point, the folder (a sensible default, or Browse), open it in a tab or not, and initialise its submodules.
+- **At a glance:** repositories with worktrees get a **WORKTREES** section in the sidebar — each one with its branch and folder, marked *current*, *main*, *locked* or *missing* (folder deleted by hand). Open it in a tab, its folder or a terminal; lock it (e.g. on a removable drive), prune missing ones, or remove one — with a confirmation, and never silently discarding uncommitted changes.
+- **No "already checked out" surprises:** a branch can be checked out in only one worktree, so branches used elsewhere are marked in the sidebar and in the graph's tooltips, and **Checkout** becomes **Switch to Its Worktree**, which jumps to that tab.
+- **Everything stays in step:** a commit made in one worktree shows in the others' graphs right away; fetch, pull and push of worktrees of one repository never collide; undo refuses to move a branch another worktree is using; tab titles read "repository · folder".
 
 **Why it's different:**
-- Many GUIs hand conflicts to an external merge tool, or only offer "use mine / use theirs" per file.
-- Here resolution is built in and works line by line, and it can be paused.
-- Safe checkout means switching branches never requires a manual stash, or a separate pull to catch up with the remote.
+- Most Git GUIs don't show worktrees at all: working on a second branch means stash, switch, switch back, unstash — or a separate clone.
+- Here a second working copy of the same repository is one right-click away, lives in its own tab, and shares branches, stashes and remotes with the first.
 
-**Where to find it:** Opens automatically in the repository tab when a conflict happens.
+**Where to find it:** Right-click a branch → **Open in New Worktree**; the **WORKTREES** section of the left panel (right-click a worktree or the section header); **Repository → Worktrees**.
+
+### 6. Bulk branch & repo management
+
+**In one line:** Delete, pull or merge many branches — or act on every open repository — in one go.
+
+**What it does:**
+- **Manage Branches:** lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull, push or merge them.
+- **Manage Repos:** runs fetch, pull, checkout, create branch, push or delete branch across all open repositories at once.
+- **Reporting:** the work continues past individual failures, and a summary report lists what succeeded, what was skipped and why each failure happened.
+
+**Why it's different:**
+- Standard GUIs act on one branch and one repository at a time.
+- Cleaning up dozens of merged branches, or updating ten repositories, is a single action here, with a clear per-item report instead of a stream of error dialogs.
+
+**Where to find it:** **Edit → Manage Branches…** and **Edit → Manage Repos…**.
 
 ---
 
-## Branches & repositories at scale
-
-### 15. One tree for every ref
-
-**In one line:** Branches, remotes, tags, stashes and a detached HEAD — in one filterable tree.
-
-**What it does:**
-- **What's listed:** local branches (the current one highlighted), remote branches by remote, tags with their hash, and stashes; a detached HEAD is shown explicitly with Git's own wording.
-- **Filter:** a filter box narrows everything as you type.
-- **Actions:** a right-click offers checkout, merge, rebase, fast-forward, pull (even a branch that isn't checked out, via a safe fast-forward), push, rename and delete. Tags can be checked out, pushed or deleted (locally and optionally on the remote).
-
-**Why it's different:**
-- Most clients can only pull the branch you are on.
-- Here you can update any local branch without switching to it, and a detached HEAD is never a mystery.
-
-**Where to find it:** The left panel of each repository tab.
-
-### 31. Submodules
-
-**In one line:** Every submodule's state at a glance — update, open, add or remove them without a terminal.
-
-**What it does:**
-- **At a glance:** repositories with submodules get a **SUBMODULES** section in the sidebar. Each submodule shows its state — up to date (with its commit), *modified*, *moved* (checked out at a different commit than the repository records), *not initialised*, *conflict* — and nested submodules are indented under their parent. The tooltip shows the URL, the tracked branch and both commits.
-- **Actions:** initialise or update one submodule or all of them, update to the tip of its tracked branch, sync URLs, set the URL or branch, add a new submodule, remove one cleanly. A submodule with local commits that aren't on any remote is never moved without a warning.
-- **Open as a tab:** double-click a submodule to open it in its own tab, right next to its parent and in the same group; the tab reacts to changes immediately, like any other repository.
-- **Readable changes:** a changed submodule in the changes panel says what changed (new commits, modified or untracked content). Opening it shows "moved from abc1234 to def5678" and the list of commits in between, with *Open Submodule*, *Update to Recorded Commit* and *Stage Pointer* — the same for a submodule changed in a commit.
-- **Kept in step:** cloning initialises submodules (a checkbox in the Clone dialog), and an optional setting updates the submodules a pull or checkout moved. A merge conflict on a submodule offers a simple *Use Ours / Use Theirs* choice.
-- **Safe and undoable:** adding, removing and changing a submodule's URL or branch can be undone; signed-in accounts are used for submodules on any host, and a URL with a password in it is refused (it would be committed).
-
-**Why it's different:**
-- Many Git GUIs list submodules at most and leave initialising and updating them to the terminal; a moved submodule shows up as a cryptic "Subproject commit" diff.
-- Here their state is visible at a glance, every common action is a right-click away, and a pointer change reads as the commits it brings in.
-
-**Where to find it:** The **SUBMODULES** section of the left panel (right-click a submodule or the section header) or **Repository → Submodules**; the changes panel; **Edit → Submodules…** for the settings; **File → Clone…** → *Initialise submodules*.
-
-### 22. Drag & drop to open
-
-**In one line:** Drop repository folders on the window to open them — several at once.
-
-**What it does:** Drag one or more folders from Explorer, Finder or your file manager and drop them anywhere on the window. Each Git repository opens in its own tab and is added to *File → Recent*. A repository that's already open is brought to the front instead of being opened twice. A folder that isn't a Git repository is reported rather than silently ignored.
-
-**Why it's different:**
-- Many clients only open repositories through a file dialog or an "add repository" wizard, one at a time.
-- Here, getting ten repositories into the app is one drag.
-
-**Where to find it:** Anywhere on the main window; also **File → Open** (**Ctrl+O**). The feature tour mentions it in its second step.
+## Many repositories
 
 ### 5. Tab grouping
 
@@ -456,22 +402,35 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **Where to find it:** Right-click a repository tab; **View → Split View**; drag a tab onto another pane; right-click a group chip → **Open Side by Side**.
 
-### 36. Worktrees
+### 22. Drag & drop to open
 
-**In one line:** Work on two branches at once — each in its own folder and tab, without stashing.
+**In one line:** Drop repository folders on the window to open them — several at once.
 
-**What it does:**
-- **One click from a branch:** right-click any branch (in the sidebar or on the graph) → **Open in New Worktree**. The branch is checked out in a second folder next to the repository and opens in its own tab, right beside the repository's tab and in the same group. A remote branch gets a local branch that tracks it. Your current work stays exactly where it is — review a pull request or fix an urgent bug, then close the tab.
-- **New Worktree…** for more control: an existing branch or a new one from any starting point, the folder (a sensible default, or Browse), open it in a tab or not, and initialise its submodules.
-- **At a glance:** repositories with worktrees get a **WORKTREES** section in the sidebar — each one with its branch and folder, marked *current*, *main*, *locked* or *missing* (folder deleted by hand). Open it in a tab, its folder or a terminal; lock it (e.g. on a removable drive), prune missing ones, or remove one — with a confirmation, and never silently discarding uncommitted changes.
-- **No "already checked out" surprises:** a branch can be checked out in only one worktree, so branches used elsewhere are marked in the sidebar and in the graph's tooltips, and **Checkout** becomes **Switch to Its Worktree**, which jumps to that tab.
-- **Everything stays in step:** a commit made in one worktree shows in the others' graphs right away; fetch, pull and push of worktrees of one repository never collide; undo refuses to move a branch another worktree is using; tab titles read "repository · folder".
+**What it does:** Drag one or more folders from Explorer, Finder or your file manager and drop them anywhere on the window. Each Git repository opens in its own tab and is added to *File → Recent*. A repository that's already open is brought to the front instead of being opened twice. A folder that isn't a Git repository is reported rather than silently ignored.
 
 **Why it's different:**
-- Most Git GUIs don't show worktrees at all: working on a second branch means stash, switch, switch back, unstash — or a separate clone.
-- Here a second working copy of the same repository is one right-click away, lives in its own tab, and shares branches, stashes and remotes with the first.
+- Many clients only open repositories through a file dialog or an "add repository" wizard, one at a time.
+- Here, getting ten repositories into the app is one drag.
 
-**Where to find it:** Right-click a branch → **Open in New Worktree**; the **WORKTREES** section of the left panel (right-click a worktree or the section header); **Repository → Worktrees**.
+**Where to find it:** Anywhere on the main window; also **File → Open** (**Ctrl+O**). The feature tour mentions it in its second step.
+
+### 31. Submodules
+
+**In one line:** Every submodule's state at a glance — update, open, add or remove them without a terminal.
+
+**What it does:**
+- **At a glance:** repositories with submodules get a **SUBMODULES** section in the sidebar. Each submodule shows its state — up to date (with its commit), *modified*, *moved* (checked out at a different commit than the repository records), *not initialised*, *conflict* — and nested submodules are indented under their parent. The tooltip shows the URL, the tracked branch and both commits.
+- **Actions:** initialise or update one submodule or all of them, update to the tip of its tracked branch, sync URLs, set the URL or branch, add a new submodule, remove one cleanly. A submodule with local commits that aren't on any remote is never moved without a warning.
+- **Open as a tab:** double-click a submodule to open it in its own tab, right next to its parent and in the same group; the tab reacts to changes immediately, like any other repository.
+- **Readable changes:** a changed submodule in the changes panel says what changed (new commits, modified or untracked content). Opening it shows "moved from abc1234 to def5678" and the list of commits in between, with *Open Submodule*, *Update to Recorded Commit* and *Stage Pointer* — the same for a submodule changed in a commit.
+- **Kept in step:** cloning initialises submodules (a checkbox in the Clone dialog), and an optional setting updates the submodules a pull or checkout moved. A merge conflict on a submodule offers a simple *Use Ours / Use Theirs* choice.
+- **Safe and undoable:** adding, removing and changing a submodule's URL or branch can be undone; signed-in accounts are used for submodules on any host, and a URL with a password in it is refused (it would be committed).
+
+**Why it's different:**
+- Many Git GUIs list submodules at most and leave initialising and updating them to the terminal; a moved submodule shows up as a cryptic "Subproject commit" diff.
+- Here their state is visible at a glance, every common action is a right-click away, and a pointer change reads as the commits it brings in.
+
+**Where to find it:** The **SUBMODULES** section of the left panel (right-click a submodule or the section header) or **Repository → Submodules**; the changes panel; **Edit → Submodules…** for the settings; **File → Clone…** → *Initialise submodules*.
 
 ### 38. Large files (Git LFS)
 
@@ -490,90 +449,28 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **Where to find it:** The banner above the graph; the **LFS** marks and right-click menu in the changes panel; **Repository → Git LFS**.
 
-### 6. Bulk branch & repo management
+### 26. Scheduled actions *(experimental)*
 
-**In one line:** Delete, pull or merge many branches — or act on every open repository — in one go.
+**In one line:** Fetch, pull (keeping local changes), push or run your own commands automatically, on a schedule.
 
-**What it does:**
-- **Manage Branches:** lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull, push or merge them.
-- **Manage Repos:** runs fetch, pull, checkout, create branch, push or delete branch across all open repositories at once.
-- **Reporting:** the work continues past individual failures, and a summary report lists what succeeded, what was skipped and why each failure happened.
+**What it does:** Rules run while the app is open. Each rule is an action, some repositories and a trigger.
+- **Actions:** fetch, pull (fast-forward only by default), stash + pull + unstash, push, fast-forward local branches, git maintenance, or one of your custom toolbar commands.
+- **Repositories:** all open ones, a tab group, or chosen ones.
+- **Triggers:** every N minutes (optionally only between, say, 08:00 and 19:00), daily at a time, on chosen weekdays, or at startup.
+
+Scheduled work waits for your own operations, and each change can be undone. A run that ends in a conflict keeps your local changes in the stash and pauses that repository until you resolve it; if your changes don't fit the pulled commits they simply stay in the stash, with the files listed. The others carry on. Successful runs show one short summary; failures and conflicts collect in a window with a button to jump to the repository. A status-bar indicator always shows the next run. Push rules must be confirmed, never force-push, and skip protected branches.
 
 **Why it's different:**
-- Standard GUIs act on one branch and one repository at a time.
-- Cleaning up dozens of merged branches, or updating ten repositories, is a single action here, with a clear per-item report instead of a stream of error dialogs.
+- Most Git GUIs only offer a periodic fetch; here the whole morning routine (fetch, update each repo without losing local work) runs by itself, safely.
+- Missed runs (laptop asleep, app closed) are caught up once, not in a burst.
 
-**Where to find it:** **Edit → Manage Branches…** and **Edit → Manage Repos…**.
+**Accuracy note:** marked **experimental** in the app, with a warning always visible in its window.
+
+**Where to find it:** **Edit → Scheduled Actions…** and the status bar.
 
 ---
 
-## Your workspace
-
-### 4. Built-in terminal
-
-**In one line:** A real shell in every repository tab, already in the right folder.
-
-**What it does:** Each repository tab has its own terminal in the bottom panel. It starts in the repository root, using `cmd` on Windows or your login shell elsewhere. Command history is kept across sessions (↑ / ↓), and copy / paste works as you'd expect. Next to it, the **Activity Log** records every operation the app performed, so you can always see what happened and when.
-
-**Why it's different:**
-- Most GUIs send you to an external terminal and you have to `cd` to the repository yourself.
-- Here the shell is part of the tab, one per repository, and switches with it.
-
-**Where to find it:** The bottom panel of each repository tab (*Terminal* / *Activity Log*). Close the tabs you don't use with their **×**, reopen them from the **+** at the end of the tab row, and drag them into the order you like; both are kept across sessions.
-
-### 9. Customizable toolbar buttons
-
-**In one line:** Put your own commands, scripts and links one click away.
-
-**What it does:** Add buttons to the main toolbar that run a Git action (pull, push, stash, merge, rebase…), an app action (open the repository in the terminal, file explorer or your editor; copy the branch name, last commit hash or remote URL; open the remote in the browser), a URL or text template, or a **shell command**. Templates can use placeholders such as `{repo_path}`, `{repo_name}`, `{branch}`, `{remote_url}`, `{remote_owner}` and `{remote_repo}`. Each button has a label and an icon; you can reorder or duplicate buttons, and hide the built-in ones. Six ready-made buttons come with the app: **Copy Remote URL**, **Copy Branch Name**, **Open in Folder**, **Open in Terminal**, **Open in VS Code** and **Open on GitHub**, with the right command for macOS, Windows and Linux. Each button can show its icon with a label of your choice, or only the icon (same icon size); long labels wrap on two lines; when you have more buttons than fit, they scroll sideways while the status messages keep their own space.
-
-**Why it's different:**
-- Custom actions in other clients are usually buried in menus, or limited to shell scripts.
-- Here they are first-class toolbar buttons with repository-aware placeholders, and shell commands run through the same cancellable, logged runner as Git itself. Placeholder values are escaped, so a malicious branch name can't run commands.
-
-**Where to find it:** **Edit → Custom Toolbar Buttons…**.
-
-### 10. Custom themes
-
-**In one line:** Dark, Light, or your own theme from five colours — with a live preview.
-
-**What it does:** Dark (the default) and Light are built in. To create your own theme, pick five colours: primary background, secondary background, accent, primary text and secondary text. The app derives every other shade from them: borders, hover and pressed states, selections, and diff, graph and conflict backgrounds. Changes are previewed live on the whole app, a contrast check warns about unreadable combinations, and any theme can be set as the default.
-
-**Why it's different:**
-- Most Git GUIs offer a fixed light / dark switch, or require editing a theme file by hand.
-- Here a complete, consistent theme takes five colour picks and a few seconds.
-
-**Where to find it:** **Edit → Themes → Manage Themes…**.
-
----
-
-### 39. Interface scale
-
-**In one line:** Make the whole app larger or smaller — text, icons and spacing together — to any percentage.
-
-**What it does:** **Edit → Interface Scale…** takes any percentage from 25% to 400% (default 100%), typed or with a slider. **Ctrl+Plus** and **Ctrl+Minus** (Cmd on macOS) move it 5% up or down, **Ctrl+0** resets it to 100%. The whole interface is scaled uniformly, so nothing is left at the old size or cut off. The scale is applied when the app starts: after a change the app offers to restart right away (your open repositories and layout come back) or later. It works on Windows, macOS and Linux and comes on top of the operating system's display scaling (Windows at 150% and 120% in the app = 180%).
-
-**Why it's different:**
-- Many Git GUIs only let you change the font size, leaving icons, rows and toolbars at their original size.
-- Here everything scales together, which helps on 4K screens, small laptops and when presenting.
-
-**Where to find it:** **Edit → Interface Scale…** · **View → Interface Scale** · Ctrl+Plus / Ctrl+Minus / Ctrl+0.
-
----
-
-### 23. Open files in external programs
-
-**In one line:** Open any file — or any committed version of it — in the app you choose.
-
-**What it does:** Every file in the changes panel and in a commit's file list has **Open with System Default** and **Open with…**; the diff viewer has **Open Externally**. Double-clicking a PDF, office document or other binary file opens it in its program instead of showing an empty diff; images Qt can display open in the [image diff](#3-smart-diff-views) instead (its header has *Open externally* for the old and new versions; **View → Image Diff** off restores opening them in their program). In **Edit → External Editors** you map extensions to programs (for example `.csv, .xlsx` → Excel, `.png, .jpg` → Preview or Photoshop, `.md` → your editor); anything unmapped opens with the operating system's default. Files from past commits or stashes are extracted to a temporary copy, cleaned up when the app closes.
-
-**Why it's different:**
-- Most Git GUIs show "binary file changed" and stop there, or only open the current working copy.
-- Here any version of a file — from any commit or stash — opens in the right program with one click, and you decide which program per file type.
-
-**Where to find it:** Right-click a file; double-click a binary file; *Open Externally* in the diff header; **Edit → External Editors…**.
-
-## Integrations
+## GitHub & GitLab
 
 ### 28. Pull requests
 
@@ -638,10 +535,6 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **Where to find it:** The **Issues** tab of the bottom panel (closed? the **+** at the end of the tab row reopens it); the issue chip at the top of the commit box; `#123` links in a commit's details. GitHub and GitLab repositories, with the account from **Edit → Accounts & SSH Keys** (public repositories show *All open* without one).
 
----
-
-## Platform, updates & support
-
 ### 24. Accounts & SSH keys
 
 **In one line:** Sign in to GitHub once — or add a token or an SSH key — and push just works.
@@ -672,6 +565,127 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 
 **Where to find it:** **Edit → Commit Signing…** (also the **Commit Signing** tab of Edit → Accounts & SSH Keys); the signature line in the commit details; *Sign the tag* in the Create Tag dialog.
 
+---
+
+## Your workspace
+
+### 4. Built-in terminal
+
+**In one line:** A real shell in every repository tab, already in the right folder.
+
+**What it does:** Each repository tab has its own terminal in the bottom panel. It starts in the repository root, using `cmd` on Windows or your login shell elsewhere. Command history is kept across sessions (↑ / ↓), and copy / paste works as you'd expect. Next to it, the **Activity Log** records every operation the app performed, so you can always see what happened and when.
+
+**Why it's different:**
+- Most GUIs send you to an external terminal and you have to `cd` to the repository yourself.
+- Here the shell is part of the tab, one per repository, and switches with it.
+
+**Where to find it:** The bottom panel of each repository tab (*Terminal* / *Activity Log*). Close the tabs you don't use with their **×**, reopen them from the **+** at the end of the tab row, and drag them into the order you like; both are kept across sessions.
+
+### 9. Customizable toolbar buttons
+
+**In one line:** Put your own commands, scripts and links one click away.
+
+**What it does:** Add buttons to the main toolbar that run a Git action (pull, push, stash, merge, rebase…), an app action (open the repository in the terminal, file explorer or your editor; copy the branch name, last commit hash or remote URL; open the remote in the browser), a URL or text template, or a **shell command**. Templates can use placeholders such as `{repo_path}`, `{repo_name}`, `{branch}`, `{remote_url}`, `{remote_owner}` and `{remote_repo}`. Each button has a label and an icon; you can reorder or duplicate buttons, and hide the built-in ones. Six ready-made buttons come with the app: **Copy Remote URL**, **Copy Branch Name**, **Open in Folder**, **Open in Terminal**, **Open in VS Code** and **Open on GitHub**, with the right command for macOS, Windows and Linux. Each button can show its icon with a label of your choice, or only the icon (same icon size); long labels wrap on two lines; when you have more buttons than fit, they scroll sideways while the status messages keep their own space.
+
+**Why it's different:**
+- Custom actions in other clients are usually buried in menus, or limited to shell scripts.
+- Here they are first-class toolbar buttons with repository-aware placeholders, and shell commands run through the same cancellable, logged runner as Git itself. Placeholder values are escaped, so a malicious branch name can't run commands.
+
+**Where to find it:** **Edit → Custom Toolbar Buttons…**.
+
+### 10. Custom themes
+
+**In one line:** Dark, Light, or your own theme from five colours — with a live preview.
+
+**What it does:** Dark (the default) and Light are built in. To create your own theme, pick five colours: primary background, secondary background, accent, primary text and secondary text. The app derives every other shade from them: borders, hover and pressed states, selections, and diff, graph and conflict backgrounds. Changes are previewed live on the whole app, a contrast check warns about unreadable combinations, and any theme can be set as the default.
+
+**Why it's different:**
+- Most Git GUIs offer a fixed light / dark switch, or require editing a theme file by hand.
+- Here a complete, consistent theme takes five colour picks and a few seconds.
+
+**Where to find it:** **Edit → Themes → Manage Themes…**.
+
+### 39. Interface scale
+
+**In one line:** Make the whole app larger or smaller — text, icons and spacing together — to any percentage.
+
+**What it does:** **Edit → Interface Scale…** takes any percentage from 25% to 400% (default 100%), typed or with a slider. **Ctrl+Plus** and **Ctrl+Minus** (Cmd on macOS) move it 5% up or down, **Ctrl+0** resets it to 100%. The whole interface is scaled uniformly, so nothing is left at the old size or cut off. The scale is applied when the app starts: after a change the app offers to restart right away (your open repositories and layout come back) or later. It works on Windows, macOS and Linux and comes on top of the operating system's display scaling (Windows at 150% and 120% in the app = 180%).
+
+**Why it's different:**
+- Many Git GUIs only let you change the font size, leaving icons, rows and toolbars at their original size.
+- Here everything scales together, which helps on 4K screens, small laptops and when presenting.
+
+**Where to find it:** **Edit → Interface Scale…** · **View → Interface Scale** · Ctrl+Plus / Ctrl+Minus / Ctrl+0.
+
+### 23. Open files in external programs
+
+**In one line:** Open any file — or any committed version of it — in the app you choose.
+
+**What it does:** Every file in the changes panel and in a commit's file list has **Open with System Default** and **Open with…**; the diff viewer has **Open Externally**. Double-clicking a PDF, office document or other binary file opens it in its program instead of showing an empty diff; images Qt can display open in the [image diff](#3-smart-diff-views) instead (its header has *Open externally* for the old and new versions; **View → Image Diff** off restores opening them in their program). In **Edit → External Editors** you map extensions to programs (for example `.csv, .xlsx` → Excel, `.png, .jpg` → Preview or Photoshop, `.md` → your editor); anything unmapped opens with the operating system's default. Files from past commits or stashes are extracted to a temporary copy, cleaned up when the app closes.
+
+**Why it's different:**
+- Most Git GUIs show "binary file changed" and stop there, or only open the current working copy.
+- Here any version of a file — from any commit or stash — opens in the right program with one click, and you decide which program per file type.
+
+**Where to find it:** Right-click a file; double-click a binary file; *Open Externally* in the diff header; **Edit → External Editors…**.
+
+### 21. Guided feature tour
+
+**In one line:** A short, skippable tour points at each feature in the real app.
+
+**What it does:** On first launch a short tour (about 23 steps) moves across the window area by area — toolbar, tabs, side panel, graph, changes panel, bottom panel, then the settings menus — and highlights each part directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from **Help → Feature Tour**. After an update, a shorter **What's New** tour shows only the features added since the version you used before, even if you skipped several versions (once; **Help → What's New** replays it, **Help → What's New Since…** starts from any version, and *Don't show after updates* turns it off); its last step opens **All Changes**, every change of those versions, fixes included (also in **Help → Release Notes**). The update window lists the changes of every version you are about to get. Release notes put the highlights first (a badge, a short title and one sentence each), then what is new, improved and fixed, and list the smaller changes apart, so the important changes stand out.
+
+**Why it's different:**
+- It points at the live interface rather than at screenshots, so it always matches your theme and layout.
+
+**Where to find it:** First launch; **Help → Feature Tour**; after an update, **Help → What's New**; **Help → Release Notes**.
+
+---
+
+## Speed & trust
+
+### 1. Fully async GUI
+
+**In one line:** Every Git operation runs in the background — the window never freezes.
+
+**What it does:** Fetch, pull, push, checkout, merge, rebase, stash, commit and even the routine `git status` all run on background threads. Operations that change a repository are queued per repository, so they never collide with each other or with a refresh. The window stays responsive the whole time: you can scroll the graph, read diffs or switch to another repository while Git works. Every operation reports its result in the toolbar, and errors are never silently swallowed.
+
+**Why it's different:**
+- Many Git GUIs block the window, or show a modal "please wait", during network operations and large checkouts. Some freeze on big repositories just to refresh status.
+- Here, each repository tab has its own operation queue, so a slow push in one repository never stalls another.
+- Built-in timeouts stop stalled network connections instead of hanging forever.
+
+**Where to find it:** Everywhere; the toolbar's status area on the right shows what is running.
+
+### 7. Auto fetch with real progress tracking and cancel support
+
+**In one line:** Always up to date, real progress bars, and a cancel button that actually stops Git.
+
+**What it does:** The repository you are looking at is fetched when you switch to its tab and periodically at an interval you choose; you can also fetch on demand. Long operations (clone, fetch, pull, push, slow checkouts, merges) show Git's own progress as a real percentage in the toolbar, not a fake spinner. The cancel button next to the spinner kills the running Git process tree, so an operation can be stopped in the middle, and the repository is refreshed afterwards.
+
+**Why it's different:**
+- Many clients either don't auto-fetch, or fetch every open repository at once in the background.
+- Here only the active repository is fetched, which saves bandwidth and avoids credential prompts piling up.
+- Cancel is real: it terminates Git instead of just hiding the dialog.
+
+**Where to find it:** Toolbar → **Fetch** (also in the Pull menu); **Edit → Auto Fetch…** sets the interval and fetch-on-tab-switch; the cancel button appears next to the toolbar spinner.
+
+### 20. Consistent cross-platform look
+
+**In one line:** The same layout and sizes on Windows, macOS and Linux — no overlapping controls.
+
+**What it does:**
+- The app uses one rendering style and one pixel-based font size on every platform, with a scalable vector icon set.
+- The window title bar follows the theme (a dark title bar on Windows with dark themes).
+- Git runs without flashing console windows on Windows.
+- Your window size, open tabs, panel layout and group state are restored on the next launch.
+
+**Why it's different:**
+- Cross-platform GUIs often look native on one OS and cramped or misaligned on the other.
+- Here the interface is designed once and looks identical on both.
+
+**Where to find it:** Everywhere.
+
 ### 19. Automatic updates
 
 **In one line:** Get notified of new versions — then download, verify and install in one click.
@@ -695,33 +709,6 @@ Clicking a file opens its diff for that commit. A right-click on a commit offers
 - Here the exact commands and their full output are one export away, which makes problems reproducible.
 
 **Where to find it:** The *Activity Log* tab in the bottom panel; **File → Export Full Logs…**.
-
-### 20. Consistent cross-platform look
-
-**In one line:** The same layout and sizes on Windows, macOS and Linux — no overlapping controls.
-
-**What it does:**
-- The app uses one rendering style and one pixel-based font size on every platform, with a scalable vector icon set.
-- The window title bar follows the theme (a dark title bar on Windows with dark themes).
-- Git runs without flashing console windows on Windows.
-- Your window size, open tabs, panel layout and group state are restored on the next launch.
-
-**Why it's different:**
-- Cross-platform GUIs often look native on one OS and cramped or misaligned on the other.
-- Here the interface is designed once and looks identical on both.
-
-**Where to find it:** Everywhere.
-
-### 21. Guided feature tour
-
-**In one line:** A short, skippable tour points at each feature in the real app.
-
-**What it does:** On first launch a short tour (about 20 steps) moves across the window area by area — toolbar, tabs, side panel, graph, changes panel, bottom panel, then the settings menus — and highlights each part directly in the interface with a spotlight, an arrow and a short explanation; for features that live in a menu, it shows that menu open with the entry highlighted. You move with Next / Back or the arrow keys. It never blocks the app — you can keep working while it is open, or close it at any step. You can replay it from **Help → Feature Tour**. After an update, a shorter **What's New** tour shows only the features added since the version you used before, even if you skipped several versions (once; **Help → What's New** replays it, **Help → What's New Since…** starts from any version, and *Don't show after updates* turns it off); its last step opens **All Changes**, every change of those versions, fixes included (also in **Help → Release Notes**). The update window lists the changes of every version you are about to get. The full tour stays the same.
-
-**Why it's different:**
-- It points at the live interface rather than at screenshots, so it always matches your theme and layout.
-
-**Where to find it:** First launch; **Help → Feature Tour**; after an update, **Help → What's New**; **Help → Release Notes**.
 
 ---
 

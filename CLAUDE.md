@@ -4,8 +4,8 @@ Public website for Rasch-Git — a cross-platform Git client. Hosted on GitHub P
 
 ## Structure
 
-- `index.html` — Home page with hero, feature cards, and download buttons
-- `features.html` — Detailed feature descriptions, with screenshots
+- `index.html` — Home page with hero, feature cards (grouped in the same seven areas as `features.html`), and download buttons
+- `features.html` — Every feature, one at a time: a tree index (seven areas → features) with a search box on the left, the selected feature on the right (`assets/js/features.js`). Each feature is an `article.feature-page` with `data-area`, `data-keywords` (synonyms the search uses: add the words people would type), an "At a glance" list (3–4 bullets), short paragraphs, the aside (where to find it, step-by-step guide, why it's different) and its screenshots. A new feature needs its article, its entry in the index, its chip in the area card of the Overview and its card on the home page, in the same area.
 - `guides.html` — How-to Guides: practical, example-driven usage guides (Action Scheduler, bulk management, toolbar buttons, Deep Search, external editors, version source…)
 - `releases.html` — Release history with changelogs and download links
 - `install.html` — Installation guide for Windows, macOS and Linux (AppImage, .deb, .rpm)
