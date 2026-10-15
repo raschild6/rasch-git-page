@@ -1,5 +1,70 @@
 [
   {
+    "version": "1.0.4",
+    "tag": "v1.0.4",
+    "date": "2026-10-15",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.4/RaschildGitManager-1.0.4-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.4/RaschildGitManager-1.0.4-macos-arm64.dmg",
+      "linux": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.4/RaschildGitManager-1.0.4-linux-x86_64.AppImage",
+      "linux-deb": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.4/raschild-git-manager_1.0.4-1_amd64.deb",
+      "linux-rpm": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.4/raschild-git-manager-1.0.4-1.x86_64.rpm"
+    },
+    "changelog": {
+      "New Features": [
+        "Double-click a label to check it out: Double-click a branch, remote branch or tag label in the graph to check it out, with the same safe checkout as the menu."
+      ],
+      "Bug Fixes": [
+        "Inline and Split for merge commits: Files of a merge commit show the whole file again in Inline and Split, not only the changed lines.",
+        "Inline and Split try the full file again after a failed load"
+      ],
+      "Improvements": [
+        "Release notes that are easy to read: The biggest changes come first with a badge, every item has a short title and one sentence, and small changes are listed apart.",
+        "A clearer Feature Tour: Shorter steps, and new ones for branch labels, several commits at once and Edit Here."
+      ]
+    },
+    "notes": [
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Release notes that are easy to read",
+        "text": "The biggest changes come first with a badge, every item has a short title and one sentence, and small changes are listed apart."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "A clearer Feature Tour",
+        "text": "Shorter steps, and new ones for branch labels, several commits at once and Edit Here."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "Double-click a label to check it out",
+        "text": "Double-click a branch, remote branch or tag label in the graph to check it out, with the same safe checkout as the menu."
+      },
+      {
+        "kind": "fix",
+        "level": 2,
+        "title": "Inline and Split for merge commits",
+        "text": "Files of a merge commit show the whole file again in Inline and Split, not only the changed lines."
+      },
+      {
+        "kind": "fix",
+        "level": 1,
+        "title": "",
+        "text": "Inline and Split try the full file again after a failed load"
+      }
+    ],
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/5bfbfd1bbbdfc4321865ba7aceb161445c7c4ac72601b8b7f0a4d19bacbe59c0",
+      "macos": "https://www.virustotal.com/gui/file/6223b0d34bd8c08c18f2eefbe7de2d9552eee05d20dbb12092031c4e491b6644",
+      "linux": "https://www.virustotal.com/gui/file/389c34fb0fb764ab1649c3b940b387ce3d32575b7d51d34da714077a11d5fd0b",
+      "linux-deb": "https://www.virustotal.com/gui/file/0fdb7fe064670a00ba9ffbe6550c65619f8ee43f3681b2958a089dc936a6390e",
+      "linux-rpm": "https://www.virustotal.com/gui/file/e362701ac207460b406165f6c24bf44c1075294f11230ae189a9de2a2a1b7b0f"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v1.0.4"
+  },
+  {
     "version": "1.0.3",
     "tag": "v1.0.3",
     "date": "2026-10-14",
