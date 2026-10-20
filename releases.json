@@ -1,5 +1,76 @@
 [
   {
+    "version": "1.0.5",
+    "tag": "v1.0.5",
+    "date": "2026-10-20",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.5/RaschildGitManager-1.0.5-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.5/RaschildGitManager-1.0.5-macos-arm64.dmg",
+      "linux": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.5/RaschildGitManager-1.0.5-linux-x86_64.AppImage",
+      "linux-deb": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.5/raschild-git-manager_1.0.5-1_amd64.deb",
+      "linux-rpm": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.5/raschild-git-manager-1.0.5-1.x86_64.rpm"
+    },
+    "changelog": {
+      "New Features": [],
+      "Bug Fixes": [
+        "Creating a branch that already exists: The Create Branch dialog warns as you type and offers Check Out or Move Here; checkouts keep your changes in place and stash them only when needed.",
+        "External editors open your real file: A file opened from a commit now opens your working copy when it's unchanged; otherwise a copy marked read-only, and Open Working Copy opens your file.",
+        "No errors after cloning an empty repository: Opening a repository with no commits yet no longer logs \"unknown revision HEAD\" on every refresh, and the toolbar and the branch list show the branch your first commit will create."
+      ],
+      "Improvements": [
+        "A narrower, steadier commit graph: A merged branch frees its column for the next one, so the graph no longer drifts to the right; main stays straight and every branch keeps one colour.",
+        "Pull on checkout asks first: When a branch you check out is behind its remote, the app asks before bringing it up to date; Edit → Pull on Checkout changes this.",
+        "More colours for tab groups: Tab groups now have 16 colours to choose from, or any colour you like with Custom…; tabs stay readable in both light and dark themes."
+      ]
+    },
+    "notes": [
+      {
+        "kind": "improve",
+        "level": 3,
+        "title": "A narrower, steadier commit graph",
+        "text": "A merged branch frees its column for the next one, so the graph no longer drifts to the right; main stays straight and every branch keeps one colour."
+      },
+      {
+        "kind": "fix",
+        "level": 3,
+        "title": "Creating a branch that already exists",
+        "text": "The Create Branch dialog warns as you type and offers Check Out or Move Here; checkouts keep your changes in place and stash them only when needed."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Pull on checkout asks first",
+        "text": "When a branch you check out is behind its remote, the app asks before bringing it up to date; Edit → Pull on Checkout changes this."
+      },
+      {
+        "kind": "fix",
+        "level": 2,
+        "title": "No errors after cloning an empty repository",
+        "text": "Opening a repository with no commits yet no longer logs \"unknown revision HEAD\" on every refresh, and the toolbar and the branch list show the branch your first commit will create."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "More colours for tab groups",
+        "text": "Tab groups now have 16 colours to choose from, or any colour you like with Custom…; tabs stay readable in both light and dark themes."
+      },
+      {
+        "kind": "fix",
+        "level": 3,
+        "title": "External editors open your real file",
+        "text": "A file opened from a commit now opens your working copy when it's unchanged; otherwise a copy marked read-only, and Open Working Copy opens your file."
+      }
+    ],
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/e4bd1ec35295a2df7661be40f846ac87666138a70b1aa4821b68149d57b198ef",
+      "macos": "https://www.virustotal.com/gui/file/19ee8439b29e280cc912104b318b65a4065a9916cf67e7aaca80c810734df484",
+      "linux": "https://www.virustotal.com/gui/file/f498787ced7f970cf1ed13f9f99a5c297bb52728e080a5fcfdef3ff93cae18e0",
+      "linux-deb": "https://www.virustotal.com/gui/file/798f2b35e57a7a75f7101273d6ea3e2d083476294eb871f34a20235a9797f173",
+      "linux-rpm": "https://www.virustotal.com/gui/file/93df583c12602c602e0fc361246cff13f099b12dd19f4897fd4a2c1700644897"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v1.0.5"
+  },
+  {
     "version": "1.0.4",
     "tag": "v1.0.4",
     "date": "2026-10-15",
