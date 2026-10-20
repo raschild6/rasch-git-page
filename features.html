@@ -1599,7 +1599,7 @@
                 <a class="next" href="#open-in-external-programs"><small>Next &rarr;</small><span>External Editors</span></a>
               </nav>
             </article>
-            <article class="feature-view feature-page" id="open-in-external-programs" data-area="workspace" data-keywords="external editor open with program excel photoshop vs code binary pdf office default application">
+            <article class="feature-view feature-page" id="open-in-external-programs" data-area="workspace" data-keywords="external editor open with program excel photoshop vs code binary pdf office default application read-only copy working copy real file">
               <p class="feature-crumb"><a href="#workspace">Your Workspace</a><span>5 of 6</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg></span>
@@ -1610,16 +1610,16 @@
               </div>
               <div class="feature-cols">
                 <div class="feature-main">
-                  <ul class="feature-glance" aria-label="At a glance"><li>Open any file with its default program, or one you pick.</li><li>Map extensions to programs (.xlsx → Excel, .png → Photoshop).</li><li>Files from old commits open from a temporary copy.</li></ul>
+                  <ul class="feature-glance" aria-label="At a glance"><li>Open any file with its default program, or one you pick.</li><li>Map extensions to programs (.xlsx → Excel, .png → Photoshop).</li><li>A file from an old commit opens your real file when it is the same; otherwise a copy marked read-only.</li></ul>
                   <div class="feature-body">
                 <p>Every file in the changes panel and in a commit's file list has <strong>Open with System Default</strong> and <strong>Open with…</strong>; the diff viewer has <strong>Open Externally</strong>. Double-clicking a PDF, office document or other binary file opens it in its program instead of showing an empty diff; images open in the <a href="#image-diff">image diff</a> instead (its header has <em>Open externally</em> for the old and new versions; with <strong>View → Image Diff</strong> off they open in their program).</p>
-                <p>In <strong>Edit → External Editors</strong> you map extensions to programs (for example <code>.csv, .xlsx</code> → Excel, <code>.png, .jpg</code> → Preview or Photoshop, <code>.md</code> → your editor); anything unmapped opens with the operating system's default. Files from past commits or stashes are extracted to a temporary copy, cleaned up when the app closes.</p>
+                <p>In <strong>Edit → External Editors</strong> you map extensions to programs (for example <code>.csv, .xlsx</code> → Excel, <code>.png, .jpg</code> → Preview or Photoshop, <code>.md</code> → your editor); anything unmapped opens with the operating system's default. A file from a past commit or stash opens your real file when it hasn't changed since. Otherwise it opens as a copy marked <em>read-only</em> in its name, so you never edit the wrong file by mistake; the copy is cleaned up when the app closes, and <strong>Open Working Copy</strong> (right-click the file, or the arrow next to <em>Open Externally</em>) opens your real file.</p>
               </div>
                 </div>
                 <aside class="feature-aside" aria-label="External Editors: where to find it">
                   <div class="feature-box">
                     <h3>Where to find it</h3>
-                    <p>Right-click a file; double-click a binary file; <em>Open Externally</em> in the diff header; <strong>Edit → External Editors…</strong>.</p>
+                    <p>Right-click a file; double-click a binary file; <em>Open Externally</em> in the diff header (its arrow: <em>Open Working Copy</em>); <strong>Edit → External Editors…</strong>.</p>
                   </div>
                   <div class="feature-box feature-why">
                     <h3>Why it's different</h3>
