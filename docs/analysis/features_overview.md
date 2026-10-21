@@ -94,6 +94,7 @@ The graph is also where you act on history, with **right-click menus**:
   - **Reset Soft / Mixed / Hard to here** on another branch's label or on a remote label (e.g. `origin/feature`) moves the branch you are on to it: useful to make a local branch match its remote.
 - **A commit (its row or its coloured dot):** cherry-pick, revert, **Reset Soft / Mixed / Hard to here** (soft keeps the differences staged, mixed keeps them unstaged, hard discards them after a confirmation; only when a branch is checked out, and undoable), create a branch or tag there, copy the SHA.
   - **Several commits at once:** **Ctrl+click** (Cmd+click on macOS) adds or removes a commit, **Shift+click** or **Shift+↑ / ↓** selects a range. Right-click one of them (or any branch / tag label while several are selected) → **Cherry-pick N Commits (No Commit)** applies them all, oldest first, in one go; or copy their SHAs. **Branches on These Commits** acts on the branches labelled on the selected commits: pull, push, merge into the current branch, delete them locally, on the remote or both (deletions ask first; the checked-out branch is left out), with the same progress, cancel and summary report as Manage Branches.
+  - **Several branches or tags in the sidebar:** the same Ctrl+click / Shift+click works in the sidebar's branch and tag lists. Right-click the selected branches to pull, push, merge them into the current branch, or delete them locally, on their remote or both; the selected tags can be pushed or deleted (here or here and on the remote) in one go. Branches picked under a remote act on that remote's copy. Deletions ask first and list the names; the checked-out branch is left out; branches that aren't fully merged are listed in one question that offers to force delete them.
   - **Create Tag** has a multi-line message box and **Load from File…**: pick your release notes (e.g. `docs/releases/v1.0.3.txt`), edit them if needed, then *Create* or *Create & Push*. Lines starting with `#` are left out, as in Git.
 - **A stash node:** apply, pop or drop it.
 
@@ -367,13 +368,15 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 **What it does:**
 - **Manage Branches:** lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull, push or merge them.
 - **Manage Repos:** runs fetch, pull, checkout, create branch, push or delete branch across all open repositories at once.
+- **From a selection:** Ctrl+click / Shift+click several branches in the sidebar (or several commits in the graph), right-click, and pick the action: Manage Branches opens with them ticked and runs it.
+- **Unmerged branches:** when a delete stops at branches that aren't fully merged, one question lists them and offers to force delete them all.
 - **Reporting:** the work continues past individual failures, and a summary report lists what succeeded, what was skipped and why each failure happened.
 
 **Why it's different:**
 - Standard GUIs act on one branch and one repository at a time.
 - Cleaning up dozens of merged branches, or updating ten repositories, is a single action here, with a clear per-item report instead of a stream of error dialogs.
 
-**Where to find it:** **Edit → Manage Branches…** and **Edit → Manage Repos…**.
+**Where to find it:** **Edit → Manage Branches…** and **Edit → Manage Repos…**; right-click a multi-selection of branches in the sidebar or of commits in the graph.
 
 ---
 
@@ -817,7 +820,7 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 - **Search the whole history:** commit search covers the commits loaded so far (the graph loads more as you scroll).
 - **Deep Search text:** searches committed content only — not uncommitted changes, untracked files, stashes or tags; binary files are skipped; results stop at 2000 matching lines ("refine the search"); *Text in history* looks at a set number of commits (5000 by default, adjustable, 0 = all) and, in its default mode, doesn't report code that was only moved.
 - **Comparisons with GitKraken:** don't name it on the page.
-- **"Sign in with GitLab / Bitbucket":** only GitHub has a browser sign-in; the others use access tokens. GitHub sign-in needs the app's OAuth App to be registered.
+- **"Sign in with GitLab / Bitbucket":** only GitHub has a browser sign-in; the others use access tokens. GitHub sign-in needs the app's OAuth App to be registered (maintainers: `docs/AUTHENTICATION.md`).
 - **Split view:** at most four panes, and a repository is shown in one pane at a time (not two views of the same repository). Panes in the background notice edits in deep subfolders within a few seconds, not instantly.
 - **Worktrees:** creating or removing a worktree's folder can't be undone (only a new branch created with it can); undo in one worktree won't move a branch another worktree has checked out; a worktree-only (bare) repository has no tab for its main entry; nothing is painted on the graph (the tooltips say where a branch is checked out); needs a recent Git (2.36 or newer).
 - **Commit signing:** no signature badges in the graph (only in the selected commit's details); a key with a passphrase needs a passphrase window (graphical pinentry) or an agent that already has it; X.509 signing is shown but not set up from the app; SSH signatures verify locally only for keys in Git's allowed signers file (the app adds your own); *Add to GitHub* is GitHub-only and needs signing in again once; GitHub shows *Verified* only when the commit email is also verified on the GitHub account.
