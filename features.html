@@ -882,7 +882,7 @@
                 <a class="next" href="#bulk-branch-repo-management"><small>Next &rarr;</small><span>Bulk Branch &amp; Repo Actions</span></a>
               </nav>
             </article>
-            <article class="feature-view feature-page" id="bulk-branch-repo-management" data-area="branches-safety" data-keywords="bulk batch many multiple branches repositories cleanup delete old branches prune mass all repos at once multi-select select several sidebar ctrl shift click tags force delete unmerged">
+            <article class="feature-view feature-page" id="bulk-branch-repo-management" data-area="branches-safety" data-keywords="bulk batch many multiple branches repositories cleanup delete old branches prune mass all repos at once multi-select select several sidebar ctrl shift click tags force delete unmerged background read-only status bar progress non-blocking keep working cancel">
               <p class="feature-crumb"><a href="#branches-safety">Branches &amp; Safety Net</a><span>5 of 5</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10"/><path d="M18 10c0 4-6 3-10.6 7.3"/><path d="m14 17 2 2 4-4"/></svg></span>
@@ -893,9 +893,9 @@
               </div>
               <div class="feature-cols">
                 <div class="feature-main">
-                  <ul class="feature-glance" aria-label="At a glance"><li>Manage Branches: delete, pull, push or merge many branches at once.</li><li>Or select several branches in the sidebar (Ctrl+click / Shift+click) and right-click.</li><li>Manage Repos: fetch, pull, checkout, branch or push across every open repository.</li><li>Continues past failures, with a report of what happened to each item.</li></ul>
+                  <ul class="feature-glance" aria-label="At a glance"><li>Manage Branches: delete, pull, push or merge many branches at once.</li><li>Or select several branches in the sidebar (Ctrl+click / Shift+click) and right-click.</li><li>Manage Repos: fetch, pull, checkout, branch or push across every open repository.</li><li>Runs in the background: close the window and keep working, the status bar shows the progress.</li><li>Continues past failures, with a report of what happened to each item.</li></ul>
                   <div class="feature-body">
-                <ul><li><strong>Manage Branches:</strong> lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull, push or merge them.</li><li><strong>Manage Repos:</strong> runs fetch, pull, checkout, create branch, push or delete branch across all open repositories at once.</li><li><strong>From a selection:</strong> Ctrl+click / Shift+click several branches in the sidebar (or several commits in the graph), right-click, and pick the action: Manage Branches opens with them ticked and runs it.</li><li><strong>Unmerged branches:</strong> when a delete stops at branches that aren't fully merged, one question lists them and offers to force delete them all.</li><li><strong>Reporting:</strong> the work continues past individual failures, and a summary report lists what succeeded, what was skipped and why each failure happened.</li></ul>
+                <ul><li><strong>Manage Branches:</strong> lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull, push or merge them.</li><li><strong>Manage Repos:</strong> runs fetch, pull, checkout, create branch, push or delete branch across all open repositories at once.</li><li><strong>From a selection:</strong> Ctrl+click / Shift+click several branches in the sidebar (or several commits in the graph), right-click, and pick the action: Manage Branches opens with them ticked and runs it.</li><li><strong>Unmerged branches:</strong> when a delete stops at branches that aren't fully merged, one question lists them and offers to force delete them all.</li><li><strong>Reporting:</strong> the work continues past individual failures, and a summary report lists what succeeded, what was skipped and why each failure happened.</li><li><strong>In the background:</strong> neither window blocks the app. Close or minimise it and keep working; the action goes on, the status bar shows its progress (click for Show, Cancel and, at the end, the report). The repository under the action is read-only meanwhile: browsing, diffs, Blame and history work, changes wait until it ends.</li></ul>
               </div>
                 </div>
                 <aside class="feature-aside" aria-label="Bulk Branch & Repo Actions: where to find it">
@@ -905,7 +905,7 @@
                   </div>
                   <div class="feature-box feature-why">
                     <h3>Why it's different</h3>
-                    <ul><li>Standard GUIs act on one branch and one repository at a time.</li><li>Cleaning up dozens of merged branches, or updating ten repositories, is a single action here, with a clear per-item report instead of a stream of error dialogs.</li></ul>
+                    <ul><li>Standard GUIs act on one branch and one repository at a time.</li><li>Cleaning up dozens of merged branches, or updating ten repositories, is a single action here, with a clear per-item report instead of a stream of error dialogs.</li><li>Long bulk actions run in the background like a download: the rest of the app stays usable, and only the repositories being changed are locked.</li></ul>
                   </div>
                 </aside>
               </div>
@@ -921,6 +921,10 @@
                 <figure class="shot">
                   <a href="assets/screenshots/bulk-summary-report.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Summary report after a bulk action"><img src="assets/screenshots/bulk-summary-report.png" alt="Summary report after a bulk action" width="1600" height="1000" loading="lazy" decoding="async"></a>
                   <figcaption>Summary report after a bulk action</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/background-operations.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: A bulk delete running in the background: the repository is read-only, the status bar shows the progress"><img src="assets/screenshots/background-operations.png" alt="A bulk delete running in the background: the repository is read-only, the status bar shows the progress" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Running in the background: read-only banner and the status-bar panel</figcaption>
                 </figure>
               </div>
               <nav class="feature-pager" aria-label="Previous and next feature">

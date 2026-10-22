@@ -26,6 +26,7 @@
 | `hidden-tabs-menu.png` | "N hidden": hidden tabs by group, one click brings a tab back | 5 |
 | `tab-context-menu.png` | Repository tab menu: *Reload Repository*, *Hide Tab*, group entries | 5 |
 | `manage-branches.png`, `manage-repos.png`, `bulk-summary-report.png` | Bulk actions and their summary report | 6 |
+| `background-operations.png` | A bulk delete running in the background: read-only banner above the graph, status-bar panel with Show / Cancel | 6 |
 | `terminal.png` | Built-in terminal in the repository folder | 4 |
 | `custom-toolbar-buttons.png` | Custom toolbar buttons editor | 9 |
 | `theme-manager.png` | Theme Manager with custom themes | 10 |
