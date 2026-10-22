@@ -547,36 +547,39 @@
                 <a class="next" href="#commit-templates"><small>Next &rarr;</small><span>Commit Templates</span></a>
               </nav>
             </article>
-            <article class="feature-view feature-page" id="commit-templates" data-area="changes-commits" data-keywords="commit message template title version placeholder conventional commits prefix package.json pyproject pom.xml cargo">
+            <article class="feature-view feature-page" id="commit-templates" data-area="changes-commits" data-keywords="commit message template title description body version placeholder conventional commits prefix package.json pyproject pom.xml cargo jira ticket branch type feat fix gitmessage commit.template per repository team convention">
               <p class="feature-crumb"><a href="#changes-commits">Changes &amp; Commits</a><span>3 of 6</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h2M13 13h3M8 17h5"/></svg></span>
                 <div>
                   <h2>Commit Templates</h2>
-                  <p class="feature-tagline">Pre-filled commit titles with your project's version and branch.</p>
+                  <p class="feature-tagline">Pre-filled commit titles and descriptions with your project's version, branch and ticket.</p>
                 </div>
               </div>
               <div class="feature-cols">
                 <div class="feature-main">
-                  <ul class="feature-glance" aria-label="At a glance"><li>Predefined commit titles with {version}, {branch} and {issue}.</li><li>The version is read from the right file for about 50 kinds of projects.</li><li>The first template fills the title for you; a counter warns past 72 characters.</li></ul>
+                  <ul class="feature-glance" aria-label="At a glance"><li>Predefined commit titles with {version}, {branch}, {ticket}, {type} and more.</li><li>Each repository can have its own title and description template, or share one with the team as <code>.gitmessage</code>.</li><li>The version is read from the right file for about 50 kinds of projects.</li><li>The template fills the title for you; a counter warns past 72 characters.</li></ul>
                   <div class="feature-body">
                 <p>You keep a list of predefined commit titles with placeholders: <code>{version}</code> is the project's version and <code>{branch}</code> is the current branch. The version is read from the right place for about 50 kinds of projects — <code>package.json</code>, <code>pyproject.toml</code>, <code>Cargo.toml</code>, <code>pom.xml</code>, Gradle, <code>.csproj</code>, a Helm chart's <code>appVersion</code>, <code>pubspec.yaml</code>, CMake, a <code>VERSION</code> file and many more — skipping the traps (a dependency's version, the Node or SDK version, the chart's own version).</p>
                 <p>Without a version file it comes from the current release branch (<code>release/1.4.0</code>) or the next patch after the latest version tag; never from commit messages. <strong>Repository → Version Source…</strong> points a repository at any file (JSON, TOML, YAML, XML, INI, regex or plain text, with a <em>Test</em> button) or at a tag pattern. On a branch linked to an issue, <code>{issue}</code> (<code>#123</code>) and <code>{issue_title}</code> are filled in too.</p>
                 <p>The first template pre-fills the commit title automatically and keeps it up to date when you change the version, until you type your own title; the sparkle button next to the title offers the others. The title field shows a character counter that warns before you pass 72 characters. You can amend the previous commit, or commit and push in one click.</p>
+                <p><strong>Repository → Commit Message Template…</strong> gives one repository its own default title <em>and</em> description, built from the branch: <code>{type}</code> (<code>feat</code>, <code>fix</code>… from the <code>feature/</code> or <code>bugfix/</code> prefix), <code>{ticket}</code> (<code>PROJ-482</code> or <code>#123</code>, or your own pattern), <code>{branch_words}</code> (<code>add login page</code>), <code>{date}</code>, <code>{user}</code> and more. Parts in <code>[[…]]</code> disappear when a value is missing, so <code>{type}[[({ticket})]]: {branch_words}</code> gives <code>feat(PROJ-482): add login page</code>.</p>
+                <p>A team can commit the template as <code>.gitmessage</code> (or point git's <code>commit.template</code> at it) and everyone gets it; <strong>Save as Shared File…</strong> writes it for you. Text you type in the title or description is never replaced.</p>
               </div>
                 </div>
                 <aside class="feature-aside" aria-label="Commit Templates: where to find it">
                   <div class="feature-box">
                     <h3>Where to find it</h3>
-                    <p>The <em>Commit</em> box in the right panel; edit the list in <strong>Edit → Commit Messages…</strong>; choose the version's source in <strong>Repository → Version Source…</strong>.</p>
+                    <p>The <em>Commit</em> box in the right panel; edit the list in <strong>Edit → Commit Messages…</strong>; choose the version's source in <strong>Repository → Version Source…</strong>; a repository's own template in <strong>Repository → Commit Message Template…</strong>.</p>
                   </div>
                   <div class="feature-box feature-guide">
                     <h3>Step by step</h3>
                     <p><a href="guides.html#version-source">The right version in every commit</a> &rarr;</p>
+                    <p><a href="guides.html#commit-template">Commit messages that follow your convention</a> &rarr;</p>
                   </div>
                   <div class="feature-box feature-why">
                     <h3>Why it's different</h3>
-                    <ul><li>Most clients start every commit from an empty box, or support only one static template.</li><li>Templates here are a list with live placeholders, which suits teams with commit conventions such as <code>[FIX]</code>, <code>[NEW]</code> or version bumps.</li><li>The version comes from your project's own manifest, whatever the language, and the title updates when you bump it.</li><li>The same version detection suggests branch names like <code>dev-release/1.4.0</code> when you create a branch, with a pattern you choose for each repository, and git-flow release names.</li></ul>
+                    <ul><li>Most clients start every commit from an empty box, or support only one static template.</li><li>Templates here are a list with live placeholders, which suits teams with commit conventions such as <code>[FIX]</code>, <code>[NEW]</code> or version bumps.</li><li>Each repository can have its own template for title and description, from the branch name (type, ticket, words), and the standard <code>.gitmessage</code> / <code>commit.template</code> file is understood, so a team convention lives in the repository.</li><li>The version comes from your project's own manifest, whatever the language, and the title updates when you bump it.</li><li>The same version detection suggests branch names like <code>dev-release/1.4.0</code> when you create a branch, with a pattern you choose for each repository, and git-flow release names.</li></ul>
                   </div>
                 </aside>
               </div>
