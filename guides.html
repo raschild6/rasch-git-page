@@ -66,6 +66,7 @@
             <li><a class="chapter-item" href="#signing"><span class="num">10</span><span class="label">Get the Verified Badge</span></a></li>
             <li><a class="chapter-item" href="#several-repos"><span class="num">11</span><span class="label">Several Repositories at Once</span></a></li>
             <li><a class="chapter-item" href="#version-source"><span class="num">12</span><span class="label">The Right Version in Every Commit</span></a></li>
+            <li><a class="chapter-item" href="#commit-template"><span class="num">13</span><span class="label">Commit Message Templates</span></a></li>
           </ul>
         </nav>
         <section class="card chapter-content" id="chapter-content">
@@ -480,7 +481,44 @@
 </tbody></table></div>
 <p><strong>Git tags</strong> instead of a file: give a pattern such as <code>api-v*</code> for a monorepo that tags each service. <strong>Use the next patch version</strong> turns the last released version into the one you're preparing.</p>
 <div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>The same version names new branches and git-flow releases. The suggested branch name follows a pattern you set per repository in the Create Branch dialog, under <em>Editable template name</em>: <code>dev-release/{version}</code> by default, or <code>release/{version}</code>, or with today's date, <code>release/{version}-{date}</code>. Files are only read, never run, so opening a repository never executes its build scripts.</div></div>
-            <div class="chapter-footer"><a href="#several-repos">&larr; Several Repositories at Once</a><span></span></div>
+            <div class="chapter-footer"><a href="#several-repos">&larr; Several Repositories at Once</a><a href="#commit-template">Commit Messages That Follow Your Convention &rarr;</a></div>
+          </article>
+
+          <article class="chapter guide" id="commit-template" aria-labelledby="commit-template-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h2M13 13h3M8 17h5"/></svg></span>
+              <h2 id="commit-template-title">Commit Messages That Follow Your Convention</h2>
+            </div>
+<p class="intro">Give each repository its own default commit title and description, built from the branch you are on. Name the branch <code>feature/PROJ-482-add-login-page</code> and the commit box already says <code>feat(PROJ-482): add login page</code>.</p>
+
+<h3 class="guide-h" id="ct-setup">Set it up for one repository</h3>
+<ol class="steps"><li>Open <strong>Repository → Commit Message Template…</strong> and choose <strong>This repository's template</strong>.</li><li>Write the title on the first line. Leave a blank line, then write the description, if you want one. Lines starting with <code>#</code> are comments.</li><li>Use <strong>Insert Variable</strong> to add placeholders; the menu shows what each one gives on the current branch.</li><li>Check the <strong>Preview</strong>, then <strong>Save</strong>. The commit box fills in the title and description, and follows when you switch branch, until you type in them.</li></ol>
+
+<h3 class="guide-h" id="ct-variables">Variables</h3>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Placeholder</th><th scope="col">On <code>feature/PROJ-482-add-login-page</code></th></tr></thead><tbody>
+<tr><th scope="row"><code>{type}</code></th><td data-label="Value"><code>feat</code>: the branch type with its Conventional Commits name (bugfix and hotfix become <code>fix</code>); you can change the names</td></tr>
+<tr><th scope="row"><code>{branch_type}</code></th><td data-label="Value"><code>feature</code>: the prefix as written (Git-flow prefixes are understood)</td></tr>
+<tr><th scope="row"><code>{ticket}</code></th><td data-label="Value"><code>PROJ-482</code>; on <code>feature/123-fix-crash</code> it is <code>#123</code></td></tr>
+<tr><th scope="row"><code>{branch_words}</code></th><td data-label="Value"><code>add login page</code></td></tr>
+<tr><th scope="row"><code>{branch_name}</code>, <code>{branch}</code></th><td data-label="Value"><code>PROJ-482-add-login-page</code>, the full name</td></tr>
+<tr><th scope="row"><code>{issue}</code>, <code>{issue_title}</code></th><td data-label="Value">the issue linked to the branch and its title</td></tr>
+<tr><th scope="row"><code>{version}</code></th><td data-label="Value">your project's version (see <a href="#version-source">the previous guide</a>)</td></tr>
+<tr><th scope="row"><code>{date}</code>, <code>{user}</code>, <code>{email}</code>, <code>{repo}</code></th><td data-label="Value">today (<code>{date:%d/%m/%Y}</code> for another format), your git name and e-mail, the repository's name</td></tr>
+</tbody></table></div>
+<p>Put a part between <code>[[</code> and <code>]]</code> to drop it when a variable in it is empty: on <code>chore/update-deps</code>, which has no ticket, <code>{type}[[({ticket})]]: {branch_words}</code> gives <code>chore: update deps</code>.</p>
+
+<h3 class="guide-h" id="ct-examples">Examples</h3>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Convention</th><th scope="col">Template</th><th scope="col">Gives</th></tr></thead><tbody>
+<tr><th scope="row">Conventional Commits</th><td data-label="Template"><code>{type}[[({ticket})]]: {branch_words}</code></td><td data-label="Gives"><code>feat(PROJ-482): add login page</code></td></tr>
+<tr><th scope="row">Ticket first</th><td data-label="Template"><code>[[{ticket} ]]{branch_words}</code></td><td data-label="Gives"><code>PROJ-482 add login page</code></td></tr>
+<tr><th scope="row">With a description</th><td data-label="Template"><code>{type}: {branch_words}</code><br><br><code>[[Refs: {ticket}]]</code></td><td data-label="Gives">the title, then <code>Refs: PROJ-482</code></td></tr>
+</tbody></table></div>
+<p>Tickets that are not like <code>PROJ-482</code>? Open <strong>Ticket and type names</strong> and give a pattern, e.g. <code>AB#(\d+)</code>: what the first group captures becomes <code>{ticket}</code>. The same section changes the type names, e.g. <code>feature</code> → <code>feature</code> instead of <code>feat</code>.</p>
+
+<h3 class="guide-h" id="ct-team">Share it with the team</h3>
+<ol class="steps"><li>In the same window, click <strong>Save as Shared File…</strong>. The template is written to <code>.gitmessage</code> in the repository. Keep <strong>Also use it for git on the command line</strong> ticked so <code>git commit</code> uses it too.</li><li>Commit <code>.gitmessage</code> like any other file and push it.</li><li>Everyone who uses Rasch-Git gets the template, with no setup. Rasch-Git also reads a template that git's <code>commit.template</code> setting points to.</li></ol>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>Your own template always wins over the shared one. To go back to the team's, choose <strong>Shared file in the repository</strong>; to use your list from <strong>Edit → Commit Messages…</strong>, choose <strong>App default</strong>.</div></div>
+            <div class="chapter-footer"><a href="#version-source">&larr; The Right Version in Every Commit</a><span></span></div>
           </article>
         </section>
       </div>
