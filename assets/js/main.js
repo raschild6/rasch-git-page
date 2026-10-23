@@ -80,6 +80,8 @@
         return n && (n.title || n.text);
       }) : [],
       virustotal: raw.virustotal || {},
+      // From 1.0.6: set only on an early release (the sentence to show).
+      earlyRelease: String(raw.early_release || "").trim(),
       releaseUrl: raw.release_url || RELEASES_URL + "/tag/" + encodeURIComponent(tag)
     };
   }
@@ -162,8 +164,9 @@
     var hero = document.querySelector("[data-latest-downloads]");
     if (!hero) return;
     var hint = hero.querySelector(".version-hint");
+    var early = false;
     var setHint = function (tag) {
-      if (hint && tag) hint.textContent = "Latest version: " + tag;
+      if (hint && tag) hint.textContent = "Latest version: " + tag + (early ? " (early release)" : "");
     };
     var viaApi = function () {
       resolveDownloads(hero, "latest", function (release) { setHint(release.tag_name); });
@@ -174,6 +177,7 @@
       hero.querySelectorAll("[data-platform]").forEach(function (btn) {
         btn.href = latest[btn.getAttribute("data-platform")] || latest.releaseUrl;
       });
+      early = !!latest.earlyRelease;
       setHint(latest.tag);
     }, viaApi);
   }
