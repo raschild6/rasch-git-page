@@ -424,7 +424,7 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 
 ### 40. Import Workspace
 
-**In one line:** Coming from another Git client or IDE? Bring its repository list and groups over in one step, every folder checked first.
+**In one line:** Coming from another Git client or IDE? Bring its repository list and groups over in one step, every folder checked first. *Early release: it will keep improving in the next updates as more tool versions are covered.*
 
 **What it does:** **File → Import Workspace…** shows six tools: GitKraken, VS Code, IntelliJ IDEA / Android Studio, Sourcetree, Fork and GitHub Desktop. Each one says whether its settings were found on this computer. Pick one and the app reads its list of repositories, with its groups where it has them:
 - GitKraken: its local workspaces.
