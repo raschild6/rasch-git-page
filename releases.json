@@ -1,5 +1,120 @@
 [
   {
+    "version": "1.0.6",
+    "tag": "v1.0.6",
+    "date": "2026-10-23",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.6/RaschildGitManager-1.0.6-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.6/RaschildGitManager-1.0.6-macos-arm64.dmg",
+      "linux": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.6/RaschildGitManager-1.0.6-linux-x86_64.AppImage",
+      "linux-deb": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.6/raschild-git-manager_1.0.6-1_amd64.deb",
+      "linux-rpm": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.6/raschild-git-manager-1.0.6-1.x86_64.rpm"
+    },
+    "changelog": {
+      "New Features": [
+        "Drag a branch to merge it: Drag a branch in the graph or the left panel onto another branch and pick Merge, Fast-forward or Rebase from the menu; a branch that isn't checked out is checked out first.",
+        "Import your workspace from another Git client (early release): File → Import Workspace… brings your repositories and groups from GitKraken, VS Code, JetBrains IDEs, Sourcetree, Fork or GitHub Desktop and reports what needs attention; as an early release it will keep improving in the next updates.",
+        "Commit messages for every repository or one: Commit Messages… in the Edit or Repository menu keeps title and description templates built from the branch type, ticket and words, for all repositories or just one; a shared .gitmessage is used too.",
+        "Bulk actions in the background: Manage Branches and Manage Repos no longer block the window: close them and keep browsing; the repository stays read-only until the action ends, with progress in the status bar."
+      ],
+      "Bug Fixes": [
+        "Message box layout: The icon sits next to the text again and button labels are no longer cut off, most visibly on macOS.",
+        "No automatic fetch in the middle of a bulk action",
+        "Version detection when running from source without PyYAML"
+      ],
+      "Improvements": [
+        "Much faster bulk branch actions: Deleting, pushing or pulling many branches at once now talks to the remote once instead of once per branch: minutes become seconds.",
+        "Several branches or tags at once in the sidebar: Ctrl+click or Shift+click branches or tags in the sidebar, then right-click to pull, push, merge or delete them together.",
+        "Force delete unmerged branches in one go: When deleting several branches stops at unmerged ones, one question lists them and offers to force delete them all.",
+        "Smoother after every refresh on big repositories: The sidebar is rebuilt only when branches, tags or stashes changed, and the commit graph loads faster on long histories.",
+        "Hidden tabs page, by group: With every tab hidden, the repositories are listed in one card per group that scrolls, with a filter box and a Show Group button."
+      ]
+    },
+    "notes": [
+      {
+        "kind": "new",
+        "level": 3,
+        "title": "Drag a branch to merge it",
+        "text": "Drag a branch in the graph or the left panel onto another branch and pick Merge, Fast-forward or Rebase from the menu; a branch that isn't checked out is checked out first."
+      },
+      {
+        "kind": "new",
+        "level": 3,
+        "title": "Import your workspace from another Git client (early release)",
+        "text": "File → Import Workspace… brings your repositories and groups from GitKraken, VS Code, JetBrains IDEs, Sourcetree, Fork or GitHub Desktop and reports what needs attention; as an early release it will keep improving in the next updates."
+      },
+      {
+        "kind": "new",
+        "level": 3,
+        "title": "Commit messages for every repository or one",
+        "text": "Commit Messages… in the Edit or Repository menu keeps title and description templates built from the branch type, ticket and words, for all repositories or just one; a shared .gitmessage is used too."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Several branches or tags at once in the sidebar",
+        "text": "Ctrl+click or Shift+click branches or tags in the sidebar, then right-click to pull, push, merge or delete them together."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Force delete unmerged branches in one go",
+        "text": "When deleting several branches stops at unmerged ones, one question lists them and offers to force delete them all."
+      },
+      {
+        "kind": "improve",
+        "level": 3,
+        "title": "Much faster bulk branch actions",
+        "text": "Deleting, pushing or pulling many branches at once now talks to the remote once instead of once per branch: minutes become seconds."
+      },
+      {
+        "kind": "new",
+        "level": 3,
+        "title": "Bulk actions in the background",
+        "text": "Manage Branches and Manage Repos no longer block the window: close them and keep browsing; the repository stays read-only until the action ends, with progress in the status bar."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Smoother after every refresh on big repositories",
+        "text": "The sidebar is rebuilt only when branches, tags or stashes changed, and the commit graph loads faster on long histories."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Hidden tabs page, by group",
+        "text": "With every tab hidden, the repositories are listed in one card per group that scrolls, with a filter box and a Show Group button."
+      },
+      {
+        "kind": "fix",
+        "level": 1,
+        "title": "",
+        "text": "No automatic fetch in the middle of a bulk action"
+      },
+      {
+        "kind": "fix",
+        "level": 1,
+        "title": "",
+        "text": "Version detection when running from source without PyYAML"
+      },
+      {
+        "kind": "fix",
+        "level": 2,
+        "title": "Message box layout",
+        "text": "The icon sits next to the text again and button labels are no longer cut off, most visibly on macOS."
+      }
+    ],
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/f3e4ebd6bdff62acd5957fc58b474f0823f2a84245731e4afcdf4ce4e1ae75ad",
+      "macos": "https://www.virustotal.com/gui/file/1d04a642ce95c1d40059311fbec29be8e4646061894dcb8a00cdb0cae7a6007e",
+      "linux": "https://www.virustotal.com/gui/file/43ce4cbf624dae29fa38cac4f93ce8350c3381223c972fe5e1402127b835a006",
+      "linux-deb": "https://www.virustotal.com/gui/file/d71eedd4cd11348db8fb7ed3ed5cc8b09a2f57df98ef64de105940e146b5edab",
+      "linux-rpm": "https://www.virustotal.com/gui/file/d39e92897951b99cc574e21cf31a936e6e6fefd517305f6e051d3ef77e359d48"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v1.0.6",
+    "early_release": "Rasch-Git 1.0.6 brings several new features at once, so quick follow-up updates may come in the next few days; the app tells you when one is ready."
+  },
+  {
     "version": "1.0.5",
     "tag": "v1.0.5",
     "date": "2026-10-20",
