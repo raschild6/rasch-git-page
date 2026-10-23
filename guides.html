@@ -67,6 +67,7 @@
             <li><a class="chapter-item" href="#several-repos"><span class="num">11</span><span class="label">Several Repositories at Once</span></a></li>
             <li><a class="chapter-item" href="#version-source"><span class="num">12</span><span class="label">The Right Version in Every Commit</span></a></li>
             <li><a class="chapter-item" href="#commit-template"><span class="num">13</span><span class="label">Commit Message Templates</span></a></li>
+            <li><a class="chapter-item" href="#import-workspace"><span class="num">14</span><span class="label">Switching from Another Git Client</span></a></li>
           </ul>
         </nav>
         <section class="card chapter-content" id="chapter-content">
@@ -519,7 +520,42 @@
 <h3 class="guide-h" id="ct-team">Share it with the team</h3>
 <ol class="steps"><li>In the same window, click <strong>Save as Shared File…</strong>. The template is written to <code>.gitmessage</code> in the repository. Keep <strong>Also for git on the command line</strong> ticked so <code>git commit</code> uses it too.</li><li>Commit <code>.gitmessage</code> like any other file and push it.</li><li>Everyone who uses Rasch-Git gets the template, with no setup. Rasch-Git also reads a template that git's <code>commit.template</code> setting points to.</li></ol>
 <div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>Your own list always wins over the shared file. To go back to the team's, choose <strong>The shared file</strong> under <strong>Use</strong>; to use the templates for all repositories, choose <strong>The list for all repositories</strong>.</div></div>
-            <div class="chapter-footer"><a href="#version-source">&larr; The Right Version in Every Commit</a><span></span></div>
+            <div class="chapter-footer"><a href="#version-source">&larr; The Right Version in Every Commit</a><a href="#import-workspace">Switching from Another Git Client &rarr;</a></div>
+          </article>
+          <article class="chapter guide" id="import-workspace" aria-labelledby="import-workspace-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/><path d="M12 3v11"/><path d="m8 10 4 4 4-4"/><path d="M4 7h3M17 7h3"/></svg></span>
+              <h2 id="import-workspace-title">Switching from Another Git Client</h2>
+            </div>
+<p class="intro">Already have dozens of repositories set up in another Git client or IDE? <strong>File → Import Workspace…</strong> brings the list and its groups over in one step. The other tool's settings are only read, never changed.</p>
+
+<h3 class="guide-h" id="iw-steps">Import in four steps</h3>
+<ol class="steps"><li>Open <strong>File → Import Workspace…</strong> and pick the tool. Each one says whether its settings were found on this computer.</li><li>Check the list. Repositories are grouped like in the tool, and every folder has been checked: untick what you don't want, or tick a whole group.</li><li>Choose <strong>Groups</strong>: keep the tool's groups, put everything in one group named after the tool ("From GitKraken"), or no group. With more than six repositories, <strong>Open the imported tabs hidden</strong> is ticked for you, so your tab bar stays tidy.</li><li>Click <strong>Import</strong> and read the report. It lists what was imported, what was skipped because it was already open, and what needs your attention.</li></ol>
+<figure class="shot"><a href="assets/screenshots/import-workspace-tools.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Pick the tool you come from"><img src="assets/screenshots/import-workspace-tools.png" alt="Pick the tool you come from" width="1720" height="1200" loading="lazy" decoding="async"></a><figcaption>Pick the tool you come from</figcaption></figure>
+
+<h3 class="guide-h" id="iw-where">What is read from each tool</h3>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th scope="col">Tool</th><th scope="col">Repositories</th><th scope="col">Groups</th></tr></thead><tbody>
+<tr><th scope="row">GitKraken</th><td data-label="Repositories">Every repository it knows, for one profile or all of them</td><td data-label="Groups">Local workspaces (cloud workspaces stay online; their repositories still come in)</td></tr>
+<tr><th scope="row">VS Code</th><td data-label="Repositories">Recently opened folders; also VS Code Insiders, VSCodium and Cursor</td><td data-label="Groups">Each <code>.code-workspace</code>; Project Manager tags</td></tr>
+<tr><th scope="row">IntelliJ IDEA / Android Studio</th><td data-label="Repositories">Recent projects of every JetBrains IDE (PyCharm, WebStorm, Rider…), newest version of each</td><td data-label="Groups">Project groups</td></tr>
+<tr><th scope="row">Sourcetree</th><td data-label="Repositories">Bookmarks (Windows and Mac)</td><td data-label="Groups">Bookmark folders; a folder in a folder becomes "Parent / Child"</td></tr>
+<tr><th scope="row">Fork</th><td data-label="Repositories">The repository manager (Windows and Mac)</td><td data-label="Groups">Categories</td></tr>
+<tr><th scope="row">GitHub Desktop</th><td data-label="Repositories">Its repository list, read best effort</td><td data-label="Groups">None: everything goes in "From GitHub Desktop"</td></tr>
+</tbody></table></div>
+
+<h3 class="guide-h" id="iw-not-found">Settings not found?</h3>
+<p>If the tool keeps its settings somewhere else, the app shows where it looked and what to point to instead. That can be a portable install, another user account, or a copy from your old computer. Pick it with <strong>Browse for Folder…</strong> or <strong>Browse for File…</strong>. A settings file copied from Windows can be read on a Mac and the other way round. Repositories whose paths don't exist on this computer are then simply marked <em>Folder not found</em>.</p>
+
+<h3 class="guide-h" id="iw-attention">Repositories that need attention</h3>
+<ul class="guide-list">
+ <li><strong>Folder not found</strong>: it was moved or deleted. Right-click → <strong>Locate Folder…</strong> and pick where it lives now.</li>
+ <li><strong>Drive not available</strong>: a network share or external disk isn't connected. Connect it and run Import Workspace again: the repositories already imported are skipped.</li>
+ <li><strong>Not a git repository</strong>: the folder exists but isn't a Git repository (any more).</li>
+ <li><strong>Imports …</strong>: the tool listed a folder inside a repository, and the whole repository is imported.</li>
+</ul>
+<figure class="shot"><a href="assets/screenshots/import-workspace-report.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The report after an import"><img src="assets/screenshots/import-workspace-report.png" alt="The report after an import" width="1720" height="1200" loading="lazy" decoding="async"></a><figcaption>The report after an import</figcaption></figure>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>Using two tools? Import from one, then click <strong>Import from Another Tool</strong>. A repository that's already open is never added twice; tick it in the list to move it into the new group instead.</div></div>
+            <div class="chapter-footer"><a href="#commit-template">&larr; Commit Message Templates</a><span></span></div>
           </article>
         </section>
       </div>

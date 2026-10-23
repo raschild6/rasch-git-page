@@ -56,6 +56,7 @@
 | `image-diff-swipe.png` | Image diff in Swipe mode | 3 |
 | `lfs.png` | LFS card (size before → after, *Open Before* / *Open After*) and LFS / large-file badges in the changes panel | 38 |
 | `split-view-2.png`, `split-view-4.png` | Split view: two repositories side by side; four in a 2×2 grid | 29 |
+| `import-workspace-tools.png`, `import-workspace.png`, `import-workspace-report.png` | File → Import Workspace…: the six tools (found / not found), the repositories by group with each folder checked, the result report (dialog only, demo home folder) | 40 |
 | `about-license.png` | Help → About with the license notice | — |
 
 Dialogs are shown over the dimmed app with a drop shadow, as the operating system presents them; the capture ran without a window manager, so window title bars aren't drawn. Names, e-mail addresses, the sign-in code, the release in the update dialog and the pull requests, CI checks, issues and account repositories are demo data.
