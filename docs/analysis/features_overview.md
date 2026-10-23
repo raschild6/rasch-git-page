@@ -24,7 +24,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 2. [Graph & history](#graph--history) — the virtualized graph, the branch tree, commit details, commit search, Deep Search, blame & file history
 3. [Changes & commits](#changes--commits) — smart diff views, hunk-level staging, commit templates, review-before-commit, conflict resolution and safe checkout
 4. [Branches & safety net](#branches--safety-net) — undo / redo, interactive rebase, git-flow, worktrees, bulk actions
-5. [Many repositories](#many-repositories) — tab groups, split view, drag & drop to open, submodules, large files (Git LFS), scheduled actions
+5. [Many repositories](#many-repositories) — tab groups, split view, drag & drop to open, import workspace, submodules, large files (Git LFS), scheduled actions
 6. [GitHub & GitLab](#github--gitlab) — pull requests, CI / CD status, clone & fork from your account, issues → branches, accounts & SSH keys, commit signing
 7. [Your workspace](#your-workspace) — built-in terminal, custom toolbar buttons, custom themes, interface scale, external programs, guided tour
 8. [Speed & trust](#speed--trust) — async GUI, auto fetch with progress and cancel, cross-platform look, updates, logs
@@ -77,6 +77,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 37 | Commit signing | Get the *Verified* badge on your commits: sign with an SSH or GPG key, set up, tested and added to GitHub from one page. |
 | 38 | Large files (Git LFS) | Repositories with big design files, media or datasets just work: download progress, real sizes, no pointer text. |
 | 39 | Interface scale | The whole app larger or smaller, to any size from 25% to 400%, with Ctrl+Plus / Ctrl+Minus — text, icons and spacing together. |
+| 40 | Import Workspace | Coming from another Git client or IDE? Bring its repository list and groups over in one step, every folder checked first. |
 
 ---
 
@@ -89,11 +90,12 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 **What it does:** The graph draws branches as coloured lanes and merges as curves; a branch keeps one colour and one column for its whole life, and once it is merged its column is free for the next branch, so a history of many short branches stays narrow and main stays a straight line, and labels each branch tip as local, remote, or both (↑ / ↓ / ✓), in the colour of its line. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly. Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. With the graph focused, **↑ / ↓** step from commit to commit and the view follows.
 
 The graph is also where you act on history, with **right-click menus**:
-- **Branch and tag labels:** double-click one to check it out (the same safe checkout as the menu); right-click to check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete; a tag that is only on the remote: fetch it, or delete it there).
+- **Branch and tag labels:** double-click one to check it out (the same safe checkout as the menu); **drag a branch onto another to merge it** (also between the graph and the left panel): a menu at the drop point offers merge, fast-forward or rebase, and a branch that isn't checked out is checked out first; dropped on a remote branch, a dialog offers to pull the local branch first, merge into it as it is, or create it; right-click to check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete; a tag that is only on the remote: fetch it, or delete it there).
   - **Fast-forward in both directions:** on `main`, a right-click on `dev` offers *Fast-forward 'main' to 'dev'* and *Fast-forward 'dev' to 'main'*: the second moves `dev` up to `main` without leaving `main` (only offered when it really is a fast-forward).
   - **Reset Soft / Mixed / Hard to here** on another branch's label or on a remote label (e.g. `origin/feature`) moves the branch you are on to it: useful to make a local branch match its remote.
 - **A commit (its row or its coloured dot):** cherry-pick, revert, **Reset Soft / Mixed / Hard to here** (soft keeps the differences staged, mixed keeps them unstaged, hard discards them after a confirmation; only when a branch is checked out, and undoable), create a branch or tag there, copy the SHA.
   - **Several commits at once:** **Ctrl+click** (Cmd+click on macOS) adds or removes a commit, **Shift+click** or **Shift+↑ / ↓** selects a range. Right-click one of them (or any branch / tag label while several are selected) → **Cherry-pick N Commits (No Commit)** applies them all, oldest first, in one go; or copy their SHAs. **Branches on These Commits** acts on the branches labelled on the selected commits: pull, push, merge into the current branch, delete them locally, on the remote or both (deletions ask first; the checked-out branch is left out), with the same progress, cancel and summary report as Manage Branches.
+  - **Several branches or tags in the sidebar:** the same Ctrl+click / Shift+click works in the sidebar's branch and tag lists. Right-click the selected branches to pull, push, merge them into the current branch, or delete them locally, on their remote or both; the selected tags can be pushed or deleted (here or here and on the remote) in one go. Branches picked under a remote act on that remote's copy. Deletions ask first and list the names; the checked-out branch is left out; branches that aren't fully merged are listed in one question that offers to force delete them.
   - **Create Tag** has a multi-line message box and **Load from File…**: pick your release notes (e.g. `docs/releases/v1.0.3.txt`), edit them if needed, then *Create* or *Create & Push*. Lines starting with `#` are left out, as in Git.
 - **A stash node:** apply, pop or drop it.
 
@@ -244,17 +246,18 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 
 ### 12. Customizable commit templates
 
-**In one line:** Pre-filled commit titles with your project's version and branch.
+**In one line:** Pre-filled commit titles and descriptions with your project's version, branch and ticket — per repository, or shared with the team.
 
-**What it does:** You keep a list of predefined commit titles with placeholders: `{version}` is the project's version and `{branch}` is the current branch. The version is read from the right place for about 50 kinds of projects — `package.json`, `pyproject.toml`, `Cargo.toml`, `pom.xml`, Gradle, `.csproj`, a Helm chart's `appVersion`, `pubspec.yaml`, CMake, a `VERSION` file and many more — skipping the traps (a dependency's version, the Node or SDK version, the chart's own version). Without a version file it comes from the current release branch (`release/1.4.0`) or the next patch after the latest version tag; never from commit messages. **Repository → Version Source…** points a repository at any file (JSON, TOML, YAML, XML, INI, regex or plain text, with a Test button) or at a tag pattern. On a branch linked to an issue, `{issue}` (`#123`) and `{issue_title}` are filled in too. The first template pre-fills the commit title automatically and keeps it up to date when you change the version, until you type your own title; the sparkle button next to the title offers the others. The title field shows a character counter that warns before you pass 72 characters. You can amend the previous commit, or commit and push in one click.
+**What it does:** You keep a list of predefined commit titles with placeholders: `{version}` is the project's version and `{branch}` is the current branch. The version is read from the right place for about 50 kinds of projects — `package.json`, `pyproject.toml`, `Cargo.toml`, `pom.xml`, Gradle, `.csproj`, a Helm chart's `appVersion`, `pubspec.yaml`, CMake, a `VERSION` file and many more — skipping the traps (a dependency's version, the Node or SDK version, the chart's own version). Without a version file it comes from the current release branch (`release/1.4.0`) or the next patch after the latest version tag; never from commit messages. **Repository → Version Source…** points a repository at any file (JSON, TOML, YAML, XML, INI, regex or plain text, with a Test button) or at a tag pattern. On a branch linked to an issue, `{issue}` (`#123`) and `{issue_title}` are filled in too. The first template pre-fills the commit title automatically and keeps it up to date when you change the version, until you type your own title; the sparkle button next to the title offers the others. **Commit Messages…** (Edit or Repository menu) is one window for the templates of all repositories and of one: each template can hold a title *and* a description, built from the branch: `{type}` (`feat`, `fix`… from the `feature/`, `bugfix/` prefix, Conventional Commits names by default), `{ticket}` (`PROJ-482` or `#123`, or your own pattern), `{branch_words}` (`add login page`), `{date}`, `{user}` and more; parts in `[[…]]` disappear when a value is missing, so `{type}[[({ticket})]]: {branch_words}` gives `feat(PROJ-482): add login page`. Each repository uses the list for all repositories, a list of its own, or a shared file: a team can commit the template as `.gitmessage` (or git's `commit.template`) and everyone gets it; **Save as Shared File…** writes it for you. Text you type in the title or description is never replaced. The title field shows a character counter that warns before you pass 72 characters. You can amend the previous commit, or commit and push in one click.
 
 **Why it's different:**
 - Most clients start every commit from an empty box, or support only one static template.
 - Templates here are a list with live placeholders, which suits teams with commit conventions such as `[FIX]`, `[NEW]` or version bumps.
+- Each repository can have its own template for title and description, from the branch name (type, ticket, words), and the standard `.gitmessage` / `commit.template` file is understood, so a team convention lives in the repository.
 - The version comes from your project's own manifest, whatever the language, and the title updates when you bump it.
 - The same version detection suggests branch names like `dev-release/1.4.0` when you create a branch (the pattern is yours to choose per repository: `release/{version}`, `{version}-{date}`…), and git-flow release names.
 
-**Where to find it:** The *Commit* box in the right panel; edit the list in **Edit → Commit Messages…**; choose the version's source in **Repository → Version Source…**.
+**Where to find it:** The *Commit* box in the right panel; edit the templates in **Edit → Commit Messages…** (all repositories) or **Repository → Commit Messages…** (this one); choose the version's source in **Repository → Version Source…**.
 
 ### 14. Review before commit (merge & cherry-pick)
 
@@ -367,13 +370,17 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 **What it does:**
 - **Manage Branches:** lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull, push or merge them.
 - **Manage Repos:** runs fetch, pull, checkout, create branch, push or delete branch across all open repositories at once.
+- **From a selection:** Ctrl+click / Shift+click several branches in the sidebar (or several commits in the graph), right-click, and pick the action: Manage Branches opens with them ticked and runs it.
+- **Unmerged branches:** when a delete stops at branches that aren't fully merged, one question lists them and offers to force delete them all.
 - **Reporting:** the work continues past individual failures, and a summary report lists what succeeded, what was skipped and why each failure happened.
+- **In the background:** neither window blocks the app. Close or minimise it and keep working; the action goes on, the status bar shows its progress (click for Show, Cancel and, at the end, the report). The repository under the action is read-only meanwhile: browsing, diffs, Blame and history work, changes wait until it ends.
 
 **Why it's different:**
 - Standard GUIs act on one branch and one repository at a time.
 - Cleaning up dozens of merged branches, or updating ten repositories, is a single action here, with a clear per-item report instead of a stream of error dialogs.
+- Long bulk actions run in the background like a download: the rest of the app stays usable, and only the repositories being changed are locked.
 
-**Where to find it:** **Edit → Manage Branches…** and **Edit → Manage Repos…**.
+**Where to find it:** **Edit → Manage Branches…** and **Edit → Manage Repos…**; right-click a multi-selection of branches in the sidebar or of commits in the graph.
 
 ---
 
@@ -383,7 +390,7 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 
 **In one line:** Organize many repositories into coloured, collapsible groups.
 
-**What it does:** Every repository opens in its own tab, and tabs are restored the next time you start the app: the window opens at once with the repository you were on, and the other tabs open in the background, one at a time. Right-click a tab to create a group or add the tab to one. Each group has its own colour: one of 16, or any colour you pick with **Custom…** (it stays readable in light and dark themes). Groups get their own row above the repository tabs: each group is a coloured chip with its name and number of repositories, and the tab row below lists the repositories group by group, in the group's colour. Click a group to collapse it: its tabs are hidden, but the repositories stay open in the background, ready the moment you bring them back. Or hide only some of them (*Hide Tab*, *Hide Other Tabs*, or untick tabs in the group's menu). The **N hidden** button lists every hidden tab and brings any of them back in one click. Drag a group chip to reorder groups. Group order, hidden tabs and the active tab are all kept across restarts. **Reload Repository** in a tab's right-click menu reopens a repository in place, in the same group and position. Folders can also be dragged onto the window (see [Drag & drop to open](#22-drag--drop-to-open)).
+**What it does:** Every repository opens in its own tab, and tabs are restored the next time you start the app: the window opens at once with the repository you were on, and the other tabs open in the background, one at a time. Right-click a tab to create a group or add the tab to one. Each group has its own colour: one of 16, or any colour you pick with **Custom…** (it stays readable in light and dark themes). Groups get their own row above the repository tabs: each group is a coloured chip with its name and number of repositories, and the tab row below lists the repositories group by group, in the group's colour. Click a group to collapse it: its tabs are hidden, but the repositories stay open in the background, ready the moment you bring them back. Or hide only some of them (*Hide Tab*, *Hide Other Tabs*, or untick tabs in the group's menu). The **N hidden** button lists every hidden tab and brings any of them back in one click. When every tab is hidden, the window shows them group by group, in the group's colour: type to filter, click a repository to bring its tab back, or **Show Group** for the whole group. Drag a group chip to reorder groups. Group order, hidden tabs and the active tab are all kept across restarts. **Reload Repository** in a tab's right-click menu reopens a repository in place, in the same group and position. Folders can also be dragged onto the window (see [Drag & drop to open](#22-drag--drop-to-open)).
 
 **Why it's different:**
 - Many Git GUIs show one repository per window, or a flat bookmark list.
@@ -414,6 +421,30 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 - Here, getting ten repositories into the app is one drag.
 
 **Where to find it:** Anywhere on the main window; also **File → Open** (**Ctrl+O**). The feature tour mentions it in its second step.
+
+### 40. Import Workspace
+
+**In one line:** Coming from another Git client or IDE? Bring its repository list and groups over in one step, every folder checked first. *Early release: it will keep improving in the next updates as more tool versions are covered.*
+
+**What it does:** **File → Import Workspace…** shows six tools: GitKraken, VS Code, IntelliJ IDEA / Android Studio, Sourcetree, Fork and GitHub Desktop. Each one says whether its settings were found on this computer. Pick one and the app reads its list of repositories, with its groups where it has them:
+- GitKraken: its local workspaces.
+- VS Code: each `.code-workspace` (plus Project Manager tags). VS Code Insiders, VSCodium and Cursor are read the same way.
+- JetBrains IDEs: their project groups (every JetBrains IDE, not only IntelliJ and Android Studio).
+- Sourcetree: its bookmark folders.
+- Fork: its categories.
+
+The repositories appear in a checklist, group by group. Before anything is imported, every folder is checked:
+- **Ready**, or **Imports …** for a project folder inside a repository.
+- **Already imported**, unchecked: tick it to move it into the imported group.
+- **Folder not found**, **Drive not available** (a network share or external disk that isn't connected), **Not a git repository** or **Bare repository**, so you know what needs attention. Right-click one → **Locate Folder…** to point to where it lives now.
+
+Select or deselect repositories one by one or a whole group at a time. Keep the tool's groups, put everything in one group named after the tool ("From GitKraken"), or use no group. A same-named group you already have is reused. Imported repositories open as tabs that load only when you look at them. With more than six, they open hidden behind their group chip. They don't fill *File → Recent*. The report at the end says how many were imported, skipped as already open, or not imported, and what to do about each one. Run it again for another tool: nothing is ever added twice.
+
+**Why it's different:**
+- Switching Git clients usually means re-adding every repository by hand, one dialog at a time, and rebuilding your groups.
+- Here the list and the grouping come with you, and broken paths are explained instead of failing silently.
+
+**Where to find it:** **File → Import Workspace…**.
 
 ### 31. Submodules
 
@@ -732,6 +763,7 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 | Branch switching with local changes | Manual stash, or refusal | Automatic stash and restore |
 | Many branches / repos | One at a time | Bulk actions with a per-item report |
 | Many repositories | Window per repo or bookmark list | Tabs with coloured, collapsible groups |
+| Switching from another client | Add every repository again, by hand | Import Workspace: the repository list and groups of six other clients and IDEs, every folder checked first |
 | Several repositories at once | Several windows | Split view: up to four live panes side by side |
 | Working on two branches at once | Stash, switch, switch back | Worktrees: each branch in its own folder and tab, created from the branch menu |
 | Git-flow | Needs the git-flow extension; finish runs every step at once | Built in, no extension; finish shows each step and lets you review every merge, resumable |
@@ -816,8 +848,9 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 - **Undo for everything:** stage / unstage and pushes are not undone. Remote changes are never reverted, and the undo history lasts for the current session only.
 - **Search the whole history:** commit search covers the commits loaded so far (the graph loads more as you scroll).
 - **Deep Search text:** searches committed content only — not uncommitted changes, untracked files, stashes or tags; binary files are skipped; results stop at 2000 matching lines ("refine the search"); *Text in history* looks at a set number of commits (5000 by default, adjustable, 0 = all) and, in its default mode, doesn't report code that was only moved.
-- **Comparisons with GitKraken:** don't name it on the page.
-- **"Sign in with GitLab / Bitbucket":** only GitHub has a browser sign-in; the others use access tokens. GitHub sign-in needs the app's OAuth App to be registered.
+- **Comparisons with GitKraken:** don't name it on the page. (Naming the six tools as **import sources** of Import Workspace is fine: that's what people search for. It's a list of sources, not a comparison.)
+- **Import Workspace:** it reads the other tool's settings on this computer, so GitKraken *cloud* workspaces don't come over as groups (their repositories do when GitKraken has them on disk). GitHub Desktop's list is read best effort, and a repository you removed from GitHub Desktop may still be listed. Sourcetree and Fork have no Linux version (a settings file copied from another computer can still be read). It imports the list and groups only, not each tool's other settings.
+- **"Sign in with GitLab / Bitbucket":** only GitHub has a browser sign-in; the others use access tokens. GitHub sign-in needs the app's OAuth App to be registered (maintainers: `docs/AUTHENTICATION.md`).
 - **Split view:** at most four panes, and a repository is shown in one pane at a time (not two views of the same repository). Panes in the background notice edits in deep subfolders within a few seconds, not instantly.
 - **Worktrees:** creating or removing a worktree's folder can't be undone (only a new branch created with it can); undo in one worktree won't move a branch another worktree has checked out; a worktree-only (bare) repository has no tab for its main entry; nothing is painted on the graph (the tooltips say where a branch is checked out); needs a recent Git (2.36 or newer).
 - **Commit signing:** no signature badges in the graph (only in the selected commit's details); a key with a passphrase needs a passphrase window (graphical pinentry) or an agent that already has it; X.509 signing is shown but not set up from the app; SSH signatures verify locally only for keys in Git's allowed signers file (the app adds your own); *Add to GitHub* is GitHub-only and needs signing in again once; GitHub shows *Verified* only when the commit email is also verified on the GitHub account.

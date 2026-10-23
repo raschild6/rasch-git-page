@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261015">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261023">
 </head>
 <body>
   <header class="navbar">
@@ -95,11 +95,12 @@
                 </ul>
               </div>
               <div class="fi-group" data-area="many-repos">
-                <button class="fi-group-btn" type="button" aria-expanded="false" aria-controls="fi-many-repos"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg><span>Many Repositories</span><em>6</em></button>
+                <button class="fi-group-btn" type="button" aria-expanded="false" aria-controls="fi-many-repos"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg><span>Many Repositories</span><em>7</em></button>
                 <ul id="fi-many-repos">
                   <li><a href="#tab-groups">Tab Groups</a></li>
                   <li><a href="#split-view">Split View <span class="badge badge-exp">Beta</span></a></li>
                   <li><a href="#drag-drop-to-open">Drag &amp; Drop to Open</a></li>
+                  <li><a href="#import-workspace">Import Workspace <span class="badge badge-exp">Early release</span></a></li>
                   <li><a href="#submodules">Submodules</a></li>
                   <li><a href="#git-lfs">Large Files (Git LFS)</a></li>
                   <li><a href="#scheduled-actions">Action Scheduler <span class="badge badge-exp">Experimental</span></a></li>
@@ -167,7 +168,7 @@
                 <section class="area-card" id="many-repos" aria-labelledby="many-repos-title">
                   <h3 id="many-repos-title">Many Repositories</h3>
                   <p>Dozens of repositories in one window, each one live.</p>
-                  <ul><li><a href="#tab-groups">Tab Groups</a></li><li><a href="#split-view">Split View <span class="badge badge-exp">Beta</span></a></li><li><a href="#drag-drop-to-open">Drag &amp; Drop to Open</a></li><li><a href="#submodules">Submodules</a></li><li><a href="#git-lfs">Large Files (Git LFS)</a></li><li><a href="#scheduled-actions">Action Scheduler <span class="badge badge-exp">Experimental</span></a></li></ul>
+                  <ul><li><a href="#tab-groups">Tab Groups</a></li><li><a href="#split-view">Split View <span class="badge badge-exp">Beta</span></a></li><li><a href="#drag-drop-to-open">Drag &amp; Drop to Open</a></li><li><a href="#import-workspace">Import Workspace <span class="badge badge-exp">Early release</span></a></li><li><a href="#submodules">Submodules</a></li><li><a href="#git-lfs">Large Files (Git LFS)</a></li><li><a href="#scheduled-actions">Action Scheduler <span class="badge badge-exp">Experimental</span></a></li></ul>
                 </section>
                 <section class="area-card" id="integrations" aria-labelledby="integrations-title">
                   <h3 id="integrations-title">GitHub &amp; GitLab</h3>
@@ -186,7 +187,7 @@
                 </section>
               </div>
             </section>
-            <article class="feature-view feature-page" id="virtualized-commit-graph" data-area="graph-history" data-keywords="history log tree lanes columns narrow wide compact visual graph git log large repository monorepo big history performance wip stash node reset hard soft mixed fast-forward multi-select multiple commits tag create labels">
+            <article class="feature-view feature-page" id="virtualized-commit-graph" data-area="graph-history" data-keywords="history log tree lanes columns narrow wide compact visual graph git log large repository monorepo big history performance wip stash node reset hard soft mixed fast-forward multi-select multiple commits tag create labels drag drop drag and drop drag-and-drop merge into merge branch">
               <p class="feature-crumb"><a href="#graph-history">Graph &amp; History</a><span>1 of 6</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="16" cy="12" r="2"/><path d="M6 8v8"/><path d="M8 7.2 14.3 11"/><path d="M20 4v16"/><path d="m18 7 2-3 2 3M18 17l2 3 2-3"/></svg></span>
@@ -197,12 +198,12 @@
               </div>
               <div class="feature-cols">
                 <div class="feature-main">
-                  <ul class="feature-glance" aria-label="At a glance"><li>Branches as coloured lanes that stay narrow: a merged branch frees its column. Labels marked local, remote or both (↑ / ↓ / ✓).</li><li>Only the visible rows are drawn and history loads in pages: huge repositories scroll smoothly.</li><li>Uncommitted work (WIP) and every stash appear as nodes in the graph.</li><li>Right-click labels and commits to check out, merge, rebase, reset, cherry-pick, tag and more; select several commits at once.</li></ul>
+                  <ul class="feature-glance" aria-label="At a glance"><li>Branches as coloured lanes that stay narrow: a merged branch frees its column. Labels marked local, remote or both (↑ / ↓ / ✓).</li><li>Only the visible rows are drawn and history loads in pages: huge repositories scroll smoothly.</li><li>Uncommitted work (WIP) and every stash appear as nodes in the graph.</li><li>Drag a branch onto another to merge it. Right-click labels and commits to check out, merge, rebase, reset, cherry-pick, tag and more; select several commits at once.</li></ul>
                   <div class="feature-body">
                 <p>The graph draws branches as coloured lanes and merges as curves; a branch keeps one colour and one column for its whole life, and once it is merged its column is free for the next branch, so a history of many short branches stays narrow and main stays a straight line, and labels each branch tip as local, remote, or both (↑ / ↓ / ✓), in the colour of its line. Only the rows near the visible area are materialized, and history loads in pages as you scroll, so repositories with very long histories open fast and scroll smoothly.</p>
                 <p>Uncommitted changes appear as a "WIP" node, and each stash appears as its own node attached to the commit it was taken from. The columns (branch, graph, message, author, date) fit the window, and you can resize them. With the graph focused, <strong>↑ / ↓</strong> step from commit to commit and the view follows.</p>
 <p>The graph is also where you act on history, with <strong>right-click menus</strong>:</p>
-<ul><li><strong>Branch and tag labels:</strong> double-click one to check it out (the same safe checkout as the menu); right-click to check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete; a tag that is only on the remote: fetch it, or delete it there).<ul><li><strong>Fast-forward in both directions:</strong> on <code>main</code>, a right-click on <code>dev</code> offers <em>Fast-forward 'main' to 'dev'</em> and <em>Fast-forward 'dev' to 'main'</em>: the second moves <code>dev</code> up to <code>main</code> without leaving <code>main</code> (only offered when it really is a fast-forward).</li><li><strong>Reset Soft / Mixed / Hard to here</strong> on another branch's label or on a remote label (e.g. <code>origin/feature</code>) moves the branch you are on to it: useful to make a local branch match its remote.</li></ul></li><li><strong>A commit (its row or its coloured dot):</strong> cherry-pick, revert, <strong>Reset Soft / Mixed / Hard to here</strong> (soft keeps the differences staged, mixed keeps them unstaged, hard discards them after a confirmation; only when a branch is checked out, and undoable), create a branch or tag there, copy the SHA.<ul><li><strong>Several commits at once:</strong> <strong>Ctrl+click</strong> (Cmd+click on macOS) adds or removes a commit, <strong>Shift+click</strong> or <strong>Shift+↑ / ↓</strong> selects a range. Right-click one of them (or any branch / tag label while several are selected) → <strong>Cherry-pick N Commits (No Commit)</strong> applies them all, oldest first, in one go; or copy their SHAs. <strong>Branches on These Commits</strong> acts on the branches labelled on the selected commits: pull, push, merge into the current branch, delete them locally, on the remote or both (deletions ask first; the checked-out branch is left out), with the same progress, cancel and summary report as Manage Branches.</li><li><strong>Create Tag</strong> has a multi-line message box and <strong>Load from File…</strong>: pick your release notes (e.g. <code>docs/releases/v1.0.3.txt</code>), edit them if needed, then <em>Create</em> or <em>Create &amp; Push</em>. Lines starting with <code>#</code> are left out, as in Git.</li></ul></li><li><strong>A stash node:</strong> apply, pop or drop it.</li></ul>
+<ul><li><strong>Branch and tag labels:</strong> double-click one to check it out (the same safe checkout as the menu); <strong>drag a branch onto another to merge it</strong> (also between the graph and the sidebar): the branch you drag is merged into the one you drop it on. A menu at the drop point offers merge, fast-forward or rebase, and nothing runs until you pick one; a branch that isn't checked out is checked out first. Dropped on a remote branch such as <code>origin/main</code>, a dialog offers to pull your local <code>main</code> first, merge into it as it is, or create it. Right-click to check out, merge into the current branch, fast-forward, rebase, push, pull, rename or delete a local branch (remote labels: check out, track, merge, delete on the remote; tags: check out, push, delete; a tag that is only on the remote: fetch it, or delete it there).<ul><li><strong>Fast-forward in both directions:</strong> on <code>main</code>, a right-click on <code>dev</code> offers <em>Fast-forward 'main' to 'dev'</em> and <em>Fast-forward 'dev' to 'main'</em>: the second moves <code>dev</code> up to <code>main</code> without leaving <code>main</code> (only offered when it really is a fast-forward).</li><li><strong>Reset Soft / Mixed / Hard to here</strong> on another branch's label or on a remote label (e.g. <code>origin/feature</code>) moves the branch you are on to it: useful to make a local branch match its remote.</li></ul></li><li><strong>A commit (its row or its coloured dot):</strong> cherry-pick, revert, <strong>Reset Soft / Mixed / Hard to here</strong> (soft keeps the differences staged, mixed keeps them unstaged, hard discards them after a confirmation; only when a branch is checked out, and undoable), create a branch or tag there, copy the SHA.<ul><li><strong>Several commits at once:</strong> <strong>Ctrl+click</strong> (Cmd+click on macOS) adds or removes a commit, <strong>Shift+click</strong> or <strong>Shift+↑ / ↓</strong> selects a range. Right-click one of them (or any branch / tag label while several are selected) → <strong>Cherry-pick N Commits (No Commit)</strong> applies them all, oldest first, in one go; or copy their SHAs. <strong>Branches on These Commits</strong> acts on the branches labelled on the selected commits: pull, push, merge into the current branch, delete them locally, on the remote or both (deletions ask first; the checked-out branch is left out), with the same progress, cancel and summary report as Manage Branches.</li><li><strong>Several branches or tags in the sidebar:</strong> the same Ctrl+click / Shift+click works in the sidebar's branch and tag lists. Right-click the selected branches to pull, push, merge them into the current branch, or delete them locally, on their remote or both; the selected tags can be pushed or deleted (here or here and on the remote) in one go. Branches picked under a remote act on that remote's copy. Deletions ask first and list the names; the checked-out branch is left out; branches that aren't fully merged are listed in one question that offers to force delete them.</li><li><strong>Create Tag</strong> has a multi-line message box and <strong>Load from File…</strong>: pick your release notes (e.g. <code>docs/releases/v1.0.3.txt</code>), edit them if needed, then <em>Create</em> or <em>Create &amp; Push</em>. Lines starting with <code>#</code> are left out, as in Git.</li></ul></li><li><strong>A stash node:</strong> apply, pop or drop it.</li></ul>
               </div>
                 </div>
                 <aside class="feature-aside" aria-label="Virtualized Commit Graph: where to find it">
@@ -547,36 +548,39 @@
                 <a class="next" href="#commit-templates"><small>Next &rarr;</small><span>Commit Templates</span></a>
               </nav>
             </article>
-            <article class="feature-view feature-page" id="commit-templates" data-area="changes-commits" data-keywords="commit message template title version placeholder conventional commits prefix package.json pyproject pom.xml cargo">
+            <article class="feature-view feature-page" id="commit-templates" data-area="changes-commits" data-keywords="commit message template title description body version placeholder conventional commits prefix package.json pyproject pom.xml cargo jira ticket branch type feat fix gitmessage commit.template per repository team convention">
               <p class="feature-crumb"><a href="#changes-commits">Changes &amp; Commits</a><span>3 of 6</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h2M13 13h3M8 17h5"/></svg></span>
                 <div>
                   <h2>Commit Templates</h2>
-                  <p class="feature-tagline">Pre-filled commit titles with your project's version and branch.</p>
+                  <p class="feature-tagline">Pre-filled commit titles and descriptions with your project's version, branch and ticket.</p>
                 </div>
               </div>
               <div class="feature-cols">
                 <div class="feature-main">
-                  <ul class="feature-glance" aria-label="At a glance"><li>Predefined commit titles with {version}, {branch} and {issue}.</li><li>The version is read from the right file for about 50 kinds of projects.</li><li>The first template fills the title for you; a counter warns past 72 characters.</li></ul>
+                  <ul class="feature-glance" aria-label="At a glance"><li>Predefined commit titles with {version}, {branch}, {ticket}, {type} and more.</li><li>Title and description templates for all repositories or just one, or shared with the team as <code>.gitmessage</code>.</li><li>The version is read from the right file for about 50 kinds of projects.</li><li>The template fills the title for you; a counter warns past 72 characters.</li></ul>
                   <div class="feature-body">
                 <p>You keep a list of predefined commit titles with placeholders: <code>{version}</code> is the project's version and <code>{branch}</code> is the current branch. The version is read from the right place for about 50 kinds of projects — <code>package.json</code>, <code>pyproject.toml</code>, <code>Cargo.toml</code>, <code>pom.xml</code>, Gradle, <code>.csproj</code>, a Helm chart's <code>appVersion</code>, <code>pubspec.yaml</code>, CMake, a <code>VERSION</code> file and many more — skipping the traps (a dependency's version, the Node or SDK version, the chart's own version).</p>
                 <p>Without a version file it comes from the current release branch (<code>release/1.4.0</code>) or the next patch after the latest version tag; never from commit messages. <strong>Repository → Version Source…</strong> points a repository at any file (JSON, TOML, YAML, XML, INI, regex or plain text, with a <em>Test</em> button) or at a tag pattern. On a branch linked to an issue, <code>{issue}</code> (<code>#123</code>) and <code>{issue_title}</code> are filled in too.</p>
                 <p>The first template pre-fills the commit title automatically and keeps it up to date when you change the version, until you type your own title; the sparkle button next to the title offers the others. The title field shows a character counter that warns before you pass 72 characters. You can amend the previous commit, or commit and push in one click.</p>
+                <p><strong>Commit Messages…</strong> (Edit or Repository menu) is one window for the templates of all repositories and of one: each template can hold a title <em>and</em> a description, built from the branch: <code>{type}</code> (<code>feat</code>, <code>fix</code>… from the <code>feature/</code> or <code>bugfix/</code> prefix), <code>{ticket}</code> (<code>PROJ-482</code> or <code>#123</code>, or your own pattern), <code>{branch_words}</code> (<code>add login page</code>), <code>{date}</code>, <code>{user}</code> and more. Parts in <code>[[…]]</code> disappear when a value is missing, so <code>{type}[[({ticket})]]: {branch_words}</code> gives <code>feat(PROJ-482): add login page</code>.</p>
+                <p>Each repository uses the list for all repositories, a list of its own, or a shared file: a team can commit the template as <code>.gitmessage</code> (or point git's <code>commit.template</code> at it) and everyone gets it; <strong>Save as Shared File…</strong> writes it for you. Text you type in the title or description is never replaced.</p>
               </div>
                 </div>
                 <aside class="feature-aside" aria-label="Commit Templates: where to find it">
                   <div class="feature-box">
                     <h3>Where to find it</h3>
-                    <p>The <em>Commit</em> box in the right panel; edit the list in <strong>Edit → Commit Messages…</strong>; choose the version's source in <strong>Repository → Version Source…</strong>.</p>
+                    <p>The <em>Commit</em> box in the right panel; edit the templates in <strong>Edit → Commit Messages…</strong> (all repositories) or <strong>Repository → Commit Messages…</strong> (this one); choose the version's source in <strong>Repository → Version Source…</strong>.</p>
                   </div>
                   <div class="feature-box feature-guide">
                     <h3>Step by step</h3>
                     <p><a href="guides.html#version-source">The right version in every commit</a> &rarr;</p>
+                    <p><a href="guides.html#commit-template">Commit messages that follow your convention</a> &rarr;</p>
                   </div>
                   <div class="feature-box feature-why">
                     <h3>Why it's different</h3>
-                    <ul><li>Most clients start every commit from an empty box, or support only one static template.</li><li>Templates here are a list with live placeholders, which suits teams with commit conventions such as <code>[FIX]</code>, <code>[NEW]</code> or version bumps.</li><li>The version comes from your project's own manifest, whatever the language, and the title updates when you bump it.</li><li>The same version detection suggests branch names like <code>dev-release/1.4.0</code> when you create a branch, with a pattern you choose for each repository, and git-flow release names.</li></ul>
+                    <ul><li>Most clients start every commit from an empty box, or support only one static template.</li><li>Templates here are a list with live placeholders, which suits teams with commit conventions such as <code>[FIX]</code>, <code>[NEW]</code> or version bumps.</li><li>Templates for all repositories or for one, with title and description from the branch name (type, ticket, words), in one window; the standard <code>.gitmessage</code> / <code>commit.template</code> file is understood, so a team convention lives in the repository.</li><li>The version comes from your project's own manifest, whatever the language, and the title updates when you bump it.</li><li>The same version detection suggests branch names like <code>dev-release/1.4.0</code> when you create a branch, with a pattern you choose for each repository, and git-flow release names.</li></ul>
                   </div>
                 </aside>
               </div>
@@ -882,7 +886,7 @@
                 <a class="next" href="#bulk-branch-repo-management"><small>Next &rarr;</small><span>Bulk Branch &amp; Repo Actions</span></a>
               </nav>
             </article>
-            <article class="feature-view feature-page" id="bulk-branch-repo-management" data-area="branches-safety" data-keywords="bulk batch many multiple branches repositories cleanup delete old branches prune mass all repos at once">
+            <article class="feature-view feature-page" id="bulk-branch-repo-management" data-area="branches-safety" data-keywords="bulk batch many multiple branches repositories cleanup delete old branches prune mass all repos at once multi-select select several sidebar ctrl shift click tags force delete unmerged background read-only status bar progress non-blocking keep working cancel">
               <p class="feature-crumb"><a href="#branches-safety">Branches &amp; Safety Net</a><span>5 of 5</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10"/><path d="M18 10c0 4-6 3-10.6 7.3"/><path d="m14 17 2 2 4-4"/></svg></span>
@@ -893,19 +897,19 @@
               </div>
               <div class="feature-cols">
                 <div class="feature-main">
-                  <ul class="feature-glance" aria-label="At a glance"><li>Manage Branches: delete, pull, push or merge many branches at once.</li><li>Manage Repos: fetch, pull, checkout, branch or push across every open repository.</li><li>Continues past failures, with a report of what happened to each item.</li></ul>
+                  <ul class="feature-glance" aria-label="At a glance"><li>Manage Branches: delete, pull, push or merge many branches at once.</li><li>Or select several branches in the sidebar (Ctrl+click / Shift+click) and right-click.</li><li>Manage Repos: fetch, pull, checkout, branch or push across every open repository.</li><li>Runs in the background: close the window and keep working, the status bar shows the progress.</li><li>Continues past failures, with a report of what happened to each item.</li></ul>
                   <div class="feature-body">
-                <ul><li><strong>Manage Branches:</strong> lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull, push or merge them.</li><li><strong>Manage Repos:</strong> runs fetch, pull, checkout, create branch, push or delete branch across all open repositories at once.</li><li><strong>Reporting:</strong> the work continues past individual failures, and a summary report lists what succeeded, what was skipped and why each failure happened.</li></ul>
+                <ul><li><strong>Manage Branches:</strong> lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull, push or merge them.</li><li><strong>Manage Repos:</strong> runs fetch, pull, checkout, create branch, push or delete branch across all open repositories at once.</li><li><strong>From a selection:</strong> Ctrl+click / Shift+click several branches in the sidebar (or several commits in the graph), right-click, and pick the action: Manage Branches opens with them ticked and runs it.</li><li><strong>Unmerged branches:</strong> when a delete stops at branches that aren't fully merged, one question lists them and offers to force delete them all.</li><li><strong>Reporting:</strong> the work continues past individual failures, and a summary report lists what succeeded, what was skipped and why each failure happened.</li><li><strong>In the background:</strong> neither window blocks the app. Close or minimise it and keep working; the action goes on, the status bar shows its progress (click for Show, Cancel and, at the end, the report). The repository under the action is read-only meanwhile: browsing, diffs, Blame and history work, changes wait until it ends.</li></ul>
               </div>
                 </div>
                 <aside class="feature-aside" aria-label="Bulk Branch & Repo Actions: where to find it">
                   <div class="feature-box">
                     <h3>Where to find it</h3>
-                    <p><strong>Edit → Manage Branches…</strong> and <strong>Edit → Manage Repos…</strong>.</p>
+                    <p><strong>Edit → Manage Branches…</strong> and <strong>Edit → Manage Repos…</strong>; right-click a multi-selection of branches in the sidebar or of commits in the graph.</p>
                   </div>
                   <div class="feature-box feature-why">
                     <h3>Why it's different</h3>
-                    <ul><li>Standard GUIs act on one branch and one repository at a time.</li><li>Cleaning up dozens of merged branches, or updating ten repositories, is a single action here, with a clear per-item report instead of a stream of error dialogs.</li></ul>
+                    <ul><li>Standard GUIs act on one branch and one repository at a time.</li><li>Cleaning up dozens of merged branches, or updating ten repositories, is a single action here, with a clear per-item report instead of a stream of error dialogs.</li><li>Long bulk actions run in the background like a download: the rest of the app stays usable, and only the repositories being changed are locked.</li></ul>
                   </div>
                 </aside>
               </div>
@@ -922,6 +926,10 @@
                   <a href="assets/screenshots/bulk-summary-report.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: Summary report after a bulk action"><img src="assets/screenshots/bulk-summary-report.png" alt="Summary report after a bulk action" width="1600" height="1000" loading="lazy" decoding="async"></a>
                   <figcaption>Summary report after a bulk action</figcaption>
                 </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/background-operations.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: A bulk delete running in the background: the repository is read-only, the status bar shows the progress"><img src="assets/screenshots/background-operations.png" alt="A bulk delete running in the background: the repository is read-only, the status bar shows the progress" width="1600" height="1000" loading="lazy" decoding="async"></a>
+                  <figcaption>Running in the background: read-only banner and the status-bar panel</figcaption>
+                </figure>
               </div>
               <nav class="feature-pager" aria-label="Previous and next feature">
                 <a class="prev" href="#worktrees"><small>&larr; Previous</small><span>Worktrees</span></a>
@@ -929,7 +937,7 @@
               </nav>
             </article>
             <article class="feature-view feature-page" id="tab-groups" data-area="many-repos" data-keywords="tabs groups organize many repositories projects workspace collapse hide microservices multi-repo colour color custom colour picker">
-              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>1 of 6</span></p>
+              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>1 of 7</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 12h8M8 15h5"/></svg></span>
                 <div>
@@ -942,7 +950,7 @@
                   <ul class="feature-glance" aria-label="At a glance"><li>Every repository in its own tab; all tabs come back at the next start.</li><li>Group tabs into coloured chips on their own row (16 colours, or any colour you pick); click a chip to collapse the group.</li><li>Hide single tabs; the <strong>N hidden</strong> button brings any of them back.</li><li>Order, hidden tabs and the active tab survive restarts.</li></ul>
                   <div class="feature-body">
                 <p>Right-click a tab to create a group or add the tab to one. Each group is a coloured chip with its name and number of repositories, and the tab row below lists the repositories group by group, in the group's colour. Pick one of 16 colours, or any colour with <strong>Custom…</strong>: it stays readable in light and dark themes.</p>
-                <p>Click a group to collapse it: its tabs are hidden, but the repositories stay open in the background, ready the moment you bring them back. Or hide only some of them (<em>Hide Tab</em>, <em>Hide Other Tabs</em>, or untick tabs in the group's menu); drag a chip to reorder groups.</p>
+                <p>Click a group to collapse it: its tabs are hidden, but the repositories stay open in the background, ready the moment you bring them back. Or hide only some of them (<em>Hide Tab</em>, <em>Hide Other Tabs</em>, or untick tabs in the group's menu); drag a chip to reorder groups. When every tab is hidden, the window lists the repositories group by group, in the group's colour: type to filter them, click one to bring its tab back, or <strong>Show Group</strong> for the whole group.</p>
                 <p>At start-up the window opens at once with the repository you were on, and the other tabs open in the background, one at a time. <strong>Reload Repository</strong> in a tab's right-click menu reopens a repository in place, in the same group and position. Folders can also be dragged onto the window (see <a href="#drag-drop-to-open">Drag &amp; drop to open</a>).</p>
               </div>
                 </div>
@@ -981,7 +989,7 @@
               </nav>
             </article>
             <article class="feature-view feature-page" id="split-view" data-area="many-repos" data-keywords="split pane panes side by side multiple repositories compare dual screen layout window">
-              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>2 of 6</span></p>
+              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>2 of 7</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/><path d="M12 12h9"/></svg></span>
                 <div>
@@ -1028,7 +1036,7 @@
               </nav>
             </article>
             <article class="feature-view feature-page" id="drag-drop-to-open" data-area="many-repos" data-keywords="drag drop open folder repository finder explorer add recent">
-              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>3 of 6</span></p>
+              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>3 of 7</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v3"/><path d="M3 7v10a2 2 0 0 0 2 2h6"/><path d="m14 14 7 2.5-3 1-1 3z"/></svg></span>
                 <div>
@@ -1056,11 +1064,72 @@
               </div>
               <nav class="feature-pager" aria-label="Previous and next feature">
                 <a class="prev" href="#split-view"><small>&larr; Previous</small><span>Split View</span></a>
+                <a class="next" href="#import-workspace"><small>Next &rarr;</small><span>Import Workspace</span></a>
+              </nav>
+            </article>
+            <article class="feature-view feature-page" id="import-workspace" data-area="many-repos" data-keywords="import workspace migrate switch move from another client gitkraken vs code vscode cursor vscodium intellij android studio jetbrains pycharm webstorm sourcetree fork github desktop repository list bookmarks groups projects">
+              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>4 of 7</span></p>
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/><path d="M12 3v11"/><path d="m8 10 4 4 4-4"/><path d="M4 7h3M17 7h3"/></svg></span>
+                <div>
+                  <h2>Import Workspace <span class="badge badge-exp">Early release</span></h2>
+                  <p class="feature-tagline">Coming from another Git client or IDE? Bring its repository list and groups over in one step, every folder checked first.</p>
+                </div>
+              </div>
+              <div class="feature-cols">
+                <div class="feature-main">
+                  <ul class="feature-glance" aria-label="At a glance"><li>Six sources: GitKraken, VS Code, IntelliJ IDEA / Android Studio, Sourcetree, Fork and GitHub Desktop.</li><li>Their groups become your tab groups, or everything goes in "From &lt;tool&gt;".</li><li>Every folder is checked first: moved, missing or offline ones are explained.</li><li>Run it again for another tool: nothing is added twice.</li></ul>
+                  <div class="feature-body">
+                <p><strong>File → Import Workspace…</strong> lists six tools and says which of them have settings on this computer. Pick one and Rasch-Git reads its list of repositories, with its groups where it has them:</p>
+                <ul>
+                  <li><strong>GitKraken:</strong> its local workspaces.</li>
+                  <li><strong>VS Code:</strong> each <code>.code-workspace</code>, plus Project Manager tags. VS Code Insiders, VSCodium and Cursor are read the same way.</li>
+                  <li><strong>JetBrains IDEs:</strong> their project groups. This works for every JetBrains IDE, not only IntelliJ and Android Studio.</li>
+                  <li><strong>Sourcetree:</strong> its bookmark folders.</li>
+                  <li><strong>Fork:</strong> its categories.</li>
+                </ul>
+                <p>The repositories appear in a checklist, group by group, and every folder is checked before anything is imported:</p>
+                <ul>
+                  <li><strong>Ready</strong>, or <strong>Imports …</strong> for a project folder inside a repository.</li>
+                  <li><strong>Already imported</strong>, unchecked.</li>
+                  <li><strong>Folder not found</strong>, <strong>Drive not available</strong> (a network share or external disk that isn't connected) or <strong>Not a git repository</strong>. Right-click one → <strong>Locate Folder…</strong> to point to where it lives now.</li>
+                </ul>
+                <p>Select repositories one by one or a whole group at a time. Keep the tool's groups, put everything in one group named after the tool, or use no group. A group with the same name that you already have is reused.</p>
+                <p>Imported repositories open as tabs that load only when you look at them. With more than six, they open hidden behind their group chip. The report at the end says what was imported, what was skipped because it was already open, and what to do about the rest.</p>
+              </div>
+                </div>
+                <aside class="feature-aside" aria-label="Import Workspace: where to find it">
+                  <div class="feature-box">
+                    <h3>Where to find it</h3>
+                    <p><strong>File → Import Workspace…</strong></p>
+                  </div>
+                  <div class="feature-box">
+                    <h3>Step by step</h3>
+                    <p><a href="guides.html#import-workspace">Switching from another Git client</a> &rarr;</p>
+                  </div>
+                  <div class="feature-box feature-why">
+                    <h3>Why it's different</h3>
+                    <ul><li>Switching Git clients usually means adding every repository again by hand, one dialog at a time, and rebuilding your groups.</li><li>Here the list and the grouping come with you, and broken paths are explained instead of failing silently.</li></ul>
+                  </div>
+                </aside>
+              </div>
+              <div class="feature-gallery shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/import-workspace.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The repositories of the chosen tool, by group, each folder checked"><img src="assets/screenshots/import-workspace.png" alt="The repositories of the chosen tool, by group, each folder checked" width="1720" height="1200" loading="lazy" decoding="async"></a>
+                  <figcaption>The repositories of the chosen tool, by group, each folder checked</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/import-workspace-report.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The report: imported, skipped, and what needs your attention"><img src="assets/screenshots/import-workspace-report.png" alt="The report: imported, skipped, and what needs your attention" width="1720" height="1200" loading="lazy" decoding="async"></a>
+                  <figcaption>The report: imported, skipped, and what needs your attention</figcaption>
+                </figure>
+              </div>
+              <nav class="feature-pager" aria-label="Previous and next feature">
+                <a class="prev" href="#drag-drop-to-open"><small>&larr; Previous</small><span>Drag &amp; Drop to Open</span></a>
                 <a class="next" href="#submodules"><small>Next &rarr;</small><span>Submodules</span></a>
               </nav>
             </article>
             <article class="feature-view feature-page" id="submodules" data-area="many-repos" data-keywords="submodule submodules nested repository gitmodules dependency vendor update init sync">
-              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>4 of 6</span></p>
+              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>5 of 7</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="11" y="11" width="7" height="7" rx="1"/><path d="M7 7h5M7 10h2"/></svg></span>
                 <div>
@@ -1093,12 +1162,12 @@
                 </figure>
               </div>
               <nav class="feature-pager" aria-label="Previous and next feature">
-                <a class="prev" href="#drag-drop-to-open"><small>&larr; Previous</small><span>Drag &amp; Drop to Open</span></a>
+                <a class="prev" href="#import-workspace"><small>&larr; Previous</small><span>Import Workspace</span></a>
                 <a class="next" href="#git-lfs"><small>Next &rarr;</small><span>Large Files (Git LFS)</span></a>
               </nav>
             </article>
             <article class="feature-view feature-page" id="git-lfs" data-area="many-repos" data-keywords="lfs large files big binary assets gitattributes psd video game art pointer download">
-              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>5 of 6</span></p>
+              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>6 of 7</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 12v6"/><path d="m9 15 3 3 3-3"/></svg></span>
                 <div>
@@ -1136,7 +1205,7 @@
               </nav>
             </article>
             <article class="feature-view feature-page" id="scheduled-actions" data-area="many-repos" data-keywords="schedule scheduler cron automatic timer periodic auto pull nightly job rule automation">
-              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>6 of 6</span></p>
+              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>7 of 7</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
                 <div>
@@ -1982,7 +2051,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=20261015"></script>
-  <script src="assets/js/features.js?v=20261015"></script>
+  <script src="assets/js/main.js?v=20261023"></script>
+  <script src="assets/js/features.js?v=20261023"></script>
 </body>
 </html>
