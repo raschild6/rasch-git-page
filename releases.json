@@ -1,5 +1,40 @@
 [
   {
+    "version": "1.0.7",
+    "tag": "v1.0.7",
+    "date": "2026-10-23",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.7/RaschildGitManager-1.0.7-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.7/RaschildGitManager-1.0.7-macos-arm64.dmg",
+      "linux": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.7/RaschildGitManager-1.0.7-linux-x86_64.AppImage",
+      "linux-deb": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.7/raschild-git-manager_1.0.7-1_amd64.deb",
+      "linux-rpm": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.7/raschild-git-manager-1.0.7-1.x86_64.rpm"
+    },
+    "changelog": {
+      "New Features": [],
+      "Bug Fixes": [
+        "Import Workspace lists GitKraken repositories correctly: Repositories GitKraken saved by their .git folder are now listed as the repository itself instead of \"Bare repository\", and profiles show their name instead of an id."
+      ],
+      "Improvements": []
+    },
+    "notes": [
+      {
+        "kind": "fix",
+        "level": 2,
+        "title": "Import Workspace lists GitKraken repositories correctly",
+        "text": "Repositories GitKraken saved by their .git folder are now listed as the repository itself instead of \"Bare repository\", and profiles show their name instead of an id."
+      }
+    ],
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/5a554c0a582cae404e20a64a8f5425619aa7c676991a399a257e437b0ec682ba",
+      "macos": "https://www.virustotal.com/gui/file/f9201c3bc62d7566d771a4749cbda49eec805b20323e2a332a6310304f4838c8",
+      "linux": "https://www.virustotal.com/gui/file/8eedacbce0a58cbc312d9046fac0c4fe24769901f21769e906e12cd8e5690d92",
+      "linux-deb": "https://www.virustotal.com/gui/file/e3bca6cb9d9f8c93932c68fc7817c6f8e104c1dfcc95ea212f8bf3ab3770459e",
+      "linux-rpm": "https://www.virustotal.com/gui/file/d6a1008954931f5744828b5808810ecb41a28d3b03db17c280d7302345fc72ac"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v1.0.7"
+  },
+  {
     "version": "1.0.6",
     "tag": "v1.0.6",
     "date": "2026-10-23",
