@@ -78,7 +78,8 @@
 
     var titleRow = el("div", { class: "title-row" }, [
       el("h2", { id: "release-title", text: release.tag }),
-      isLatest ? el("span", { class: "badge", text: "Latest" }) : null
+      isLatest ? el("span", { class: "badge", text: "Latest" }) : null,
+      release.earlyRelease ? el("span", { class: "badge badge-exp", text: "Early release" }) : null
     ]);
 
     var meta = el("p", {
@@ -131,6 +132,12 @@
 
     container.appendChild(titleRow);
     container.appendChild(meta);
+    if (release.earlyRelease) {
+      container.appendChild(el("p", { class: "early-notice" }, [
+        el("strong", { text: "Early release. " }),
+        document.createTextNode(release.earlyRelease)
+      ]));
+    }
     container.appendChild(buttons);
     if (linuxPackages) container.appendChild(linuxPackages);
     container.appendChild(unsignedNotice);
