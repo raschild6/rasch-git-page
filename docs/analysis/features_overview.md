@@ -24,7 +24,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 2. [Graph & history](#graph--history) — the virtualized graph, the branch tree, commit details, commit search, Deep Search, blame & file history
 3. [Changes & commits](#changes--commits) — smart diff views, hunk-level staging, commit templates, review-before-commit, conflict resolution and safe checkout
 4. [Branches & safety net](#branches--safety-net) — undo / redo, interactive rebase, git-flow, worktrees, bulk actions
-5. [Many repositories](#many-repositories) — tab groups, split view, drag & drop to open, submodules, large files (Git LFS), scheduled actions
+5. [Many repositories](#many-repositories) — tab groups, split view, drag & drop to open, import workspace, submodules, large files (Git LFS), scheduled actions
 6. [GitHub & GitLab](#github--gitlab) — pull requests, CI / CD status, clone & fork from your account, issues → branches, accounts & SSH keys, commit signing
 7. [Your workspace](#your-workspace) — built-in terminal, custom toolbar buttons, custom themes, interface scale, external programs, guided tour
 8. [Speed & trust](#speed--trust) — async GUI, auto fetch with progress and cancel, cross-platform look, updates, logs
@@ -77,6 +77,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 37 | Commit signing | Get the *Verified* badge on your commits: sign with an SSH or GPG key, set up, tested and added to GitHub from one page. |
 | 38 | Large files (Git LFS) | Repositories with big design files, media or datasets just work: download progress, real sizes, no pointer text. |
 | 39 | Interface scale | The whole app larger or smaller, to any size from 25% to 400%, with Ctrl+Plus / Ctrl+Minus — text, icons and spacing together. |
+| 40 | Import Workspace | Coming from another Git client or IDE? Bring its repository list and groups over in one step, every folder checked first. |
 
 ---
 
@@ -389,7 +390,7 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 
 **In one line:** Organize many repositories into coloured, collapsible groups.
 
-**What it does:** Every repository opens in its own tab, and tabs are restored the next time you start the app: the window opens at once with the repository you were on, and the other tabs open in the background, one at a time. Right-click a tab to create a group or add the tab to one. Each group has its own colour: one of 16, or any colour you pick with **Custom…** (it stays readable in light and dark themes). Groups get their own row above the repository tabs: each group is a coloured chip with its name and number of repositories, and the tab row below lists the repositories group by group, in the group's colour. Click a group to collapse it: its tabs are hidden, but the repositories stay open in the background, ready the moment you bring them back. Or hide only some of them (*Hide Tab*, *Hide Other Tabs*, or untick tabs in the group's menu). The **N hidden** button lists every hidden tab and brings any of them back in one click. Drag a group chip to reorder groups. Group order, hidden tabs and the active tab are all kept across restarts. **Reload Repository** in a tab's right-click menu reopens a repository in place, in the same group and position. Folders can also be dragged onto the window (see [Drag & drop to open](#22-drag--drop-to-open)).
+**What it does:** Every repository opens in its own tab, and tabs are restored the next time you start the app: the window opens at once with the repository you were on, and the other tabs open in the background, one at a time. Right-click a tab to create a group or add the tab to one. Each group has its own colour: one of 16, or any colour you pick with **Custom…** (it stays readable in light and dark themes). Groups get their own row above the repository tabs: each group is a coloured chip with its name and number of repositories, and the tab row below lists the repositories group by group, in the group's colour. Click a group to collapse it: its tabs are hidden, but the repositories stay open in the background, ready the moment you bring them back. Or hide only some of them (*Hide Tab*, *Hide Other Tabs*, or untick tabs in the group's menu). The **N hidden** button lists every hidden tab and brings any of them back in one click. When every tab is hidden, the window shows them group by group, in the group's colour: type to filter, click a repository to bring its tab back, or **Show Group** for the whole group. Drag a group chip to reorder groups. Group order, hidden tabs and the active tab are all kept across restarts. **Reload Repository** in a tab's right-click menu reopens a repository in place, in the same group and position. Folders can also be dragged onto the window (see [Drag & drop to open](#22-drag--drop-to-open)).
 
 **Why it's different:**
 - Many Git GUIs show one repository per window, or a flat bookmark list.
@@ -420,6 +421,30 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 - Here, getting ten repositories into the app is one drag.
 
 **Where to find it:** Anywhere on the main window; also **File → Open** (**Ctrl+O**). The feature tour mentions it in its second step.
+
+### 40. Import Workspace
+
+**In one line:** Coming from another Git client or IDE? Bring its repository list and groups over in one step, every folder checked first. *Early release: it will keep improving in the next updates as more tool versions are covered.*
+
+**What it does:** **File → Import Workspace…** shows six tools: GitKraken, VS Code, IntelliJ IDEA / Android Studio, Sourcetree, Fork and GitHub Desktop. Each one says whether its settings were found on this computer. Pick one and the app reads its list of repositories, with its groups where it has them:
+- GitKraken: its local workspaces.
+- VS Code: each `.code-workspace` (plus Project Manager tags). VS Code Insiders, VSCodium and Cursor are read the same way.
+- JetBrains IDEs: their project groups (every JetBrains IDE, not only IntelliJ and Android Studio).
+- Sourcetree: its bookmark folders.
+- Fork: its categories.
+
+The repositories appear in a checklist, group by group. Before anything is imported, every folder is checked:
+- **Ready**, or **Imports …** for a project folder inside a repository.
+- **Already imported**, unchecked: tick it to move it into the imported group.
+- **Folder not found**, **Drive not available** (a network share or external disk that isn't connected), **Not a git repository** or **Bare repository**, so you know what needs attention. Right-click one → **Locate Folder…** to point to where it lives now.
+
+Select or deselect repositories one by one or a whole group at a time. Keep the tool's groups, put everything in one group named after the tool ("From GitKraken"), or use no group. A same-named group you already have is reused. Imported repositories open as tabs that load only when you look at them. With more than six, they open hidden behind their group chip. They don't fill *File → Recent*. The report at the end says how many were imported, skipped as already open, or not imported, and what to do about each one. Run it again for another tool: nothing is ever added twice.
+
+**Why it's different:**
+- Switching Git clients usually means re-adding every repository by hand, one dialog at a time, and rebuilding your groups.
+- Here the list and the grouping come with you, and broken paths are explained instead of failing silently.
+
+**Where to find it:** **File → Import Workspace…**.
 
 ### 31. Submodules
 
@@ -738,6 +763,7 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 | Branch switching with local changes | Manual stash, or refusal | Automatic stash and restore |
 | Many branches / repos | One at a time | Bulk actions with a per-item report |
 | Many repositories | Window per repo or bookmark list | Tabs with coloured, collapsible groups |
+| Switching from another client | Add every repository again, by hand | Import Workspace: the repository list and groups of six other clients and IDEs, every folder checked first |
 | Several repositories at once | Several windows | Split view: up to four live panes side by side |
 | Working on two branches at once | Stash, switch, switch back | Worktrees: each branch in its own folder and tab, created from the branch menu |
 | Git-flow | Needs the git-flow extension; finish runs every step at once | Built in, no extension; finish shows each step and lets you review every merge, resumable |
@@ -822,7 +848,8 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 - **Undo for everything:** stage / unstage and pushes are not undone. Remote changes are never reverted, and the undo history lasts for the current session only.
 - **Search the whole history:** commit search covers the commits loaded so far (the graph loads more as you scroll).
 - **Deep Search text:** searches committed content only — not uncommitted changes, untracked files, stashes or tags; binary files are skipped; results stop at 2000 matching lines ("refine the search"); *Text in history* looks at a set number of commits (5000 by default, adjustable, 0 = all) and, in its default mode, doesn't report code that was only moved.
-- **Comparisons with GitKraken:** don't name it on the page.
+- **Comparisons with GitKraken:** don't name it on the page. (Naming the six tools as **import sources** of Import Workspace is fine: that's what people search for. It's a list of sources, not a comparison.)
+- **Import Workspace:** it reads the other tool's settings on this computer, so GitKraken *cloud* workspaces don't come over as groups (their repositories do when GitKraken has them on disk). GitHub Desktop's list is read best effort, and a repository you removed from GitHub Desktop may still be listed. Sourcetree and Fork have no Linux version (a settings file copied from another computer can still be read). It imports the list and groups only, not each tool's other settings.
 - **"Sign in with GitLab / Bitbucket":** only GitHub has a browser sign-in; the others use access tokens. GitHub sign-in needs the app's OAuth App to be registered (maintainers: `docs/AUTHENTICATION.md`).
 - **Split view:** at most four panes, and a repository is shown in one pane at a time (not two views of the same repository). Panes in the background notice edits in deep subfolders within a few seconds, not instantly.
 - **Worktrees:** creating or removing a worktree's folder can't be undone (only a new branch created with it can); undo in one worktree won't move a branch another worktree has checked out; a worktree-only (bare) repository has no tab for its main entry; nothing is painted on the graph (the tooltips say where a branch is checked out); needs a recent Git (2.36 or newer).

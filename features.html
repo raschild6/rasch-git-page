@@ -95,11 +95,12 @@
                 </ul>
               </div>
               <div class="fi-group" data-area="many-repos">
-                <button class="fi-group-btn" type="button" aria-expanded="false" aria-controls="fi-many-repos"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg><span>Many Repositories</span><em>6</em></button>
+                <button class="fi-group-btn" type="button" aria-expanded="false" aria-controls="fi-many-repos"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg><span>Many Repositories</span><em>7</em></button>
                 <ul id="fi-many-repos">
                   <li><a href="#tab-groups">Tab Groups</a></li>
                   <li><a href="#split-view">Split View <span class="badge badge-exp">Beta</span></a></li>
                   <li><a href="#drag-drop-to-open">Drag &amp; Drop to Open</a></li>
+                  <li><a href="#import-workspace">Import Workspace <span class="badge badge-exp">Early release</span></a></li>
                   <li><a href="#submodules">Submodules</a></li>
                   <li><a href="#git-lfs">Large Files (Git LFS)</a></li>
                   <li><a href="#scheduled-actions">Action Scheduler <span class="badge badge-exp">Experimental</span></a></li>
@@ -167,7 +168,7 @@
                 <section class="area-card" id="many-repos" aria-labelledby="many-repos-title">
                   <h3 id="many-repos-title">Many Repositories</h3>
                   <p>Dozens of repositories in one window, each one live.</p>
-                  <ul><li><a href="#tab-groups">Tab Groups</a></li><li><a href="#split-view">Split View <span class="badge badge-exp">Beta</span></a></li><li><a href="#drag-drop-to-open">Drag &amp; Drop to Open</a></li><li><a href="#submodules">Submodules</a></li><li><a href="#git-lfs">Large Files (Git LFS)</a></li><li><a href="#scheduled-actions">Action Scheduler <span class="badge badge-exp">Experimental</span></a></li></ul>
+                  <ul><li><a href="#tab-groups">Tab Groups</a></li><li><a href="#split-view">Split View <span class="badge badge-exp">Beta</span></a></li><li><a href="#drag-drop-to-open">Drag &amp; Drop to Open</a></li><li><a href="#import-workspace">Import Workspace <span class="badge badge-exp">Early release</span></a></li><li><a href="#submodules">Submodules</a></li><li><a href="#git-lfs">Large Files (Git LFS)</a></li><li><a href="#scheduled-actions">Action Scheduler <span class="badge badge-exp">Experimental</span></a></li></ul>
                 </section>
                 <section class="area-card" id="integrations" aria-labelledby="integrations-title">
                   <h3 id="integrations-title">GitHub &amp; GitLab</h3>
@@ -936,7 +937,7 @@
               </nav>
             </article>
             <article class="feature-view feature-page" id="tab-groups" data-area="many-repos" data-keywords="tabs groups organize many repositories projects workspace collapse hide microservices multi-repo colour color custom colour picker">
-              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>1 of 6</span></p>
+              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>1 of 7</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 12h8M8 15h5"/></svg></span>
                 <div>
@@ -988,7 +989,7 @@
               </nav>
             </article>
             <article class="feature-view feature-page" id="split-view" data-area="many-repos" data-keywords="split pane panes side by side multiple repositories compare dual screen layout window">
-              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>2 of 6</span></p>
+              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>2 of 7</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/><path d="M12 12h9"/></svg></span>
                 <div>
@@ -1035,7 +1036,7 @@
               </nav>
             </article>
             <article class="feature-view feature-page" id="drag-drop-to-open" data-area="many-repos" data-keywords="drag drop open folder repository finder explorer add recent">
-              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>3 of 6</span></p>
+              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>3 of 7</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v3"/><path d="M3 7v10a2 2 0 0 0 2 2h6"/><path d="m14 14 7 2.5-3 1-1 3z"/></svg></span>
                 <div>
@@ -1063,11 +1064,72 @@
               </div>
               <nav class="feature-pager" aria-label="Previous and next feature">
                 <a class="prev" href="#split-view"><small>&larr; Previous</small><span>Split View</span></a>
+                <a class="next" href="#import-workspace"><small>Next &rarr;</small><span>Import Workspace</span></a>
+              </nav>
+            </article>
+            <article class="feature-view feature-page" id="import-workspace" data-area="many-repos" data-keywords="import workspace migrate switch move from another client gitkraken vs code vscode cursor vscodium intellij android studio jetbrains pycharm webstorm sourcetree fork github desktop repository list bookmarks groups projects">
+              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>4 of 7</span></p>
+              <div class="feature-detail-head">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/><path d="M12 3v11"/><path d="m8 10 4 4 4-4"/><path d="M4 7h3M17 7h3"/></svg></span>
+                <div>
+                  <h2>Import Workspace <span class="badge badge-exp">Early release</span></h2>
+                  <p class="feature-tagline">Coming from another Git client or IDE? Bring its repository list and groups over in one step, every folder checked first.</p>
+                </div>
+              </div>
+              <div class="feature-cols">
+                <div class="feature-main">
+                  <ul class="feature-glance" aria-label="At a glance"><li>Six sources: GitKraken, VS Code, IntelliJ IDEA / Android Studio, Sourcetree, Fork and GitHub Desktop.</li><li>Their groups become your tab groups, or everything goes in "From &lt;tool&gt;".</li><li>Every folder is checked first: moved, missing or offline ones are explained.</li><li>Run it again for another tool: nothing is added twice.</li></ul>
+                  <div class="feature-body">
+                <p><strong>File → Import Workspace…</strong> lists six tools and says which of them have settings on this computer. Pick one and Rasch-Git reads its list of repositories, with its groups where it has them:</p>
+                <ul>
+                  <li><strong>GitKraken:</strong> its local workspaces.</li>
+                  <li><strong>VS Code:</strong> each <code>.code-workspace</code>, plus Project Manager tags. VS Code Insiders, VSCodium and Cursor are read the same way.</li>
+                  <li><strong>JetBrains IDEs:</strong> their project groups. This works for every JetBrains IDE, not only IntelliJ and Android Studio.</li>
+                  <li><strong>Sourcetree:</strong> its bookmark folders.</li>
+                  <li><strong>Fork:</strong> its categories.</li>
+                </ul>
+                <p>The repositories appear in a checklist, group by group, and every folder is checked before anything is imported:</p>
+                <ul>
+                  <li><strong>Ready</strong>, or <strong>Imports …</strong> for a project folder inside a repository.</li>
+                  <li><strong>Already imported</strong>, unchecked.</li>
+                  <li><strong>Folder not found</strong>, <strong>Drive not available</strong> (a network share or external disk that isn't connected) or <strong>Not a git repository</strong>. Right-click one → <strong>Locate Folder…</strong> to point to where it lives now.</li>
+                </ul>
+                <p>Select repositories one by one or a whole group at a time. Keep the tool's groups, put everything in one group named after the tool, or use no group. A group with the same name that you already have is reused.</p>
+                <p>Imported repositories open as tabs that load only when you look at them. With more than six, they open hidden behind their group chip. The report at the end says what was imported, what was skipped because it was already open, and what to do about the rest.</p>
+              </div>
+                </div>
+                <aside class="feature-aside" aria-label="Import Workspace: where to find it">
+                  <div class="feature-box">
+                    <h3>Where to find it</h3>
+                    <p><strong>File → Import Workspace…</strong></p>
+                  </div>
+                  <div class="feature-box">
+                    <h3>Step by step</h3>
+                    <p><a href="guides.html#import-workspace">Switching from another Git client</a> &rarr;</p>
+                  </div>
+                  <div class="feature-box feature-why">
+                    <h3>Why it's different</h3>
+                    <ul><li>Switching Git clients usually means adding every repository again by hand, one dialog at a time, and rebuilding your groups.</li><li>Here the list and the grouping come with you, and broken paths are explained instead of failing silently.</li></ul>
+                  </div>
+                </aside>
+              </div>
+              <div class="feature-gallery shots shots-grid">
+                <figure class="shot">
+                  <a href="assets/screenshots/import-workspace.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The repositories of the chosen tool, by group, each folder checked"><img src="assets/screenshots/import-workspace.png" alt="The repositories of the chosen tool, by group, each folder checked" width="1720" height="1200" loading="lazy" decoding="async"></a>
+                  <figcaption>The repositories of the chosen tool, by group, each folder checked</figcaption>
+                </figure>
+                <figure class="shot">
+                  <a href="assets/screenshots/import-workspace-report.png" target="_blank" rel="noopener" aria-label="Open full-size screenshot: The report: imported, skipped, and what needs your attention"><img src="assets/screenshots/import-workspace-report.png" alt="The report: imported, skipped, and what needs your attention" width="1720" height="1200" loading="lazy" decoding="async"></a>
+                  <figcaption>The report: imported, skipped, and what needs your attention</figcaption>
+                </figure>
+              </div>
+              <nav class="feature-pager" aria-label="Previous and next feature">
+                <a class="prev" href="#drag-drop-to-open"><small>&larr; Previous</small><span>Drag &amp; Drop to Open</span></a>
                 <a class="next" href="#submodules"><small>Next &rarr;</small><span>Submodules</span></a>
               </nav>
             </article>
             <article class="feature-view feature-page" id="submodules" data-area="many-repos" data-keywords="submodule submodules nested repository gitmodules dependency vendor update init sync">
-              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>4 of 6</span></p>
+              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>5 of 7</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="11" y="11" width="7" height="7" rx="1"/><path d="M7 7h5M7 10h2"/></svg></span>
                 <div>
@@ -1100,12 +1162,12 @@
                 </figure>
               </div>
               <nav class="feature-pager" aria-label="Previous and next feature">
-                <a class="prev" href="#drag-drop-to-open"><small>&larr; Previous</small><span>Drag &amp; Drop to Open</span></a>
+                <a class="prev" href="#import-workspace"><small>&larr; Previous</small><span>Import Workspace</span></a>
                 <a class="next" href="#git-lfs"><small>Next &rarr;</small><span>Large Files (Git LFS)</span></a>
               </nav>
             </article>
             <article class="feature-view feature-page" id="git-lfs" data-area="many-repos" data-keywords="lfs large files big binary assets gitattributes psd video game art pointer download">
-              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>5 of 6</span></p>
+              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>6 of 7</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 12v6"/><path d="m9 15 3 3 3-3"/></svg></span>
                 <div>
@@ -1143,7 +1205,7 @@
               </nav>
             </article>
             <article class="feature-view feature-page" id="scheduled-actions" data-area="many-repos" data-keywords="schedule scheduler cron automatic timer periodic auto pull nightly job rule automation">
-              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>6 of 6</span></p>
+              <p class="feature-crumb"><a href="#many-repos">Many Repositories</a><span>7 of 7</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
                 <div>
