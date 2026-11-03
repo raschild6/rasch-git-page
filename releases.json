@@ -1,5 +1,154 @@
 [
   {
+    "version": "1.0.8",
+    "tag": "v1.0.8",
+    "date": "2026-11-03",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.8/RaschildGitManager-1.0.8-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.8/RaschildGitManager-1.0.8-macos-arm64.dmg",
+      "linux": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.8/RaschildGitManager-1.0.8-linux-x86_64.AppImage",
+      "linux-deb": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.8/raschild-git-manager_1.0.8-1_amd64.deb",
+      "linux-rpm": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.8/raschild-git-manager-1.0.8-1.x86_64.rpm"
+    },
+    "changelog": {
+      "New Features": [
+        "AI assistant (experimental): Turn it on in AI → AI Settings… with your own Claude, OpenAI or Gemini key, or Ollama on this computer; the wand next to the commit title writes the message from your staged changes. As an experimental feature it will keep changing in the next updates.",
+        "AI code review: Right-click one or more commits → AI Review, or click the wand above Staged Files, to get findings by severity; click one to jump to its line.",
+        "AI conflict suggestions: In the conflict editor, AI Suggest proposes a resolution for each conflict from both sides and the common version; Accept puts it in the output, nothing is saved for you.",
+        "Smart Search: Press the wand in the graph search (Ctrl+F) and ask about the history in your own words; the matching commits are highlighted and listed with the reason.",
+        "Ready to send sheet: Before anything goes to an AI provider you see where it goes, what is left out, the estimated cost and the exact prompt; lines that look like passwords or keys are removed.",
+        "AI status badge: The status bar shows whether AI is on, which provider it uses and when data is being sent; click it to turn AI off, cancel a request or see the last prompt.",
+        "Explain with AI: Explain a commit, one file of it, the diff on screen or just its selected lines, a blame line, or the last git error, from their menus or AI → Explain.",
+        "Branch summary with AI: Right-click a branch → Summarize Branch with AI for a PR description against its base; Create Pull Request fills it in, and the PR dialog has its own Write with AI.",
+        "AI usage and budget: AI → AI Usage… shows calls, tokens and estimated cost by day, feature and model, with export; set a monthly budget to get a warning in the status bar.",
+        "AI in more dialogs: The wand suggests a branch name, a stash or tag message and a reworded commit message; release notes come from a multi-commit selection."
+      ],
+      "Bug Fixes": [
+        "Code colours in diffs and the editor: Comment marks inside strings (like \"/api/**\" or \"http://…\") no longer grey out the following lines, and deleted lines no longer change the colours of added ones.",
+        "AI Settings lists your models without Test Connection"
+      ],
+      "Improvements": [
+        "AI review sticks to the diff: Each finding now quotes the changed line it is about; findings the model can't back with a line of the diff are set apart as guesses, and style remarks on documentation are left out.",
+        "Your own AI instructions: AI → AI Settings… → Prompts lets you rewrite how the AI works for each task; the parts that keep it working and safe stay fixed, and Reset to Default brings back the original.",
+        "Clearer AI results: Explanations fold by section, with highlighted code and links that open the changed files; review findings are cards grouped by file, with a summary bar; copy as Markdown, plain text or a GitHub review.",
+        "AI prices you can edit: AI Settings → Prices lets you use your own rates for the cost estimates.",
+        "Monthly AI budget can be left empty"
+      ]
+    },
+    "notes": [
+      {
+        "kind": "new",
+        "level": 3,
+        "title": "AI assistant (experimental)",
+        "text": "Turn it on in AI → AI Settings… with your own Claude, OpenAI or Gemini key, or Ollama on this computer; the wand next to the commit title writes the message from your staged changes. As an experimental feature it will keep changing in the next updates."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "Ready to send sheet",
+        "text": "Before anything goes to an AI provider you see where it goes, what is left out, the estimated cost and the exact prompt; lines that look like passwords or keys are removed."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "AI status badge",
+        "text": "The status bar shows whether AI is on, which provider it uses and when data is being sent; click it to turn AI off, cancel a request or see the last prompt."
+      },
+      {
+        "kind": "new",
+        "level": 3,
+        "title": "AI code review",
+        "text": "Right-click one or more commits → AI Review, or click the wand above Staged Files, to get findings by severity; click one to jump to its line."
+      },
+      {
+        "kind": "new",
+        "level": 3,
+        "title": "AI conflict suggestions",
+        "text": "In the conflict editor, AI Suggest proposes a resolution for each conflict from both sides and the common version; Accept puts it in the output, nothing is saved for you."
+      },
+      {
+        "kind": "new",
+        "level": 3,
+        "title": "Smart Search",
+        "text": "Press the wand in the graph search (Ctrl+F) and ask about the history in your own words; the matching commits are highlighted and listed with the reason."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "Explain with AI",
+        "text": "Explain a commit, one file of it, the diff on screen or just its selected lines, a blame line, or the last git error, from their menus or AI → Explain."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "Branch summary with AI",
+        "text": "Right-click a branch → Summarize Branch with AI for a PR description against its base; Create Pull Request fills it in, and the PR dialog has its own Write with AI."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "AI usage and budget",
+        "text": "AI → AI Usage… shows calls, tokens and estimated cost by day, feature and model, with export; set a monthly budget to get a warning in the status bar."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "AI in more dialogs",
+        "text": "The wand suggests a branch name, a stash or tag message and a reworded commit message; release notes come from a multi-commit selection."
+      },
+      {
+        "kind": "improve",
+        "level": 1,
+        "title": "AI prices you can edit",
+        "text": "AI Settings → Prices lets you use your own rates for the cost estimates."
+      },
+      {
+        "kind": "fix",
+        "level": 2,
+        "title": "Code colours in diffs and the editor",
+        "text": "Comment marks inside strings (like \"/api/**\" or \"http://…\") no longer grey out the following lines, and deleted lines no longer change the colours of added ones."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "AI review sticks to the diff",
+        "text": "Each finding now quotes the changed line it is about; findings the model can't back with a line of the diff are set apart as guesses, and style remarks on documentation are left out."
+      },
+      {
+        "kind": "improve",
+        "level": 1,
+        "title": "",
+        "text": "Monthly AI budget can be left empty"
+      },
+      {
+        "kind": "fix",
+        "level": 1,
+        "title": "",
+        "text": "AI Settings lists your models without Test Connection"
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Your own AI instructions",
+        "text": "AI → AI Settings… → Prompts lets you rewrite how the AI works for each task; the parts that keep it working and safe stay fixed, and Reset to Default brings back the original."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Clearer AI results",
+        "text": "Explanations fold by section, with highlighted code and links that open the changed files; review findings are cards grouped by file, with a summary bar; copy as Markdown, plain text or a GitHub review."
+      }
+    ],
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/3d3bcdc438239cbdbc8272c51f8e17e9085122ec7a80fd7a82785281f3d4f1cc",
+      "macos": "https://www.virustotal.com/gui/file/e31c3bdfb56810507ba42687de7d37f4ec3264fa64ad06b924d824cfd1fa4e1e",
+      "linux": "https://www.virustotal.com/gui/file/256ad707e9860cf5e2f2a2719235fa2e15fb964558cf3479af363d3e376e8f81",
+      "linux-deb": "https://www.virustotal.com/gui/file/2bf9496f38545b5b6c1263cee7f3ec0b3a07f9b11028ba5de42884ecd06947e9",
+      "linux-rpm": "https://www.virustotal.com/gui/file/0671d364fa044ff85fcb78eb3911b4805581024ba5aed8698d2691633619a221"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v1.0.8"
+  },
+  {
     "version": "1.0.7",
     "tag": "v1.0.7",
     "date": "2026-10-23",
