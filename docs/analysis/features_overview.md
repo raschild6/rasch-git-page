@@ -273,6 +273,7 @@ Beyond commit messages:
 - **Conflict suggestions**: *AI Suggest* in the conflict editor proposes a resolution for one or every conflict of a file, using both sides and the common version; *Accept* puts it in the output, and nothing is saved until you do.
 - **Smart Search**: switch the graph search to AI mode and ask, e.g. *when was the retry limit added?* The model only plans the search; git runs it on your computer, and the matching commits are highlighted and listed with the reason.
 - **Small helpers**: branch names from a description, stash and tag messages, a reworded commit message.
+- **Your own instructions**: *AI Settings → Prompts* lets you rewrite how the AI works for each task (the reviewer's focus, the sections of a summary…); the parts that keep it working and safe stay fixed, and *Reset to Default* brings back the original.
 - **Usage**: calls, tokens and estimated cost per day, feature and model, an optional monthly budget with a warning, export to CSV / JSON; prices are editable.
 
 **Why it's different:**
