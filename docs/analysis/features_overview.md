@@ -77,7 +77,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 37 | Commit signing | Get the *Verified* badge on your commits: sign with an SSH or GPG key, set up, tested and added to GitHub from one page. |
 | 38 | Large files (Git LFS) | Repositories with big design files, media or datasets just work: download progress, real sizes, no pointer text. |
 | 39 | Interface scale | The whole app larger or smaller, to any size from 25% to 400%, with Ctrl+Plus / Ctrl+Minus — text, icons and spacing together. |
-| 41 | AI assistant | Your own Claude, OpenAI or Gemini key, or Ollama on your computer: commit messages, code review, explanations, branch summaries, conflict suggestions and questions about the history, with the exact prompt shown first. |
+| 41 | AI assistant (experimental) | Your own Claude, OpenAI or Gemini key, or Ollama on your computer: commit messages, code review, explanations, branch summaries, conflict suggestions and questions about the history, with the exact prompt shown first. |
 | 40 | Import Workspace | Coming from another Git client or IDE? Bring its repository list and groups over in one step, every folder checked first. |
 
 ---
@@ -260,7 +260,7 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 
 **Where to find it:** The *Commit* box in the right panel; edit the templates in **Edit → Commit Messages…** (all repositories) or **Repository → Commit Messages…** (this one); choose the version's source in **Repository → Version Source…**.
 
-### 41. AI assistant *(new in 1.0.8)*
+### 41. AI assistant *(new in 1.0.8, experimental)*
 
 **In one line:** Bring your own AI — Claude, OpenAI, Gemini, or Ollama running on your own computer — to write commit messages, review and explain changes, summarize branches, suggest conflict resolutions and answer questions about the history.
 
@@ -285,7 +285,7 @@ Beyond commit messages:
 
 **Where to find it:** The **AI** menu, the wand buttons (commit box, staged files, graph search, dialogs), *AI* entries in the commit and branch menus, *Explain* in the diff viewer, *AI Suggest* in the conflict editor, the AI badge in the status bar; **Repository → Don't Use AI in This Repository** turns it off for one repository.
 
-**Accuracy notes:** Answers can be wrong: each review finding quotes the changed line it is about, and findings the model can't back with a line of the diff are shown apart as guesses (small local models invent more of them), and Smart Search is only as good as its plan. A contiguous selection of commits is reviewed as one change. No AI squash message yet. Costs are estimates from published prices; the budget is in US dollars.
+**Accuracy notes:** The assistant is marked *experimental* in the app (AI menu, AI Settings banner, tour): it will keep changing in the next updates. Answers can be wrong: each review finding quotes the changed line it is about, and findings the model can't back with a line of the diff are shown apart as guesses (small local models invent more of them), and Smart Search is only as good as its plan. A contiguous selection of commits is reviewed as one change. No AI squash message yet. Costs are estimates from published prices; the budget is in US dollars.
 
 ### 14. Review before commit (merge & cherry-pick)
 
