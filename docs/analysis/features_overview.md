@@ -276,7 +276,7 @@ Beyond commit messages:
 - **Usage**: calls, tokens and estimated cost per day, feature and model, an optional monthly budget with a warning, export to CSV / JSON; prices are editable.
 
 **Why it's different:**
-- Your key, your provider, your bill: no account with us, no middle server. Ollama keeps everything on your computer.
+- Your key, your provider, your bill: no account with us, no middle server. Ollama keeps everything on your computer. Setting it up: install Ollama, `ollama pull` a model, pick *Ollama* in AI Settings and click *Test Connection*; no key needed.
 - Nothing is sent without a click, and you can read every word before it goes. The app never commits for you.
 - A cheaper, faster model writes commit messages by default; you can pick another per feature.
 - Diffs are never written to the app's logs; only token counts and costs are kept, locally.
@@ -284,7 +284,7 @@ Beyond commit messages:
 
 **Where to find it:** The **AI** menu, the wand buttons (commit box, staged files, graph search, dialogs), *AI* entries in the commit and branch menus, *Explain* in the diff viewer, *AI Suggest* in the conflict editor, the AI badge in the status bar; **Repository → Don't Use AI in This Repository** turns it off for one repository.
 
-**Accuracy notes:** Answers can be wrong: review findings whose location isn't in the diff are shown apart, and Smart Search is only as good as its plan. A contiguous selection of commits is reviewed as one change. No AI squash message yet. Costs are estimates from published prices; the budget is in US dollars.
+**Accuracy notes:** Answers can be wrong: each review finding quotes the changed line it is about, and findings the model can't back with a line of the diff are shown apart as guesses (small local models invent more of them), and Smart Search is only as good as its plan. A contiguous selection of commits is reviewed as one change. No AI squash message yet. Costs are estimates from published prices; the budget is in US dollars.
 
 ### 14. Review before commit (merge & cherry-pick)
 
