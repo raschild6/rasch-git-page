@@ -22,7 +22,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 
 1. [At a glance](#at-a-glance)
 2. [Graph & history](#graph--history) — the virtualized graph, the branch tree, commit details, commit search, Deep Search, blame & file history
-3. [Changes & commits](#changes--commits) — smart diff views, hunk-level staging, commit templates, review-before-commit, conflict resolution and safe checkout
+3. [Changes & commits](#changes--commits) — smart diff views, hunk-level staging, commit templates, AI assistant, review-before-commit, conflict resolution and safe checkout
 4. [Branches & safety net](#branches--safety-net) — undo / redo, interactive rebase, git-flow, worktrees, bulk actions
 5. [Many repositories](#many-repositories) — tab groups, split view, drag & drop to open, import workspace, submodules, large files (Git LFS), scheduled actions
 6. [GitHub & GitLab](#github--gitlab) — pull requests, CI / CD status, clone & fork from your account, issues → branches, accounts & SSH keys, commit signing
@@ -77,6 +77,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 37 | Commit signing | Get the *Verified* badge on your commits: sign with an SSH or GPG key, set up, tested and added to GitHub from one page. |
 | 38 | Large files (Git LFS) | Repositories with big design files, media or datasets just work: download progress, real sizes, no pointer text. |
 | 39 | Interface scale | The whole app larger or smaller, to any size from 25% to 400%, with Ctrl+Plus / Ctrl+Minus — text, icons and spacing together. |
+| 41 | AI assistant (experimental) | Your own Claude, OpenAI or Gemini key, or Ollama on your computer: commit messages, code review, explanations, branch summaries, conflict suggestions and questions about the history, with the exact prompt shown first. |
 | 40 | Import Workspace | Coming from another Git client or IDE? Bring its repository list and groups over in one step, every folder checked first. |
 
 ---
@@ -258,6 +259,33 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 - The same version detection suggests branch names like `dev-release/1.4.0` when you create a branch (the pattern is yours to choose per repository: `release/{version}`, `{version}-{date}`…), and git-flow release names.
 
 **Where to find it:** The *Commit* box in the right panel; edit the templates in **Edit → Commit Messages…** (all repositories) or **Repository → Commit Messages…** (this one); choose the version's source in **Repository → Version Source…**.
+
+### 41. AI assistant *(new in 1.0.8, experimental)*
+
+**In one line:** Bring your own AI — Claude, OpenAI, Gemini, or Ollama running on your own computer — to write commit messages, review and explain changes, summarize branches, suggest conflict resolutions and answer questions about the history.
+
+**What it does:** Turn the assistant on in **AI → AI Settings…**, pick a provider and paste your API key (or set `ANTHROPIC_API_KEY`, `OPENAI_API_KEY` or `GEMINI_API_KEY`; the environment wins). The wand next to the commit title (or `Ctrl+Alt+M`) reads the staged changes, follows your commit message templates and recent titles, and fills in the title and description. Before anything is sent, a *Ready to send* sheet says where it goes, what is left out (lockfiles, `.env`, binary files, parts of very large diffs), the estimated tokens and cost, and shows the exact prompt; lines that look like passwords or keys are removed. A badge in the status bar shows the provider and says when data is being sent.
+
+Beyond commit messages:
+- **Code review** of one or more commits (right-click → *AI Review*) or of the staged changes (the wand above *Staged Files*): a summary bar with the count per severity, then findings grouped by file as cards (severity strip, the quoted line highlighted, the suggestion apart); click `file:line` to open the diff there. Copy the review as Markdown, plain text or a GitHub pull-request review. Large changes are split into several calls plus a summary.
+- **Explain** a commit, one file of it, the diff on screen or just the selected lines, a line in Blame (*why is this like this?*), or the last git error.
+- **Branch summary** against its base, ready as a pull-request description (it follows the repository's PR template); *Create Pull Request* fills it in, and the PR dialog has its own *Write with AI*. Release notes from a selection of commits.
+- **Conflict suggestions**: *AI Suggest* in the conflict editor proposes a resolution for one or every conflict of a file, using both sides and the common version; *Accept* puts it in the output, and nothing is saved until you do.
+- **Smart Search**: switch the graph search to AI mode and ask, e.g. *when was the retry limit added?* The model only plans the search; git runs it on your computer, and the matching commits are highlighted and listed with the reason.
+- **Small helpers**: branch names from a description, stash and tag messages, a reworded commit message.
+- **Your own instructions**: *AI Settings → Prompts* lets you rewrite how the AI works for each task (the reviewer's focus, the sections of a summary…); the parts that keep it working and safe stay fixed, and *Reset to Default* brings back the original.
+- **Usage**: calls, tokens and estimated cost per day, feature and model, an optional monthly budget with a warning, export to CSV / JSON; prices are editable.
+
+**Why it's different:**
+- Your key, your provider, your bill: no account with us, no middle server. Ollama keeps everything on your computer. Setting it up: install Ollama, `ollama pull` a model, pick *Ollama* in AI Settings and click *Test Connection*; no key needed.
+- Nothing is sent without a click, and you can read every word before it goes. The app never commits for you.
+- A cheaper, faster model writes commit messages by default; you can pick another per feature.
+- Diffs are never written to the app's logs; only token counts and costs are kept, locally.
+- The AI never runs anything: a search plan is checked and turned into plain git arguments by the app, and suggestions are never applied, saved or committed on their own.
+
+**Where to find it:** The **AI** menu, the wand buttons (commit box, staged files, graph search, dialogs), *AI* entries in the commit and branch menus, *Explain* in the diff viewer, *AI Suggest* in the conflict editor, the AI badge in the status bar; **Repository → Don't Use AI in This Repository** turns it off for one repository.
+
+**Accuracy notes:** The assistant is marked *experimental* in the app (AI menu, AI Settings banner, tour): it will keep changing in the next updates. Answers can be wrong: each review finding quotes the changed line it is about, and findings the model can't back with a line of the diff are shown apart as guesses (small local models invent more of them), and Smart Search is only as good as its plan. A contiguous selection of commits is reviewed as one change. No AI squash message yet. Costs are estimates from published prices; the budget is in US dollars.
 
 ### 14. Review before commit (merge & cherry-pick)
 
