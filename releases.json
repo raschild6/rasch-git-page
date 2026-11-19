@@ -1,5 +1,154 @@
 [
   {
+    "version": "1.0.9",
+    "tag": "v1.0.9",
+    "date": "2026-11-19",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.9/RaschildGitManager-1.0.9-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.9/RaschildGitManager-1.0.9-macos-arm64.dmg",
+      "linux": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.9/RaschildGitManager-1.0.9-linux-x86_64.AppImage",
+      "linux-deb": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.9/raschild-git-manager_1.0.9-1_amd64.deb",
+      "linux-rpm": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.9/raschild-git-manager-1.0.9-1.x86_64.rpm"
+    },
+    "changelog": {
+      "New Features": [
+        "AI with Claude Code or Codex: No API key needed: if Claude Code or Codex is installed and signed in, pick it in AI Settings and the AI features use your Claude or ChatGPT plan.",
+        "Hand a task to Claude Code: AI → New Agent Session… (or Start Agent on an issue) lets Claude Code work on a task in a new worktree on its own branch; you follow it, review its changes, then commit, keep or discard them.",
+        "Guided bisect: Right-click a commit that worked → Start Bisect Here, then test each commit the app checks out and answer Good or Bad: it finds the commit that broke it, marked in the graph.",
+        "Compare commits and branches: Ctrl+click two commits → Compare These Commits, or right-click a branch → Compare with Current Branch, every file that differs, with its diff. Consecutive commits show their combined changes.",
+        "Clean up merged branches: Edit → Clean Up Branches… ticks the branches already merged (also by squash, rebase or a merged pull request) and those deleted on the remote, so you delete them in one go.",
+        "Claude plan limits: With Claude Code, AI → AI Usage… and the AI button show how much of your 5-hour and weekly limits is used and when they reset.",
+        "Merge with options: Right-click a branch → Merge with Options… to squash it into one change, record a merge commit or fast-forward; plain Merge still stages the result for you to review.",
+        "Reopen a closed tab: Ctrl+Shift+T (File → Reopen Closed Tab) brings back the last repository you closed, in the same pane, position and group.",
+        "Reset Keep: Right-click a commit → Reset Keep to here moves the branch and keeps your uncommitted changes as unstaged changes; it stops instead of overwriting them.",
+        "Git hooks you can follow and skip: A hook's output shows in the status bar while it runs; when it refuses a commit or push you see why, with a button to retry without hooks. Skip Hooks next to Amend commits without them.",
+        "Git LFS file locking: Right-click a large file → Lock File before editing it, so nobody else changes it meanwhile; a lock icon shows who holds a lock, and Repository → Git LFS → Locked Files lists them all.",
+        "Stash staged or unstaged only: Right-click files → Stash, or the arrow next to the toolbar's Stash: Stash Staged Only or Stash Unstaged Only keeps the other part where it is, also for several selected files."
+      ],
+      "Bug Fixes": [
+        "Undo of Stash Selected: Undoing a stash of selected files now also brings back a file you had removed from Git but kept on disk (git rm --cached).",
+        "AI status popup no longer cuts its text and buttons"
+      ],
+      "Improvements": [
+        "AI assistant no longer experimental: The AI features are now a regular part of the app: the experimental warnings are gone from the AI menu and AI Settings.",
+        "Branch name always in full: The branch name at the top left is smaller and no longer cut off: a long name gets a wider box.",
+        "Simpler AI windows: The AI status popup shows your plan limits as bars, AI Usage sections fold away so the calls table gets the room, and AI Settings has less text (details in tooltips)."
+      ]
+    },
+    "notes": [
+      {
+        "kind": "new",
+        "level": 3,
+        "title": "AI with Claude Code or Codex",
+        "text": "No API key needed: if Claude Code or Codex is installed and signed in, pick it in AI Settings and the AI features use your Claude or ChatGPT plan."
+      },
+      {
+        "kind": "new",
+        "level": 3,
+        "title": "Hand a task to Claude Code",
+        "text": "AI → New Agent Session… (or Start Agent on an issue) lets Claude Code work on a task in a new worktree on its own branch; you follow it, review its changes, then commit, keep or discard them."
+      },
+      {
+        "kind": "new",
+        "level": 3,
+        "title": "Guided bisect",
+        "text": "Right-click a commit that worked → Start Bisect Here, then test each commit the app checks out and answer Good or Bad: it finds the commit that broke it, marked in the graph."
+      },
+      {
+        "kind": "new",
+        "level": 3,
+        "title": "Compare commits and branches",
+        "text": "Ctrl+click two commits → Compare These Commits, or right-click a branch → Compare with Current Branch, every file that differs, with its diff. Consecutive commits show their combined changes."
+      },
+      {
+        "kind": "new",
+        "level": 3,
+        "title": "Clean up merged branches",
+        "text": "Edit → Clean Up Branches… ticks the branches already merged (also by squash, rebase or a merged pull request) and those deleted on the remote, so you delete them in one go."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "Claude plan limits",
+        "text": "With Claude Code, AI → AI Usage… and the AI button show how much of your 5-hour and weekly limits is used and when they reset."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "AI assistant no longer experimental",
+        "text": "The AI features are now a regular part of the app: the experimental warnings are gone from the AI menu and AI Settings."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "Merge with options",
+        "text": "Right-click a branch → Merge with Options… to squash it into one change, record a merge commit or fast-forward; plain Merge still stages the result for you to review."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "Reopen a closed tab",
+        "text": "Ctrl+Shift+T (File → Reopen Closed Tab) brings back the last repository you closed, in the same pane, position and group."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "Reset Keep",
+        "text": "Right-click a commit → Reset Keep to here moves the branch and keeps your uncommitted changes as unstaged changes; it stops instead of overwriting them."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Branch name always in full",
+        "text": "The branch name at the top left is smaller and no longer cut off: a long name gets a wider box."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "Git hooks you can follow and skip",
+        "text": "A hook's output shows in the status bar while it runs; when it refuses a commit or push you see why, with a button to retry without hooks. Skip Hooks next to Amend commits without them."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "Git LFS file locking",
+        "text": "Right-click a large file → Lock File before editing it, so nobody else changes it meanwhile; a lock icon shows who holds a lock, and Repository → Git LFS → Locked Files lists them all."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "Stash staged or unstaged only",
+        "text": "Right-click files → Stash, or the arrow next to the toolbar's Stash: Stash Staged Only or Stash Unstaged Only keeps the other part where it is, also for several selected files."
+      },
+      {
+        "kind": "fix",
+        "level": 2,
+        "title": "Undo of Stash Selected",
+        "text": "Undoing a stash of selected files now also brings back a file you had removed from Git but kept on disk (git rm --cached)."
+      },
+      {
+        "kind": "fix",
+        "level": 1,
+        "title": "",
+        "text": "AI status popup no longer cuts its text and buttons"
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Simpler AI windows",
+        "text": "The AI status popup shows your plan limits as bars, AI Usage sections fold away so the calls table gets the room, and AI Settings has less text (details in tooltips)."
+      }
+    ],
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/b50f032b399bfb56f9ec76e77681ae0edee59efe3d201ddbd2647a3056ab6212",
+      "macos": "https://www.virustotal.com/gui/file/7b0f7f04c76399b0ffea65ed15f8c6e0aebe690a814cb987379462cbb01737f8",
+      "linux": "https://www.virustotal.com/gui/file/4634e7529cc259e954a2cc19bb80bcc7b98db176ce7d5c3b6d7a0c57f969f5c0",
+      "linux-deb": "https://www.virustotal.com/gui/file/3495b8a5e4a062749bcda5072032c82807d4073d8ce4e4060202be5082d9b65c",
+      "linux-rpm": "https://www.virustotal.com/gui/file/13d763c97e3fbf6e651886d9999753d53074e25603c6e859c84d5d9d6c25fc84"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v1.0.9"
+  },
+  {
     "version": "1.0.8",
     "tag": "v1.0.8",
     "date": "2026-11-03",
