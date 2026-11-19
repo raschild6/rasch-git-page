@@ -77,7 +77,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 37 | Commit signing | Get the *Verified* badge on your commits: sign with an SSH or GPG key, set up, tested and added to GitHub from one page. |
 | 38 | Large files (Git LFS) | Repositories with big design files, media or datasets just work: download progress, real sizes, no pointer text. |
 | 39 | Interface scale | The whole app larger or smaller, to any size from 25% to 400%, with Ctrl+Plus / Ctrl+Minus — text, icons and spacing together. |
-| 41 | AI assistant (experimental) | Your own Claude, OpenAI or Gemini key, or Ollama on your computer: commit messages, code review, explanations, branch summaries, conflict suggestions and questions about the history, with the exact prompt shown first. |
+| 41 | AI assistant (experimental) | Your own Claude, OpenAI or Gemini key, Ollama on your computer, or the Claude Code / Codex you already have (no key): commit messages, code review, explanations, branch summaries, conflict suggestions and questions about the history, with the exact prompt shown first. |
 | 40 | Import Workspace | Coming from another Git client or IDE? Bring its repository list and groups over in one step, every folder checked first. |
 
 ---
@@ -262,7 +262,7 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 
 ### 41. AI assistant *(new in 1.0.8, experimental)*
 
-**In one line:** Bring your own AI — Claude, OpenAI, Gemini, or Ollama running on your own computer — to write commit messages, review and explain changes, summarize branches, suggest conflict resolutions and answer questions about the history.
+**In one line:** Bring your own AI — Claude, OpenAI, Gemini, Ollama running on your own computer, or the Claude Code / Codex you already use (no API key) — to write commit messages, review and explain changes, summarize branches, suggest conflict resolutions and answer questions about the history.
 
 **What it does:** Turn the assistant on in **AI → AI Settings…**, pick a provider and paste your API key (or set `ANTHROPIC_API_KEY`, `OPENAI_API_KEY` or `GEMINI_API_KEY`; the environment wins). The wand next to the commit title (or `Ctrl+Alt+M`) reads the staged changes, follows your commit message templates and recent titles, and fills in the title and description. Before anything is sent, a *Ready to send* sheet says where it goes, what is left out (lockfiles, `.env`, binary files, parts of very large diffs), the estimated tokens and cost, and shows the exact prompt; lines that look like passwords or keys are removed. A badge in the status bar shows the provider and says when data is being sent.
 
@@ -277,6 +277,7 @@ Beyond commit messages:
 - **Usage**: calls, tokens and estimated cost per day, feature and model, an optional monthly budget with a warning, export to CSV / JSON; prices are editable.
 
 **Why it's different:**
+- **No API key? Use Claude Code or Codex** *(new in 1.0.9)*: if one of them is installed and signed in, pick it as the provider; the app runs it for each request, so the features use your Claude or ChatGPT plan (or the key that program uses). It runs with its tools off, in an empty folder, and sees only the prompt you approved; *Check Program* finds it and shows whether it's signed in, at no cost. The prompt still goes to Anthropic or OpenAI through that program.
 - Your key, your provider, your bill: no account with us, no middle server. Ollama keeps everything on your computer. Setting it up: install Ollama, `ollama pull` a model, pick *Ollama* in AI Settings and click *Test Connection*; no key needed.
 - Nothing is sent without a click, and you can read every word before it goes. The app never commits for you.
 - A cheaper, faster model writes commit messages by default; you can pick another per feature.
