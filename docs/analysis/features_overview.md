@@ -53,7 +53,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 13 | Undo / Redo | Undo commits, checkouts, resets, discards, stashes and more — safely. |
 | 14 | Review before commit | Merges and cherry-picks are staged for review, never committed behind your back. |
 | 15 | One tree for every ref | Branches, remotes, tags, stashes and a detached HEAD in one filterable tree. |
-| 16 | Hunk-level staging | Stage or unstage individual hunks right from the diff; stash, stage, unstage or discard several selected files at once. |
+| 16 | Hunk-level staging | Stage or unstage individual hunks right from the diff; stash, stage, unstage or discard several selected files at once; stash only the staged or only the unstaged changes. |
 | 17 | Commit details | Author avatar, copyable SHA, full message and changed files at a glance. |
 | 18 | Activity log & full command logs | See everything the app did; export every Git command's raw output. |
 | 19 | Automatic updates | Get notified of new versions, then download, verify and install in one click. |
@@ -256,6 +256,7 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 - **Room for either list:** drag the line between *Unstaged Files* and *Staged Files* to give one list more space; either can shrink down to just its header (both headers always stay visible). Double-click the line for half and half; the position is remembered.
 - **Several files at once:** Ctrl+click (Cmd+click on macOS) and Shift+click select several files, in the unstaged list, the staged list or both together. Right-click the selection for:
   - **Stash Selected** (or **Stash This File** on a single file's right-click menu) — asks for a stash message first (pre-filled with Git's usual one, editable; Cancel stashes nothing), then stashes only those files, staged and unstaged changes alike (new untracked files too); every other change stays exactly where it is, staged or not. Popping the stash in the app brings the files back as they were, staged parts staged (a staged deletion comes back as an unstaged one); a plain `git stash pop` on the command line brings them back unstaged, except new files.
+  - **Stash Staged Changes Only…** / **Stash Unstaged Changes Only…** (in the same *Stash Selected* / *Stash* submenu) — stash just one part of those files: their staged changes (the unstaged ones stay in the working tree), or their unstaged changes and new files (the staged ones stay staged). A file whose two parts touch the same lines can't be split: the app says so and stashes nothing. The toolbar's **Stash** button has the same choices for all your changes in its arrow menu (**Stash Staged Only**, **Stash Unstaged Only**), with no dialog, and both can be custom toolbar buttons too.
   - **Stage Selected** / **Unstage Selected** — files already on that side are skipped.
   - **Discard Selected…** — asks first, listing the files; files picked in the staged list lose their staged changes too, new files are deleted. One Undo brings them all back.
   - **Diff Selected** — opens the first file's diff with **‹ 1 / 3 ›** arrows to step through the others.
@@ -269,6 +270,7 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 **Why it's different:**
 - Partial staging is often missing or fragile in simpler GUIs; here it is built to work on edge cases.
 - Stashing just a few files, even across the staged and unstaged lists, without disturbing the rest — and the stash holds only those files (Git's own partial stash also records everything else that was staged).
+- Stash only what is staged or only what isn't, for every change or a few files: the stash holds just that part (Git's own *keep index* option still records the staged changes in the stash), and it works with every Git version the app supports.
 - Every discard can be undone (see [Undo / Redo](#13-undo--redo)).
 - Most Git GUIs show a moved file as a deletion plus a new file until both are staged, and a staged move as a whole new file; here it is one row with only its real changes, before and after staging.
 
