@@ -57,6 +57,7 @@
 | `lfs.png` | LFS card (size before → after, *Open Before* / *Open After*) and LFS / large-file badges in the changes panel | 38 |
 | `split-view-2.png`, `split-view-4.png` | Split view: two repositories side by side; four in a 2×2 grid | 29 |
 | `import-workspace-tools.png`, `import-workspace.png`, `import-workspace-report.png` | File → Import Workspace…: the six tools (found / not found), the repositories by group with each folder checked, the result report (dialog only, demo home folder) | 40 |
+| `ai-settings-claude-code.png` | AI → AI Settings…: Claude Code selected, Check Program shows the version and the sign-in | 41 |
 | `ai-settings.png` | AI → AI Settings…: Ollama selected, the model list read from the local server | 41 |
 | `ai-send-sheet.png` | The *Ready to send* sheet before a commit message, *View Prompt* open | 41 |
 | `ai-commit-message.png` | The commit box filled in by the wand from the staged changes | 41 |
