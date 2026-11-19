@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>How-to Guides — Rasch-Git</title>
-  <meta name="description" content="Practical, example-driven guides for Rasch-Git: Action Scheduler, bulk management, toolbar buttons, Deep Search, external editors, interactive rebase, pull requests, worktrees, git-flow, signed commits and split view.">
+  <meta name="description" content="Practical, example-driven guides for Rasch-Git: Action Scheduler, bulk management, toolbar buttons, Deep Search, external editors, interactive rebase, pull requests, worktrees, git-flow, signed commits, split view and bisect.">
   <meta name="theme-color" content="#1a1b2e">
   <meta property="og:title" content="How-to Guides — Rasch-Git">
-  <meta property="og:description" content="Practical, example-driven guides for Rasch-Git: Action Scheduler, bulk management, toolbar buttons, Deep Search, external editors, interactive rebase, pull requests, worktrees, git-flow, signed commits and split view.">
+  <meta property="og:description" content="Practical, example-driven guides for Rasch-Git: Action Scheduler, bulk management, toolbar buttons, Deep Search, external editors, interactive rebase, pull requests, worktrees, git-flow, signed commits, split view and bisect.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://raschild6.github.io/rasch-git-page/assets/img/logo-512.png">
   <link rel="icon" href="favicon.ico" sizes="any">
@@ -69,6 +69,7 @@
             <li><a class="chapter-item" href="#commit-template"><span class="num">13</span><span class="label">Commit Message Templates</span></a></li>
             <li><a class="chapter-item" href="#import-workspace"><span class="num">14</span><span class="label">Switching from Another Git Client</span></a></li>
             <li><a class="chapter-item" href="#ai-assistant"><span class="num">15</span><span class="label">Getting Started with the AI Assistant</span></a></li>
+            <li><a class="chapter-item" href="#bisect"><span class="num">16</span><span class="label">Find the Commit That Broke Something</span></a></li>
           </ul>
         </nav>
         <section class="card chapter-content" id="chapter-content">
@@ -610,7 +611,34 @@
 <h3 class="guide-h" id="ai-costs">Keep an eye on costs</h3>
 <p><strong>AI → AI Usage…</strong> shows calls, tokens and the estimated cost for this session, this month, the last 30 days and all time, by feature and by model, with the history of calls (never their text). Set a <strong>Monthly budget</strong> there (leave it empty for none): from 80 % the status-bar badge turns into a warning, though nothing is ever blocked. Your own rates go in <strong>AI Settings → Prices</strong>. Costs are estimates; your provider's bill is what counts.</p>
 <div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div>Want less to be sent? In <strong>AI Settings → Privacy</strong> add files that must never be sent, and in <strong>Features</strong> turn off sending file names for Smart Search. <strong>Repository → Don't Use AI in This Repository</strong> hides the AI for one repository.</div></div>
-            <div class="chapter-footer"><a href="#import-workspace">&larr; Switching from Another Git Client</a><span></span></div>
+            <div class="chapter-footer"><a href="#import-workspace">&larr; Switching from Another Git Client</a><a href="#bisect">Find the Commit That Broke Something &rarr;</a></div>
+          </article>
+          <article class="chapter guide" id="bisect" aria-labelledby="bisect-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2.5"/><circle cx="12" cy="19" r="2"/><path d="M4 12h4M16 12h4"/><path d="m6 10 2 2-2 2M18 10l-2 2 2 2"/></svg></span>
+              <h2 id="bisect-title">Find the Commit That Broke Something</h2>
+            </div>
+<p class="intro">Something worked last week and doesn't today, and there are 80 commits in between. Guided bisect halves the search at every answer: about seven Good / Bad clicks find the commit that broke it.</p>
+
+<h3 class="guide-h" id="bisect-start">Start</h3>
+<ol class="steps"><li>Find a commit where things still worked (a release tag is a good choice) and right-click it in the graph → <strong>Start Bisect Here…</strong>. The broken commit is your current one.</li><li>Already know both ends? Select the two commits (<span class="kbd">Ctrl</span>+click) and right-click → <strong>Bisect Between These 2 Commits…</strong>. Or use <strong>Repository → Bisect → Start Bisect…</strong> and pick both.</li><li>Have uncommitted changes? The app offers to put them aside for the bisect; they come back when it ends.</li></ol>
+
+<h3 class="guide-h" id="bisect-answer">Answer Good or Bad</h3>
+<ol class="steps"><li>The app checks out a commit halfway between the good and the bad one. The bar above the graph names it and says how many commits and steps are left; the commit is marked <em>test this</em> in the graph.</li><li>Build it, run it, try the thing that broke.</li><li>Click <strong>Good (works)</strong> or <strong>Bad (broken)</strong>. If you can't test this commit (it doesn't build for an unrelated reason), click <strong>Skip</strong>.</li><li>Each answer leaves a <em>good</em>, <em>bad</em> or <em>skip</em> mark on its commit, so you can see where the search has been. Clicked the wrong button? <strong>More → Undo Last Mark</strong>.</li></ol>
+<div class="example"><div class="example-head"><span>Example</span>The login page stopped loading</div><div class="example-body"><ol class="steps"><li>Tag <em>v2.3</em> worked; today's <em>main</em> doesn't. Right-click <em>v2.3</em> → <strong>Start Bisect Here…</strong>: "About 80 commits left, roughly 7 steps".</li><li>Open the app at each commit the bar shows: the page loads → <strong>Good</strong>; it doesn't → <strong>Bad</strong>.</li><li>Seven answers later the bar shows the first bad commit, selected in the graph with its changes ready to read.</li></ol></div></div>
+
+<h3 class="guide-h" id="bisect-run">Let a script answer for you</h3>
+<p>If a command can tell good from bad (a test, a build, a <code>grep</code>), click <strong>More → Run a Test Command…</strong> in the bar and type it, for example <code>npm test -- login</code> or <code>python -m pytest tests/test_login.py</code>. Git runs it at every step: exit code <strong>0</strong> means good, <strong>125</strong> means skip, anything else means bad. The bisect stops on the first bad commit.</p>
+<div class="callout callout-tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg><div><strong>Build output in the way?</strong> If testing a commit leaves changed files behind, the app asks before the next step: <strong>Stash Them</strong> or <strong>Discard Test Changes</strong>, so the next checkout isn't blocked.</div></div>
+
+<h3 class="guide-h" id="bisect-end">Finish</h3>
+<ul class="guide-list">
+ <li><strong>End Bisect</strong> takes you back to the branch you were on, with your local changes restored. Or choose to end on the first bad commit to look around it.</li>
+ <li>Made a commit while bisecting (a quick fix to test)? The app notices and offers to keep it on a new branch before ending.</li>
+ <li><strong>More → Show Bisect Log…</strong> lists every answer so far, in case you want to note them in a bug report.</li>
+</ul>
+<div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div>Bisect steps aren't part of Undo: use <strong>Undo Last Mark</strong> and <strong>End Bisect</strong> instead. The test command uses Git's shell syntax, also on Windows. Submodules aren't updated at each step.</div></div>
+            <div class="chapter-footer"><a href="#ai-assistant">&larr; Getting Started with the AI Assistant</a><span></span></div>
           </article>
         </section>
       </div>

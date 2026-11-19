@@ -21,7 +21,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 ## Contents
 
 1. [At a glance](#at-a-glance)
-2. [Graph & history](#graph--history) — the virtualized graph, the branch tree, commit details, commit search, Deep Search, blame & file history
+2. [Graph & history](#graph--history) — the virtualized graph, the branch tree, commit details, commit search, Deep Search, blame & file history, guided bisect
 3. [Changes & commits](#changes--commits) — smart diff views, hunk-level staging, commit templates, AI assistant, review-before-commit, conflict resolution and safe checkout
 4. [Branches & safety net](#branches--safety-net) — undo / redo, interactive rebase, git-flow, worktrees, bulk actions
 5. [Many repositories](#many-repositories) — tab groups, split view, drag & drop to open, import workspace, submodules, large files (Git LFS), scheduled actions
@@ -79,6 +79,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 39 | Interface scale | The whole app larger or smaller, to any size from 25% to 400%, with Ctrl+Plus / Ctrl+Minus — text, icons and spacing together. |
 | 41 | AI assistant (experimental) | Your own Claude, OpenAI or Gemini key, Ollama on your computer, or the Claude Code / Codex you already have (no key): commit messages, code review, explanations, branch summaries, conflict suggestions and questions about the history, with the exact prompt shown first. |
 | 40 | Import Workspace | Coming from another Git client or IDE? Bring its repository list and groups over in one step, every folder checked first. |
+| 50 | Guided bisect | Find the commit that broke something: mark one that worked, answer Good or Bad for each commit the app checks out, and it names the culprit. |
 
 ---
 
@@ -182,6 +183,20 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 - File History follows renames and shows each change inline, without a terminal `git log --follow -p`.
 
 **Where to find it:** right-click a file (working changes or a commit's file list) → **Blame** / **File History**; the buttons in the diff header (`Ctrl+B` / `Ctrl+H`); a Deep Search result's menu.
+
+---
+
+### 50. Guided bisect *(new in 1.0.9)*
+
+**In one line:** Find the commit that broke something: mark one that worked, answer Good or Bad for each commit the app checks out, and it names the culprit.
+
+**What it does:** Right-click a commit where things still worked → **Start Bisect Here…** (or select two commits → **Bisect Between These 2 Commits…**, or **Repository → Bisect → Start Bisect…**). The app checks out a commit halfway between the good and the bad one; a bar above the graph says which one, how many commits are left and roughly how many steps. Build or run it, then click **Good (works)**, **Bad (broken)** or **Skip** (can't test it). Each verdict shows as a small *good* / *bad* / *skip* mark in the graph, and the commit to test is marked *test this*. When one commit is left, the bar shows the **first bad commit** and selects it in the graph with its details. *Run a Test Command…* lets Git test every step for you with a script (exit 0 = good). *Undo Last Mark* fixes a wrong answer. **End Bisect** brings you back to your branch — with your local changes, which were stashed for the bisect and restored — or ends on the first bad commit.
+
+**Why it's different:**
+- In most Git GUIs bisect means the terminal: typing `git bisect good` / `bad` and reading hashes back. Here it is buttons and marks on the graph, with the progress always in view.
+- Safe by default: local changes are put aside and restored, build output left by a test is caught before the next step, and commits made during the bisect aren't lost when it ends.
+
+**Where to find it:** right-click a commit → **Start Bisect Here…**; two selected commits → **Bisect Between These 2 Commits…**; **Repository → Bisect**; the bar above the graph while a bisect runs.
 
 ---
 
@@ -294,11 +309,13 @@ Beyond commit messages:
 
 **What it does:** Merging a branch or cherry-picking a commit applies the changes to the staging area with the commit message pre-filled, and stops there. Several commits can be cherry-picked together (select them with Ctrl+click or Shift+click): they are applied oldest first and their changes add up in the changes panel, still without a commit. If local changes would get in the way, the app says which files before touching anything; if a commit conflicts, the conflict editor opens and **Continue Cherry-pick** goes on with the commits still to apply (the panel says which commit stopped and how many are left), while **Abort** puts back exactly what was there before, including changes you had already staged. You review the result, adjust it if needed, and press **Commit** when you're happy; **Abort Merge** discards it. A merge that would change nothing ("already up to date") is detected and reported instead of producing an empty merge commit.
 
+**Merge with options.** When you do want something else, right-click a branch → **Merge with Options…** and pick how: **Stage for review** (the default), **Merge commit** (always a merge commit, committed at once with your message), **Fast-forward when possible** (otherwise a merge commit), or **Squash** — every change of the branch staged as one ordinary change, with the commit box already listing the squashed commits; you commit it when ready. A squash that conflicts opens the conflict editor like a merge, and Abort puts everything back. The dialog can remember your choice for each repository; the plain *Merge* entry always stages for review.
+
 **Why it's different:**
 - Most GUIs merge and cherry-pick straight into a commit, and you notice problems afterwards.
 - Here nothing lands in history until you have looked at it.
 
-**Where to find it:** Right-click a branch → *Merge*; right-click a commit → *Cherry-pick*; select several commits, then right-click one → *Cherry-pick N Commits (No Commit)*.
+**Where to find it:** Right-click a branch → *Merge* or *Merge with Options…*; right-click a commit → *Cherry-pick*; select several commits, then right-click one → *Cherry-pick N Commits (No Commit)*.
 
 ### 8. Conflict resolution with visual editor and auto-stash
 
@@ -329,9 +346,10 @@ Beyond commit messages:
 **In one line:** Undo commits, checkouts, resets, discards, stashes and more — safely.
 
 **What it does:**
-- **Scope:** covers local operations — commit and amend, checkout, create / delete / rename branch, reset (soft, mixed or hard), discarding files (including untracked ones), staged merges and cherry-picks, revert, rebase, pull, fast-forward, tags, stash save / pop / apply / delete, and bulk branch actions.
+- **Scope:** covers local operations — commit and amend, checkout, create / delete / rename branch, reset (soft, mixed, keep or hard), discarding files (including untracked ones), staged merges and cherry-picks, revert, rebase, pull, fast-forward, tags, stash save / pop / apply / delete, and bulk branch actions.
 - **Commits:** undoing a commit puts its changes back in the staging area and its message back in the commit box.
 - **Hard resets:** undoing a hard reset brings back your uncommitted changes.
+- **Reset Keep:** right-click a commit → *Reset Keep to here* moves the branch but keeps your uncommitted changes (as unstaged changes); if one of them would be overwritten, it stops and names the files instead.
 - **Safety check:** before applying, undo and redo verify that nothing they would touch has changed since. If something has, they refuse and say what changed.
 
 **Why it's different:**
@@ -419,7 +437,7 @@ Beyond commit messages:
 
 **In one line:** Organize many repositories into coloured, collapsible groups.
 
-**What it does:** Every repository opens in its own tab, and tabs are restored the next time you start the app: the window opens at once with the repository you were on, and the other tabs open in the background, one at a time. Right-click a tab to create a group or add the tab to one. Each group has its own colour: one of 16, or any colour you pick with **Custom…** (it stays readable in light and dark themes). Groups get their own row above the repository tabs: each group is a coloured chip with its name and number of repositories, and the tab row below lists the repositories group by group, in the group's colour. Click a group to collapse it: its tabs are hidden, but the repositories stay open in the background, ready the moment you bring them back. Or hide only some of them (*Hide Tab*, *Hide Other Tabs*, or untick tabs in the group's menu). The **N hidden** button lists every hidden tab and brings any of them back in one click. When every tab is hidden, the window shows them group by group, in the group's colour: type to filter, click a repository to bring its tab back, or **Show Group** for the whole group. Drag a group chip to reorder groups. Group order, hidden tabs and the active tab are all kept across restarts. **Reload Repository** in a tab's right-click menu reopens a repository in place, in the same group and position. Folders can also be dragged onto the window (see [Drag & drop to open](#22-drag--drop-to-open)).
+**What it does:** Every repository opens in its own tab, and tabs are restored the next time you start the app: the window opens at once with the repository you were on, and the other tabs open in the background, one at a time. Right-click a tab to create a group or add the tab to one. Each group has its own colour: one of 16, or any colour you pick with **Custom…** (it stays readable in light and dark themes). Groups get their own row above the repository tabs: each group is a coloured chip with its name and number of repositories, and the tab row below lists the repositories group by group, in the group's colour. Click a group to collapse it: its tabs are hidden, but the repositories stay open in the background, ready the moment you bring them back. Or hide only some of them (*Hide Tab*, *Hide Other Tabs*, or untick tabs in the group's menu). The **N hidden** button lists every hidden tab and brings any of them back in one click. When every tab is hidden, the window shows them group by group, in the group's colour: type to filter, click a repository to bring its tab back, or **Show Group** for the whole group. Drag a group chip to reorder groups. Group order, hidden tabs and the active tab are all kept across restarts. **Reload Repository** in a tab's right-click menu reopens a repository in place, in the same group and position. Closed one by mistake? **Ctrl+Shift+T** (File → Reopen Closed Tab) brings back the last closed repositories, one at a time, in their pane, position and group. Folders can also be dragged onto the window (see [Drag & drop to open](#22-drag--drop-to-open)).
 
 **Why it's different:**
 - Many Git GUIs show one repository per window, or a flat bookmark list.
@@ -502,7 +520,8 @@ Select or deselect repositories one by one or a whole group at a time. Keep the 
 - **Long downloads that don't fail:** checkouts, pulls, clones, merges and stashes that download large files show "Downloading LFS objects 45%" in the toolbar instead of a silent wait, and keep going as long as the download moves — no "timed out" on a slow multi-gigabyte checkout.
 - **LFS files at a glance:** in your changes they're marked "LFS" with their size; a new untracked file over 50 MB gets a "large file" note suggesting LFS.
 - **Readable changes:** clicking a changed LFS file shows "LFS file changed · 12.4 MB → 12.9 MB" instead of the pointer text, with **Open Before** / **Open After** (the real files, even for old commits); LFS images open straight in the [image diff](#3-smart-diff-views) with their real pixels.
-- **Track from the file menu:** right-click a file → **Track with Git LFS…** (`*.psd` suggested) or **Stop Tracking with Git LFS**; the change to `.gitattributes` is staged and can be undone. **Repository → Git LFS** fetches objects for this branch or all branches, pulls missing files, lists the tracked patterns (and which `.gitattributes` each lives in), sets up LFS and prunes the local cache.
+- **Track from the file menu:** right-click a file → **Track with Git LFS…** (`*.psd` suggested) or **Stop Tracking with Git LFS**; the change to `.gitattributes` is staged and can be undone. **Repository → Git LFS** fetches objects for this branch or all branches, pulls missing files, lists the tracked patterns (and which `.gitattributes` each lives in, and whether it is *lockable*), sets up LFS and prunes the local cache.
+- **File locking** *(new in 1.0.9)*: claim a binary file before editing it so nobody else changes it meanwhile. Right-click it → **Lock File** (several selected files: **Lock N Files**), then **Unlock File** when your change is pushed. A lock icon in your changes shows who holds a lock — yours, or someone else's in orange with their name and since when. **Repository → Git LFS → Locked Files…** lists every lock with a filter (all / mine / others'), **Lock a File…**, **Unlock** and a red **Force Unlock…** for someone else's lock. Files of a *lockable* pattern stay read-only until locked: opening one offers **Lock and Open**. A push that includes files locked by others is flagged, and when the server refuses it the app lists the files and their owners.
 
 **Why it's different:**
 - Most Git GUIs show an LFS file's pointer text as its diff and run long LFS checkouts with no progress — or give up on them with a timeout.
@@ -787,7 +806,7 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 | Rewriting commits | Terminal `git rebase -i`, or not available | Drag & drop editor: reword / squash / fixup / drop / edit, one-step undo |
 | Diff layouts | One (sometimes two) | Hunk, Inline and Split, with syntax highlighting, minimap, search — plus side-by-side, swipe, onion-skin and difference views for images |
 | Conflicts | External merge tool or per-file choice | Built-in three-pane editor, line and hunk level |
-| Merge / cherry-pick | Commit immediately | Staged for review first |
+| Merge / cherry-pick | Commit immediately | Staged for review first; squash, merge commit or fast-forward when you choose |
 | Cherry-pick several commits | One by one, or committed each time | Select them in the graph, applied together, nothing committed |
 | Branch switching with local changes | Manual stash, or refusal | Automatic stash and restore |
 | Many branches / repos | One at a time | Bulk actions with a per-item report |
@@ -796,7 +815,7 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 | Several repositories at once | Several windows | Split view: up to four live panes side by side |
 | Working on two branches at once | Stash, switch, switch back | Worktrees: each branch in its own folder and tab, created from the branch menu |
 | Git-flow | Needs the git-flow extension; finish runs every step at once | Built in, no extension; finish shows each step and lets you review every merge, resumable |
-| Large files (Git LFS) | Pointer text in diffs; long checkouts with no progress | LFS files recognised with their sizes, track from the file menu, download progress, visual compare for images |
+| Large files (Git LFS) | Pointer text in diffs; long checkouts with no progress; locks in the terminal | LFS files recognised with their sizes, track from the file menu, download progress, visual compare for images, lock / unlock with who-holds-what in the app |
 | Submodules | Listed, updated through the terminal; pointer changes shown as raw text | State at a glance, update / open as tab / add / remove, readable "moved by N commits" diff |
 | Terminal | External | Built in, one per repository tab |
 | Toolbar | Fixed | Custom buttons (Git, app, URL, shell) |
@@ -805,6 +824,7 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 | Debugging | Short error text | Activity log plus exportable raw command logs |
 | Searching the history | Commit messages only; file contents need the terminal | File names, text in every branch, and when a line of code was added or removed |
 | Who changed a line | Separate blame window, if any | Blame in the main view, linked to the graph; file history across renames |
+| Finding the commit that broke something | Terminal `git bisect` | Guided bisect: Good / Bad buttons, marks on the graph, steps left, optional test command |
 | Pull requests | Open the website | Create, review, check out and merge in the app (GitHub, GitLab); browser fallback for every host |
 | Cloning | Paste a URL | Pick from your GitHub / GitLab repositories (yours, organisations, starred, search), HTTPS or SSH, branch / shallow / submodule options; fork and clone in one step with `upstream` set up |
 | CI results | Open the website | Check results on branches and commits, notified when your push's checks finish, re-run failed jobs (GitHub, GitLab) |
@@ -820,6 +840,7 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 |---|---|
 | Ctrl+O | Open a repository |
 | Ctrl+Z / Ctrl+Shift+Z (Ctrl+Y) | Undo / redo the last operation |
+| Ctrl+Shift+T | Reopen the last closed repository tab |
 | Ctrl+F | Search commits (graph) or the diff (diff viewer) |
 | Ctrl+Shift+F | Deep Search: a file, or text in every branch or in the history |
 | Ctrl+B / Ctrl+H | Blame / File History of the file in the diff viewer |
@@ -884,7 +905,8 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 - **Worktrees:** creating or removing a worktree's folder can't be undone (only a new branch created with it can); undo in one worktree won't move a branch another worktree has checked out; a worktree-only (bare) repository has no tab for its main entry; nothing is painted on the graph (the tooltips say where a branch is checked out); needs a recent Git (2.36 or newer).
 - **Commit signing:** no signature badges in the graph (only in the selected commit's details); a key with a passphrase needs a passphrase window (graphical pinentry) or an agent that already has it; X.509 signing is shown but not set up from the app; SSH signatures verify locally only for keys in Git's allowed signers file (the app adds your own); *Add to GitHub* is GitHub-only and needs signing in again once; GitHub shows *Verified* only when the commit email is also verified on the GitHub account.
 - **Image diff:** PNG, JPEG, GIF, BMP, WebP, ICO, SVG and (where the system supports it) TIFF — not PSD, HEIC or camera RAW files, which still open in their program; animated GIF / WebP show their first frame; images can't be staged in parts (whole file only); the page doesn't update by itself when the image changes again on disk (click it again); very large images (over 40 megapixels or 50 MB) ask first and may show a scaled preview; the difference view needs both versions to have the same size.
-- **Git LFS:** needs Git LFS installed (included with Git for Windows; on macOS and Linux install it separately); no file locking yet; LFS marks follow the patterns of the repository's top-level `.gitattributes` only, and a commit's file list says "LFS" without the size; upload progress for pushes and sign-in to private hosted LFS repositories with the app's accounts haven't been verified yet — don't claim them.
+- **Git LFS:** needs Git LFS installed (included with Git for Windows; on macOS and Linux install it separately); file locking needs an LFS server with the locking API (GitHub, GitLab, Gitea and Bitbucket have one) and write access, and the lock list is read when the repository opens, on a fetch and on demand — not live; it has been tested against a local test server only, not GitHub / GitLab yet; LFS marks follow the patterns of the repository's top-level `.gitattributes` only, and a commit's file list says "LFS" without the size; upload progress for pushes and sign-in to private hosted LFS repositories with the app's accounts haven't been verified yet — don't claim them.
+- **Guided bisect:** one bisect per repository folder at a time; the test command runs through Git's shell (POSIX `sh` syntax, also on Windows); submodules aren't updated at each step; bisect steps aren't part of Undo (End Bisect and Undo Last Mark are the way back).
 - **Interactive rebase:** only on the checked-out branch and on ranges without merge commits; it can't move commits onto another branch, add `exec` lines or split a commit inside the editor (use *edit* instead).
 - **Linux:** 64-bit x86 only (no ARM build yet), glibc 2.35 or newer (Ubuntu 22.04 era); no Flatpak, Snap or distribution repository — AppImage, `.deb` and `.rpm` downloads. On Wayland the window position isn't restored and the app can't bring its window to the front by itself (the desktop highlights it instead). Remembered sign-ins need a running Secret Service (GNOME Keyring or KWallet) and `secret-tool`.
 - **Specific numbers** (for example "a million commits"): they haven't been benchmarked; say "huge histories" / "very long histories".
