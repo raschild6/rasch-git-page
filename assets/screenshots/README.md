@@ -60,6 +60,8 @@
 | `ai-settings-claude-code.png` | AI → AI Settings…: Claude Code selected, Check Program shows the version and the sign-in | 41 |
 | `ai-settings.png` | AI → AI Settings…: Ollama selected, the model list read from the local server | 41 |
 | `ai-send-sheet.png` | The *Ready to send* sheet before a commit message, *View Prompt* open | 41 |
+| `ai-agent-start.png` | AI → New Agent Session…: task, base, new branch, permissions, auto-test (experimental), Claude plan limits | 41 |
+| `ai-agent-session.png` | Worktree tab after an agent session: Agent tab with steps, tests passed after a fix round, Review / Roll Back / Commit / Keep / Discard | 41 |
 | `ai-commit-message.png` | The commit box filled in by the wand from the staged changes | 41 |
 | `ai-review.png` | AI Review of a commit with real bugs: summary bar, findings as cards grouped by file | 41 |
 | `ai-explain.png` | Explain Commit: folded sections, highlighted code, the changed file as a link | 41 |
