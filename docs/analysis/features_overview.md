@@ -21,8 +21,8 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 ## Contents
 
 1. [At a glance](#at-a-glance)
-2. [Graph & history](#graph--history) — the virtualized graph, the branch tree, commit details, commit search, Deep Search, blame & file history, guided bisect
-3. [Changes & commits](#changes--commits) — smart diff views, hunk-level staging, commit templates, AI assistant, review-before-commit, conflict resolution and safe checkout
+2. [Graph & history](#graph--history) — the virtualized graph, the branch tree, commit details, commit search, Deep Search, blame & file history, compare, guided bisect
+3. [Changes & commits](#changes--commits) — smart diff views, hunk-level staging, commit templates, Git hooks, AI assistant, review-before-commit, conflict resolution and safe checkout
 4. [Branches & safety net](#branches--safety-net) — undo / redo, interactive rebase, git-flow, worktrees, bulk actions
 5. [Many repositories](#many-repositories) — tab groups, split view, drag & drop to open, import workspace, submodules, large files (Git LFS), scheduled actions
 6. [GitHub & GitLab](#github--gitlab) — pull requests, CI / CD status, clone & fork from your account, issues → branches, accounts & SSH keys, commit signing
@@ -43,7 +43,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 3 | Smart diff views | Hunk, Inline or Split — one click to switch, with syntax highlighting and search; changed images compared before / after; Edit Here turns the diff into an editor for a quick fix. |
 | 4 | Built-in terminal | A real shell in every repository tab, already in the right folder. |
 | 5 | Tab groups | Organize many repositories into coloured, collapsible groups on their own row; hide tabs without closing them. |
-| 6 | Bulk branch & repo management | Delete, pull or merge many branches — or act on every open repo — in one go. |
+| 6 | Bulk branch & repo management | Delete, pull or merge many branches — or act on every open repo — in one go; Clean Up Branches finds the ones already merged. |
 | 7 | Auto fetch with real progress & cancel | Always up to date, real progress bars, and a cancel button that actually stops Git. |
 | 8 | Visual conflict resolution & auto-stash | Resolve conflicts line by line; checkouts carry your changes across automatically. |
 | 9 | Custom toolbar buttons | Put your own commands, scripts and links one click away. |
@@ -79,7 +79,9 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 39 | Interface scale | The whole app larger or smaller, to any size from 25% to 400%, with Ctrl+Plus / Ctrl+Minus — text, icons and spacing together. |
 | 41 | AI assistant (experimental) | Your own Claude, OpenAI or Gemini key, Ollama on your computer, or the Claude Code / Codex you already have (no key): commit messages, code review, explanations, branch summaries, conflict suggestions and questions about the history, with the exact prompt shown first. |
 | 40 | Import Workspace | Coming from another Git client or IDE? Bring its repository list and groups over in one step, every folder checked first. |
+| 42 | Git hooks | See your hooks' output while they run, read why one refused a commit, and skip them when you need to. |
 | 50 | Guided bisect | Find the commit that broke something: mark one that worked, answer Good or Bad for each commit the app checks out, and it names the culprit. |
+| 43 | Compare commits & branches | Every file that differs between two commits or two branches — or what a run of commits changed together — with each file's diff. |
 
 ---
 
@@ -171,6 +173,18 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 - Searching code in other branches, or finding the commit that introduced or removed a line, usually means `git grep` and `git log -S` in a terminal, one branch at a time. Here it's one search over every branch at once, grouped by file, each hit one click from its blame or diff.
 
 **Where to find it:** **Edit → Deep Search…** (`Ctrl+Shift+F`).
+
+### 43. Compare commits & branches *(new in 1.0.9)*
+
+**In one line:** Every file that differs between two commits or two branches — or what a run of commits changed together — with each file's diff.
+
+**What it does:** Ctrl+click two commits in the graph and pick **Compare These Commits**, right-click a commit → **Compare with HEAD**, or right-click a branch → **Compare with Current Branch**. The details panel lists every file that differs and how many commits each side has that the other lacks; click a file for its diff, in Hunk, Inline or Split view (images side by side). **Only changes on '…'** shows just what the second side changed since the two split, like a pull request; **Swap** turns the comparison around. Select several consecutive commits and **Show Combined Changes** shows what they changed together, as one diff.
+
+**Why it's different:**
+- Many GUIs show one commit at a time; comparing two branches means the terminal or the website.
+- Here a comparison is two clicks away and reads like a commit: the file list, then each file's diff.
+
+**Where to find it:** Graph: Ctrl+click two commits → right-click; right-click a commit → *Compare with HEAD*; right-click a branch (graph label or sidebar) → *Compare with Current Branch*.
 
 ### 27. Blame & File History
 
@@ -274,6 +288,18 @@ The text searches have **Regex**, **Match case**, **Whole word** (branches) and 
 - The same version detection suggests branch names like `dev-release/1.4.0` when you create a branch (the pattern is yours to choose per repository: `release/{version}`, `{version}-{date}`…), and git-flow release names.
 
 **Where to find it:** The *Commit* box in the right panel; edit the templates in **Edit → Commit Messages…** (all repositories) or **Repository → Commit Messages…** (this one); choose the version's source in **Repository → Version Source…**.
+
+### 42. Git hooks *(new in 1.0.9)*
+
+**In one line:** See your hooks' output while they run, read why one refused a commit, and skip them when you need to.
+
+**What it does:** When the repository has Git hooks (a linter or test run before each commit, a check before each push), the app shows what the hook prints in the status bar while it runs, and waits up to an hour for it instead of giving up. When a hook refuses a commit or a push, a window shows its full output and offers **Commit Without Hooks** or **Push Without Hooks**. A **Skip Hooks** box next to *Amend*, shown only when the repository has a commit hook, commits without running them once. Everything the hook printed also goes to the activity log.
+
+**Why it's different:**
+- Many GUIs show a hook failure as a generic error, or freeze until the hook ends.
+- Here you see the hook working, and its message when it says no.
+
+**Where to find it:** Commit box → *Skip Hooks* (next to *Amend*); the window that opens when a hook refuses a commit or push.
 
 ### 41. AI assistant *(new in 1.0.8, experimental)*
 
@@ -418,16 +444,18 @@ Beyond commit messages:
 - **Manage Branches:** lists every branch of the current repository (local, remote or both) with its upstream. Tick several branches to delete them (locally, remotely or both), pull, push or merge them.
 - **Manage Repos:** runs fetch, pull, checkout, create branch, push or delete branch across all open repositories at once.
 - **From a selection:** Ctrl+click / Shift+click several branches in the sidebar (or several commits in the graph), right-click, and pick the action: Manage Branches opens with them ticked and runs it.
+- **Clean Up Branches:** **Edit → Clean Up Branches…** opens Manage Branches with the branches you can delete already ticked: those merged into the main branch (also when they were merged by **squash**, **rebase** or a **merged pull request** on GitHub / GitLab) and those whose branch was **deleted on the remote**. A *Last Commit* and a *Status* column say why; **Select ▾** picks *Merged*, *Merged or Remote Deleted* or *Stale* (no commit for 90 days), and *Merged into* changes the main branch to compare with. Branches merged by squash, rebase or pull request are deleted even though Git calls them unmerged, but only if nobody added a commit since the check.
 - **Unmerged branches:** when a delete stops at branches that aren't fully merged, one question lists them and offers to force delete them all.
 - **Reporting:** the work continues past individual failures, and a summary report lists what succeeded, what was skipped and why each failure happened.
 - **In the background:** neither window blocks the app. Close or minimise it and keep working; the action goes on, the status bar shows its progress (click for Show, Cancel and, at the end, the report). The repository under the action is read-only meanwhile: browsing, diffs, Blame and history work, changes wait until it ends.
 
 **Why it's different:**
 - Standard GUIs act on one branch and one repository at a time.
+- Clean-up recognises squash and rebase merges, which plain Git reports as "not merged", so the list of old branches is really complete.
 - Cleaning up dozens of merged branches, or updating ten repositories, is a single action here, with a clear per-item report instead of a stream of error dialogs.
 - Long bulk actions run in the background like a download: the rest of the app stays usable, and only the repositories being changed are locked.
 
-**Where to find it:** **Edit → Manage Branches…** and **Edit → Manage Repos…**; right-click a multi-selection of branches in the sidebar or of commits in the graph.
+**Where to find it:** **Edit → Manage Branches…**, **Edit → Clean Up Branches…** and **Edit → Manage Repos…**; right-click a multi-selection of branches in the sidebar or of commits in the graph.
 
 ---
 
@@ -809,7 +837,7 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 | Merge / cherry-pick | Commit immediately | Staged for review first; squash, merge commit or fast-forward when you choose |
 | Cherry-pick several commits | One by one, or committed each time | Select them in the graph, applied together, nothing committed |
 | Branch switching with local changes | Manual stash, or refusal | Automatic stash and restore |
-| Many branches / repos | One at a time | Bulk actions with a per-item report |
+| Many branches / repos | One at a time | Bulk actions with a per-item report; clean-up finds squash- and rebase-merged branches |
 | Many repositories | Window per repo or bookmark list | Tabs with coloured, collapsible groups |
 | Switching from another client | Add every repository again, by hand | Import Workspace: the repository list and groups of six other clients and IDEs, every folder checked first |
 | Several repositories at once | Several windows | Split view: up to four live panes side by side |
@@ -823,6 +851,7 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 | Commit messages | Empty box | Templates with `{version}` / `{branch}` / `{issue}` |
 | Debugging | Short error text | Activity log plus exportable raw command logs |
 | Searching the history | Commit messages only; file contents need the terminal | File names, text in every branch, and when a line of code was added or removed |
+| Comparing two branches or commits | Terminal or the hosting website | Two clicks: the files that differ, each with its diff; combined changes of a run of commits |
 | Who changed a line | Separate blame window, if any | Blame in the main view, linked to the graph; file history across renames |
 | Finding the commit that broke something | Terminal `git bisect` | Guided bisect: Good / Bad buttons, marks on the graph, steps left, optional test command |
 | Pull requests | Open the website | Create, review, check out and merge in the app (GitHub, GitLab); browser fallback for every host |
