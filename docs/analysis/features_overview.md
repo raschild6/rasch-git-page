@@ -773,7 +773,7 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 
 **In one line:** Always up to date, real progress bars, and a cancel button that actually stops Git.
 
-**What it does:** The repository you are looking at is fetched when you switch to its tab and periodically at an interval you choose; you can also fetch on demand. Long operations (clone, fetch, pull, push, slow checkouts, merges) show Git's own progress as a real percentage in the toolbar, not a fake spinner. The cancel button next to the spinner kills the running Git process tree, so an operation can be stopped in the middle, and the repository is refreshed afterwards.
+**What it does:** The repository you are looking at is fetched (every branch of every remote) when you stay on its tab and periodically at an interval you choose; you can also fetch on demand. The other open repositories are fetched too, slowly and one at a time, while you aren't running an operation (every 10 minutes by default; per repository from the tab's right-click menu). Automatic fetches pause while the app is in the background, skip a repository fetched moments ago, and back off when the server can't be reached. Commits, branches and fetches made outside the app — in a terminal or an IDE — show up in the graph on their own within a second or two. Long operations (clone, fetch, pull, push, slow checkouts, merges) show Git's own progress as a real percentage in the toolbar, not a fake spinner. The cancel button next to the spinner kills the running Git process tree, so an operation can be stopped in the middle, and the repository is refreshed afterwards.
 
 **Why it's different:**
 - Many clients either don't auto-fetch, or fetch every open repository at once in the background.

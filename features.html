@@ -1999,7 +1999,7 @@
                 <a class="next" href="#auto-fetch-with-real-progress-cancel"><small>Next &rarr;</small><span>Auto Fetch with Progress &amp; Cancel</span></a>
               </nav>
             </article>
-            <article class="feature-view feature-page" id="auto-fetch-with-real-progress-cancel" data-area="speed-trust" data-keywords="fetch automatic periodic interval progress bar percentage cancel stop abort kill update remote sync">
+            <article class="feature-view feature-page" id="auto-fetch-with-real-progress-cancel" data-area="speed-trust" data-keywords="fetch automatic periodic interval background other tabs progress bar percentage cancel stop abort kill update remote sync terminal outside external refresh offline">
               <p class="feature-crumb"><a href="#speed-trust">Speed &amp; Trust</a><span>2 of 6</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/><path d="M12 8v4l2.5 2.5"/></svg></span>
@@ -2010,9 +2010,10 @@
               </div>
               <div class="feature-cols">
                 <div class="feature-main">
-                  <ul class="feature-glance" aria-label="At a glance"><li>The repository you look at is fetched on tab switch and at an interval you choose.</li><li>Long operations show Git's real percentage, not a fake spinner.</li><li>Cancel kills the running Git process, and the repository is refreshed after.</li></ul>
+                  <ul class="feature-glance" aria-label="At a glance"><li>The repository you look at is fetched on tab switch and at an interval you choose; the other open ones slowly in the background.</li><li>Commits and branches made in a terminal or an IDE show up on their own.</li><li>Long operations show Git's real percentage, not a fake spinner.</li><li>Cancel kills the running Git process, and the repository is refreshed after.</li></ul>
                   <div class="feature-body">
-                <p>The repository you are looking at is fetched when you switch to its tab and periodically at an interval you choose; you can also fetch on demand. Long operations (clone, fetch, pull, push, slow checkouts, merges) show Git's own progress as a real percentage in the toolbar, not a fake spinner. The cancel button next to the spinner kills the running Git process tree, so an operation can be stopped in the middle, and the repository is refreshed afterwards.</p>
+                <p>The repository you are looking at is fetched (every branch of every remote) when you stay on its tab and periodically at an interval you choose; you can also fetch on demand. The other open repositories are fetched too, slowly and one at a time, while you aren't running an operation (every 10 minutes by default; per repository from the tab's right-click menu). Automatic fetches pause while the app is in the background, skip a repository fetched moments ago, and back off when the server can't be reached. Commits, branches and fetches made outside the app — in a terminal or an IDE — show up in the graph on their own within a second or two.</p>
+                <p>Long operations (clone, fetch, pull, push, slow checkouts, merges) show Git's own progress as a real percentage in the toolbar, not a fake spinner. The cancel button next to the spinner kills the running Git process tree, so an operation can be stopped in the middle, and the repository is refreshed afterwards.</p>
               </div>
                 </div>
                 <aside class="feature-aside" aria-label="Auto Fetch with Progress & Cancel: where to find it">
@@ -2143,7 +2144,7 @@
                 <a class="next" href="#activity-log-full-command-logs"><small>Next &rarr;</small><span>Activity Log &amp; Full Logs</span></a>
               </nav>
             </article>
-            <article class="feature-view feature-page" id="activity-log-full-command-logs" data-area="speed-trust" data-keywords="log logs activity debug bug report export commands output history troubleshooting">
+            <article class="feature-view feature-page" id="activity-log-full-command-logs" data-area="speed-trust" data-keywords="log logs activity debug bug report export commands output history troubleshooting performance slow speed antivirus fsmonitor check">
               <p class="feature-crumb"><a href="#speed-trust">Speed &amp; Trust</a><span>6 of 6</span></p>
               <div class="feature-detail-head">
                 <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h8"/></svg></span>
@@ -2157,12 +2158,13 @@
                   <ul class="feature-glance" aria-label="At a glance"><li>The Activity Log lists every operation with its outcome.</li><li>Every Git command is recorded with its full output.</li><li>Export Full Logs saves it all to one file for a bug report.</li></ul>
                   <div class="feature-body">
                 <p>The Activity Log in each tab lists every operation with its outcome. Behind the scenes, every Git command the app runs is recorded with its arguments, exit code, duration and complete output. <strong>File → Export Full Logs</strong> saves this record (plus the terminal output of each tab) to one file, ready to attach to a bug report.</p>
+                <p>Feels slow? <strong>Help → Performance Check</strong> measures how long Git takes to start and to check for changes on your computer, and says what can speed it up — for example antivirus exclusions on Windows, or Git's own file system monitor for a large repository, turned on with one click.</p>
               </div>
                 </div>
                 <aside class="feature-aside" aria-label="Activity Log & Full Logs: where to find it">
                   <div class="feature-box">
                     <h3>Where to find it</h3>
-                    <p>The <em>Activity Log</em> tab in the bottom panel; <strong>File → Export Full Logs…</strong>.</p>
+                    <p>The <em>Activity Log</em> tab in the bottom panel; <strong>File → Export Full Logs…</strong>; <strong>Help → Performance Check…</strong>.</p>
                   </div>
                   <div class="feature-box feature-why">
                     <h3>Why it's different</h3>
