@@ -27,7 +27,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 5. [Many repositories](#many-repositories) — tab groups, split view, drag & drop to open, import workspace, submodules, large files (Git LFS), scheduled actions
 6. [GitHub & GitLab](#github--gitlab) — pull requests, CI / CD status, clone & fork from your account, issues → branches, accounts & SSH keys, commit signing
 7. [Your workspace](#your-workspace) — built-in terminal, custom toolbar buttons, custom themes, interface scale, external programs, guided tour
-8. [Speed & trust](#speed--trust) — async GUI, auto fetch with progress and cancel, cross-platform look, updates, logs
+8. [Speed & trust](#speed--trust) — async GUI, auto fetch with progress and cancel, optimize repositories, cross-platform look, updates, logs
 9. [Comparison summary](#comparison-summary)
 10. [Keyboard shortcuts](#keyboard-shortcuts)
 11. [Notes for the website](#notes-for-the-website)
@@ -82,6 +82,7 @@ The [notes for the website](#notes-for-the-website) at the end list claims to av
 | 42 | Git hooks | See your hooks' output while they run, read why one refused a commit, and skip them when you need to. |
 | 50 | Guided bisect | Find the commit that broke something: mark one that worked, answer Good or Bad for each commit the app checks out, and it names the culprit. |
 | 43 | Compare commits & branches | Every file that differs between two commits or two branches — or what a run of commits changed together — with each file's diff. |
+| 51 | Optimize Repositories | See how fast Git checks for changes in every repository, and turn on Git's own speed-ups where it is slow — and off again — with one click. |
 
 ---
 
@@ -781,6 +782,21 @@ Scheduled work waits for your own operations, and each change can be undone. A r
 - Cancel is real: it terminates Git instead of just hiding the dialog.
 
 **Where to find it:** Toolbar → **Fetch** (also in the Pull menu); **Edit → Auto Fetch…** sets the interval and fetch-on-tab-switch; the cancel button appears next to the toolbar spinner.
+
+### 51. Optimize Repositories
+
+**In one line:** See how fast Git checks for changes in every repository, and turn on Git's own speed-ups where it is slow — and off again — with one click.
+
+**What it does:** **Help → Optimize Repositories** first tells you how long starting Git takes on this computer, and what to do when it is slow (on Windows usually an antivirus scanning every Git start). Then it lists every repository the app knows — open, hidden, in a group or recently used — with how long checking for changes takes there, how many files and loose branch files it has, what disk it is on, and whether Git's speed-ups are on. Repositories that would gain are already ticked: **Optimize Selected** turns on, one repository at a time, Git's untracked cache (Git skips folders whose contents haven't changed), optionally Git's file system monitor (Git asks a small watcher what changed instead of scanning), and keeps hundreds of branch files in one. **Turn Off** puts everything back. When a repository you work in is slow, a single line above the graph offers to optimize it; you can also let the app optimize new repositories automatically (off by default; never the file monitor).
+
+**Why it's different:**
+- Git's speed-ups are settings most people never hear of; other clients leave them to the command line.
+- The list costs nothing to open: it reads what the app already measured and the repositories' own files, instead of running Git in each one.
+- Honest about the trade-offs: the file monitor stays a deliberate choice, with a warning about older Git versions, and is never turned on for network disks.
+
+**Where to find it:** **Help → Optimize Repositories…**; the *Optimize…* banner above the graph of a slow repository.
+
+**Accuracy notes:** measured on a corporate Windows PC with an antivirus that can't be changed, `git status` went from 2.1 s to 0.55 s and from 1.05 s to 0.54 s in two large repositories; on a Mac it already takes a few hundredths of a second, so the gain there is small. The file monitor is available on Windows and macOS (Git 2.37+) and Linux (Git 2.55+).
 
 ### 20. Consistent cross-platform look
 
