@@ -70,6 +70,7 @@
             <li><a class="chapter-item" href="#import-workspace"><span class="num">14</span><span class="label">Switching from Another Git Client</span></a></li>
             <li><a class="chapter-item" href="#ai-assistant"><span class="num">15</span><span class="label">Getting Started with the AI Assistant</span></a></li>
             <li><a class="chapter-item" href="#bisect"><span class="num">16</span><span class="label">Find the Commit That Broke Something</span></a></li>
+            <li><a class="chapter-item" href="#optimize"><span class="num">17</span><span class="label">Speed Up a Slow Repository</span></a></li>
           </ul>
         </nav>
         <section class="card chapter-content" id="chapter-content">
@@ -647,7 +648,32 @@
  <li><strong>More → Show Bisect Log…</strong> lists every answer so far, in case you want to note them in a bug report.</li>
 </ul>
 <div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div>Bisect steps aren't part of Undo: use <strong>Undo Last Mark</strong> and <strong>End Bisect</strong> instead. The test command uses Git's shell syntax, also on Windows. Submodules aren't updated at each step.</div></div>
-            <div class="chapter-footer"><a href="#ai-assistant">&larr; Getting Started with the AI Assistant</a><span></span></div>
+            <div class="chapter-footer"><a href="#ai-assistant">&larr; Getting Started with the AI Assistant</a><a href="#optimize">Speed Up a Slow Repository &rarr;</a></div>
+          </article>
+          <article class="chapter guide" id="optimize" aria-labelledby="optimize-title">
+            <div class="chapter-head">
+              <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+              <h2 id="optimize-title">Speed Up a Slow Repository</h2>
+            </div>
+<p class="intro">Every few seconds the app asks Git what changed in your files. In a big repository, or on a computer where an antivirus checks every program start, that can take seconds. Here is how to find out why, and fix it.</p>
+
+<h3 class="guide-h" id="optimize-computer">1. Is it the computer?</h3>
+<p>Open <strong>Help → Optimize Repositories…</strong> The first line says how long starting one Git command takes. Normal is a few hundredths of a second. If it says 0.3 s or more on Windows, an antivirus is almost always checking every Git start: if you are allowed to, add a <strong>process exclusion</strong> for <code>git.exe</code> and a <strong>folder exclusion</strong> for your repositories (Windows Security → Virus &amp; threat protection → Manage settings → Exclusions), or keep them on a Dev Drive (Windows 11). If you can't change the antivirus, the next step still helps.</p>
+
+<h3 class="guide-h" id="optimize-repos">2. Turn on Git's speed-ups where it matters</h3>
+<ol class="steps"><li>In the table, look at <em>Status</em>: how long checking for changes takes in each repository. Repositories marked <strong>Recommended</strong> are already ticked.</li><li>Select a row to see its steps: <strong>Untracked cache</strong> (safe almost everywhere), <strong>File system monitor</strong> (the biggest gain on Windows and macOS, read the note below) and <strong>Pack the branch list</strong> (for repositories with hundreds of branches and tags).</li><li>Click <strong>Optimize Selected</strong>. Repositories are done one at a time in the background; an open one is read-only for a moment meanwhile.</li><li>The table shows the new time. Not measured yet? Select the row and click <strong>Measure</strong>.</li></ol>
+<div class="example"><div class="example-head"><span>Example</span>A corporate Windows laptop</div><div class="example-body"><p>Starting Git took 0.35 s (antivirus, can't be changed). In two large repositories checking for changes took 2.1 s and 1.05 s; after Optimize Selected, about 0.55 s in both.</p></div></div>
+<div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div><strong>The file system monitor is a shared setting.</strong> It keeps a small Git program running for the repository, also after you close the app, and every Git on the computer reads it — your terminal, your IDE, WSL. Versions of Git older than 2.26 misread it and may miss changes, so turn it on only if every Git you use there is recent (2.37 or newer). It isn't offered on network disks.</div></div>
+
+<h3 class="guide-h" id="optimize-hint">3. Let the app tell you</h3>
+<ul class="guide-list">
+ <li>When checking for changes is slow in a repository you work in, a line above the graph says so; <strong>Optimize…</strong> opens the window with that repository selected. Close it with ✕ to stop asking for that repository.</li>
+ <li>Tick <strong>Optimize new repositories automatically</strong> at the bottom of the window to give repositories you open for the first time the untracked cache and a packed branch list. It never turns on the file monitor.</li>
+</ul>
+
+<h3 class="guide-h" id="optimize-off">Undo it</h3>
+<p>Select the repository and click <strong>Turn Off</strong>: the settings are removed, Git's caches are dropped and the file monitor is stopped. Settings you had made yourself are only removed if you say so. <strong>Copy Report</strong> copies all the numbers (repository names only), handy for a bug report.</p>
+            <div class="chapter-footer"><a href="#bisect">&larr; Find the Commit That Broke Something</a><span></span></div>
           </article>
         </section>
       </div>
