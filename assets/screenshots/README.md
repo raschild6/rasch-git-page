@@ -1,6 +1,6 @@
 # Screenshots
 
-1600×1000 PNGs of the real app, default **Dark** theme, window filling the screen. They were captured on a virtual display against demo repositories (a fictional "orbit" order/payment service: ~200 commits by 5 authors, feature branches and merges, tags, a remote, stashes and work in progress). Numbers refer to the sections of [`docs/analysis/features_overview.md`](../analysis/features_overview.md).
+1600×1000 PNGs of the real app, default **Dark** theme, window filling the screen. They were captured on a virtual display against demo repositories (a fictional "lumen" room-booking service: ~190 commits by 5 authors, feature branches and merges, tags, a remote, stashes and work in progress; plus lumen-web, lumen-docs and infra-deploy, grouped as "Lumen" and "Frontend & Docs"). Numbers refer to the sections of [`docs/analysis/features_overview.md`](../analysis/features_overview.md).
 
 | File | Shows | Feature |
 |---|---|---|
@@ -21,9 +21,9 @@
 | `undo-redo.png` | Edit menu with *Undo Stash changes* | 13 |
 | `conflict-editor.png` | Three-pane conflict editor (ours / theirs / result) | 8 |
 | `branch-tree-remote-menu.png` | Remote menu: switch HTTPS ↔ SSH, choose SSH key | 15, 24 |
-| `tab-groups.png` | Group row above the repository tabs: one group partially hidden (2/3), one collapsed (0/2), "3 hidden" | 5 |
+| `tab-groups.png` | Group row above the repository tabs (slim chips with colour and count) and the card of a group: its repositories, the hidden one, Collapse / Show all | 5 |
 | `group-menu.png` | Right-click on a group: collapse / expand, tick the tabs to show | 5 |
-| `hidden-tabs-menu.png` | "N hidden": hidden tabs by group, one click brings a tab back | 5 |
+| `hidden-tabs-menu.png` | View → Hidden Tabs: hidden tabs by group, one click brings a tab back | 5 |
 | `tab-context-menu.png` | Repository tab menu: *Reload Repository*, *Hide Tab*, group entries | 5 |
 | `manage-branches.png`, `manage-repos.png`, `bulk-summary-report.png` | Bulk actions and their summary report | 6 |
 | `background-operations.png` | A bulk delete running in the background: read-only banner above the graph, status-bar panel with Show / Cancel | 6 |
@@ -56,9 +56,9 @@
 | `image-diff-swipe.png` | Image diff in Swipe mode | 3 |
 | `lfs.png` | LFS card (size before → after, *Open Before* / *Open After*) and LFS / large-file badges in the changes panel | 38 |
 | `split-view-2.png`, `split-view-4.png` | Split view: two repositories side by side; four in a 2×2 grid | 29 |
-| `import-workspace-tools.png`, `import-workspace.png`, `import-workspace-report.png` | File → Import Workspace…: the six tools (found / not found), the repositories by group with each folder checked, the result report (dialog only, demo home folder) | 40 |
+| `import-workspace-tools.png`, `import-workspace.png`, `import-workspace-report.png` | File → Import Workspace…: the six tools (found / not found), the repositories by group with each folder checked, the result report | 40 |
 | `ai-settings-claude-code.png` | AI → AI Settings…: Claude Code selected, Check Program shows the version and the sign-in | 41 |
-| `ai-settings.png` | AI → AI Settings…: Ollama selected, the model list read from the local server | 41 |
+| `ai-settings.png` | AI → AI Settings…: Ollama selected, the model list of the local server open | 41 |
 | `ai-send-sheet.png` | The *Ready to send* sheet before a commit message, *View Prompt* open | 41 |
 | `ai-agent-start.png` | AI → New Agent Session…: task, base, new branch, permissions, auto-test (experimental), Claude plan limits | 41 |
 | `ai-agent-session.png` | Worktree tab after an agent session: Agent tab with steps, tests passed after a fix round, Review / Roll Back / Commit / Keep / Discard | 41 |
@@ -70,4 +70,4 @@
 | `ai-usage.png` | AI → AI Usage… with the calls of the session | 41 |
 | `about-license.png` | Help → About with the license notice | — |
 
-Dialogs are shown over the dimmed app with a drop shadow, as the operating system presents them; the capture ran without a window manager, so window title bars aren't drawn. The AI shots use real answers of a local model (Ollama) on a demo repository. Names, e-mail addresses, the sign-in code, the release in the update dialog and the pull requests, CI checks, issues and account repositories are demo data.
+Dialogs are shown over the dimmed app with a drop shadow, as the operating system presents them; the capture ran without a window manager, so window title bars aren't drawn. The AI shots show answers written for the demo (based on real model answers of an earlier capture), since no model runs during the capture. Names, e-mail addresses, the sign-in code, the release in the update dialog and the pull requests, CI checks, issues and account repositories are demo data.
