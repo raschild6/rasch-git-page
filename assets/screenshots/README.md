@@ -58,7 +58,7 @@
 | `split-view-2.png`, `split-view-4.png` | Split view: two repositories side by side; four in a 2×2 grid | 29 |
 | `import-workspace-tools.png`, `import-workspace.png`, `import-workspace-report.png` | File → Import Workspace…: the six tools (found / not found), the repositories by group with each folder checked, the result report | 40 |
 | `ai-settings-claude-code.png` | AI → AI Settings…: Claude Code selected, Check Program shows the version and the sign-in | 41 |
-| `ai-settings.png` | AI → AI Settings…: Ollama selected, the model list read from the local server | 41 |
+| `ai-settings.png` | AI → AI Settings…: Ollama selected, the model list of the local server open | 41 |
 | `ai-send-sheet.png` | The *Ready to send* sheet before a commit message, *View Prompt* open | 41 |
 | `ai-agent-start.png` | AI → New Agent Session…: task, base, new branch, permissions, auto-test (experimental), Claude plan limits | 41 |
 | `ai-agent-session.png` | Worktree tab after an agent session: Agent tab with steps, tests passed after a fix round, Review / Roll Back / Commit / Keep / Discard | 41 |
