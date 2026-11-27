@@ -1,5 +1,182 @@
 [
   {
+    "version": "1.0.10",
+    "tag": "v1.0.10",
+    "date": "2026-11-26",
+    "downloads": {
+      "windows": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.10/RaschildGitManager-1.0.10-windows-x64-setup.exe",
+      "macos": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.10/RaschildGitManager-1.0.10-macos-arm64.dmg",
+      "linux": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.10/RaschildGitManager-1.0.10-linux-x86_64.AppImage",
+      "linux-deb": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.10/raschild-git-manager_1.0.10-1_amd64.deb",
+      "linux-rpm": "https://github.com/raschild6/rasch-git-page/releases/download/v1.0.10/raschild-git-manager-1.0.10-1.x86_64.rpm"
+    },
+    "changelog": {
+      "New Features": [
+        "Optimize Repositories: Help → Optimize Repositories shows how fast Git checks for changes in each of your repositories and turns on Git's own speed-ups in the ones you pick; Turn Off undoes it.",
+        "Tab hover card: Rest the pointer on a repository tab to see its full name, folder, branch, group and local changes; just passing over the tabs opens nothing.",
+        "Go to Repository: Press Ctrl+P, or click » at the end of the tab bar, to list every open repository by group, hidden ones included; type to find one.",
+        "Hint in slow repositories: When checking for changes is slow in a repository, a line above the graph offers to optimize it; close it to stop asking for that repository.",
+        "Optional automatic optimization of new repositories"
+      ],
+      "Bug Fixes": [
+        "Changes made outside the app: Commits, branches, tags and pulls made in a terminal, an editor or another tool now appear in the graph within a second or two, without pressing F5.",
+        "Checkout failing with \"index.lock exists\": The check for local changes before a checkout no longer locks the repository, so a checkout started right after a refresh no longer fails and retries.",
+        "Tab hover in the light theme",
+        "Tab and group cards open only when you rest the pointer, and close as soon as it leaves"
+      ],
+      "Improvements": [
+        "Faster commands on Windows: Commit, checkout, pull and the other undoable actions start far fewer Git processes, and the graph stays fast after you look at old history.",
+        "Faster refresh in repositories with submodules: The list of submodules is now read without asking Git to describe each one, so every refresh of a repository with submodules is seconds faster on Windows.",
+        "Lighter group row: Groups are slim chips with the group colour and how many tabs are hidden; point at one to see its repositories and bring back a hidden one.",
+        "Cleaner repository tabs: Each tab shows its group colour as a thin line, the close button appears when you point at a tab, and long names keep their beginning and end; middle-click closes a tab.",
+        "Commit Messages for one repository: On \"This repository\" you can change the list right away: the repository gets its own copy, and the list for all repositories stays as it is.",
+        "Lighter automatic fetch: Switching quickly through tabs fetches only the one you stop on, fetching pauses while the app is in the background, and an unreachable server is retried less and less often.",
+        "Faster pulls with nothing new: A pull or fetch that brings nothing no longer reloads the graph and the branch list.",
+        "Every open repository stays fresh: The other open repositories are fetched slowly in the background while you aren't running an operation; change the interval or turn it off per repository from the tab's right-click menu.",
+        "Smoother start with many tabs: Restored tabs load one at a time when you pause, and step aside while your own commands run.",
+        "Fewer background checks on Windows: The app now notices file changes in any subfolder on its own, so it asks Git for the repository's status far less often while you work.",
+        "Open a file's folder: Right-click a file, or use the arrow of Open Externally above a diff, and pick Open Folder to see the file selected in its folder.",
+        "Quieter when idle"
+      ]
+    },
+    "notes": [
+      {
+        "kind": "new",
+        "level": 3,
+        "title": "Optimize Repositories",
+        "text": "Help → Optimize Repositories shows how fast Git checks for changes in each of your repositories and turns on Git's own speed-ups in the ones you pick; Turn Off undoes it."
+      },
+      {
+        "kind": "improve",
+        "level": 3,
+        "title": "Faster commands on Windows",
+        "text": "Commit, checkout, pull and the other undoable actions start far fewer Git processes, and the graph stays fast after you look at old history."
+      },
+      {
+        "kind": "improve",
+        "level": 3,
+        "title": "Faster refresh in repositories with submodules",
+        "text": "The list of submodules is now read without asking Git to describe each one, so every refresh of a repository with submodules is seconds faster on Windows."
+      },
+      {
+        "kind": "fix",
+        "level": 3,
+        "title": "Changes made outside the app",
+        "text": "Commits, branches, tags and pulls made in a terminal, an editor or another tool now appear in the graph within a second or two, without pressing F5."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "Tab hover card",
+        "text": "Rest the pointer on a repository tab to see its full name, folder, branch, group and local changes; just passing over the tabs opens nothing."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "Go to Repository",
+        "text": "Press Ctrl+P, or click » at the end of the tab bar, to list every open repository by group, hidden ones included; type to find one."
+      },
+      {
+        "kind": "new",
+        "level": 2,
+        "title": "Hint in slow repositories",
+        "text": "When checking for changes is slow in a repository, a line above the graph offers to optimize it; close it to stop asking for that repository."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Lighter group row",
+        "text": "Groups are slim chips with the group colour and how many tabs are hidden; point at one to see its repositories and bring back a hidden one."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Cleaner repository tabs",
+        "text": "Each tab shows its group colour as a thin line, the close button appears when you point at a tab, and long names keep their beginning and end; middle-click closes a tab."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Commit Messages for one repository",
+        "text": "On \"This repository\" you can change the list right away: the repository gets its own copy, and the list for all repositories stays as it is."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Lighter automatic fetch",
+        "text": "Switching quickly through tabs fetches only the one you stop on, fetching pauses while the app is in the background, and an unreachable server is retried less and less often."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Faster pulls with nothing new",
+        "text": "A pull or fetch that brings nothing no longer reloads the graph and the branch list."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Every open repository stays fresh",
+        "text": "The other open repositories are fetched slowly in the background while you aren't running an operation; change the interval or turn it off per repository from the tab's right-click menu."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Smoother start with many tabs",
+        "text": "Restored tabs load one at a time when you pause, and step aside while your own commands run."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Fewer background checks on Windows",
+        "text": "The app now notices file changes in any subfolder on its own, so it asks Git for the repository's status far less often while you work."
+      },
+      {
+        "kind": "improve",
+        "level": 2,
+        "title": "Open a file's folder",
+        "text": "Right-click a file, or use the arrow of Open Externally above a diff, and pick Open Folder to see the file selected in its folder."
+      },
+      {
+        "kind": "fix",
+        "level": 2,
+        "title": "Checkout failing with \"index.lock exists\"",
+        "text": "The check for local changes before a checkout no longer locks the repository, so a checkout started right after a refresh no longer fails and retries."
+      },
+      {
+        "kind": "new",
+        "level": 1,
+        "title": "",
+        "text": "Optional automatic optimization of new repositories"
+      },
+      {
+        "kind": "improve",
+        "level": 1,
+        "title": "",
+        "text": "Quieter when idle"
+      },
+      {
+        "kind": "fix",
+        "level": 1,
+        "title": "",
+        "text": "Tab hover in the light theme"
+      },
+      {
+        "kind": "fix",
+        "level": 1,
+        "title": "",
+        "text": "Tab and group cards open only when you rest the pointer, and close as soon as it leaves"
+      }
+    ],
+    "virustotal": {
+      "windows": "https://www.virustotal.com/gui/file/a0b43b7d1650c5db24d1b8230449adc37ee991b4f1d226f94cf1907acf4f3a44",
+      "macos": "https://www.virustotal.com/gui/file/c02925136e133335e7c24141a0fba7d0d7a7462422d64617d52e14cb67161dd1",
+      "linux": "https://www.virustotal.com/gui/file/d9158e95c5dd88928d646b1462ddb89dfc64cc0ab6daa53e82db3b4c9ccf49b9",
+      "linux-deb": "https://www.virustotal.com/gui/file/9731794c48bd5478fadd57dc23ed38ef96c21fc15ce5f54bcf5239adb590915d",
+      "linux-rpm": "https://www.virustotal.com/gui/file/806e4876d2075e3cf869e8c201b7f65d30b71a8ae5c2b57ccc1cde495c1ae00f"
+    },
+    "release_url": "https://github.com/raschild6/rasch-git-page/releases/tag/v1.0.10"
+  },
+  {
     "version": "1.0.9",
     "tag": "v1.0.9",
     "date": "2026-11-19",
